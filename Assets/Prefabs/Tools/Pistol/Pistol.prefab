@@ -83,8 +83,8 @@ MonoBehaviour:
   totalAmmoClip: 10
   totalAmmoBank: 100
   totalRecoil: 100
-  timeBetweenShots: 0
-  shootForce: 20
+  timeBetweenShots: 0.25
+  shootForce: 5
   shootPoint: {fileID: 4420079518093876584}
   bulletDistance: 100
   collisionEffect: {fileID: 0}
@@ -92,6 +92,7 @@ MonoBehaviour:
   ammoLeftBank: 100
   ammoLeftClip: 10
   isReloading: 0
+  isShooting: 0
   isSpecialTool: 0
 --- !u!114 &7978956990626475938
 MonoBehaviour:
@@ -112,7 +113,7 @@ MonoBehaviour:
   jointZMotion: 2
   jointXAngMotion: 2
   jointYAngMotion: 2
-  jointZAngMotion: 0
+  jointZAngMotion: 2
   overrideJointDrives: 0
   xSpring: 5000
   xDamper: 250
@@ -125,10 +126,10 @@ MonoBehaviour:
   zForce: 1e+11
   angXSpring: 5000
   angXDamper: 250
-  angXForce: 1e+13
+  angXForce: 1e+11
   angYZSpring: 1000
   angYZDamper: 100
-  angYZForce: 1e+13
+  angYZForce: 1e+11
   grabbedObjectColliders:
   - {fileID: 728141028651264032}
   - {fileID: 7232207919990783857}

@@ -3559,6 +3559,7 @@ MonoBehaviour:
   ammoLeftBank: 0
   ammoLeftClip: 0
   isReloading: 0
+  isShooting: 0
   isSpecialTool: 0
 --- !u!1001 &681883426
 PrefabInstance:
@@ -7222,6 +7223,7 @@ MonoBehaviour:
   ammoLeftBank: 0
   ammoLeftClip: 0
   isReloading: 0
+  isShooting: 0
   isSpecialTool: 0
 --- !u!114 &1425040001
 MonoBehaviour:
@@ -8961,6 +8963,7 @@ MonoBehaviour:
   ammoLeftBank: 0
   ammoLeftClip: 0
   isReloading: 0
+  isShooting: 0
   isSpecialTool: 0
 --- !u!1001 &1725836808
 PrefabInstance:

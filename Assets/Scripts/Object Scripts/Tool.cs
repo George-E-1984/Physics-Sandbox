@@ -12,7 +12,7 @@ public class Tool : MonoBehaviour
     public int totalAmmoClip;
     public int totalAmmoBank;
     public float totalRecoil;
-    public int timeBetweenShots;
+    public float timeBetweenShots;
     public float shootForce;
     public GameObject shootPoint;
     public float bulletDistance;
@@ -24,6 +24,7 @@ public class Tool : MonoBehaviour
     public int ammoLeftBank;
     public int ammoLeftClip; 
     public bool isReloading;
+    public bool isShooting; 
     private RaycastHit shotHit;
     private Rigidbody toolRB;
     private GameObject reloadIcon; 
@@ -55,9 +56,10 @@ public class Tool : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && !isReloading && ammoLeftClip > 0)
+        if (Input.GetMouseButtonDown(0) && !isReloading && ammoLeftClip > 0 && !isShooting)
         {
-            Shoot(); 
+            Physics.Raycast(playerGrab.CamPos.position, playerGrab.CamPos.forward, out shotHit, bulletDistance);
+            StartCoroutine(Shoot(shotHit)); 
         }
 
         if (Input.GetKeyDown(KeyCode.R) && !isReloading && ammoLeftClip != totalAmmoClip && ammoLeftBank > 0)
@@ -66,17 +68,17 @@ public class Tool : MonoBehaviour
         }
     }
 
-    public void Shoot()
-    {           
-        Physics.Raycast(playerGrab.CamPos.position, playerGrab.CamPos.forward, out shotHit, bulletDistance);    
-        
+    IEnumerator Shoot(RaycastHit shotHit)
+    {
+        isShooting = true;             
         if (shotHit.collider != null && shotHit.collider.GetComponent<Rigidbody>() != null && !isReloading)
         {
-            shotHit.collider.GetComponent<Rigidbody>().AddForce(shootForce * (playerGrab.CamPos.forward), ForceMode.Impulse);
+            shotHit.collider.attachedRigidbody.AddForceAtPosition(shootForce * (shotHit.transform.forward), shotHit.transform.position, ForceMode.Impulse);
         }
-        toolRB.AddForce(totalRecoil * (shootPoint.transform.forward), ForceMode.Impulse);
-        toolRB.AddForce((totalRecoil * (shootPoint.transform.up)) / 2, ForceMode.Impulse);
-        ammoLeftClip--; 
+        toolRB.AddForceAtPosition(totalRecoil * (shootPoint.transform.forward), shootPoint.transform.position, ForceMode.Impulse);
+        ammoLeftClip--;
+        yield return new WaitForSeconds(timeBetweenShots);
+        isShooting = false;
         print("Shot");                      
     }
 

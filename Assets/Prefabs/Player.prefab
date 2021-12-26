@@ -726,6 +726,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2173389769490651296}
     m_Modifications:
+    - target: {fileID: 114899726, guid: 62b56d4a7e7c3c545907325a90679937, type: 3}
+      propertyPath: m_Color.a
+      value: 0.8666667
+      objectReference: {fileID: 0}
     - target: {fileID: 2669117324053173733, guid: 62b56d4a7e7c3c545907325a90679937,
         type: 3}
       propertyPath: m_AnchorMax.y
