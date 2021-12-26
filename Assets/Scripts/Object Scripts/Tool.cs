@@ -73,7 +73,7 @@ public class Tool : MonoBehaviour
         isShooting = true;             
         if (shotHit.collider != null && shotHit.collider.GetComponent<Rigidbody>() != null && !isReloading)
         {
-            shotHit.collider.attachedRigidbody.AddForceAtPosition(shootForce * (shotHit.transform.forward), shotHit.transform.position, ForceMode.Impulse);
+            shotHit.collider.attachedRigidbody.AddForceAtPosition(shootForce * shotHit.transform.forward, shotHit.point, ForceMode.Impulse);
         }
         toolRB.AddForceAtPosition(totalRecoil * (shootPoint.transform.forward), shootPoint.transform.position, ForceMode.Impulse);
         ammoLeftClip--;
