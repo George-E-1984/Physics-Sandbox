@@ -23,7 +23,17 @@ public class Crosshair : MonoBehaviour
             animator.SetBool("Highlight Transition to Idle", false);
             animator.SetBool("Idle Transition to Highlight", true);
         }
+        else if (playerGrab.isGrabbingTool == true)
+        {
+            animator.SetBool("Highlight Transition to Idle", false);
+            animator.SetBool("Idle Transition to Highlight", true);
+        }
         else if(playerGrab.isGrabbing == false)
+        {
+            animator.SetBool("Idle Transition to Highlight", false);
+            animator.SetBool("Highlight Transition to Idle", true);
+        }
+        else if(playerGrab.isGrabbingTool == false)
         {
             animator.SetBool("Idle Transition to Highlight", false);
             animator.SetBool("Highlight Transition to Idle", true);
