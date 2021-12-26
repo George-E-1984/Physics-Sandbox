@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18208434, g: 0.22777987, b: 0.30739236, a: 1}
+  m_IndirectSpecularColor: {r: 0.18208407, g: 0.22777925, b: 0.30739176, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3555,7 +3555,7 @@ MonoBehaviour:
   shootPoint: {fileID: 0}
   bulletDistance: 0
   collisionEffect: {fileID: 0}
-  reloadSpinSpeed: 0
+  reloadTime: 0
   ammoLeftBank: 0
   ammoLeftClip: 0
   isReloading: 0
@@ -7058,6 +7058,7 @@ GameObject:
   - component: {fileID: 1425039994}
   - component: {fileID: 1425039999}
   - component: {fileID: 1425040000}
+  - component: {fileID: 1425040001}
   m_Layer: 10
   m_Name: Sphere
   m_TagString: Tool
@@ -7217,11 +7218,24 @@ MonoBehaviour:
   shootPoint: {fileID: 0}
   bulletDistance: 0
   collisionEffect: {fileID: 0}
-  reloadSpinSpeed: 0
+  reloadTime: 0
   ammoLeftBank: 0
   ammoLeftClip: 0
   isReloading: 0
   isSpecialTool: 0
+--- !u!114 &1425040001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1425039993}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94ca56f45d0f9224da69473c2318ff38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeBeforeDestroyed: 3
 --- !u!1001 &1432725517
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8943,7 +8957,7 @@ MonoBehaviour:
   shootPoint: {fileID: 0}
   bulletDistance: 0
   collisionEffect: {fileID: 0}
-  reloadSpinSpeed: 0
+  reloadTime: 0
   ammoLeftBank: 0
   ammoLeftClip: 0
   isReloading: 0

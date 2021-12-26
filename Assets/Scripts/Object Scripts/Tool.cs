@@ -1,7 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Timers; 
+using System.Timers;
+using UnityEngine.UI; 
 
 public class Tool : MonoBehaviour
 {
@@ -16,13 +17,16 @@ public class Tool : MonoBehaviour
     public GameObject shootPoint;
     public float bulletDistance;
     public ParticleSystem collisionEffect;
-    public float reloadSpinSpeed;   
+    public float reloadTime;
+    
+
     [Header("Info")]
     public int ammoLeftBank;
     public int ammoLeftClip; 
     public bool isReloading;
     private RaycastHit shotHit;
     private Rigidbody toolRB;
+    private GameObject reloadIcon; 
 
     //Script Refs
     private PlayerGrab playerGrab; 
@@ -43,6 +47,9 @@ public class Tool : MonoBehaviour
 
         ammoLeftBank = totalAmmoBank; 
         ammoLeftClip = totalAmmoClip;
+
+        //Finds the player ui script
+        reloadIcon = GameObject.Find("PlayerUI").GetComponent<UiData>().reloadIcon.gameObject; 
     }
 
     // Update is called once per frame
@@ -55,11 +62,7 @@ public class Tool : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.R) && !isReloading && ammoLeftClip != totalAmmoClip && ammoLeftBank > 0)
         {
-            Reload();
-        }
-        else
-        {
-            isReloading = false; 
+            StartCoroutine(Reload());
         }
     }
 
@@ -67,7 +70,7 @@ public class Tool : MonoBehaviour
     {           
         Physics.Raycast(playerGrab.CamPos.position, playerGrab.CamPos.forward, out shotHit, bulletDistance);    
         
-        if (shotHit.collider != null && shotHit.collider.GetComponent<Rigidbody>() != null)
+        if (shotHit.collider != null && shotHit.collider.GetComponent<Rigidbody>() != null && !isReloading)
         {
             shotHit.collider.GetComponent<Rigidbody>().AddForce(shootForce * (playerGrab.CamPos.forward), ForceMode.Impulse);
         }
@@ -77,10 +80,11 @@ public class Tool : MonoBehaviour
         print("Shot");                      
     }
 
-    public void Reload()
+    IEnumerator Reload()
     {
-        isReloading = true; 
-
+        isReloading = true;
+        reloadIcon.SetActive(true);
+        yield return new WaitForSeconds(reloadTime);
         if ((totalAmmoClip - ammoLeftClip) > ammoLeftBank)
         {
             ammoLeftClip = ammoLeftClip + ammoLeftBank;
@@ -91,12 +95,8 @@ public class Tool : MonoBehaviour
             ammoLeftBank = ammoLeftBank - (totalAmmoClip - ammoLeftClip);
             ammoLeftClip = ammoLeftClip + (totalAmmoClip - ammoLeftClip);
          
-        }  
+        }
+        reloadIcon.SetActive(false);
+        isReloading = false; 
     }
-
-    private void Recoil()
-    {
-
-    }
-
 }

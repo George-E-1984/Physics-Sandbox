@@ -8,7 +8,8 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Assignables")] 
     public CapsuleCollider playerCol;
-    public PlayerGrab playerGrab; 
+    public PlayerGrab playerGrab;
+    public UiData uiData; 
 
     [Header("Variables")]
     [Tooltip("How fast the player moves. Wow!")]

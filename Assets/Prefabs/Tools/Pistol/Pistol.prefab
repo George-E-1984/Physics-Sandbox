@@ -88,7 +88,7 @@ MonoBehaviour:
   shootPoint: {fileID: 4420079518093876584}
   bulletDistance: 100
   collisionEffect: {fileID: 0}
-  reloadSpinSpeed: 360
+  reloadTime: 1.25
   ammoLeftBank: 100
   ammoLeftClip: 10
   isReloading: 0
