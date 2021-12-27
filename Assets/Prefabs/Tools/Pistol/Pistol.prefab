@@ -83,8 +83,8 @@ MonoBehaviour:
   totalAmmoClip: 10
   totalAmmoBank: 100
   totalRecoil: 100
-  timeBetweenShots: 0.25
-  shootForce: 5
+  timeBetweenShots: 0.2
+  shootForce: 10
   shootPoint: {fileID: 4420079518093876584}
   bulletDistance: 100
   collisionEffect: {fileID: 0}
