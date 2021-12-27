@@ -39,7 +39,7 @@ public class ToolbarManager : MonoBehaviour
             lastSelected = currentlySelected;
         }
         //dropping tool
-        if (Input.GetKeyDown(KeyCode.F) && Tools[currentlySelected] != null)
+        if (Input.GetKeyDown(KeyCode.F) && Tools[currentlySelected] != null && Tools[currentlySelected].GetComponent<Tool>().isReloading == false)
         {
             setToolActive(currentlySelected, false);
             Tools[currentlySelected].gameObject.GetComponent<Tool>().enabled = false;
@@ -61,7 +61,6 @@ public class ToolbarManager : MonoBehaviour
        if (Tools[currentlySelected] != null)
         {
             setToolActive(currentlySelected, true);
-            
         }
     }
 
