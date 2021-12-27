@@ -21,6 +21,9 @@ public class ToolbarManager : MonoBehaviour
     private int lastSelected; 
     private int scrollWheelInt = 0;
 
+    [Header("Info")]
+    public Tool currentToolScript; 
+
     void Start()
     {
         currentlySelected = initiallySelected - 1;
@@ -39,8 +42,14 @@ public class ToolbarManager : MonoBehaviour
             lastSelected = currentlySelected;
         }
         //dropping tool
-        if (Input.GetKeyDown(KeyCode.F) && Tools[currentlySelected] != null && Tools[currentlySelected].GetComponent<Tool>().isReloading == false)
+        if (Input.GetKeyDown(KeyCode.F) && Tools[currentlySelected] != null)
         {
+            if (currentToolScript.isReloading)
+            {
+                StopCoroutine(currentToolScript.Reload());
+                currentToolScript.isReloading = false;
+                currentToolScript.reloadIcon.SetActive(false); 
+            }
             setToolActive(currentlySelected, false);
             Tools[currentlySelected].gameObject.GetComponent<Tool>().enabled = false;
             Tools[currentlySelected].gameObject.SetActive(true);
@@ -55,6 +64,12 @@ public class ToolbarManager : MonoBehaviour
         selected.position = slotTransform;
         if (Tools[lastSelected] != null)
         {
+            if (currentToolScript.isReloading == true)
+            {
+                StopCoroutine(currentToolScript.Reload());
+                currentToolScript.isReloading = false;
+                currentToolScript.reloadIcon.SetActive(false);
+            }
             setToolActive(lastSelected, false);
         }
         
@@ -71,7 +86,8 @@ public class ToolbarManager : MonoBehaviour
         {
             Tools[firstNull] = tool;
             currentlySelected = firstNull;
-            icons[currentlySelected].sprite = tool.GetComponent<Tool>().toolIcon; 
+            currentToolScript = Tools[currentlySelected].GetComponent<Tool>();
+            icons[currentlySelected].sprite = currentToolScript.toolIcon; 
         }
         else
         {
@@ -88,7 +104,8 @@ public class ToolbarManager : MonoBehaviour
             Tools[currentlySelected].transform.rotation = grabHolder.transform.rotation;
             playerGrab.GrabObject(Tools[currentlySelected].gameObject);
             playerGrab.isGrabbingTool = true;
-            Tools[currentlySelected].gameObject.GetComponent<Tool>().enabled = true; 
+            currentToolScript = Tools[currentlySelected].GetComponent<Tool>();
+            currentToolScript.enabled = true; 
         }
         else if (state == false)
         {

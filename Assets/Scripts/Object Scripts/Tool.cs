@@ -27,7 +27,7 @@ public class Tool : MonoBehaviour
     public bool isShooting; 
     private RaycastHit shotHit;
     private Rigidbody toolRB;
-    private GameObject reloadIcon; 
+    public GameObject reloadIcon; 
 
     //Script Refs
     private PlayerGrab playerGrab; 
@@ -56,16 +56,20 @@ public class Tool : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //shooting
         if (Input.GetMouseButtonDown(0) && !isReloading && ammoLeftClip > 0 && !isShooting)
         {
             Physics.Raycast(playerGrab.CamPos.position, playerGrab.CamPos.forward, out shotHit, bulletDistance);
             StartCoroutine(Shoot(shotHit)); 
         }
-
+        //reloading 
         if (Input.GetKeyDown(KeyCode.R) && !isReloading && ammoLeftClip != totalAmmoClip && ammoLeftBank > 0)
         {
             StartCoroutine(Reload());
         }
+        
+        
+
     }
 
     IEnumerator Shoot(RaycastHit shotHit)
@@ -82,7 +86,7 @@ public class Tool : MonoBehaviour
         print("Shot");                      
     }
 
-    IEnumerator Reload()
+    public IEnumerator Reload()
     {
         isReloading = true;
         reloadIcon.SetActive(true);
