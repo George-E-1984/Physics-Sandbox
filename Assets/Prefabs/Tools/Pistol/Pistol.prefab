@@ -79,7 +79,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   toolIcon: {fileID: 21300000, guid: 6c29a66f7bb1ec44199faf4b8c8cddb0, type: 3}
-  isGun: 1
   totalAmmoClip: 10
   totalAmmoBank: 100
   totalRecoil: 100
@@ -89,10 +88,14 @@ MonoBehaviour:
   bulletDistance: 100
   collisionEffect: {fileID: 0}
   reloadTime: 1.25
+  isAuto: 0
+  isSemiAuto: 1
+  isBurst: 0
   ammoLeftBank: 100
   ammoLeftClip: 10
   isReloading: 0
   isShooting: 0
+  reloadIcon: {fileID: 0}
   isSpecialTool: 0
 --- !u!114 &7978956990626475938
 MonoBehaviour:

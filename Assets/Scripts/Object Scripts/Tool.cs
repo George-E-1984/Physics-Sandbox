@@ -8,7 +8,6 @@ public class Tool : MonoBehaviour
 {
     public Sprite toolIcon;
     [Header("Gun Variables to set")]
-    public bool isGun;
     public int totalAmmoClip;
     public int totalAmmoBank;
     public float totalRecoil;
@@ -17,9 +16,13 @@ public class Tool : MonoBehaviour
     public GameObject shootPoint;
     public float bulletDistance;
     public ParticleSystem collisionEffect;
-    public float reloadTime; 
-    
+    public float reloadTime;
 
+    [Header("Shoot-Type")]
+    public bool isAuto;
+    public bool isSemiAuto;
+    public bool isBurst; 
+   
     [Header("Info")]
     public int ammoLeftBank;
     public int ammoLeftClip; 

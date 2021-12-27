@@ -41,9 +41,6 @@ public class PlayerMovement : MonoBehaviour
     private float crouchingHeight = 1f;
     RaycastHit hit; 
     public bool allowedMovement;
-    public bool canJump; 
-
-
 
     // Start is called before the first frame update
     void Start()
@@ -94,11 +91,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-       
         PlayerMovementForce();
         ControlDrag();
-        
-
     }
 
     private void PlayerMovementForce()
@@ -142,7 +136,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space) && IsGrounded) 
         {
-            rb.AddForce(Vector3.up * (System.Convert.ToInt16(canJump) * jumpForce), ForceMode.Impulse); 
+            rb.AddForce((Vector3.up * jumpForce), ForceMode.Impulse); 
             if (hit.collider.GetComponent<Rigidbody>() == true)
             {
                 hit.collider.GetComponent<Rigidbody>().AddForce(Vector3.down * (jumpForce / 2), ForceMode.Impulse);              
