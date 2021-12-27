@@ -17,7 +17,7 @@ public class Tool : MonoBehaviour
     public GameObject shootPoint;
     public float bulletDistance;
     public ParticleSystem collisionEffect;
-    public float reloadTime;
+    public float reloadTime; 
     
 
     [Header("Info")]

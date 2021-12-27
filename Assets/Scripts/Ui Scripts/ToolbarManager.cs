@@ -100,7 +100,8 @@ public class ToolbarManager : MonoBehaviour
         Tools[tool].gameObject.SetActive(state);
         if (state)
         {
-            Tools[currentlySelected].transform.position = (grabHolder.transform.position) - (Tools[currentlySelected].gameObject.GetComponent<GrabSettings>().positionOffset);
+            Tools[currentlySelected].transform.position = (grabHolder.transform.position - playerGrab.grabHolderConfig.anchor);
+            print(Tools[currentlySelected].transform.position);
             Tools[currentlySelected].transform.rotation = grabHolder.transform.rotation;
             playerGrab.GrabObject(Tools[currentlySelected].gameObject);
             playerGrab.isGrabbingTool = true;
