@@ -18,19 +18,19 @@ public class Tool : MonoBehaviour
     public ParticleSystem collisionEffect;
     public float reloadTime;
 
-    [Header("Shoot-Type")]
-    public bool isAuto;
-    public bool isSemiAuto;
-    public bool isBurst; 
+    [Header("Options")] 
+    public ShootType shootTypes; 
    
-    [Header("Info")]
+    [Header("Info (do not touch these values)")]
     public int ammoLeftBank;
     public int ammoLeftClip; 
     public bool isReloading;
     public bool isShooting; 
     private RaycastHit shotHit;
     private Rigidbody toolRB;
-    public GameObject reloadIcon; 
+    public GameObject reloadIcon;
+    public string test; 
+    public enum ShootType { Auto, SemiAuto, Burst };
 
     //Script Refs
     private PlayerGrab playerGrab; 
@@ -59,12 +59,22 @@ public class Tool : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //shooting
-        if (Input.GetMouseButtonDown(0) && !isReloading && ammoLeftClip > 0 && !isShooting)
+        //shooting semi-auto
+        if (Input.GetMouseButtonDown(0) && !isReloading && ammoLeftClip > 0 && !isShooting && shootTypes == ShootType.SemiAuto)
         {
             Physics.Raycast(playerGrab.CamPos.position, playerGrab.CamPos.forward, out shotHit, bulletDistance);
             StartCoroutine(Shoot(shotHit)); 
         }
+        else if (Input.GetMouseButton(0) && !isReloading && ammoLeftClip > 0 && !isShooting && shootTypes == ShootType.Auto)
+        {
+            Physics.Raycast(playerGrab.CamPos.position, playerGrab.CamPos.forward, out shotHit, bulletDistance);
+            StartCoroutine(Shoot(shotHit));
+        }
+        else if (Input.GetMouseButtonDown(0) && !isReloading && ammoLeftClip > 0 && !isShooting && shootTypes == ShootType.Burst)
+        {
+
+        }
+
         //reloading 
         if (Input.GetKeyDown(KeyCode.R) && !isReloading && ammoLeftClip != totalAmmoClip && ammoLeftBank > 0)
         {

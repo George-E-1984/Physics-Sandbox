@@ -88,14 +88,13 @@ MonoBehaviour:
   bulletDistance: 100
   collisionEffect: {fileID: 0}
   reloadTime: 1.25
-  isAuto: 0
-  isSemiAuto: 1
-  isBurst: 0
+  shootTypes: 1
   ammoLeftBank: 100
   ammoLeftClip: 10
   isReloading: 0
   isShooting: 0
   reloadIcon: {fileID: 0}
+  test: 
   isSpecialTool: 0
 --- !u!114 &7978956990626475938
 MonoBehaviour:
