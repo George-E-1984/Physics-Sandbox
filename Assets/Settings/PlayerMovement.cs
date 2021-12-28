@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
+using UnityEngine; 
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -9,7 +9,9 @@ public class PlayerMovement : MonoBehaviour
     [Header("Assignables")] 
     public CapsuleCollider playerCol;
     public PlayerGrab playerGrab;
-    public UiData uiData; 
+    public UiData uiData;
+    public AudioSource playerAudioSource;
+    public GameObject shootOrigin;
 
     [Header("Variables")]
     [Tooltip("How fast the player moves. Wow!")]
@@ -73,15 +75,12 @@ public class PlayerMovement : MonoBehaviour
         }
 
         PlayerMoveInput = new Vector3(Input.GetAxisRaw("Horizontal"), 0f, Input.GetAxisRaw("Vertical"));
-
-        
-        
+   
         PlayerJump();
 
-
-
         //Ground Check
-        IsGrounded = Physics.Raycast(transform.position, Vector3.down, out hit, 1.1f); 
+        IsGrounded = Physics.Raycast(transform.position, Vector3.down, out hit, 1.1f);
+     
     }
 
     private void LateUpdate()

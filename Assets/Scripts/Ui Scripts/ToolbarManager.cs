@@ -46,10 +46,11 @@ public class ToolbarManager : MonoBehaviour
         {
             if (currentToolScript.isReloading)
             {
-                StopCoroutine(currentToolScript.Reload());
+                currentToolScript.StopAllCoroutines();
                 currentToolScript.isReloading = false;
                 currentToolScript.reloadIcon.SetActive(false); 
             }
+            currentToolScript.isShooting = false;
             setToolActive(currentlySelected, false);
             Tools[currentlySelected].gameObject.GetComponent<Tool>().enabled = false;
             Tools[currentlySelected].gameObject.SetActive(true);
@@ -66,10 +67,11 @@ public class ToolbarManager : MonoBehaviour
         {
             if (currentToolScript.isReloading == true)
             {
-                StopCoroutine(currentToolScript.Reload());
+                currentToolScript.StopAllCoroutines();
                 currentToolScript.isReloading = false;
                 currentToolScript.reloadIcon.SetActive(false);
             }
+            currentToolScript.isShooting = false;
             setToolActive(lastSelected, false);
         }
         
@@ -109,7 +111,7 @@ public class ToolbarManager : MonoBehaviour
             currentToolScript.enabled = true; 
         }
         else if (state == false)
-        {
+        {            
             playerGrab.ReleaseObject(false);
             playerGrab.isGrabbingTool = false;
         }
