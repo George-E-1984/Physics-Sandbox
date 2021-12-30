@@ -15,6 +15,9 @@ public class Tool : MonoBehaviour
     public float shootForce;
     public float bulletDistance;
     public float reloadTime;
+    [Header("Force Gun Only!")]
+    public float forceTome;
+    public float forceSpeed; 
     [Tooltip("Only assign value to if the gun is burst!")]
     public int burstAmount; 
 
@@ -38,8 +41,10 @@ public class Tool : MonoBehaviour
     private RaycastHit shotHit;
     private Rigidbody toolRB;
     public GameObject reloadIcon;
-    public string test; 
-    public enum ShootType { Auto, SemiAuto, Burst };
+    public string test;
+    public Transform shootOrigin;
+    public GameObject forceShot; 
+    public enum ShootType { Auto, SemiAuto, Burst, Force };
 
     //Script Refs
     private PlayerGrab playerGrab;
@@ -63,8 +68,6 @@ public class Tool : MonoBehaviour
 
         //Finds the player ui script
         reloadIcon = GameObject.Find("PlayerUI").GetComponent<UiData>().reloadIcon.gameObject; 
-
-        
     }
 
     // Update is called once per frame
@@ -93,6 +96,11 @@ public class Tool : MonoBehaviour
 
             }
         }
+        //shooting thunder
+        else if (Input.GetMouseButton(0) && !isReloading && ammoLeftClip > 0 && !isShooting && shootTypes == ShootType.Force)
+        {
+            StartCoroutine(ForceGun());                          
+        }
 
         //reloading 
         if (Input.GetKeyDown(KeyCode.R) && !isReloading && ammoLeftClip != totalAmmoClip && ammoLeftBank > 0)
@@ -104,6 +112,10 @@ public class Tool : MonoBehaviour
 
     }
 
+    private void FixedUpdate()
+    {
+     
+    }
     public IEnumerator Shoot(RaycastHit shotHit)
     {
         isShooting = true;             
@@ -130,6 +142,26 @@ public class Tool : MonoBehaviour
         print("Shot");                      
     }
 
+    public IEnumerator ForceGun()
+    {
+        print("Nala = simba");
+        forceShot.SetActive(true); 
+        isShooting = true; 
+        Vector3 firstRot = playerGrab.CamPos.forward;
+        forceShot.transform.position = shootOrigin.position;
+        forceShot.transform.rotation = shootOrigin.rotation; 
+        for (int i = 0; i < forceTome * 60; i++)
+        {
+            forceShot.transform.Translate(firstRot * forceSpeed, Space.World);
+            yield return null; 
+        }
+
+        forceShot.SetActive(false); 
+        yield return new WaitForSeconds(timeBetweenShots);
+        isShooting = false; 
+        
+    }
+
     public IEnumerator Reload()
     {
         isReloading = true;
@@ -150,4 +182,6 @@ public class Tool : MonoBehaviour
         reloadIcon.SetActive(false);
         isReloading = false; 
     }
+
+    
 }
