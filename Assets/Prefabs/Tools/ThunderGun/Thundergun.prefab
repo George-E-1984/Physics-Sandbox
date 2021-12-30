@@ -239,6 +239,8 @@ MonoBehaviour:
   shootForce: 100
   bulletDistance: 10
   reloadTime: 10
+  forceTome: 1.75
+  forceSpeed: 0.35
   burstAmount: 0
   shootTypes: 3
   shootPoint: {fileID: 4499249868687640886}
@@ -254,7 +256,8 @@ MonoBehaviour:
   isShooting: 0
   reloadIcon: {fileID: 0}
   test: 
-  shootCL: {fileID: 0}
+  shootOrigin: {fileID: 0}
+  forceShot: {fileID: 0}
   isSpecialTool: 0
 --- !u!65 &4064907617824793933
 BoxCollider:

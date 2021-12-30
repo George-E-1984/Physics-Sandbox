@@ -67,7 +67,9 @@ public class Tool : MonoBehaviour
         ammoLeftClip = totalAmmoClip;
 
         //Finds the player ui script
-        reloadIcon = GameObject.Find("PlayerUI").GetComponent<UiData>().reloadIcon.gameObject; 
+        reloadIcon = GameObject.Find("PlayerUI").GetComponent<UiData>().reloadIcon.gameObject;
+
+        shootOrigin = playerGrab.PlayerMovement.shootOrigin.transform; 
     }
 
     // Update is called once per frame
@@ -149,7 +151,11 @@ public class Tool : MonoBehaviour
         isShooting = true; 
         Vector3 firstRot = playerGrab.CamPos.forward;
         forceShot.transform.position = shootOrigin.position;
-        forceShot.transform.rotation = shootOrigin.rotation; 
+        forceShot.transform.rotation = shootOrigin.rotation;
+        toolRB.AddForceAtPosition(totalRecoil * (shootPoint.transform.forward), shootPoint.transform.position, ForceMode.Impulse);
+        muzzleFlash.Play();
+        shootAudioSource.Play();
+        ammoLeftClip--;
         for (int i = 0; i < forceTome * 60; i++)
         {
             forceShot.transform.Translate(firstRot * forceSpeed, Space.World);
