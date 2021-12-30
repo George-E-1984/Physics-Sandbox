@@ -15,6 +15,8 @@ public class Tool : MonoBehaviour
     public float shootForce;
     public float bulletDistance;
     public float reloadTime;
+    [Tooltip("Only assign value to if the gun is burst!")]
+    public int burstAmount; 
 
     [Header("Options")] 
     public ShootType shootTypes; 
@@ -74,14 +76,22 @@ public class Tool : MonoBehaviour
             Physics.Raycast(playerGrab.PlayerMovement.shootOrigin.transform.position, playerGrab.CamPos.forward, out shotHit, bulletDistance);
             StartCoroutine(Shoot(shotHit)); 
         }
+        //shooting auto
         else if (Input.GetMouseButton(0) && !isReloading && ammoLeftClip > 0 && !isShooting && shootTypes == ShootType.Auto)
         {
             Physics.Raycast(playerGrab.PlayerMovement.shootOrigin.transform.position, playerGrab.CamPos.forward, out shotHit, bulletDistance);
             StartCoroutine(Shoot(shotHit));
         }
+        //shooting burst
         else if (Input.GetMouseButtonDown(0) && !isReloading && ammoLeftClip > 0 && !isShooting && shootTypes == ShootType.Burst)
         {
+            for (int i = 0; i < burstAmount && !isShooting; i++)
+            {
+                
+                Physics.Raycast(playerGrab.PlayerMovement.shootOrigin.transform.position, playerGrab.CamPos.forward, out shotHit, bulletDistance);
+                StartCoroutine(Shoot(shotHit));
 
+            }
         }
 
         //reloading 
@@ -99,7 +109,7 @@ public class Tool : MonoBehaviour
         isShooting = true;             
     
         
-        if (shotHit.collider != null)
+        if (shotHit.collider != null && shotHit.collider.tag != "Tool")
         {
             GameObject decalGO = Instantiate(shootDecal, shotHit.point, Quaternion.LookRotation(shotHit.normal));
             GameObject impactGO = Instantiate(impactEffect, shotHit.point, Quaternion.LookRotation(shotHit.normal));

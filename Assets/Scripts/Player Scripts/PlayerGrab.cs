@@ -52,7 +52,7 @@ public class PlayerGrab : MonoBehaviour
         {
             hitGrab = checkForObject();
             //tool grab
-            if (hitGrab.collider != null && hitGrab.collider.gameObject.tag == "Tool" && !isGrabbing)
+            if (hitGrab.collider != null && hitGrab.collider.gameObject.tag == "Tool" && !isGrabbing && hitGrab.collider.gameObject != toolbarManager.Tools[toolbarManager.currentlySelected].gameObject)
             {
                 if (toolbarManager.Tools[toolbarManager.currentlySelected] != null && toolbarManager.currentToolScript.isReloading == true)
                 {
