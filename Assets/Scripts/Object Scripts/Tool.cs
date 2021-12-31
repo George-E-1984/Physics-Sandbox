@@ -43,7 +43,8 @@ public class Tool : MonoBehaviour
     public GameObject reloadIcon;
     public string test;
     public Transform shootOrigin;
-    public GameObject forceShot; 
+    public GameObject forceShot;
+    public Vector3 firstRot; 
     public enum ShootType { Auto, SemiAuto, Burst, Force };
 
     //Script Refs
@@ -149,7 +150,7 @@ public class Tool : MonoBehaviour
         print("Nala = simba");
         forceShot.SetActive(true); 
         isShooting = true; 
-        Vector3 firstRot = playerGrab.CamPos.forward;
+        firstRot = playerGrab.CamPos.forward;
         forceShot.transform.position = shootOrigin.position;
         forceShot.transform.rotation = shootOrigin.rotation;
         toolRB.AddForceAtPosition(totalRecoil * (shootPoint.transform.forward), shootPoint.transform.position, ForceMode.Impulse);
