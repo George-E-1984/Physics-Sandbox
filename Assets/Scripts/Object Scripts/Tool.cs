@@ -15,6 +15,11 @@ public class Tool : MonoBehaviour
     public float shootForce;
     public float bulletDistance;
     public float reloadTime;
+    public float shellForce = 10f;
+    [Header("The time it takes for these to be destoyed and cleaned up")]
+    public float timeForBulletShells = 10f;
+    public float timeForShootDecals = 10f;
+    public float timeForImpactEffect = 3f;  
     [Header("Force Gun Only!")]
     public float forceTome;
     public float forceSpeed; 
@@ -29,6 +34,9 @@ public class Tool : MonoBehaviour
     public ParticleSystem muzzleFlash;
     public GameObject impactEffect;
     public GameObject shootDecal;
+    public Animator slideAnimator;
+    public GameObject bulletShell;
+    public GameObject shellReleasePoint; 
     [Header("Audio Stuff")]
     public AudioSource shootAudioSource;
     public AudioClip[] shootSFX;
@@ -102,16 +110,20 @@ public class Tool : MonoBehaviour
             }
         }
         //shooting thunder
-        else if (Input.GetMouseButton(0) && !isReloading && ammoLeftClip > 0 && !isShooting && shootTypes == ShootType.Force)
+        else if (Input.GetMouseButtonDown(0) && !isReloading && ammoLeftClip > 0 && !isShooting && shootTypes == ShootType.Force)
         {
-            StartCoroutine(ForceGun());                          
+            StartCoroutine(ForceGun()); 
         }
+
 
         //reloading 
         if (Input.GetKeyDown(KeyCode.R) && !isReloading && ammoLeftClip != totalAmmoClip && ammoLeftBank > 0)
         {
             StartCoroutine(Reload());
         }
+
+        //Method that handles the slide animations
+        
         
         
 
@@ -119,13 +131,14 @@ public class Tool : MonoBehaviour
 
     private void FixedUpdate()
     {
+
      
     }
     public IEnumerator Shoot(RaycastHit shotHit)
     {
         isShooting = true;             
     
-        
+        //bullet holes and impact effects being made if you hit something
         if (shotHit.collider != null && shotHit.collider.tag != "Tool")
         {
             GameObject decalGO = Instantiate(shootDecal, shotHit.point, Quaternion.LookRotation(shotHit.normal));
@@ -135,13 +148,24 @@ public class Tool : MonoBehaviour
                 decalGO.gameObject.transform.parent = shotHit.collider.transform;
                 shotHit.collider.attachedRigidbody.AddForceAtPosition(shootForce * playerGrab.CamPos.forward, shotHit.point, ForceMode.Impulse);
             }
-            Destroy(impactGO, 2f);
-            Destroy(decalGO, 5f);
+            Destroy(impactGO, timeForImpactEffect);
+            Destroy(decalGO, timeForShootDecals);
         }
+        //slide animation
+        slideAnimator.SetTrigger("SlideBack");
+        //bullet shells
+        GameObject bulletShellGo = Instantiate(bulletShell, shellReleasePoint.transform.position, bulletShell.transform.rotation);
+        bulletShellGo.GetComponent<Rigidbody>().AddForce(-shootPoint.transform.right * shellForce, ForceMode.Impulse);
+        Destroy(bulletShellGo, timeForBulletShells); 
+        //recoil
         toolRB.AddForceAtPosition(totalRecoil * (shootPoint.transform.forward), shootPoint.transform.position, ForceMode.Impulse);
+        //muzzleflash particle system
         muzzleFlash.Play();
+        //shoot sound effect
         shootAudioSource.PlayOneShot(shootSFX[Random.Range(0, shootSFX.Length - 1)]);
+        //reducing ammo amount
         ammoLeftClip--;
+        //time before you can shoot again
         yield return new WaitForSeconds(timeBetweenShots);
         isShooting = false;
         print("Shot");                      
@@ -162,9 +186,8 @@ public class Tool : MonoBehaviour
         for (int i = 0; i < forceTome * 60; i++)
         {
             forceShot.transform.Translate(firstRot * forceSpeed, Space.World);
-            yield return null; 
+            yield return null;
         }
-
         forceShot.SetActive(false); 
         yield return new WaitForSeconds(timeBetweenShots);
         isShooting = false; 
@@ -190,7 +213,5 @@ public class Tool : MonoBehaviour
         }
         reloadIcon.SetActive(false);
         isReloading = false; 
-    }
-
-    
+    }   
 }
