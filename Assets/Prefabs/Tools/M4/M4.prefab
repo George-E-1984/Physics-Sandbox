@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1344265188152427029
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 301674861767930736}
+  m_Layer: 10
+  m_Name: ShellEjectPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &301674861767930736
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1344265188152427029}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.0417, y: 0.1196, z: 0.0421}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1789639735137317027}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1896921645644329483
 GameObject:
   m_ObjectHideFlags: 0
@@ -74,7 +104,7 @@ Transform:
   - {fileID: 1262982704283800815}
   - {fileID: 8063050525672784849}
   m_Father: {fileID: 1789639735137317027}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5170151734587975263
 GameObject:
@@ -104,7 +134,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1789639735137317027}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5985679471960670003
 GameObject:
@@ -309,10 +339,11 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2009205762118745254}
+  - {fileID: 5524139637818928811}
   - {fileID: 8287608485062419365}
   - {fileID: 19352040980999858}
-  - {fileID: 5524139637818928811}
   - {fileID: 8290698483712884643}
+  - {fileID: 301674861767930736}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -336,6 +367,10 @@ MonoBehaviour:
   shootForce: 100
   bulletDistance: 100
   reloadTime: 1.25
+  shellForce: 10
+  timeForBulletShells: 10
+  timeForShootDecals: 10
+  timeForImpactEffect: 3
   forceTome: 0
   forceSpeed: 0
   burstAmount: 0
@@ -345,6 +380,10 @@ MonoBehaviour:
   impactEffect: {fileID: 100002, guid: e74af37e539075d428c1f7bd8cdb781d, type: 3}
   shootDecal: {fileID: 6835657677637974954, guid: 216f1b5145fd1674994b0f7cc15e7c95,
     type: 3}
+  slideAnimator: {fileID: 0}
+  bulletShell: {fileID: 1096938269352802311, guid: fe4e3a18d7c3e5f4da01a0837498d83d,
+    type: 3}
+  shellReleasePoint: {fileID: 1344265188152427029}
   shootAudioSource: {fileID: 1577419385073947322}
   shootSFX:
   - {fileID: 8300000, guid: 2d01e5a11cee3ae438b17933485e4b88, type: 3}
@@ -513,7 +552,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: cdf14baff693fbc439f8c859529a63a6, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: cdf14baff693fbc439f8c859529a63a6, type: 3}
       propertyPath: m_LocalPosition.x

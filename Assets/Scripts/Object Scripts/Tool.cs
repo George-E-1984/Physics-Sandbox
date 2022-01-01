@@ -152,7 +152,10 @@ public class Tool : MonoBehaviour
             Destroy(decalGO, timeForShootDecals);
         }
         //slide animation
-        slideAnimator.SetTrigger("SlideBack");
+        if (slideAnimator != null)
+        {
+            slideAnimator.SetTrigger("SlideBack");
+        }
         //bullet shells
         GameObject bulletShellGo = Instantiate(bulletShell, shellReleasePoint.transform.position, bulletShell.transform.rotation);
         bulletShellGo.GetComponent<Rigidbody>().AddForce(-shootPoint.transform.right * shellForce, ForceMode.Impulse);
