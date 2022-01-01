@@ -29,8 +29,10 @@ public class Tool : MonoBehaviour
     public ParticleSystem muzzleFlash;
     public GameObject impactEffect;
     public GameObject shootDecal;
+    [Header("Audio Stuff")]
     public AudioSource shootAudioSource;
-    public AudioSource reloadAudioSource;
+    public AudioClip[] shootSFX;
+    public AudioClip[] reloadSFX; 
  
 
     [Header("Info (do not touch these values)")]
@@ -138,7 +140,7 @@ public class Tool : MonoBehaviour
         }
         toolRB.AddForceAtPosition(totalRecoil * (shootPoint.transform.forward), shootPoint.transform.position, ForceMode.Impulse);
         muzzleFlash.Play();
-        shootAudioSource.Play();
+        shootAudioSource.PlayOneShot(shootSFX[Random.Range(0, shootSFX.Length - 1)]);
         ammoLeftClip--;
         yield return new WaitForSeconds(timeBetweenShots);
         isShooting = false;
@@ -155,7 +157,7 @@ public class Tool : MonoBehaviour
         forceShot.transform.rotation = shootOrigin.rotation;
         toolRB.AddForceAtPosition(totalRecoil * (shootPoint.transform.forward), shootPoint.transform.position, ForceMode.Impulse);
         muzzleFlash.Play();
-        shootAudioSource.Play();
+        shootAudioSource.PlayOneShot(shootSFX[Random.Range(0, shootSFX.Length - 1)]);
         ammoLeftClip--;
         for (int i = 0; i < forceTome * 60; i++)
         {
@@ -173,7 +175,7 @@ public class Tool : MonoBehaviour
     {
         isReloading = true;
         reloadIcon.SetActive(true);
-        reloadAudioSource.Play();
+        shootAudioSource.PlayOneShot(reloadSFX[Random.Range(0, reloadSFX.Length - 1)]);
         yield return new WaitForSeconds(reloadTime);
         if ((totalAmmoClip - ammoLeftClip) > ammoLeftBank)
         {

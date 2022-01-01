@@ -53,6 +53,8 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false; 
+
+
         
     }
 
@@ -80,6 +82,15 @@ public class PlayerMovement : MonoBehaviour
 
         //Ground Check
         IsGrounded = Physics.Raycast(transform.position, Vector3.down, out hit, 1.1f);
+
+        if (rb.velocity.magnitude > 6)
+        {
+            playerAudioSource.Play();
+        }
+        else
+        {
+            playerAudioSource.Stop(); 
+        }
      
     }
 
@@ -145,12 +156,12 @@ public class PlayerMovement : MonoBehaviour
     
     private void Crouch()
     {
-        playerCol.height = Mathf.Lerp(playerCol.height, crouchingHeight, Time.deltaTime * crouchSpeed);        
+        playerCol.height = Mathf.Lerp(playerCol.height, crouchingHeight, crouchSpeed);        
     }
 
     private void UnCrouch()
     {
-        playerCol.height = Mathf.Lerp(playerCol.height, standingHeight, Time.deltaTime * crouchSpeed);
+        playerCol.height = Mathf.Lerp(playerCol.height, standingHeight, crouchSpeed);
     }
 
     private void ControlDrag()
