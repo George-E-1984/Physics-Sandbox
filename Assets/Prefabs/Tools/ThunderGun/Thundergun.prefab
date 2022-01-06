@@ -95,7 +95,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 908fe64521e19e84db078cc934a7e55e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  positionOffset: {x: 0.7, y: 0, z: -0.8}
+  positionOffset: {x: 1, y: -0.1, z: -1.15}
   rotationOffset: {x: 0, y: 0.70710677, z: 0, w: 0.70710677}
   jointXMotion: 2
   jointYMotion: 2
@@ -129,7 +129,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5558833570947158272}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 14e4f45905cb7f64a82f2d2fcc3897ce, type: 3}
   m_Name: 
@@ -142,6 +142,10 @@ MonoBehaviour:
   shootForce: 100
   bulletDistance: 10
   reloadTime: 10
+  shellForce: 10
+  timeForBulletShells: 10
+  timeForShootDecals: 10
+  timeForImpactEffect: 3
   forceTome: 1.75
   forceSpeed: 0.35
   burstAmount: 0
@@ -151,6 +155,9 @@ MonoBehaviour:
   impactEffect: {fileID: 100002, guid: e74af37e539075d428c1f7bd8cdb781d, type: 3}
   shootDecal: {fileID: 6835657677637974954, guid: 216f1b5145fd1674994b0f7cc15e7c95,
     type: 3}
+  slideAnimator: {fileID: 0}
+  bulletShell: {fileID: 0}
+  shellReleasePoint: {fileID: 0}
   shootAudioSource: {fileID: 8629906891912727488}
   shootSFX:
   - {fileID: 8300000, guid: 8eab400aaec2ecf4c97718f8989a1b63, type: 3}
@@ -160,6 +167,7 @@ MonoBehaviour:
   ammoLeftClip: 0
   isReloading: 0
   isShooting: 0
+  isSpecial: 0
   reloadIcon: {fileID: 0}
   test: 
   shootOrigin: {fileID: 0}
@@ -405,4 +413,4 @@ MeshCollider:
   serializedVersion: 4
   m_Convex: 1
   m_CookingOptions: 30
-  m_Mesh: {fileID: -5495902117074765545, guid: 900e934a2d1b9dc43aba45f343256cff, type: 3}
+  m_Mesh: {fileID: -8432909933700680215, guid: 900e934a2d1b9dc43aba45f343256cff, type: 3}

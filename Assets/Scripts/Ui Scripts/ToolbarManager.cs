@@ -72,6 +72,7 @@ public class ToolbarManager : MonoBehaviour
                 currentToolScript.reloadIcon.SetActive(false);
             }
             currentToolScript.isShooting = false;
+            currentToolScript = null; 
             setToolActive(lastSelected, false);
         }
         

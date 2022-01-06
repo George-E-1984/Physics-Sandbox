@@ -16,7 +16,8 @@ public class Tool : MonoBehaviour
     public float bulletDistance;
     public float reloadTime;
     public float shellForce = 10f;
-    [Header("The time it takes for these to be destoyed and cleaned up")]
+    public float spread = 0.15f; 
+    [Header("The time it takes for cleanup")]
     public float timeForBulletShells = 10f;
     public float timeForShootDecals = 10f;
     public float timeForImpactEffect = 3f;  
@@ -48,6 +49,7 @@ public class Tool : MonoBehaviour
     public int ammoLeftClip; 
     public bool isReloading;
     public bool isShooting; 
+    public bool isSpecial;  
     private RaycastHit shotHit;
     private Rigidbody toolRB;
     public GameObject reloadIcon;
@@ -81,6 +83,14 @@ public class Tool : MonoBehaviour
         reloadIcon = GameObject.Find("PlayerUI").GetComponent<UiData>().reloadIcon.gameObject;
 
         shootOrigin = playerGrab.PlayerMovement.shootOrigin.transform; 
+
+        if (shootTypes == ShootType.Force)
+        {
+            isSpecial = true; 
+        }
+
+        //Deactivates the script 
+        gameObject.GetComponent<Tool>().enabled = false; 
     }
 
     // Update is called once per frame
@@ -89,18 +99,27 @@ public class Tool : MonoBehaviour
         //shooting semi-auto
         if (Input.GetMouseButtonDown(0) && !isReloading && ammoLeftClip > 0 && !isShooting && shootTypes == ShootType.SemiAuto)
         {
-            Physics.Raycast(playerGrab.PlayerMovement.shootOrigin.transform.position, playerGrab.CamPos.forward, out shotHit, bulletDistance);
+            float x = Random.Range(-spread, spread);
+            float y = Random.Range(-spread, spread); 
+            Vector3 direction = playerGrab.CamPos.forward + new Vector3(x, y, 0); 
+            Physics.Raycast(playerGrab.PlayerMovement.shootOrigin.transform.position, direction, out shotHit, bulletDistance);
             StartCoroutine(Shoot(shotHit)); 
         }
         //shooting auto
         else if (Input.GetMouseButton(0) && !isReloading && ammoLeftClip > 0 && !isShooting && shootTypes == ShootType.Auto)
         {
-            Physics.Raycast(playerGrab.PlayerMovement.shootOrigin.transform.position, playerGrab.CamPos.forward, out shotHit, bulletDistance);
+            float x = Random.Range(-spread, spread);
+            float y = Random.Range(-spread, spread); 
+            Vector3 direction = playerGrab.CamPos.forward + new Vector3(x, y, 0); 
+            Physics.Raycast(playerGrab.PlayerMovement.shootOrigin.transform.position, direction, out shotHit, bulletDistance);
             StartCoroutine(Shoot(shotHit));
         }
         //shooting burst
         else if (Input.GetMouseButtonDown(0) && !isReloading && ammoLeftClip > 0 && !isShooting && shootTypes == ShootType.Burst)
         {
+            float x = Random.Range(-spread, spread);
+            float y = Random.Range(-spread, spread); 
+            Vector3 direction = playerGrab.CamPos.forward + new Vector3(x, y, 0); 
             for (int i = 0; i < burstAmount && !isShooting; i++)
             {
                 
@@ -131,13 +150,14 @@ public class Tool : MonoBehaviour
 
     private void FixedUpdate()
     {
+        
 
      
     }
     public IEnumerator Shoot(RaycastHit shotHit)
     {
-        isShooting = true;             
-    
+        isShooting = true;     
+
         //bullet holes and impact effects being made if you hit something
         if (shotHit.collider != null && shotHit.collider.tag != "Tool")
         {
@@ -161,7 +181,7 @@ public class Tool : MonoBehaviour
         bulletShellGo.GetComponent<Rigidbody>().AddForce(-shootPoint.transform.right * shellForce, ForceMode.Impulse);
         Destroy(bulletShellGo, timeForBulletShells); 
         //recoil
-        toolRB.AddForceAtPosition(totalRecoil * (shootPoint.transform.forward), shootPoint.transform.position, ForceMode.Impulse);
+        toolRB.AddForceAtPosition(totalRecoil * (-playerGrab.CamPos.forward), shootPoint.transform.position, ForceMode.Impulse);
         //muzzleflash particle system
         muzzleFlash.Play();
         //shoot sound effect
@@ -172,6 +192,11 @@ public class Tool : MonoBehaviour
         yield return new WaitForSeconds(timeBetweenShots);
         isShooting = false;
         print("Shot");                      
+    }
+
+    public void ShootInput()
+    {
+     
     }
 
     public IEnumerator ForceGun()
@@ -215,6 +240,6 @@ public class Tool : MonoBehaviour
          
         }
         reloadIcon.SetActive(false);
-        isReloading = false; 
+        isReloading = false;         
     }   
 }
