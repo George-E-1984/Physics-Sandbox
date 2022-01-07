@@ -196,12 +196,12 @@ public class Tool : MonoBehaviour
 
     public void ShootInput()
     {
+       
      
     }
 
     public IEnumerator ForceGun()
     {
-        print("Nala = simba");
         forceShot.SetActive(true); 
         isShooting = true; 
         firstRot = playerGrab.CamPos.forward;
