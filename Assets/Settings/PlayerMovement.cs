@@ -82,15 +82,6 @@ public class PlayerMovement : MonoBehaviour
 
         //Ground Check
         IsGrounded = Physics.Raycast(transform.position, Vector3.down, out hit, 1.1f);
-
-        if (rb.velocity.magnitude > 6)
-        {
-            playerAudioSource.Play();
-        }
-        else
-        {
-            playerAudioSource.Stop(); 
-        }
      
     }
 

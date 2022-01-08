@@ -49,6 +49,8 @@ public class Tool : MonoBehaviour
     public int ammoLeftClip; 
     public bool isReloading;
     public bool isShooting; 
+    public bool canShoot = false; 
+    public bool canReload = false; 
     public bool isSpecial;  
     private RaycastHit shotHit;
     private Rigidbody toolRB;
@@ -99,41 +101,42 @@ public class Tool : MonoBehaviour
         //shooting semi-auto
         if (Input.GetMouseButtonDown(0) && !isReloading && ammoLeftClip > 0 && !isShooting && shootTypes == ShootType.SemiAuto)
         {
-            float x = Random.Range(-spread, spread);
-            float y = Random.Range(-spread, spread); 
-            Vector3 direction = playerGrab.CamPos.forward + new Vector3(x, y, 0); 
-            Physics.Raycast(playerGrab.PlayerMovement.shootOrigin.transform.position, direction, out shotHit, bulletDistance);
-            StartCoroutine(Shoot(shotHit)); 
+            //float x = Random.Range(-spread, spread);
+            //float y = Random.Range(-spread, spread); 
+            //Vector3 direction = playerGrab.CamPos.forward + new Vector3(x, y, 0); 
+            //Physics.Raycast(playerGrab.PlayerMovement.shootOrigin.transform.position, direction, out shotHit, bulletDistance);
+            //StartCoroutine(Shoot(shotHit)); 
+            canShoot = true; 
         }
         //shooting auto
         else if (Input.GetMouseButton(0) && !isReloading && ammoLeftClip > 0 && !isShooting && shootTypes == ShootType.Auto)
         {
-            float x = Random.Range(-spread, spread);
-            float y = Random.Range(-spread, spread); 
-            Vector3 direction = playerGrab.CamPos.forward + new Vector3(x, y, 0); 
-            Physics.Raycast(playerGrab.PlayerMovement.shootOrigin.transform.position, direction, out shotHit, bulletDistance);
-            StartCoroutine(Shoot(shotHit));
+            //float x = Random.Range(-spread, spread);
+            //float y = Random.Range(-spread, spread); 
+            //Vector3 direction = playerGrab.CamPos.forward + new Vector3(x, y, 0); 
+            //Physics.Raycast(playerGrab.PlayerMovement.shootOrigin.transform.position, direction, out shotHit, bulletDistance);
+            //StartCoroutine(Shoot(shotHit));
+            canShoot = true; 
         }
         //shooting burst
-        else if (Input.GetMouseButtonDown(0) && !isReloading && ammoLeftClip > 0 && !isShooting && shootTypes == ShootType.Burst)
-        {
-            float x = Random.Range(-spread, spread);
-            float y = Random.Range(-spread, spread); 
-            Vector3 direction = playerGrab.CamPos.forward + new Vector3(x, y, 0); 
-            for (int i = 0; i < burstAmount && !isShooting; i++)
-            {
+        //else if (Input.GetMouseButtonDown(0) && !isReloading && ammoLeftClip > 0 && !isShooting && shootTypes == ShootType.Burst)
+        //{
+            //float x = Random.Range(-spread, spread);
+           // float y = Random.Range(-spread, spread); 
+           // Vector3 direction = playerGrab.CamPos.forward + new Vector3(x, y, 0); 
+            //for (int i = 0; i < burstAmount && !isShooting; i++)
+           // {
                 
-                Physics.Raycast(playerGrab.PlayerMovement.shootOrigin.transform.position, playerGrab.CamPos.forward, out shotHit, bulletDistance);
-                StartCoroutine(Shoot(shotHit));
+               // Physics.Raycast(playerGrab.PlayerMovement.shootOrigin.transform.position, playerGrab.CamPos.forward, out shotHit, bulletDistance);
+               // StartCoroutine(Shoot(shotHit));
 
-            }
-        }
+            //}
+        //}
         //shooting thunder
         else if (Input.GetMouseButtonDown(0) && !isReloading && ammoLeftClip > 0 && !isShooting && shootTypes == ShootType.Force)
         {
             StartCoroutine(ForceGun()); 
         }
-
 
         //reloading 
         if (Input.GetKeyDown(KeyCode.R) && !isReloading && ammoLeftClip != totalAmmoClip && ammoLeftBank > 0)
@@ -150,9 +153,18 @@ public class Tool : MonoBehaviour
 
     private void FixedUpdate()
     {
-        
-
-     
+        if (canShoot)
+        {
+            float x = Random.Range(-spread, spread);
+            float y = Random.Range(-spread, spread); 
+            Vector3 direction = playerGrab.CamPos.forward + new Vector3(x, y, 0); 
+            Physics.Raycast(playerGrab.PlayerMovement.shootOrigin.transform.position, direction, out shotHit, bulletDistance);
+            StartCoroutine(Shoot(shotHit));
+        } 
+        if (canReload)
+        {
+            StartCoroutine(Reload());
+        }  
     }
     public IEnumerator Shoot(RaycastHit shotHit)
     {
@@ -188,6 +200,7 @@ public class Tool : MonoBehaviour
         shootAudioSource.PlayOneShot(shootSFX[Random.Range(0, shootSFX.Length - 1)]);
         //reducing ammo amount
         ammoLeftClip--;
+        canShoot = false; 
         //time before you can shoot again
         yield return new WaitForSeconds(timeBetweenShots);
         isShooting = false;
