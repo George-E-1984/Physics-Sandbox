@@ -34,15 +34,15 @@ public class PlayerMovement : MonoBehaviour
     [Tooltip("Speed of player in air, Higher = less speed, Lower = more speed!")] 
     public float airMovementSpeed;
     
-
+    [Header("Info (Do not touch these values)")]
     Vector3 PlayerMoveInput;
     Vector2 PlayerMouseInput;
-
     public bool isCrouching;
     private float standingHeight = 2f;
     private float crouchingHeight = 1f;
     RaycastHit hit; 
     public bool allowedMovement;
+    public bool canJump; 
 
     // Start is called before the first frame update
     void Start()
@@ -61,6 +61,8 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {             
+        MyInput();
+
         if (IsGrounded && Input.GetKey(KeyCode.LeftControl))
         {
             Crouch();
@@ -77,12 +79,18 @@ public class PlayerMovement : MonoBehaviour
         }
 
         PlayerMoveInput = new Vector3(Input.GetAxisRaw("Horizontal"), 0f, Input.GetAxisRaw("Vertical"));
-   
-        PlayerJump();
 
         //Ground Check
         IsGrounded = Physics.Raycast(transform.position, Vector3.down, out hit, 1.1f);
      
+    }
+
+    public void MyInput()
+    {
+        if (Input.GetKeyDown(KeyCode.Space) && IsGrounded)
+        {
+            canJump = true;
+        }
     }
 
     private void LateUpdate()
@@ -94,6 +102,7 @@ public class PlayerMovement : MonoBehaviour
     {
         PlayerMovementForce();
         ControlDrag();
+        PlayerJump();
     }
 
     private void PlayerMovementForce()
@@ -135,8 +144,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void PlayerJump()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && IsGrounded) 
+        if (canJump) 
         {
+            canJump = false; 
             rb.AddForce((Vector3.up * jumpForce), ForceMode.Impulse); 
             if (hit.collider.GetComponent<Rigidbody>() == true)
             {

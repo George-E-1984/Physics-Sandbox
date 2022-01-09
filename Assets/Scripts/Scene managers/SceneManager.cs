@@ -13,6 +13,7 @@ public class SceneManager : MonoBehaviour
     private int Current;
     public TextMeshProUGUI ammoLeftTextmesh;
     public TextMeshProUGUI ammoBankLeftTextmesh;
+    public int targetFrameRate = 300; 
     
     
 
@@ -25,7 +26,7 @@ public class SceneManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        Application.targetFrameRate = targetFrameRate; 
     }
 
     // Update is called once per frame

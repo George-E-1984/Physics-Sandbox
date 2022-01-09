@@ -363,7 +363,7 @@ MonoBehaviour:
   totalAmmoClip: 30
   totalAmmoBank: 200
   totalRecoil: 250
-  timeBetweenShots: 0.125
+  timeBetweenShots: 40
   shootForce: 100
   bulletDistance: 100
   reloadTime: 1.25
@@ -394,6 +394,8 @@ MonoBehaviour:
   ammoLeftClip: 0
   isReloading: 0
   isShooting: 0
+  canShoot: 0
+  canReload: 0
   isSpecial: 0
   reloadIcon: {fileID: 0}
   test: 

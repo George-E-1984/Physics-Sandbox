@@ -59,6 +59,7 @@ public class Tool : MonoBehaviour
     public Transform shootOrigin;
     public GameObject forceShot;
     public Vector3 firstRot; 
+    public float LastTimeShot;
     public enum ShootType { Auto, SemiAuto, Burst, Force };
 
     //Script Refs
@@ -99,7 +100,7 @@ public class Tool : MonoBehaviour
     void Update()
     {
         //shooting semi-auto
-        if (Input.GetMouseButtonDown(0) && !isReloading && ammoLeftClip > 0 && !isShooting && shootTypes == ShootType.SemiAuto)
+        if (Input.GetMouseButtonDown(0) && !isReloading && ammoLeftClip > 0 && !isShooting && shootTypes != ShootType.Auto)
         {
             //float x = Random.Range(-spread, spread);
             //float y = Random.Range(-spread, spread); 
@@ -133,10 +134,10 @@ public class Tool : MonoBehaviour
             //}
         //}
         //shooting thunder
-        else if (Input.GetMouseButtonDown(0) && !isReloading && ammoLeftClip > 0 && !isShooting && shootTypes == ShootType.Force)
-        {
-            StartCoroutine(ForceGun()); 
-        }
+        //else if (Input.GetMouseButtonDown(0) && !isReloading && ammoLeftClip > 0 && !isShooting && shootTypes == ShootType.Force)
+        //{
+            //StartCoroutine(ForceGun()); 
+        //}
 
         //reloading 
         if (Input.GetKeyDown(KeyCode.R) && !isReloading && ammoLeftClip != totalAmmoClip && ammoLeftBank > 0)
@@ -153,7 +154,7 @@ public class Tool : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (canShoot)
+        if (canShoot && shootTypes != ShootType.Force)
         {
             float x = Random.Range(-spread, spread);
             float y = Random.Range(-spread, spread); 
@@ -161,6 +162,10 @@ public class Tool : MonoBehaviour
             Physics.Raycast(playerGrab.PlayerMovement.shootOrigin.transform.position, direction, out shotHit, bulletDistance);
             StartCoroutine(Shoot(shotHit));
         } 
+        else if (canShoot && shootTypes == ShootType.Force)
+        {
+            StartCoroutine(ForceGun());
+        }
         if (canReload)
         {
             StartCoroutine(Reload());
@@ -168,8 +173,8 @@ public class Tool : MonoBehaviour
     }
     public IEnumerator Shoot(RaycastHit shotHit)
     {
+        
         isShooting = true;     
-
         //bullet holes and impact effects being made if you hit something
         if (shotHit.collider != null && shotHit.collider.tag != "Tool")
         {
@@ -203,8 +208,7 @@ public class Tool : MonoBehaviour
         canShoot = false; 
         //time before you can shoot again
         yield return new WaitForSeconds(timeBetweenShots);
-        isShooting = false;
-        print("Shot");                      
+        isShooting = false;                     
     }
 
     public void ShootInput()
@@ -215,6 +219,7 @@ public class Tool : MonoBehaviour
 
     public IEnumerator ForceGun()
     {
+        canShoot = false;
         forceShot.SetActive(true); 
         isShooting = true; 
         firstRot = playerGrab.CamPos.forward;
@@ -226,13 +231,12 @@ public class Tool : MonoBehaviour
         ammoLeftClip--;
         for (int i = 0; i < forceTome * 60; i++)
         {
-            forceShot.transform.Translate(firstRot * forceSpeed, Space.World);
+            forceShot.transform.Translate(firstRot * forceSpeed * Time.deltaTime, Space.World);
             yield return null;
         }
-        forceShot.SetActive(false); 
-        yield return new WaitForSeconds(timeBetweenShots);
+        forceShot.SetActive(false);  
+        yield return new WaitForSecondsRealtime(Time.deltaTime / timeBetweenShots);
         isShooting = false; 
-        
     }
 
     public IEnumerator Reload()
@@ -240,7 +244,7 @@ public class Tool : MonoBehaviour
         isReloading = true;
         reloadIcon.SetActive(true);
         shootAudioSource.PlayOneShot(reloadSFX[Random.Range(0, reloadSFX.Length - 1)]);
-        yield return new WaitForSeconds(reloadTime);
+        yield return new WaitForSeconds(reloadTime * Time.deltaTime);
         if ((totalAmmoClip - ammoLeftClip) > ammoLeftBank)
         {
             ammoLeftClip = ammoLeftClip + ammoLeftBank;

@@ -86,7 +86,7 @@ MonoBehaviour:
   totalAmmoClip: 10
   totalAmmoBank: 100
   totalRecoil: 100
-  timeBetweenShots: 0.2
+  timeBetweenShots: 100
   shootForce: 10
   bulletDistance: 100
   reloadTime: 1.25

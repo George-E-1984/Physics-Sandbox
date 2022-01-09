@@ -176,6 +176,7 @@ MonoBehaviour:
   fpsTextmesh: {fileID: 8621692496189588105}
   ammoLeftTextmesh: {fileID: 7472598717308659144}
   ammoBankLeftTextmesh: {fileID: 3229211403106086508}
+  targetFrameRate: 300
   playerGrab: {fileID: 5465849238911762470}
   playerMovement: {fileID: 5465849238911762471}
   toolbarManager: {fileID: 1286474281}

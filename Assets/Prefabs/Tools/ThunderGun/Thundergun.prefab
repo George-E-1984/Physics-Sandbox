@@ -143,11 +143,12 @@ MonoBehaviour:
   bulletDistance: 10
   reloadTime: 10
   shellForce: 10
+  spread: 0.15
   timeForBulletShells: 10
   timeForShootDecals: 10
   timeForImpactEffect: 3
   forceTome: 1.75
-  forceSpeed: 0.35
+  forceSpeed: 20
   burstAmount: 0
   shootTypes: 3
   shootPoint: {fileID: 4499249868687640886}
@@ -167,6 +168,8 @@ MonoBehaviour:
   ammoLeftClip: 0
   isReloading: 0
   isShooting: 0
+  canShoot: 0
+  canReload: 0
   isSpecial: 0
   reloadIcon: {fileID: 0}
   test: 
