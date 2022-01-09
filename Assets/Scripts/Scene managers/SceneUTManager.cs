@@ -33,7 +33,6 @@ public class SceneUTManager : MonoBehaviour
     void Update()
     {
         GravityToggle();
-        SlowNalaToggle();
         if (Input.GetKey(KeyCode.P))
         {
             PlayerMovement.allowedMovement = false;
@@ -71,15 +70,6 @@ public class SceneUTManager : MonoBehaviour
             GravityNala = !GravityNala;
             Physics.gravity = GravityNala ? new Vector3(0f, 1f, 0f) : new Vector3(0f, -9.81f, 0f);
             print(Physics.gravity);
-        }
-    }
-    private void SlowNalaToggle()
-    {
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            SlowNala = !SlowNala;
-            Time.timeScale = 1f - 0.5f * System.Convert.ToInt32(SlowNala);
-            Time.fixedDeltaTime = 0.02f - 0.01f * System.Convert.ToInt32(SlowNala);
         }
     }
 }

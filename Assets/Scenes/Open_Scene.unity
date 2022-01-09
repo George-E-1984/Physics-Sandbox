@@ -11483,6 +11483,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4621057358991730313, guid: e11e9dafe487002419d48985909fa249,
+        type: 3}
+      propertyPath: targetFrameRate
+      value: 300
+      objectReference: {fileID: 0}
     - target: {fileID: 5465849238911762464, guid: e11e9dafe487002419d48985909fa249,
         type: 3}
       propertyPath: m_Name
@@ -30209,7 +30214,7 @@ PrefabInstance:
     - target: {fileID: 1795260030433412376, guid: 622a12ee58c288e4e903e62fa50e7cf8,
         type: 3}
       propertyPath: timeBetweenShots
-      value: 0.01
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 1846503669878852913, guid: 622a12ee58c288e4e903e62fa50e7cf8,
         type: 3}

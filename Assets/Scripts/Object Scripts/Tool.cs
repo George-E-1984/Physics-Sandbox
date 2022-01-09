@@ -208,6 +208,7 @@ public class Tool : MonoBehaviour
         ammoLeftClip--;
         canShoot = false; 
         //time before you can shoot again    
+        Time.timeScale = 1f; 
         yield return new WaitForSeconds(timeBetweenShots);  
         isShooting = false;             
     }

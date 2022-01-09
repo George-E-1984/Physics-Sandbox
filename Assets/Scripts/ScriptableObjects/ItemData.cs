@@ -5,7 +5,15 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Tool")]
 public class ItemData : ScriptableObject
 {
-    public string displayName;
+    [Header("Assignables")]
     public Sprite icon;
     public GameObject prefab; 
+    public string gunName; 
+
+    [Header("Variables")]
+    public float fireRate; 
+    public int maxAmmoInClip; 
+    public int maxAmmoInBank; 
+    public enum ShootType {Semi, Auto, Force, Burst}
+    public ShootType shootType; 
 }

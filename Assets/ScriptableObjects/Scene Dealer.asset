@@ -9,13 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f817b8a58834e0a4e804adb6a5aa087c, type: 3}
-  m_Name: Pistol
+  m_Script: {fileID: 11500000, guid: 2faaaffa64c47f7499c10e13bbd55118, type: 3}
+  m_Name: Scene Dealer
   m_EditorClassIdentifier: 
-  icon: {fileID: 0}
-  prefab: {fileID: 0}
-  gunName: Pogster11
-  fireRate: 0
-  maxAmmoInClip: 0
-  maxAmmoInBank: 0
-  shootType: 0
+  currentSceneName: 
+  sceneToTransitionToName: 
