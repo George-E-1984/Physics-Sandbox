@@ -302,6 +302,7 @@ MonoBehaviour:
   airMovementSpeed: 1.02
   isCrouching: 0
   allowedMovement: 1
+  canJump: 0
 --- !u!114 &5465849238911762470
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -333,6 +334,8 @@ MonoBehaviour:
   grabbedTool: {fileID: 0}
   toolbarManager: {fileID: 1286474281}
   PlayerMovement: {fileID: 5465849238911762471}
+  grabSound: {fileID: 8300000, guid: e1acf0b65e7608d45ae47ddfa5c73bf4, type: 3}
+  grabAudioSource: {fileID: 0}
 --- !u!54 &1010940802538862720
 Rigidbody:
   m_ObjectHideFlags: 0

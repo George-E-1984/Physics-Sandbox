@@ -33,6 +33,9 @@ public class PlayerGrab : MonoBehaviour
     [Header("Assign Scripts")]
     public ToolbarManager toolbarManager;
     public PlayerMovement PlayerMovement;
+    public AudioClip grabSound; 
+    [Header("Info")]
+    public AudioSource grabAudioSource;
 
 
 
@@ -99,6 +102,9 @@ public class PlayerGrab : MonoBehaviour
 
     public void GrabObject(GameObject objectToGrab)
     {
+        //grab sound effect
+        grabAudioSource = objectToGrab.AddComponent<AudioSource>(); 
+        grabAudioSource.PlayOneShot(grabSound);  
         //important variables setting!     
          grabbedObjectRb = objectToGrab.transform.gameObject.GetComponent<Rigidbody>();
          grabSettings = objectToGrab.transform.gameObject.GetComponent<GrabSettings>();
@@ -131,6 +137,7 @@ public class PlayerGrab : MonoBehaviour
 
     public void ReleaseObject(bool isThrowing = false)
     {
+        Destroy(grabAudioSource); 
         for (int i = 0; i < grabSettings.grabbedObjectColliders.Length; i++)
         {
             Physics.IgnoreCollision(grabSettings.grabbedObjectColliders[i], playerCollider, false);

@@ -363,7 +363,7 @@ MonoBehaviour:
   totalAmmoClip: 30
   totalAmmoBank: 200
   totalRecoil: 250
-  timeBetweenShots: 40
+  timeBetweenShots: 0.05
   shootForce: 100
   bulletDistance: 100
   reloadTime: 1.25
@@ -402,6 +402,7 @@ MonoBehaviour:
   shootOrigin: {fileID: 0}
   forceShot: {fileID: 0}
   firstRot: {x: 0, y: 0, z: 0}
+  LastTimeShot: 0
   isSpecialTool: 0
 --- !u!65 &4158037760638336309
 BoxCollider:

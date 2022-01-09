@@ -86,10 +86,10 @@ MonoBehaviour:
   totalAmmoClip: 10
   totalAmmoBank: 100
   totalRecoil: 100
-  timeBetweenShots: 100
+  timeBetweenShots: 0.2
   shootForce: 10
   bulletDistance: 100
-  reloadTime: 1.25
+  reloadTime: 30
   shellForce: 5
   spread: 0.05
   timeForBulletShells: 10
@@ -125,6 +125,7 @@ MonoBehaviour:
   shootOrigin: {fileID: 0}
   forceShot: {fileID: 0}
   firstRot: {x: 0, y: 0, z: 0}
+  LastTimeShot: 0
   isSpecialTool: 0
 --- !u!114 &7978956990626475938
 MonoBehaviour:
