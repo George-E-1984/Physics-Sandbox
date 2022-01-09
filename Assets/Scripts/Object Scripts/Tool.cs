@@ -60,6 +60,7 @@ public class Tool : MonoBehaviour
     public GameObject forceShot;
     public Vector3 firstRot; 
     public float LastTimeShot;
+    private static System.Timers.Timer aTimer;
     public enum ShootType { Auto, SemiAuto, Burst, Force };
 
     //Script Refs
@@ -161,6 +162,7 @@ public class Tool : MonoBehaviour
             Vector3 direction = playerGrab.CamPos.forward + new Vector3(x, y, 0); 
             Physics.Raycast(playerGrab.PlayerMovement.shootOrigin.transform.position, direction, out shotHit, bulletDistance);
             StartCoroutine(Shoot(shotHit));
+            
         } 
         else if (canShoot && shootTypes == ShootType.Force)
         {
@@ -173,7 +175,6 @@ public class Tool : MonoBehaviour
     }
     public IEnumerator Shoot(RaycastHit shotHit)
     {
-        
         isShooting = true;     
         //bullet holes and impact effects being made if you hit something
         if (shotHit.collider != null && shotHit.collider.tag != "Tool")
@@ -206,9 +207,9 @@ public class Tool : MonoBehaviour
         //reducing ammo amount
         ammoLeftClip--;
         canShoot = false; 
-        //time before you can shoot again
-        yield return new WaitForSeconds(timeBetweenShots);
-        isShooting = false;                     
+        //time before you can shoot again    
+        yield return new WaitForSeconds(timeBetweenShots);  
+        isShooting = false;             
     }
 
     public void ShootInput()
