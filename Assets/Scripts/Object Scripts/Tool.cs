@@ -101,24 +101,24 @@ public class Tool : MonoBehaviour
     void Update()
     {
         //shooting semi-auto
-        if (Input.GetMouseButtonDown(0) && !isReloading && ammoLeftClip > 0 && !isShooting && shootTypes != ShootType.Auto)
+        if (Input.GetMouseButtonDown(0) && !isReloading && ammoLeftClip > 0 && !isShooting && shootTypes == ShootType.SemiAuto)
         {
-            //float x = Random.Range(-spread, spread);
-            //float y = Random.Range(-spread, spread); 
-            //Vector3 direction = playerGrab.CamPos.forward + new Vector3(x, y, 0); 
-            //Physics.Raycast(playerGrab.PlayerMovement.shootOrigin.transform.position, direction, out shotHit, bulletDistance);
-            //StartCoroutine(Shoot(shotHit)); 
-            canShoot = true; 
+            float x = Random.Range(-spread, spread);
+            float y = Random.Range(-spread, spread); 
+            Vector3 direction = playerGrab.CamPos.forward + new Vector3(x, y, 0); 
+            Physics.Raycast(playerGrab.PlayerMovement.shootOrigin.transform.position, direction, out shotHit, bulletDistance);
+            StartCoroutine(Shoot(shotHit)); 
+            //canShoot = true; 
         }
         //shooting auto
         else if (Input.GetMouseButton(0) && !isReloading && ammoLeftClip > 0 && !isShooting && shootTypes == ShootType.Auto)
         {
-            //float x = Random.Range(-spread, spread);
-            //float y = Random.Range(-spread, spread); 
-            //Vector3 direction = playerGrab.CamPos.forward + new Vector3(x, y, 0); 
-            //Physics.Raycast(playerGrab.PlayerMovement.shootOrigin.transform.position, direction, out shotHit, bulletDistance);
-            //StartCoroutine(Shoot(shotHit));
-            canShoot = true; 
+            float x = Random.Range(-spread, spread);
+            float y = Random.Range(-spread, spread); 
+            Vector3 direction = playerGrab.CamPos.forward + new Vector3(x, y, 0); 
+            Physics.Raycast(playerGrab.PlayerMovement.shootOrigin.transform.position, direction, out shotHit, bulletDistance);
+            StartCoroutine(Shoot(shotHit));
+            //canShoot = true; 
         }
         //shooting burst
         //else if (Input.GetMouseButtonDown(0) && !isReloading && ammoLeftClip > 0 && !isShooting && shootTypes == ShootType.Burst)
@@ -135,9 +135,10 @@ public class Tool : MonoBehaviour
             //}
         //}
         //shooting thunder
-        //else if (Input.GetMouseButtonDown(0) && !isReloading && ammoLeftClip > 0 && !isShooting && shootTypes == ShootType.Force)
+        else if (Input.GetMouseButtonDown(0) && !isReloading && ammoLeftClip > 0 && !isShooting && shootTypes == ShootType.Force)
         //{
             //StartCoroutine(ForceGun()); 
+            canShoot = true; 
         //}
 
         //reloading 
@@ -146,32 +147,15 @@ public class Tool : MonoBehaviour
             StartCoroutine(Reload());
         }
 
-        //Method that handles the slide animations
-        
-        
-        
-
+        //Method that handles the slide animations              
     }
 
     private void FixedUpdate()
     {
-        if (canShoot && shootTypes != ShootType.Force)
-        {
-            float x = Random.Range(-spread, spread);
-            float y = Random.Range(-spread, spread); 
-            Vector3 direction = playerGrab.CamPos.forward + new Vector3(x, y, 0); 
-            Physics.Raycast(playerGrab.PlayerMovement.shootOrigin.transform.position, direction, out shotHit, bulletDistance);
-            StartCoroutine(Shoot(shotHit));
-            
-        } 
-        else if (canShoot && shootTypes == ShootType.Force)
+        if (canShoot && shootTypes == ShootType.Force)
         {
             StartCoroutine(ForceGun());
         }
-        if (canReload)
-        {
-            StartCoroutine(Reload());
-        }  
     }
     public IEnumerator Shoot(RaycastHit shotHit)
     {
