@@ -283,7 +283,7 @@ MonoBehaviour:
   playerAudioSource: {fileID: 3106039649706165819}
   shootOrigin: {fileID: 7944161455267227399}
   playerSpeed: 40
-  jumpForce: 350
+  jumpForce: 600
   sprintMultiplier: 40
   maxSpeed: 5
   maxSprintSpeed: 10

@@ -40,7 +40,7 @@ public class PlayerMovement : MonoBehaviour
     public bool isCrouching;
     private float standingHeight = 2f;
     private float crouchingHeight = 1f;
-    RaycastHit hit; 
+    public RaycastHit hit; 
     public bool allowedMovement;
     public bool canJump; 
 

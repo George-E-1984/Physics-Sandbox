@@ -36,10 +36,8 @@ public class PlayerGrab : MonoBehaviour
     public AudioClip grabSound; 
     [Header("Info")]
     public AudioSource grabAudioSource;
-
-
-
     public RaycastHit hitGrab; 
+    public GameObject grabbedObject; 
     // Start is called before the first frame update
     void Start()
     {
@@ -73,7 +71,7 @@ public class PlayerGrab : MonoBehaviour
 
             }
             //object grab
-            else if(hitGrab.collider != null && !isGrabbing && !isGrabbingTool)
+            else if(hitGrab.collider != null && !isGrabbing && !isGrabbingTool & hitGrab.collider != PlayerMovement.hit.collider)
             {
                 GrabObject(hitGrab.collider.gameObject);
                 isGrabbing = true;
@@ -84,13 +82,20 @@ public class PlayerGrab : MonoBehaviour
         else if (isGrabbing && Input.GetMouseButtonUp(1) && !isGrabbingTool)
         {
             ReleaseObject(false);
-            isGrabbing = false; 
         }
         else if (isGrabbing && Input.GetMouseButtonDown(0) && !isGrabbingTool)
         {
             //throwing 
-            ReleaseObject(true);
-            isGrabbing = false; 
+            ReleaseObject(true); 
+        }
+        else if (grabbedObject && PlayerMovement.hit.collider.gameObject)
+        {
+            print("Cooky stinks"); 
+            if (grabbedObject == PlayerMovement.hit.collider.gameObject)
+            {
+                print("Cooky pooop"); 
+                ReleaseObject(false);  
+            }
         }
     }
 
@@ -102,6 +107,7 @@ public class PlayerGrab : MonoBehaviour
 
     public void GrabObject(GameObject objectToGrab)
     {
+        grabbedObject = objectToGrab; 
         //grab sound effect
         grabAudioSource = objectToGrab.AddComponent<AudioSource>(); 
         grabAudioSource.PlayOneShot(grabSound);  
@@ -137,7 +143,10 @@ public class PlayerGrab : MonoBehaviour
 
     public void ReleaseObject(bool isThrowing = false)
     {
-        Destroy(grabAudioSource); 
+        if(grabAudioSource != null)
+        {
+            Destroy(grabAudioSource);
+        } 
         for (int i = 0; i < grabSettings.grabbedObjectColliders.Length; i++)
         {
             Physics.IgnoreCollision(grabSettings.grabbedObjectColliders[i], playerCollider, false);
@@ -146,6 +155,7 @@ public class PlayerGrab : MonoBehaviour
         grabbedObjectRb.AddForce((System.Convert.ToUInt16(isThrowing)) * CamPos.transform.forward * throwForce, ForceMode.Impulse);
         grabbedObjectRb = null;
         isGrabbing = false; 
+        grabbedObject = null; 
     }
 }
 
