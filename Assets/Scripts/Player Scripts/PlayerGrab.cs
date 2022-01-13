@@ -61,7 +61,7 @@ public class PlayerGrab : MonoBehaviour
                     toolbarManager.currentToolScript.isReloading = false;
                     toolbarManager.currentToolScript.reloadIcon.SetActive(false);
                 }
-                hitGrab.collider.gameObject.transform.rotation = PlayerMovement.PlayerCamera.rotation;
+                hitGrab.collider.gameObject.transform.rotation = PlayerMovement.playerCamera.rotation;
                 GrabObject(hitGrab.collider.gameObject);
                 hitGrab.collider.gameObject.GetComponent<Tool>().enabled = true;
                 print("Grabbed Tool");

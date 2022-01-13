@@ -12,37 +12,57 @@ public class PlayerMovement : MonoBehaviour
     public UiData uiData;
     public AudioSource playerAudioSource;
     public GameObject shootOrigin;
+    public Transform playerCamera;
+    public GameObject groundCheckLocation;
+    public LayerMask groundMask;
 
-    [Header("Variables")]
+
+    [Header("Movement")]
+    Vector3 moveDirection;
+    float verticalMovement;
+    float horizontalMovement;
     [Tooltip("How fast the player moves. Wow!")]
     public float playerSpeed;
-    public float jumpForce;
-    public float sprintMultiplier;
-    public float maxSpeed;
-    public float maxSprintSpeed;
-    public float groundDrag;
-    public float airDrag;
-    public Transform PlayerCamera;
-    public LayerMask GroundMask;
-    public GameObject GroundCheckLocation;
-    public bool IsGrounded;
-    public bool isSprinting;
-    public bool isJumping; 
-    public float Sensitivity;
-    private float xRot;
-    public float crouchSpeed;
     [Tooltip("Speed of player in air, Higher = less speed, Lower = more speed!")] 
     public float airMovementSpeed;
-    
-    [Header("Info (Do not touch these values)")]
-    Vector3 PlayerMoveInput;
-    Vector2 PlayerMouseInput;
+    public float maxSpeed;
+    public float sprintMultiplier;
+    public float maxSprintSpeed;
+    public bool isSprinting;
+    public bool allowedMovement;
+
+    [Header("Jumping")]
+    public bool canJump; 
+    public bool isJumping; 
+    public bool isGrounded;
+    public float jumpForce;
+
+    [Header("Drag")]
+    public float groundDrag;
+    public float airDrag;
+
+    [Header("Crouching")]
+    public float crouchSpeed;
     public bool isCrouching;
     private float standingHeight = 2f;
     private float crouchingHeight = 1f;
+
+    [Header("Cam movement")]
+    float mouseX;
+    float mouseY;
+    float multiplier = 0.1f;
+    float xRotation;
+    float yRotation;
+    [Range(0, 100)]
+    public float sensX;
+    [Range(0, 100)]
+    public float sensY;
+
+    [Header("Info (Do not touch these values)")]
+    Vector3 PlayerMoveInput;
+    Vector2 PlayerMouseInput;
+    private float xRot;
     public RaycastHit hit; 
-    public bool allowedMovement;
-    public bool canJump; 
 
     // Start is called before the first frame update
     void Start()
@@ -53,9 +73,6 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false; 
-
-
-        
     }
 
     // Update is called once per frame
@@ -63,7 +80,7 @@ public class PlayerMovement : MonoBehaviour
     {             
         MyInput();
 
-        if (IsGrounded && Input.GetKey(KeyCode.LeftControl))
+        if (isGrounded && Input.GetKey(KeyCode.LeftControl))
         {
             Crouch();
         }
@@ -81,13 +98,18 @@ public class PlayerMovement : MonoBehaviour
         PlayerMoveInput = new Vector3(Input.GetAxisRaw("Horizontal"), 0f, Input.GetAxisRaw("Vertical"));
 
         //Ground Check
-        IsGrounded = Physics.Raycast(transform.position, Vector3.down, out hit, 1.1f);
+        isGrounded = Physics.Raycast(transform.position, Vector3.down, out hit, 1.1f);
      
     }
 
     public void MyInput()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && IsGrounded)
+        horizontalMovement = Input.GetAxisRaw("Horizontal");
+        verticalMovement = Input.GetAxisRaw("Vertical");
+
+        moveDirection = transform.forward * verticalMovement + transform.right * horizontalMovement;
+
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
             canJump = true;
         }
@@ -100,46 +122,35 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        PlayerMovementForce();
+        MovePlayer();
         ControlDrag();
         PlayerJump();
     }
 
-    private void PlayerMovementForce()
+    private void MovePlayer()
     {
-        
-        Vector3 MovementVectors = transform.TransformDirection(PlayerMoveInput) * playerSpeed;
-      
-        rb.AddForce(System.Convert.ToInt32(allowedMovement) * MovementVectors * (playerSpeed + (System.Convert.ToInt32(isSprinting) * sprintMultiplier)));
-
-        if (isSprinting == false && IsGrounded)
+        if (isGrounded)
         {
-            rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxSpeed);
+                rb.AddForce(moveDirection.normalized * playerSpeed, ForceMode.Acceleration);
         }
-        else if (isSprinting && IsGrounded)
+        else
         {
-            rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxSprintSpeed);
+            rb.AddForce(moveDirection.normalized * airMovementSpeed, ForceMode.Acceleration);
         }
-        else if (IsGrounded == false)
-        {
-            var clampXZ = new Vector2(rb.velocity.x, rb.velocity.z);
-            clampXZ = Vector2.ClampMagnitude(clampXZ, (maxSpeed + (System.Convert.ToInt32(isSprinting) * sprintMultiplier))) / airMovementSpeed;
-            rb.velocity = new Vector3(clampXZ.x, rb.velocity.y, clampXZ.y);
-        }
-       
-      
-  
     }
 
     private void PlayerMoveCamera()
     {
-        //x rotation because X is the up rotation, whilst Y is the sideways rotation 
-        xRot -= PlayerMouseInput.y * Sensitivity;
-        xRot = Mathf.Clamp(xRot, -90, 90);
-        //Records the input for mouse movement (Horizontal = left or right) and (Vertical = Up or down) its vector 2 because its only X and Y axis. 
-        PlayerMouseInput = new Vector2(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y"));
-        transform.Rotate(0f, PlayerMouseInput.x * Sensitivity, 0f);
-        PlayerCamera.transform.localRotation = Quaternion.Euler(xRot, 0, 0);             
+        mouseX = Input.GetAxisRaw("Mouse X");
+        mouseY = Input.GetAxisRaw("Mouse Y");
+
+        yRotation += mouseX * sensX * multiplier;
+        xRotation -= mouseY * sensY * multiplier;
+
+        xRotation = Mathf.Clamp(xRotation, -90f, 90f);
+
+        playerCamera.transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
+        transform.rotation = Quaternion.Euler(0, yRotation, 0);
     }
 
     private void PlayerJump()
@@ -147,7 +158,9 @@ public class PlayerMovement : MonoBehaviour
         if (canJump) 
         {
             canJump = false; 
-            rb.AddForce((Vector3.up * jumpForce), ForceMode.Impulse); 
+            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse); 
+
+            //WTF is this george?
             if (hit.collider.GetComponent<Rigidbody>() == true)
             {
                 hit.collider.GetComponent<Rigidbody>().AddForce(Vector3.down * (jumpForce / 2), ForceMode.Impulse);              
@@ -167,7 +180,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void ControlDrag()
     {
-        if (IsGrounded) rb.drag = groundDrag;
+        if (isGrounded) rb.drag = groundDrag;
         else rb.drag = airDrag;
     }
 
