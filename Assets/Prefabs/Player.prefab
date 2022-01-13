@@ -300,7 +300,7 @@ MonoBehaviour:
   jumpForce: 250
   groundDrag: 6
   airDrag: 1
-  crouchSpeed: 3.5
+  crouchSpeed: 1
   isCrouching: 0
   sensX: 25
   sensY: 25

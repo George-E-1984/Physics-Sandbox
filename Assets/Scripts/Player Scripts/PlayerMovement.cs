@@ -79,6 +79,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {             
         MyInput();
+        ControlDrag();
 
         if (isGrounded && Input.GetKey(KeyCode.LeftControl))
         {
@@ -95,11 +96,8 @@ public class PlayerMovement : MonoBehaviour
             isSprinting = false;
         }
 
-        PlayerMoveInput = new Vector3(Input.GetAxisRaw("Horizontal"), 0f, Input.GetAxisRaw("Vertical"));
-
         //Ground Check
         isGrounded = Physics.Raycast(transform.position, Vector3.down, out hit, 1.1f);
-     
     }
 
     public void MyInput()
@@ -123,7 +121,6 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         MovePlayer();
-        ControlDrag();
         PlayerJump();
     }
 
@@ -183,6 +180,4 @@ public class PlayerMovement : MonoBehaviour
         if (isGrounded) rb.drag = groundDrag;
         else rb.drag = airDrag;
     }
-
- 
 }

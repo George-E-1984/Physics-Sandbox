@@ -326,7 +326,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 722286115}
   m_CullTransparentMesh: 1
---- !u!1001 &784058660
+--- !u!1001 &744522825
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -346,17 +346,17 @@ PrefabInstance:
     - target: {fileID: 1846503669878852913, guid: 622a12ee58c288e4e903e62fa50e7cf8,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.5299978
+      value: 1.1191448
       objectReference: {fileID: 0}
     - target: {fileID: 1846503669878852913, guid: 622a12ee58c288e4e903e62fa50e7cf8,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.426
+      value: 1.408
       objectReference: {fileID: 0}
     - target: {fileID: 1846503669878852913, guid: 622a12ee58c288e4e903e62fa50e7cf8,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 3.181333
+      value: 4.435998
       objectReference: {fileID: 0}
     - target: {fileID: 1846503669878852913, guid: 622a12ee58c288e4e903e62fa50e7cf8,
         type: 3}
@@ -391,6 +391,11 @@ PrefabInstance:
     - target: {fileID: 1846503669878852913, guid: 622a12ee58c288e4e903e62fa50e7cf8,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3045240985671581388, guid: 622a12ee58c288e4e903e62fa50e7cf8,
+        type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
