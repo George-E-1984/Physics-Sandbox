@@ -15,10 +15,8 @@ public class PlayerGrab : MonoBehaviour
     public float grabDamper; 
     private Rigidbody grabbedObjectRb;    
     [Header("Bool variables")]
-    private bool objectFound = false;
     public bool isGrabbing = false; 
     public bool isGrabbingTool = false; 
-    private bool isGun = false;
     public Collider playerCollider;
     public bool foundObject = false; 
      

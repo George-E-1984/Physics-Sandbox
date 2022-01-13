@@ -141,7 +141,7 @@ public class Tool : MonoBehaviour
         //}
 
         //reloading 
-        if (Input.GetKeyDown(KeyCode.R) && !isReloading && ammoLeftClip != totalAmmoClip && ammoLeftBank > 0)
+        if (Input.GetKeyDown(KeyCode.R) && !isReloading && ammoLeftClip != totalAmmoClip && ammoLeftBank > 0 || Input.GetMouseButtonDown(0) && !isReloading && ammoLeftClip == 0 && ammoLeftBank > 0)
         {
             StartCoroutine(Reload());
         }
