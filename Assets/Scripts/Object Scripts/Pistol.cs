@@ -67,7 +67,7 @@ public class Pistol : MonoBehaviour
 
         RaycastHit hit;
 
-        if(Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, shootRange)
+        if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, shootRange))
         {
 
         }
