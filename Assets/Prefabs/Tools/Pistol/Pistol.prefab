@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6281318916246651616}
   - component: {fileID: 1795260030433412376}
   - component: {fileID: 7978956990626475938}
+  - component: {fileID: 3045240985671581388}
   m_Layer: 10
   m_Name: Pistol
   m_TagString: Tool
@@ -86,7 +87,7 @@ MonoBehaviour:
   totalAmmoClip: 10
   totalAmmoBank: 100
   totalRecoil: 100
-  timeBetweenShots: 0.2
+  timeBetweenShots: 0.01
   shootForce: 10
   bulletDistance: 100
   reloadTime: 30
@@ -166,6 +167,18 @@ MonoBehaviour:
   grabbedObjectColliders:
   - {fileID: 728141028651264032}
   - {fileID: 7232207919990783857}
+--- !u!114 &3045240985671581388
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 32981806885554721}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccdcc8f1b33d56f41b45972782df274b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &850275636917456285
 GameObject:
   m_ObjectHideFlags: 0
@@ -1705,15 +1718,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cdf14baff693fbc439f8c859529a63a6, type: 3}
---- !u!198 &8530579756219595605 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 19800000, guid: cdf14baff693fbc439f8c859529a63a6,
-    type: 3}
-  m_PrefabInstance: {fileID: 8530579756204516501}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8530579756204391957 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: cdf14baff693fbc439f8c859529a63a6,
+    type: 3}
+  m_PrefabInstance: {fileID: 8530579756204516501}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &8530579756219595605 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 19800000, guid: cdf14baff693fbc439f8c859529a63a6,
     type: 3}
   m_PrefabInstance: {fileID: 8530579756204516501}
   m_PrefabAsset: {fileID: 0}

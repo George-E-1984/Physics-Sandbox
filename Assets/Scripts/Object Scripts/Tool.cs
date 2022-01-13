@@ -147,10 +147,6 @@ public class Tool : MonoBehaviour
         }
 
         //Method that handles the slide animations
-        
-        
-        
-
     }
 
     private void FixedUpdate()
