@@ -290,14 +290,14 @@ MonoBehaviour:
   playerSpeed: 50
   airMovementSpeed: 10
   maxSpeed: 5
-  sprintMultiplier: 40
+  sprintMultiplier: 2
   maxSprintSpeed: 10
   isSprinting: 0
   allowedMovement: 1
   canJump: 0
   isJumping: 0
   isGrounded: 0
-  jumpForce: 250
+  jumpForce: 500
   groundDrag: 6
   airDrag: 1
   crouchSpeed: 1
@@ -873,11 +873,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 114899726, guid: 62b56d4a7e7c3c545907325a90679937, type: 3}
       propertyPath: m_Color.b
-      value: 0
+      value: 0.77862644
       objectReference: {fileID: 0}
     - target: {fileID: 114899726, guid: 62b56d4a7e7c3c545907325a90679937, type: 3}
       propertyPath: m_Color.g
-      value: 0.80784315
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114899726, guid: 62b56d4a7e7c3c545907325a90679937, type: 3}
       propertyPath: m_Color.r

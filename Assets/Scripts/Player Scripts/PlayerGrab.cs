@@ -86,15 +86,6 @@ public class PlayerGrab : MonoBehaviour
             //throwing 
             ReleaseObject(true); 
         }
-        else if (grabbedObject && PlayerMovement.hit.collider.gameObject)
-        {
-            print("Cooky stinks"); 
-            if (grabbedObject == PlayerMovement.hit.collider.gameObject)
-            {
-                print("Cooky pooop"); 
-                ReleaseObject(false);  
-            }
-        }
     }
 
     private RaycastHit checkForObject()

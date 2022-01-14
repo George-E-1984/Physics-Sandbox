@@ -26,7 +26,7 @@ public class SceneUTManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Application.targetFrameRate = targetFrameRate; 
+         
     }
 
     // Update is called once per frame
@@ -56,6 +56,8 @@ public class SceneUTManager : MonoBehaviour
             ammoLeftTextmesh.text = 00f.ToString();
             ammoBankLeftTextmesh.text = 00f.ToString();
         }
+
+        Application.targetFrameRate = targetFrameRate;
     }
    
 

@@ -59,8 +59,6 @@ public class PlayerMovement : MonoBehaviour
     public float sensY;
 
     [Header("Info (Do not touch these values)")]
-    Vector3 PlayerMoveInput;
-    Vector2 PlayerMouseInput;
     private float xRot;
     public RaycastHit hit; 
 
@@ -128,7 +126,14 @@ public class PlayerMovement : MonoBehaviour
     {
         if (isGrounded)
         {
+            if (isSprinting)
+            {
+                rb.AddForce(moveDirection.normalized * playerSpeed * sprintMultiplier, ForceMode.Acceleration);
+            }
+            else
+            {
                 rb.AddForce(moveDirection.normalized * playerSpeed, ForceMode.Acceleration);
+            }
         }
         else
         {
