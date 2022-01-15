@@ -46,10 +46,14 @@ public class PlayerGrab : MonoBehaviour
     void Update()
     {
         //player direction
+        hitGrab = checkForObject();
+        if (hitGrab.collider != null)
+        {
+            print("Found Objects"); 
+        }
 
         if (Input.GetMouseButtonDown(1))
         {
-            hitGrab = checkForObject();
             //tool grab
             if (hitGrab.collider != null && hitGrab.collider.gameObject.tag == "Tool" && !isGrabbing && hitGrab.collider.gameObject != toolbarManager.Tools[toolbarManager.currentlySelected])
             {
