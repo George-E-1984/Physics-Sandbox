@@ -90,7 +90,7 @@ public class ToolbarManager : MonoBehaviour
             Tools[firstNull] = tool;
             currentlySelected = firstNull;
             currentToolScript = Tools[currentlySelected].GetComponent<Tool>();
-            icons[currentlySelected].sprite = currentToolScript.toolIcon; 
+            icons[currentlySelected].sprite = currentToolScript.gunOptions.icon; 
         }
         else
         {

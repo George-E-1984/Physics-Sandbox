@@ -282,27 +282,28 @@ MonoBehaviour:
   uiData: {fileID: 2935987259409029207}
   playerAudioSource: {fileID: 3106039649706165819}
   shootOrigin: {fileID: 7944161455267227399}
-  playerSpeed: 40
-  jumpForce: 600
-  sprintMultiplier: 40
-  maxSpeed: 5
-  maxSprintSpeed: 10
-  groundDrag: 5
-  airDrag: 0
-  PlayerCamera: {fileID: 5600408659230277833}
-  GroundMask:
+  playerCamera: {fileID: 5600408659230277833}
+  groundCheckLocation: {fileID: 8621692496840985511}
+  groundMask:
     serializedVersion: 2
     m_Bits: 256
-  GroundCheckLocation: {fileID: 8621692496840985511}
-  IsGrounded: 1
+  playerSpeed: 50
+  airMovementSpeed: 10
+  maxSpeed: 5
+  sprintMultiplier: 2
+  maxSprintSpeed: 10
   isSprinting: 0
-  isJumping: 0
-  Sensitivity: 5
-  crouchSpeed: 3.5
-  airMovementSpeed: 1.02
-  isCrouching: 0
   allowedMovement: 1
   canJump: 0
+  isJumping: 0
+  isGrounded: 0
+  jumpForce: 500
+  groundDrag: 6
+  airDrag: 1
+  crouchSpeed: 1
+  isCrouching: 0
+  sensX: 25
+  sensY: 25
 --- !u!114 &5465849238911762470
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -336,6 +337,7 @@ MonoBehaviour:
   PlayerMovement: {fileID: 5465849238911762471}
   grabSound: {fileID: 8300000, guid: e1acf0b65e7608d45ae47ddfa5c73bf4, type: 3}
   grabAudioSource: {fileID: 0}
+  grabbedObject: {fileID: 0}
 --- !u!54 &1010940802538862720
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -860,6 +862,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2173389769490651296}
     m_Modifications:
+    - target: {fileID: 114899725, guid: 62b56d4a7e7c3c545907325a90679937, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114899725, guid: 62b56d4a7e7c3c545907325a90679937, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114899725, guid: 62b56d4a7e7c3c545907325a90679937, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 114899726, guid: 62b56d4a7e7c3c545907325a90679937, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -871,15 +885,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 114899726, guid: 62b56d4a7e7c3c545907325a90679937, type: 3}
       propertyPath: m_Color.b
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114899726, guid: 62b56d4a7e7c3c545907325a90679937, type: 3}
       propertyPath: m_Color.g
-      value: 0.80784315
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114899726, guid: 62b56d4a7e7c3c545907325a90679937, type: 3}
       propertyPath: m_Color.r
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1153551623, guid: 62b56d4a7e7c3c545907325a90679937, type: 3}
       propertyPath: m_IsActive
@@ -1171,6 +1185,36 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2669117325791951515, guid: 62b56d4a7e7c3c545907325a90679937,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2669117325941531549, guid: 62b56d4a7e7c3c545907325a90679937,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2669117325941531549, guid: 62b56d4a7e7c3c545907325a90679937,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2669117325941531549, guid: 62b56d4a7e7c3c545907325a90679937,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 62
+      objectReference: {fileID: 0}
+    - target: {fileID: 2669117325941531549, guid: 62b56d4a7e7c3c545907325a90679937,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 62
+      objectReference: {fileID: 0}
+    - target: {fileID: 2669117325941531549, guid: 62b56d4a7e7c3c545907325a90679937,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2669117325941531549, guid: 62b56d4a7e7c3c545907325a90679937,
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0

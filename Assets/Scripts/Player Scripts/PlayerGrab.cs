@@ -15,10 +15,8 @@ public class PlayerGrab : MonoBehaviour
     public float grabDamper; 
     private Rigidbody grabbedObjectRb;    
     [Header("Bool variables")]
-    private bool objectFound = false;
     public bool isGrabbing = false; 
     public bool isGrabbingTool = false; 
-    private bool isGun = false;
     public Collider playerCollider;
     public bool foundObject = false; 
      
@@ -48,10 +46,14 @@ public class PlayerGrab : MonoBehaviour
     void Update()
     {
         //player direction
+        hitGrab = checkForObject();
+        if (hitGrab.collider != null)
+        {
+            print("Found Objects"); 
+        }
 
         if (Input.GetMouseButtonDown(1))
         {
-            hitGrab = checkForObject();
             //tool grab
             if (hitGrab.collider != null && hitGrab.collider.gameObject.tag == "Tool" && !isGrabbing && hitGrab.collider.gameObject != toolbarManager.Tools[toolbarManager.currentlySelected])
             {
@@ -61,7 +63,7 @@ public class PlayerGrab : MonoBehaviour
                     toolbarManager.currentToolScript.isReloading = false;
                     toolbarManager.currentToolScript.reloadIcon.SetActive(false);
                 }
-                hitGrab.collider.gameObject.transform.rotation = PlayerMovement.PlayerCamera.rotation;
+                hitGrab.collider.gameObject.transform.rotation = PlayerMovement.playerCamera.rotation;
                 GrabObject(hitGrab.collider.gameObject);
                 hitGrab.collider.gameObject.GetComponent<Tool>().enabled = true;
                 print("Grabbed Tool");
@@ -87,15 +89,6 @@ public class PlayerGrab : MonoBehaviour
         {
             //throwing 
             ReleaseObject(true); 
-        }
-        else if (grabbedObject && PlayerMovement.hit.collider.gameObject)
-        {
-            print("Cooky stinks"); 
-            if (grabbedObject == PlayerMovement.hit.collider.gameObject)
-            {
-                print("Cooky pooop"); 
-                ReleaseObject(false);  
-            }
         }
     }
 

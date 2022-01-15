@@ -169,9 +169,9 @@ MonoBehaviour:
   jointXMotion: 0
   jointYMotion: 0
   jointZMotion: 0
-  jointXAngMotion: 0
-  jointYAngMotion: 0
-  jointZAngMotion: 0
+  jointXAngMotion: 2
+  jointYAngMotion: 2
+  jointZAngMotion: 2
   overrideJointDrives: 0
   xSpring: 2000
   xDamper: 100
