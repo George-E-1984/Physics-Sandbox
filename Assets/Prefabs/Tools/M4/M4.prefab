@@ -425,18 +425,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 908fe64521e19e84db078cc934a7e55e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  positionOffset: {x: 0.7, y: 0, z: -0.95}
+  positionOffset: {x: 0.7, y: 0, z: -0.8}
   rotationOffset: {x: 0, y: 0.9961947, z: 0, w: -0.08715577}
-  jointXMotion: 2
+  jointXMotion: 0
   jointYMotion: 2
   jointZMotion: 2
   jointXAngMotion: 2
   jointYAngMotion: 2
   jointZAngMotion: 2
   overrideJointDrives: 0
-  xSpring: 5000
-  xDamper: 250
-  xForce: 1e+11
+  xSpring: 0
+  xDamper: 0
+  xForce: 0
   ySpring: 5000
   yDamper: 250
   yForce: 1e+11
@@ -446,13 +446,13 @@ MonoBehaviour:
   angXSpring: 5000
   angXDamper: 250
   angXForce: 1e+11
-  angYZSpring: 1000
-  angYZDamper: 100
+  angYZSpring: 3000
+  angYZDamper: 200
   angYZForce: 1e+11
   grabbedObjectColliders:
+  - {fileID: 4158037760638336309}
   - {fileID: 8457083117978652035}
   - {fileID: 3973421137136270182}
-  - {fileID: 4158037760638336309}
 --- !u!1001 &1862722706979021747
 PrefabInstance:
   m_ObjectHideFlags: 0

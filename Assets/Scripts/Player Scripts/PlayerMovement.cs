@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody rb;
 
     [Header("Assignables")] 
+    public PlayerData playerData; 
     public CapsuleCollider playerCol;
     public PlayerGrab playerGrab;
     public UiData uiData;
@@ -146,8 +147,8 @@ public class PlayerMovement : MonoBehaviour
         mouseX = Input.GetAxisRaw("Mouse X");
         mouseY = Input.GetAxisRaw("Mouse Y");
 
-        yRotation += mouseX * sensX * multiplier;
-        xRotation -= mouseY * sensY * multiplier;
+        yRotation += mouseX * playerData.sensitivity * multiplier;
+        xRotation -= mouseY * playerData.sensitivity * multiplier;
 
         xRotation = Mathf.Clamp(xRotation, -90f, 90f);
 
