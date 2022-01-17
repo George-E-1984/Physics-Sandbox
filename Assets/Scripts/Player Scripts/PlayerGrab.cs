@@ -23,14 +23,15 @@ public class PlayerGrab : MonoBehaviour
     [Header("Assignables")]
     public Transform TargetObjectPosition; 
     public LayerMask grabbableMask;
-    public Transform CamPos;
+    public Camera cam; 
+    public Transform camPos;
     public float throwForce;
     public Image grabInd;
     public GameObject thePlayer;
     public GameObject grabbedTool;
     [Header("Assign Scripts")]
     public ToolbarManager toolbarManager;
-    public PlayerMovement PlayerMovement;
+    public PlayerMovement playerMovement;
     public AudioClip grabSound; 
     [Header("Info")]
     public AudioSource grabAudioSource;
@@ -47,11 +48,6 @@ public class PlayerGrab : MonoBehaviour
     {
         //player direction
         hitGrab = checkForObject();
-        if (hitGrab.collider != null)
-        {
-            print("Found Objects"); 
-        }
-
         if (Input.GetMouseButtonDown(1))
         {
             //tool grab
@@ -63,17 +59,17 @@ public class PlayerGrab : MonoBehaviour
                     toolbarManager.currentToolScript.isReloading = false;
                     toolbarManager.currentToolScript.reloadIcon.SetActive(false);
                 }
-                hitGrab.collider.gameObject.transform.rotation = PlayerMovement.playerCamera.rotation;
+                hitGrab.collider.gameObject.transform.rotation = playerMovement.playerCamera.rotation;
                 GrabObject(hitGrab.collider.gameObject);
                 hitGrab.collider.gameObject.GetComponent<Tool>().enabled = true;
                 print("Grabbed Tool");
                 isGrabbingTool = true;
                 grabbedTool = hitGrab.collider.gameObject;
                 toolbarManager.AddTool(grabbedTool);
-
+                playerMovement.shootOrigin.transform.localPosition = new Vector3(0f, 0f, toolbarManager.currentToolScript.gunOptions.shootPointOffset); 
             }
             //object grab
-            else if(hitGrab.collider != null && !isGrabbing && !isGrabbingTool & hitGrab.collider != PlayerMovement.hit.collider)
+            else if(hitGrab.collider != null && !isGrabbing && !isGrabbingTool & hitGrab.collider != playerMovement.hit.collider)
             {
                 GrabObject(hitGrab.collider.gameObject);
                 isGrabbing = true;
@@ -94,7 +90,7 @@ public class PlayerGrab : MonoBehaviour
 
     private RaycastHit checkForObject()
     {
-        Physics.Raycast(CamPos.position, CamPos.forward, out hitGrab, 10f, grabbableMask);
+        Physics.Raycast(camPos.position, camPos.forward, out hitGrab, 10f, grabbableMask);
         return hitGrab;      
     }
 
@@ -145,7 +141,7 @@ public class PlayerGrab : MonoBehaviour
             Physics.IgnoreCollision(grabSettings.grabbedObjectColliders[i], playerCollider, false);
         }
         grabHolderConfig.connectedBody = null;
-        grabbedObjectRb.AddForce((System.Convert.ToUInt16(isThrowing)) * CamPos.transform.forward * throwForce, ForceMode.Impulse);
+        grabbedObjectRb.AddForce((System.Convert.ToUInt16(isThrowing)) * camPos.transform.forward * throwForce, ForceMode.Impulse);
         grabbedObjectRb = null;
         isGrabbing = false; 
         grabbedObject = null; 

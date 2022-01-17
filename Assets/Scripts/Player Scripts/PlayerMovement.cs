@@ -72,6 +72,8 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false; 
+
+        AddSettings();   
     }
 
     // Update is called once per frame
@@ -96,7 +98,17 @@ public class PlayerMovement : MonoBehaviour
         }
 
         //Ground Check
-        isGrounded = Physics.Raycast(transform.position, Vector3.down, out hit, 1.1f);
+        Physics.Raycast(transform.position, Vector3.down, out hit, 1.1f);
+        
+        if (hit.collider && hit.collider != playerGrab.grabbedObject)
+        {
+            isGrounded = true; 
+        }
+        else 
+        {
+            isGrounded = false; 
+        }
+        
     }
 
     public void MyInput()
@@ -164,9 +176,13 @@ public class PlayerMovement : MonoBehaviour
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse); 
 
             //WTF is this george?
-            if (hit.collider.GetComponent<Rigidbody>() == true)
+            if (hit.collider)
             {
-                hit.collider.GetComponent<Rigidbody>().AddForce(Vector3.down * (jumpForce / 2), ForceMode.Impulse);              
+                if (hit.collider.GetComponent<Rigidbody>() == true)
+                {
+                    hit.collider.GetComponent<Rigidbody>().AddForce(Vector3.down * (jumpForce / 2), ForceMode.Impulse);
+                }
+                             
             }
         }
     }
@@ -185,5 +201,11 @@ public class PlayerMovement : MonoBehaviour
     {
         if (isGrounded) rb.drag = groundDrag;
         else rb.drag = airDrag;
+    }
+
+    private void AddSettings()
+    {
+        //fov
+        playerCamera.GetComponent<Camera>().fieldOfView = playerData.fieldOfView; 
     }
 }

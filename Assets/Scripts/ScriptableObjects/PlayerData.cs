@@ -7,6 +7,7 @@ public class PlayerData : ScriptableObject
 {
     public float sensitivity; 
     public float volume; 
+    public float fieldOfView; 
 }
 
 

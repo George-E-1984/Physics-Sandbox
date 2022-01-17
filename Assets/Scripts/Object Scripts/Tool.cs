@@ -20,8 +20,11 @@ public class Tool : MonoBehaviour
     public AudioSource shootAudioSource;
     public AudioClip[] shootSFX;
     public AudioClip[] reloadSFX; 
- 
 
+    [Header("Force-Gun settings")]
+    public float forceTome; 
+    public float forceSpeed;  
+ 
     [Header("Info (do not touch these values)")]
     public int ammoLeftBank;
     public int ammoLeftClip; 
@@ -60,7 +63,7 @@ public class Tool : MonoBehaviour
         //Finds the player ui script
         reloadIcon = GameObject.Find("PlayerUI").GetComponent<UiData>().reloadIcon.gameObject;
 
-        shootOrigin = playerGrab.PlayerMovement.shootOrigin.transform; 
+        shootOrigin = playerGrab.playerMovement.shootOrigin.transform; 
 
         //Deactivates the script 
         gameObject.GetComponent<Tool>().enabled = false; 
@@ -72,12 +75,12 @@ public class Tool : MonoBehaviour
     void Update()
     {
         //shooting semi-auto
-        if (Input.GetMouseButtonDown(0) && !isReloading && ammoLeftClip > 0 && !isShooting && shootType != ShootType.Auto)
+        if (Input.GetMouseButtonDown(0) && !isReloading && ammoLeftClip > 0 && !isShooting && shootType == ShootType.SemiAuto)
         {
             float x = Random.Range(-gunOptions.spread, gunOptions.spread);
             float y = Random.Range(-gunOptions.spread, gunOptions.spread); 
-            Vector3 direction = playerGrab.CamPos.forward + new Vector3(x, y, 0); 
-            Physics.Raycast(playerGrab.PlayerMovement.shootOrigin.transform.position, direction, out shotHit, gunOptions.bulletDistance);
+            Vector3 direction = playerGrab.camPos.forward + new Vector3(x, y, 0); 
+            Physics.Raycast(playerGrab.playerMovement.shootOrigin.transform.position, direction, out shotHit, gunOptions.bulletDistance);
             StartCoroutine(Shoot(shotHit));  
         }
         //shooting auto
@@ -85,14 +88,33 @@ public class Tool : MonoBehaviour
         {
             float x = Random.Range(-gunOptions.spread, gunOptions.spread);
             float y = Random.Range(-gunOptions.spread, gunOptions.spread); 
-            Vector3 direction = playerGrab.CamPos.forward + new Vector3(x, y, 0); 
-            Physics.Raycast(playerGrab.PlayerMovement.shootOrigin.transform.position, direction, out shotHit, gunOptions.bulletDistance);
+            Vector3 direction = playerGrab.camPos.forward + new Vector3(x, y, 0); 
+            Physics.Raycast(playerGrab.playerMovement.shootOrigin.transform.position, direction, out shotHit, gunOptions.bulletDistance);
             StartCoroutine(Shoot(shotHit));
-        }      
+        }     
+        //shooting Force gun
+        else if (Input.GetMouseButton(0) && !isReloading && ammoLeftClip > 0 && !isShooting && shootType == ShootType.Force)
+        {
+            StartCoroutine(ForceGun());
+        }     
         //reloading 
         if (Input.GetKeyDown(KeyCode.R) && !isReloading && ammoLeftClip != gunOptions.maxAmmoInClip && ammoLeftBank > 0 || Input.GetMouseButtonDown(0) && !isReloading && ammoLeftClip == 0 && ammoLeftBank > 0)
         {
             StartCoroutine(Reload());
+        }
+
+        //Aiming!
+        if (gunOptions.canAim && playerGrab.isGrabbingTool && Input.GetMouseButtonDown(1) && playerGrab.cam.fieldOfView == playerGrab.playerMovement.playerData.fieldOfView)
+        {
+            playerGrab.cam.fieldOfView = Mathf.Lerp(playerGrab.cam.fieldOfView, gunOptions.aimFov, gunOptions.timeToAim);
+            playerGrab.grabHolderConfig.anchor = new Vector3(0, 0, playerGrab.grabSettings.positionOffset.z); 
+            playerGrab.grabHolderConfig.targetRotation = new Quaternion(0,0,0,0); 
+        }
+        else if (Input.GetMouseButtonUp(1))
+        {
+            playerGrab.cam.fieldOfView = playerGrab.playerMovement.playerData.fieldOfView; 
+            playerGrab.grabHolderConfig.anchor = playerGrab.grabSettings.positionOffset; 
+            playerGrab.grabHolderConfig.targetRotation = playerGrab.grabSettings.rotationOffset; 
         }
     }
 
@@ -104,19 +126,17 @@ public class Tool : MonoBehaviour
     {
         isShooting = true;     
         GunEffects(); 
-
+        //recoil
+        toolRB.AddForceAtPosition(gunOptions.recoilAmount * (-playerGrab.camPos.forward), shootPoint.transform.position, ForceMode.Impulse);
+        //shoot sound effect
+        shootAudioSource.pitch = Random.Range(gunOptions.minPitch, gunOptions.maxPitch);
+        shootAudioSource.PlayOneShot(shootSFX[Random.Range(0, shootSFX.Length - 1)]);
+        
         //slide animation
         if (slideAnimator != null)
         {
             slideAnimator.SetTrigger("SlideBack");
         }
-         
-        //recoil
-        toolRB.AddForceAtPosition(gunOptions.recoilAmount * (-playerGrab.CamPos.forward), shootPoint.transform.position, ForceMode.Impulse);
-        //muzzleflash particle system
-        
-        //shoot sound effect
-        shootAudioSource.PlayOneShot(shootSFX[Random.Range(0, shootSFX.Length - 1)]);
 
         //reducing ammo amount
         ammoLeftClip--;
@@ -133,27 +153,27 @@ public class Tool : MonoBehaviour
      
     }
 
-    //public IEnumerator ForceGun()
-    //{
-        // canShoot = false;
-        // forceShot.SetActive(true); 
-        // isShooting = true; 
-        // firstRot = playerGrab.CamPos.forward;
-        // forceShot.transform.position = shootOrigin.position;
-        // forceShot.transform.rotation = shootOrigin.rotation;
-        // toolRB.AddForceAtPosition(gunOptions.recoilAmount * (shootPoint.transform.forward), shootPoint.transform.position, ForceMode.Impulse);
-        // //muzzleFlash.Play();
-        // shootAudioSource.PlayOneShot(shootSFX[Random.Range(0, shootSFX.Length - 1)]);
-        // ammoLeftClip--;
-        // for (int i = 0; i < forceTome * 60; i++)
-        // {
-        //     forceShot.transform.Translate(firstRot * forceSpeed * Time.deltaTime, Space.World);
-        //     yield return null;
-        // }
-        // forceShot.SetActive(false);  
-        // yield return new WaitForSecondsRealtime(Time.deltaTime / timeBetweenShots);
-        // isShooting = false; 
-    //}
+    public IEnumerator ForceGun()
+    {
+        canShoot = false;
+        forceShot.SetActive(true); 
+        isShooting = true; 
+        firstRot = playerGrab.camPos.forward;
+        forceShot.transform.position = shootOrigin.position;
+        forceShot.transform.rotation = shootOrigin.rotation;
+        toolRB.AddForceAtPosition(gunOptions.recoilAmount * (shootPoint.transform.forward), shootPoint.transform.position, ForceMode.Impulse);
+        //muzzleFlash.Play();
+        shootAudioSource.PlayOneShot(shootSFX[Random.Range(0, shootSFX.Length - 1)]);
+        ammoLeftClip--;
+        for (int i = 0; i < forceTome * 60; i++)
+        {
+            forceShot.transform.Translate(firstRot * forceSpeed * Time.deltaTime, Space.World);
+            yield return null;
+        }
+        forceShot.SetActive(false);  
+        yield return new WaitForSecondsRealtime(gunOptions.fireRate);
+        isShooting = false; 
+    }
 
     public IEnumerator Reload()
     {
@@ -192,7 +212,7 @@ public class Tool : MonoBehaviour
          {
              decal.transform.parent = shotHit.collider.transform;
              decalLocTran = decal.transform.position;
-             shotHit.collider.attachedRigidbody.AddForceAtPosition(gunOptions.bulletAppliedForce * playerGrab.CamPos.forward, shotHit.point, ForceMode.Impulse);
+             shotHit.collider.attachedRigidbody.AddForceAtPosition(gunOptions.bulletAppliedForce * playerGrab.camPos.forward, shotHit.point, ForceMode.Impulse);
          }
          if (decal.transform.position != decalLocTran)
          {
@@ -204,7 +224,7 @@ public class Tool : MonoBehaviour
          impactEff.GetComponent<ParticleSystem>().Play();
         }
         //Bullet Shells 
-        objectPooler.SpawnFromPool(gunOptions.bulletShellTag, shellReleasePoint.transform.position, Quaternion.identity).GetComponent<Rigidbody>().AddForce(-shootPoint.transform.right * gunOptions.shellForce, ForceMode.Impulse);
+        objectPooler.SpawnFromPool(gunOptions.bulletShellTag, shellReleasePoint.transform.position, playerGrab.camPos.rotation).GetComponent<Rigidbody>().AddForce(shootPoint.transform.right * gunOptions.shellForce, ForceMode.Impulse);
 
     }
 

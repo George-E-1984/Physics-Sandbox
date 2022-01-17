@@ -49,7 +49,7 @@ public class Pistol : MonoBehaviour
         //Finds the player ui script
         reloadIcon = GameObject.Find("PlayerUI").GetComponent<UiData>().reloadIcon.gameObject;
 
-        shootPoint = playerGrabScript.PlayerMovement.shootOrigin.transform;
+        shootPoint = playerGrabScript.playerMovement.shootOrigin.transform;
     }
 
     // Update is called once per frame

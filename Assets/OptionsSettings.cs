@@ -6,11 +6,15 @@ using TMPro;
 
 public class OptionsSettings : MonoBehaviour
 {
-    public PlayerData playerData;  
-    public Slider sensitivitySlider;
-    public TextMeshProUGUI sensPC; 
-    public TextMeshProUGUI volumePC; 
-    public Slider volumeSlider;  
+        
+    public PlayerData playerData; 
+    public Slider sensitivitySlider; 
+    public Slider volumeSlider; 
+    public Slider fovSlider; 
+    public TextMeshProUGUI sensitivityProgressText;
+    public TextMeshProUGUI volumeProgressText;
+    public TextMeshProUGUI fovProgressText;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,10 +25,16 @@ public class OptionsSettings : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       playerData.sensitivity = sensitivitySlider.value; 
-       sensPC.text = System.Convert.ToString(sensitivitySlider.normalizedValue * 100) + "%";  
-       playerData.volume = volumeSlider.value; 
-       volumePC.text = System.Convert.ToString(volumeSlider.normalizedValue * 100) + "%";
+        //sensitivity
+        playerData.sensitivity = sensitivitySlider.value; 
+        sensitivityProgressText.text = System.Convert.ToString(sensitivitySlider.normalizedValue * 100) + "%";  
+        //volume
+        playerData.volume = volumeSlider.value; 
+        volumeProgressText.text = System.Convert.ToString(volumeSlider.normalizedValue * 100) + "%";
+        //fov
+        playerData.fieldOfView = fovSlider.value; 
+        fovProgressText.text = System.Convert.ToString(fovSlider.value); 
+        
     }
 
 }
