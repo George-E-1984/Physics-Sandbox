@@ -24,15 +24,15 @@ MonoBehaviour:
   bulletAppliedForce: 0
   shellForce: 0
   spread: 0
-  fireRate: 2
-  recoilAmount: 100
+  fireRate: 0.01
+  recoilAmount: 1000
   shootPointOffset: 0
   aimFov: 50
   timeToAim: 1
   maxPitch: 1.1
   minPitch: 0.9
-  maxAmmoInClip: 10
-  maxAmmoInBank: 100
+  maxAmmoInClip: 1000
+  maxAmmoInBank: 99999
   reloadTime: 5
   burstAmount: 0
   timeBetweenBursts: 0

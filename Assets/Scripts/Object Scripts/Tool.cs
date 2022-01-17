@@ -161,7 +161,7 @@ public class Tool : MonoBehaviour
         firstRot = playerGrab.camPos.forward;
         forceShot.transform.position = shootOrigin.position;
         forceShot.transform.rotation = shootOrigin.rotation;
-        toolRB.AddForceAtPosition(gunOptions.recoilAmount * (shootPoint.transform.forward), shootPoint.transform.position, ForceMode.Impulse);
+        toolRB.AddForceAtPosition(gunOptions.recoilAmount * (-shootPoint.transform.forward), shootPoint.transform.position, ForceMode.Impulse);
         //muzzleFlash.Play();
         shootAudioSource.PlayOneShot(shootSFX[Random.Range(0, shootSFX.Length - 1)]);
         ammoLeftClip--;
@@ -171,7 +171,7 @@ public class Tool : MonoBehaviour
             yield return null;
         }
         forceShot.SetActive(false);  
-        yield return new WaitForSecondsRealtime(gunOptions.fireRate);
+        yield return new WaitForSeconds(gunOptions.fireRate);
         isShooting = false; 
     }
 
