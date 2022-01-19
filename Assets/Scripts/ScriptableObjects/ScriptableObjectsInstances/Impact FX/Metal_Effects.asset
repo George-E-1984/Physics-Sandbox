@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f8f5ac456a399e428281b8fdab0d416, type: 3}
   m_Name: Metal_Effects
   m_EditorClassIdentifier: 
-  decalPoolName: 
+  decalPoolName: Metal_Bullet_Decals
   shootEffectPoolName: 
-  impactSFX: {fileID: 0}
-  gunHitSFX: {fileID: 0}
+  impactSFX: {fileID: 8300000, guid: 3a19d80339dae794186cc0eb862154ca, type: 3}
+  gunHitSFX: {fileID: 8300000, guid: 97e7e78ab01f5cc42bf5660200583cd5, type: 3}

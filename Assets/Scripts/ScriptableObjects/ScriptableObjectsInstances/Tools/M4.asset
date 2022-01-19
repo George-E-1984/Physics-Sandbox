@@ -23,6 +23,7 @@ MonoBehaviour:
   bulletAppliedForce: 10
   shellForce: 5
   spread: 0.15
+  aimSpread: 0.05
   fireRate: 0.1
   recoilAmount: 100
   shootPointOffset: 1.8

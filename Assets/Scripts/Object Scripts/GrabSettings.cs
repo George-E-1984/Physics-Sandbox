@@ -5,6 +5,7 @@ using UnityEngine;
 public class GrabSettings : MonoBehaviour
 {
     public Vector3 positionOffset;
+    public Vector3 aimPositionOffset; 
     public Quaternion rotationOffset;
 
     public ConfigurableJointMotion jointXMotion; 

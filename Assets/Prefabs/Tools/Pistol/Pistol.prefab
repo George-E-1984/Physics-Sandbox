@@ -105,8 +105,12 @@ MonoBehaviour:
   shootOrigin: {fileID: 0}
   forceShot: {fileID: 0}
   firstRot: {x: 0, y: 0, z: 0}
+  grabSettings: {fileID: 0}
   LastTimeShot: 0
   decalLocTran: {x: 0, y: 0, z: 0}
+  x: 0
+  y: 0
+  isAiming: 0
 --- !u!114 &7978956990626475938
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -120,6 +124,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   positionOffset: {x: 0.7, y: 0, z: -0.8}
+  aimPositionOffset: {x: 0, y: 0.029, z: -0.8}
   rotationOffset: {x: 0, y: 0, z: 0, w: 1}
   jointXMotion: 0
   jointYMotion: 2

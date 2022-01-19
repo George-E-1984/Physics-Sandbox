@@ -40,9 +40,14 @@ public class Tool : MonoBehaviour
     public GameObject forceShot;
     ObjectPooler objectPooler; 
     public Vector3 firstRot; 
+    public GrabSettings grabSettings; 
     public float LastTimeShot;
     private static System.Timers.Timer aTimer;
     public Vector3 decalLocTran; 
+    public float x; 
+    public float y; 
+    public bool isAiming; 
+    public ImpactProperties impactProperties; 
     public enum ShootType { Auto, SemiAuto, Burst, Force };
 
     //Script Refs
@@ -69,6 +74,8 @@ public class Tool : MonoBehaviour
         gameObject.GetComponent<Tool>().enabled = false; 
 
         objectPooler = ObjectPooler.Instance; 
+
+        grabSettings = gameObject.GetComponent<GrabSettings>(); 
     }
 
     // Update is called once per frame
@@ -86,8 +93,17 @@ public class Tool : MonoBehaviour
         //shooting auto
         else if (Input.GetMouseButton(0) && !isReloading && ammoLeftClip > 0 && !isShooting && shootType == ShootType.Auto)
         {
-            float x = Random.Range(-gunOptions.spread, gunOptions.spread);
-            float y = Random.Range(-gunOptions.spread, gunOptions.spread); 
+            if (isAiming)
+            {
+                x = Random.Range(-gunOptions.aimSpread, gunOptions.aimSpread);
+                y = Random.Range(-gunOptions.aimSpread, gunOptions.aimSpread);
+
+            }
+            else 
+            {
+                x = Random.Range(-gunOptions.spread, gunOptions.spread);
+                y = Random.Range(-gunOptions.spread, gunOptions.spread);
+            }
             Vector3 direction = playerGrab.camPos.forward + new Vector3(x, y, 0); 
             Physics.Raycast(playerGrab.playerMovement.shootOrigin.transform.position, direction, out shotHit, gunOptions.bulletDistance);
             StartCoroutine(Shoot(shotHit));
@@ -106,12 +122,14 @@ public class Tool : MonoBehaviour
         //Aiming!
         if (gunOptions.canAim && playerGrab.isGrabbingTool && Input.GetMouseButtonDown(1) && playerGrab.cam.fieldOfView == playerGrab.playerMovement.playerData.fieldOfView)
         {
+            isAiming = true; 
             playerGrab.cam.fieldOfView = Mathf.Lerp(playerGrab.cam.fieldOfView, gunOptions.aimFov, gunOptions.timeToAim);
-            playerGrab.grabHolderConfig.anchor = new Vector3(0, 0, playerGrab.grabSettings.positionOffset.z); 
+            playerGrab.grabHolderConfig.anchor = grabSettings.aimPositionOffset; 
             playerGrab.grabHolderConfig.targetRotation = new Quaternion(0,0,0,0); 
         }
         else if (Input.GetMouseButtonUp(1))
         {
+            isAiming = false; 
             playerGrab.cam.fieldOfView = playerGrab.playerMovement.playerData.fieldOfView; 
             playerGrab.grabHolderConfig.anchor = playerGrab.grabSettings.positionOffset; 
             playerGrab.grabHolderConfig.targetRotation = playerGrab.grabSettings.rotationOffset; 
@@ -124,7 +142,17 @@ public class Tool : MonoBehaviour
     }
     public IEnumerator Shoot(RaycastHit shotHit)
     {
-        isShooting = true;     
+        isShooting = true;    
+        if (shotHit.collider != null)
+        {
+            if (shotHit.collider.GetComponent<ImpactProperties>() != null)
+            {
+                impactProperties = shotHit.collider.GetComponent<ImpactProperties>(); 
+            }
+        }
+    
+
+
         GunEffects(); 
         //recoil
         toolRB.AddForceAtPosition(gunOptions.recoilAmount * (-playerGrab.camPos.forward), shootPoint.transform.position, ForceMode.Impulse);
@@ -204,10 +232,10 @@ public class Tool : MonoBehaviour
             muzzleFlash.Play(); 
         }
 
-        if (shotHit.collider != null && shotHit.collider.tag != "Tool")
+        if (shotHit.collider != null && shotHit.collider.tag != "Tool" && impactProperties != null)
         {
           //Shoot Decals
-         GameObject decal = objectPooler.SpawnFromPool(gunOptions.shootDecalTag, shotHit.point, Quaternion.LookRotation(shotHit.normal)); 
+         GameObject decal = objectPooler.SpawnFromPool(impactProperties.colliderEffects.decalPoolName, shotHit.point, Quaternion.LookRotation(shotHit.normal)); 
          if (shotHit.collider.GetComponent<Rigidbody>() != null)
          {
              decal.transform.parent = shotHit.collider.transform;

@@ -19,6 +19,7 @@ public class ItemData : ScriptableObject
     public float bulletAppliedForce; 
     public float shellForce = 10f;
     public float spread = 0.15f;
+    public float aimSpread;
     public float fireRate; 
     public float recoilAmount; 
     public float shootPointOffset = 1f; 
