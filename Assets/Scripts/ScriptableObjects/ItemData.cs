@@ -10,9 +10,7 @@ public class ItemData : ScriptableObject
     public Sprite icon;
     public GameObject gunPrefab; 
     public string bulletShellTag;
-    public string impactEffectTag;
-    public string shootDecalTag; 
-
+   
     [Header("Gun Variables")]
     public bool canAim = true; 
     public float bulletDistance;

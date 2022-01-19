@@ -2933,6 +2933,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   colliderEffects: {fileID: 11400000, guid: 0000c5182453d9b47b2cffbc4eb936ec, type: 2}
+  objectRigidbody: {fileID: 0}
 --- !u!64 &79929876
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -2966,7 +2967,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 2dd60dcdd3c45284aa6e8377c1e533d7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -14299,6 +14300,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   colliderEffects: {fileID: 11400000, guid: 677757ce58396e343b315984bef94f4f, type: 2}
+  objectRigidbody: {fileID: 0}
 --- !u!64 &526609905
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -14332,7 +14334,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 7e181fd161a9d4c41a7d09c87806d01d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -21336,6 +21338,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   colliderEffects: {fileID: 11400000, guid: 0000c5182453d9b47b2cffbc4eb936ec, type: 2}
+  objectRigidbody: {fileID: 0}
 --- !u!4 &828653570 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6604640762749060449, guid: 8625987699b48254fa513b92f21366e8,
@@ -32751,11 +32754,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pools:
   - prefab: {fileID: 100002, guid: e74af37e539075d428c1f7bd8cdb781d, type: 3}
-    tag: ImpactEffect
+    tag: Metal_Impact_Effect
     size: 2
   - prefab: {fileID: 1096938269352802311, guid: fe4e3a18d7c3e5f4da01a0837498d83d,
       type: 3}
-    tag: BulletShells
+    tag: Bullet_Shells
     size: 10
   - prefab: {fileID: 1524098985519550657, guid: 8ba8d395aa445ae42837552633829d85,
       type: 3}
@@ -32764,6 +32767,9 @@ MonoBehaviour:
   - prefab: {fileID: 7226277422442420912, guid: 0e309f4a1f67e4d42af2d4ac46d3e2ce,
       type: 3}
     tag: Wood_Bullet_Decals
+    size: 10
+  - prefab: {fileID: 100002, guid: 8961d52b837fcb94cbef55777ddd2106, type: 3}
+    tag: Wood_Impact_Effect
     size: 10
 --- !u!1001 &1332011779
 PrefabInstance:
@@ -53772,75 +53778,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 50d77c8bebc265a4aa491ca78c13cd6f, type: 3}
---- !u!1001 &1401067029805525246
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4012946045787511885, guid: 0e309f4a1f67e4d42af2d4ac46d3e2ce,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 21
-      objectReference: {fileID: 0}
-    - target: {fileID: 4012946045787511885, guid: 0e309f4a1f67e4d42af2d4ac46d3e2ce,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4012946045787511885, guid: 0e309f4a1f67e4d42af2d4ac46d3e2ce,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4012946045787511885, guid: 0e309f4a1f67e4d42af2d4ac46d3e2ce,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4012946045787511885, guid: 0e309f4a1f67e4d42af2d4ac46d3e2ce,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4012946045787511885, guid: 0e309f4a1f67e4d42af2d4ac46d3e2ce,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4012946045787511885, guid: 0e309f4a1f67e4d42af2d4ac46d3e2ce,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4012946045787511885, guid: 0e309f4a1f67e4d42af2d4ac46d3e2ce,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4012946045787511885, guid: 0e309f4a1f67e4d42af2d4ac46d3e2ce,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4012946045787511885, guid: 0e309f4a1f67e4d42af2d4ac46d3e2ce,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4012946045787511885, guid: 0e309f4a1f67e4d42af2d4ac46d3e2ce,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7226277422442420912, guid: 0e309f4a1f67e4d42af2d4ac46d3e2ce,
-        type: 3}
-      propertyPath: m_Name
-      value: Wood_Bullet_Decal
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 0e309f4a1f67e4d42af2d4ac46d3e2ce, type: 3}
 --- !u!1001 &3543888889139469908
 PrefabInstance:
   m_ObjectHideFlags: 0

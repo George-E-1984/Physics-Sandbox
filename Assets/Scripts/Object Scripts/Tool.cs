@@ -47,7 +47,7 @@ public class Tool : MonoBehaviour
     public float x; 
     public float y; 
     public bool isAiming; 
-    public ImpactProperties impactProperties; 
+    public ObjectProperties objectProperties; 
     public enum ShootType { Auto, SemiAuto, Burst, Force };
 
     //Script Refs
@@ -145,17 +145,22 @@ public class Tool : MonoBehaviour
         isShooting = true;    
         if (shotHit.collider != null)
         {
-            if (shotHit.collider.GetComponent<ImpactProperties>() != null)
+            if (shotHit.collider.GetComponent<ObjectProperties>() != null)
             {
-                impactProperties = shotHit.collider.GetComponent<ImpactProperties>(); 
+                objectProperties = shotHit.collider.GetComponent<ObjectProperties>(); 
+                if (objectProperties.objectRigidbody != null)
+                {
+                    objectProperties.objectRigidbody.AddForceAtPosition(gunOptions.bulletAppliedForce * shotHit.transform.forward, shotHit.point, ForceMode.Impulse); 
+                }
+                else
+                {
+                    Debug.Log("No rigidbody specified!"); 
+                }
             }
         }
-    
-
-
         GunEffects(); 
         //recoil
-        toolRB.AddForceAtPosition(gunOptions.recoilAmount * (-playerGrab.camPos.forward), shootPoint.transform.position, ForceMode.Impulse);
+        toolRB.AddForceAtPosition(gunOptions.recoilAmount * (-playerGrab.camPos.forward), shootPoint.transform.position, ForceMode.Impulse);   
         //shoot sound effect
         shootAudioSource.pitch = Random.Range(gunOptions.minPitch, gunOptions.maxPitch);
         shootAudioSource.PlayOneShot(shootSFX[Random.Range(0, shootSFX.Length - 1)]);
@@ -189,6 +194,7 @@ public class Tool : MonoBehaviour
         firstRot = playerGrab.camPos.forward;
         forceShot.transform.position = shootOrigin.position;
         forceShot.transform.rotation = shootOrigin.rotation;
+        //force to add to the weapon when you shoot; 
         toolRB.AddForceAtPosition(gunOptions.recoilAmount * (-shootPoint.transform.forward), shootPoint.transform.position, ForceMode.Impulse);
         //muzzleFlash.Play();
         shootAudioSource.PlayOneShot(shootSFX[Random.Range(0, shootSFX.Length - 1)]);
@@ -232,24 +238,38 @@ public class Tool : MonoBehaviour
             muzzleFlash.Play(); 
         }
 
-        if (shotHit.collider != null && shotHit.collider.tag != "Tool" && impactProperties != null)
+        if (shotHit.collider != null && shotHit.collider.tag != "Tool" && objectProperties != null)
         {
-          //Shoot Decals
-         GameObject decal = objectPooler.SpawnFromPool(impactProperties.colliderEffects.decalPoolName, shotHit.point, Quaternion.LookRotation(shotHit.normal)); 
-         if (shotHit.collider.GetComponent<Rigidbody>() != null)
-         {
-             decal.transform.parent = shotHit.collider.transform;
-             decalLocTran = decal.transform.position;
-             shotHit.collider.attachedRigidbody.AddForceAtPosition(gunOptions.bulletAppliedForce * playerGrab.camPos.forward, shotHit.point, ForceMode.Impulse);
-         }
-         if (decal.transform.position != decalLocTran)
-         {
-             decal.transform.parent = null; 
-         }
+            //Shoot Decals
+            if (objectProperties.colliderEffects.decalPoolName.Length > 0)
+            {
+                GameObject decal = objectPooler.SpawnFromPool(objectProperties.colliderEffects.decalPoolName, shotHit.point, Quaternion.LookRotation(shotHit.normal));
+                if (shotHit.collider.GetComponent<Rigidbody>() != null)
+                {
+                    decal.transform.parent = shotHit.collider.transform; 
+                    decalLocTran = decal.transform.position; 
+                }
+                if (decal.transform.position != decalLocTran)
+                {
+                    decal.transform.parent = null; 
+                }
+            }
+            else 
+            {
+                Debug.Log("No Decal Effects on collider that was shot");
+            }
 
          //Impact effects 
-         GameObject impactEff = objectPooler.SpawnFromPool(gunOptions.impactEffectTag, shotHit.point, Quaternion.LookRotation(shotHit.normal));
-         impactEff.GetComponent<ParticleSystem>().Play();
+         if (objectProperties.colliderEffects.shootEffectPoolName.Length > 0)
+         {
+            GameObject impactEff = objectPooler.SpawnFromPool(objectProperties.colliderEffects.shootEffectPoolName, shotHit.point, Quaternion.LookRotation(shotHit.normal));
+            impactEff.GetComponent<ParticleSystem>().Play();
+         }
+         else 
+         {
+            Debug.Log("No Impact Effects on collider that was shot"); 
+         }
+         
         }
         //Bullet Shells 
         objectPooler.SpawnFromPool(gunOptions.bulletShellTag, shellReleasePoint.transform.position, playerGrab.camPos.rotation).GetComponent<Rigidbody>().AddForce(shootPoint.transform.right * gunOptions.shellForce, ForceMode.Impulse);

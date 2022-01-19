@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 9009810386144470555}
   - component: {fileID: 9212941493279683054}
   - component: {fileID: 7272304541026905099}
+  - component: {fileID: 2308166432809889689}
   - component: {fileID: 1959073078379782415}
   - component: {fileID: 4360550171703422657}
   - component: {fileID: 6495191087608432672}
@@ -98,6 +99,20 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2308166432809889689
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7340742938224607325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37fa12e74a22dda43ad5a5b529cc2971, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colliderEffects: {fileID: 11400000, guid: 0000c5182453d9b47b2cffbc4eb936ec, type: 2}
+  objectRigidbody: {fileID: 4360550171703422657}
 --- !u!114 &1959073078379782415
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -111,6 +126,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   positionOffset: {x: 0, y: 0, z: 0.2}
+  aimPositionOffset: {x: 0, y: 0, z: 0}
   rotationOffset: {x: 0, y: 0, z: 0, w: 0}
   jointXMotion: 2
   jointYMotion: 2
@@ -165,6 +181,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   positionOffset: {x: -1, y: 0, z: 0}
+  aimPositionOffset: {x: 0, y: 0, z: 0}
   rotationOffset: {x: 0, y: 0, z: 0.70710677, w: 0.70710677}
   jointXMotion: 0
   jointYMotion: 0

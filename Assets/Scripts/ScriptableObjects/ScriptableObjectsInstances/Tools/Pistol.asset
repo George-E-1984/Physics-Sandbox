@@ -15,15 +15,13 @@ MonoBehaviour:
   gunName: Ol'Reliable
   icon: {fileID: 21300000, guid: 6c29a66f7bb1ec44199faf4b8c8cddb0, type: 3}
   gunPrefab: {fileID: 32981806885554721, guid: 622a12ee58c288e4e903e62fa50e7cf8, type: 3}
-  bulletShellTag: BulletShells
-  impactEffectTag: ImpactEffect
-  shootDecalTag: BulletDecals
+  bulletShellTag: Bullet_Shells
   canAim: 1
   bulletDistance: 100
   bulletAppliedForce: 10
   shellForce: 5
   spread: 0.15
-  aimSpread: 0.05
+  aimSpread: 0.01
   fireRate: 0.2
   recoilAmount: 100
   shootPointOffset: 1.5
