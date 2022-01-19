@@ -20,7 +20,7 @@ MonoBehaviour:
   bulletDistance: 100
   bulletAppliedForce: 10
   shellForce: 5
-  spread: 0.15
+  spread: 0.1
   aimSpread: 0.01
   fireRate: 0.2
   recoilAmount: 100

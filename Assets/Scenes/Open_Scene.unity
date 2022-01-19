@@ -14263,8 +14263,8 @@ GameObject:
   - component: {fileID: 526609903}
   - component: {fileID: 526609907}
   - component: {fileID: 526609906}
-  - component: {fileID: 526609905}
   - component: {fileID: 526609904}
+  - component: {fileID: 526609905}
   m_Layer: 0
   m_Name: Wood_Plane
   m_TagString: Untagged
@@ -32755,7 +32755,7 @@ MonoBehaviour:
   pools:
   - prefab: {fileID: 100002, guid: e74af37e539075d428c1f7bd8cdb781d, type: 3}
     tag: Metal_Impact_Effect
-    size: 2
+    size: 1
   - prefab: {fileID: 1096938269352802311, guid: fe4e3a18d7c3e5f4da01a0837498d83d,
       type: 3}
     tag: Bullet_Shells
@@ -32770,7 +32770,7 @@ MonoBehaviour:
     size: 10
   - prefab: {fileID: 100002, guid: 8961d52b837fcb94cbef55777ddd2106, type: 3}
     tag: Wood_Impact_Effect
-    size: 10
+    size: 1
 --- !u!1001 &1332011779
 PrefabInstance:
   m_ObjectHideFlags: 0
