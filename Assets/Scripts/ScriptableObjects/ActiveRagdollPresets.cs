@@ -1,0 +1,10 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+[CreateAssetMenu(menuName = "ActiveRagdollPresets")]
+public class ActiveRagdollPresets : ScriptableObject
+{
+    public float falloverDistance;  
+
+}
