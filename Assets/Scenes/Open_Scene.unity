@@ -113,8 +113,8 @@ NavMeshSettings:
     agentHeight: 2
     agentSlope: 45
     agentClimb: 0.4
-    ledgeDropHeight: 0
-    maxJumpAcrossDistance: 0
+    ledgeDropHeight: 2
+    maxJumpAcrossDistance: 2
     minRegionArea: 2
     manualCellSize: 0
     cellSize: 0.16666667
@@ -125,7 +125,7 @@ NavMeshSettings:
     preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: 9bf1d1e0d037c7f4ea1881dfe4789285, type: 2}
 --- !u!1001 &538909
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21598,7 +21598,7 @@ Transform:
   m_GameObject: {fileID: 826806569}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1000, y: 1000, z: 1000}
+  m_LocalScale: {x: 100, y: 100, z: 100}
   m_Children: []
   m_Father: {fileID: 413033202}
   m_RootOrder: 0
@@ -37456,6 +37456,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1633822219}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1486773479 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5465849238911762464, guid: e11e9dafe487002419d48985909fa249,
+    type: 3}
+  m_PrefabInstance: {fileID: 220017681}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1487732182
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -42669,6 +42675,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1703367609}
+  - component: {fileID: 1703367610}
   m_Layer: 0
   m_Name: SceneDepends
   m_TagString: Untagged
@@ -42691,6 +42698,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1703367610
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1703367608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0db2e300886c9764b81962c9b42b75f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1486773479}
 --- !u!4 &1703587770 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6604640762749060449, guid: 50d77c8bebc265a4aa491ca78c13cd6f,
@@ -54416,7 +54436,7 @@ PrefabInstance:
     - target: {fileID: 4746526969167833063, guid: 8818db4612a686945b6ffa02f0b961ab,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 11.61
+      value: -11.39
       objectReference: {fileID: 0}
     - target: {fileID: 4746526969167833063, guid: 8818db4612a686945b6ffa02f0b961ab,
         type: 3}
@@ -54426,7 +54446,7 @@ PrefabInstance:
     - target: {fileID: 4746526969167833063, guid: 8818db4612a686945b6ffa02f0b961ab,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 7.01
+      value: 4.759996
       objectReference: {fileID: 0}
     - target: {fileID: 4746526969167833063, guid: 8818db4612a686945b6ffa02f0b961ab,
         type: 3}

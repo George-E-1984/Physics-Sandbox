@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d23f524405938984f9a4122e76481092, type: 3}
   m_Name: Generic_Zombie
   m_EditorClassIdentifier: 
-  falloverDistance: 2
+  falloverDistance: 0.75

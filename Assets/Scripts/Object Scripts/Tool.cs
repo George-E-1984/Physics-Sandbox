@@ -48,6 +48,7 @@ public class Tool : MonoBehaviour
     public float y; 
     public bool isAiming; 
     public ObjectProperties objectProperties; 
+    public WaitForSeconds wait; 
     public enum ShootType { Auto, SemiAuto, Burst, Force };
 
     //Script Refs
@@ -76,6 +77,8 @@ public class Tool : MonoBehaviour
         objectPooler = ObjectPooler.Instance; 
 
         grabSettings = gameObject.GetComponent<GrabSettings>(); 
+
+        wait = new WaitForSeconds(gunOptions.fireRate); 
     }
 
     // Update is called once per frame
@@ -176,7 +179,7 @@ public class Tool : MonoBehaviour
         canShoot = false; 
 
         //time before you can shoot again    
-        yield return new WaitForSeconds(gunOptions.fireRate);  
+        yield return wait; 
         isShooting = false;             
     }
 
@@ -205,7 +208,7 @@ public class Tool : MonoBehaviour
             yield return null;
         }
         forceShot.SetActive(false);  
-        yield return new WaitForSeconds(gunOptions.fireRate);
+        yield return wait; 
         isShooting = false; 
     }
 

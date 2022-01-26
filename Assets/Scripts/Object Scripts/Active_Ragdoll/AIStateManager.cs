@@ -4,25 +4,91 @@ using UnityEngine;
 
 public class AIStateManager : MonoBehaviour
 {
-    public AIBaseState currentState;
+    [Header("Assignables")]
+    public ActiveRagdoll activeRagdoll; 
+
+    [Header("States")]
+    public AIStates aiStates; 
+    public enum AIStates{Idle, Agro, Wander, Fallen}; 
+
+    [Header("State Settings")]
+    public float wanderRadius; 
+    
+
     // Update is called once per frame
     void Update()
     {
-        RunStateMachine(); 
+        HandleStates(); 
+        
     }
 
-    private void RunStateMachine()
+    void Start() 
     {
-        AIBaseState nextState = currentState?.RunCurrentState(); 
+        
+    }
 
-        if (nextState != null)
+    public void HandleStates()
+    {
+        //setting states 
+        if (activeRagdoll.LookForPlayer() && !activeRagdoll.fallen)
         {
-            SwitchToTheNextState(nextState); 
+            aiStates = AIStates.Agro; 
         }
+        else if (activeRagdoll.LookForPlayer())
+        {
+            aiStates = AIStates.Fallen; 
+        }
+        else if (activeRagdoll.fallen == false)
+        {
+            aiStates = AIStates.Idle;
+        }
+
+        //state methods 
+        switch(aiStates)
+        {
+            case AIStates.Agro: 
+            AgroState();
+            break; 
+            case AIStates.Idle: 
+            IdleState();
+            break;
+            case AIStates.Wander: 
+            WanderState();
+            break;
+            case AIStates.Fallen: 
+            FallenState();
+            break;
+           
+            default:
+            IdleState();  
+            break; 
+        }
+      
     }
 
-    private void SwitchToTheNextState(AIBaseState nextState)
+    public void IdleState()
     {
-        currentState = nextState; 
+        activeRagdoll.animator.SetBool("isMoving", false);
+
+    }
+    
+    public void WanderState()
+    {
+        print ("Wander");
+
+    }
+    
+
+    public void FallenState()
+    {
+
+       
+
+    }   
+
+    public void AgroState()
+    {
+        activeRagdoll.animator.SetBool("isMoving", true); 
+        activeRagdoll.navMeshAgent.SetDestination(activeRagdoll.target.position); 
     }
 }
