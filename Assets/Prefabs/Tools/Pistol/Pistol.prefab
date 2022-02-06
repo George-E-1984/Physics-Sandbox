@@ -37,6 +37,7 @@ Transform:
   - {fileID: 3020845532414820229}
   - {fileID: 4893430711098600055}
   - {fileID: 921746929215995792}
+  - {fileID: 5540682037293003215}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -111,6 +112,10 @@ MonoBehaviour:
   x: 0
   y: 0
   isAiming: 0
+  objectProperties: {fileID: 0}
+  reloadEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &7978956990626475938
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -124,8 +129,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   positionOffset: {x: 0.7, y: 0, z: -0.8}
-  aimPositionOffset: {x: 0, y: 0.029, z: -0.8}
+  aimPositionOffset: {x: 0, y: -0.009, z: -0.8}
   rotationOffset: {x: 0, y: 0, z: 0, w: 1}
+  grabPoint: {fileID: 2034911508713557392}
   jointXMotion: 0
   jointYMotion: 2
   jointZMotion: 2
@@ -587,6 +593,36 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &2034911508713557392
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5540682037293003215}
+  m_Layer: 10
+  m_Name: Grab_Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5540682037293003215
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2034911508713557392}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.043, z: -0.165}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1846503669878852913}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3101191418361852699
 GameObject:
   m_ObjectHideFlags: 0

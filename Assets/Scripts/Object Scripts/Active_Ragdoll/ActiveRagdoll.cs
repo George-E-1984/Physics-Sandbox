@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI; 
+using UnityEngine.Events;
 
 public class ActiveRagdoll : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class ActiveRagdoll : MonoBehaviour
     public ActiveRagdollPresets activeRagdollObject; 
     public GameObject physicsRig; 
     public GameObject animatedRig;
+    public GameObject feetPoint; 
     public NavMeshAgent navMeshAgent; 
     public Collider visionCone; 
     public PlayerData playerData; 
@@ -17,40 +19,39 @@ public class ActiveRagdoll : MonoBehaviour
 
     [Header("Variables")]
     public float lookRadius = 10f;
+    public bool isGrounded; 
 
     [Header("Info (Do not touch)")]
     public Transform target; 
-    public float distance; 
-    public bool fallen; 
+    public float distance;  
+    public bool isGettingUp; 
+    public RaycastHit hit; 
     
-
     // Start is called before the first frame update
     void Start()
     {
-        target = SceneMaster.instance.player.transform; 
+    
     }
 
     // Update is called once per frame
     void Update()
     {
-        //fallover conditional, sets the joints to have no drive if the physics rig is a big enough distance from the animated one
-        if (Vector3.Distance(physicsRig.transform.position, animatedRig.transform.position) > activeRagdollObject.falloverDistance)
-        {
-            HandleFalling(true);
-        } 
+         
     }
 
-    public void HandleFalling(bool hasFallen)
+    public bool HandleFalling()
     {
-        if (hasFallen)
+        if (Vector3.Distance(physicsRig.transform.position, animatedRig.transform.position) > activeRagdollObject.falloverDistance && !isGettingUp)
         {
             jointHandler.SetJointSettings(true);
-            jointHandler.SetJointBones(); 
-            fallen = true; 
+            jointHandler.SetJointBones();
+            print("fallen"); 
+            return true;  
         }
-        else 
+        else
         {
-            fallen = false; 
+            print("Notfallen"); 
+            return false; 
         }
       
     }
@@ -64,6 +65,22 @@ public class ActiveRagdoll : MonoBehaviour
         }
         else 
         {
+            return false; 
+        }
+    }
+
+    public bool GroundCheck()
+    {
+        Physics.Raycast(feetPoint.transform.position, Vector3.down, out hit, 0.1f);
+        
+        if (hit.collider != null)
+        {
+            isGrounded = true;
+            return true; 
+        } 
+        else 
+        {
+            isGrounded = false; 
             return false; 
         }
     }

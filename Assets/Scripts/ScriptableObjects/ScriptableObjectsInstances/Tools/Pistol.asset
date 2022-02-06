@@ -31,6 +31,6 @@ MonoBehaviour:
   minPitch: 0.9
   maxAmmoInClip: 10
   maxAmmoInBank: 100
-  reloadTime: 5
+  reloadTime: 2
   burstAmount: 0
   timeBetweenBursts: 0

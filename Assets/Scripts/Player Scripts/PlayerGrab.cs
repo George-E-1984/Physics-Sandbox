@@ -55,7 +55,7 @@ public class PlayerGrab : MonoBehaviour
             {
                 if (toolbarManager.Tools[toolbarManager.currentlySelected] != null && toolbarManager.currentToolScript.isReloading == true)
                 {
-                    StopCoroutine(toolbarManager.currentToolScript.Reload());
+                    //toolbarManager.currentToolScript.reloadTimer.Stop(); 
                     toolbarManager.currentToolScript.isReloading = false;
                     toolbarManager.currentToolScript.reloadIcon.SetActive(false);
                 }
@@ -101,8 +101,8 @@ public class PlayerGrab : MonoBehaviour
         grabAudioSource = objectToGrab.AddComponent<AudioSource>(); 
         grabAudioSource.PlayOneShot(grabSound);  
         //important variables setting!     
-         grabbedObjectRb = objectToGrab.transform.gameObject.GetComponent<Rigidbody>();
-         grabSettings = objectToGrab.transform.gameObject.GetComponent<GrabSettings>();
+        grabbedObjectRb = objectToGrab.transform.gameObject.GetComponent<Rigidbody>();
+        grabSettings = objectToGrab.transform.gameObject.GetComponent<GrabSettings>();
         //object doesn't collide with player
         for(int i = 0; i < grabSettings.grabbedObjectColliders.Length; i++ )
         {
@@ -111,6 +111,10 @@ public class PlayerGrab : MonoBehaviour
         //changing values of config to the grab settings ones
         //position offset
         grabHolderConfig.anchor = grabSettings.positionOffset;
+        if (grabSettings.grabPoint)
+        {
+            grabHolderConfig.connectedAnchor = grabSettings.grabPoint.transform.localPosition;
+        } 
         //rotation offset
         grabHolderConfig.targetRotation = grabSettings.rotationOffset; 
         //sets the grabbed object as the connected body of the grab holder's joint

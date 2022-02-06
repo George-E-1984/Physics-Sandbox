@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Timers;
 using UnityEngine.UI; 
+using UnityEngine.Events; 
 
 public class Tool : MonoBehaviour
 {
@@ -42,13 +43,15 @@ public class Tool : MonoBehaviour
     public Vector3 firstRot; 
     public GrabSettings grabSettings; 
     public float LastTimeShot;
-    private static System.Timers.Timer aTimer;
     public Vector3 decalLocTran; 
     public float x; 
     public float y; 
     public bool isAiming; 
     public ObjectProperties objectProperties; 
     public WaitForSeconds wait; 
+    public System.Timers.Timer fireRateTimer; 
+    public System.Timers.Timer reloadTimer;
+    public UnityEvent reloadEvent; 
     public enum ShootType { Auto, SemiAuto, Burst, Force };
 
     //Script Refs
@@ -58,7 +61,7 @@ public class Tool : MonoBehaviour
     void Start()
     {
         //finds the playergrab script
-        playerGrab = GameObject.Find("Player").GetComponent<PlayerGrab>();
+        playerGrab = SceneMaster.instance.player.GetComponent<PlayerGrab>(); 
 
         //finds the tool rigidbody
         toolRB = gameObject.GetComponent<Rigidbody>();
@@ -79,6 +82,13 @@ public class Tool : MonoBehaviour
         grabSettings = gameObject.GetComponent<GrabSettings>(); 
 
         wait = new WaitForSeconds(gunOptions.fireRate); 
+
+        //setting timers
+        reloadTimer = new System.Timers.Timer(gunOptions.reloadTime * 1000);
+        reloadTimer.Elapsed += reloadTimer_Elapsed;
+        fireRateTimer = new System.Timers.Timer(gunOptions.fireRate * 1000); 
+        fireRateTimer.Elapsed += fireRateTimer_Elapsed;  
+
     }
 
     // Update is called once per frame
@@ -91,7 +101,7 @@ public class Tool : MonoBehaviour
             float y = Random.Range(-gunOptions.spread, gunOptions.spread); 
             Vector3 direction = playerGrab.camPos.forward + new Vector3(x, y, 0); 
             Physics.Raycast(playerGrab.playerMovement.shootOrigin.transform.position, direction, out shotHit, gunOptions.bulletDistance);
-            StartCoroutine(Shoot(shotHit));  
+            Shoot(shotHit);  
         }
         //shooting auto
         else if (Input.GetMouseButton(0) && !isReloading && ammoLeftClip > 0 && !isShooting && shootType == ShootType.Auto)
@@ -109,7 +119,7 @@ public class Tool : MonoBehaviour
             }
             Vector3 direction = playerGrab.camPos.forward + new Vector3(x, y, 0); 
             Physics.Raycast(playerGrab.playerMovement.shootOrigin.transform.position, direction, out shotHit, gunOptions.bulletDistance);
-            StartCoroutine(Shoot(shotHit));
+            Shoot(shotHit);
         }     
         //shooting Force gun
         else if (Input.GetMouseButton(0) && !isReloading && ammoLeftClip > 0 && !isShooting && shootType == ShootType.Force)
@@ -117,9 +127,9 @@ public class Tool : MonoBehaviour
             StartCoroutine(ForceGun());
         }     
         //reloading 
-        if (Input.GetKeyDown(KeyCode.R) && !isReloading && ammoLeftClip != gunOptions.maxAmmoInClip && ammoLeftBank > 0 || Input.GetMouseButtonDown(0) && !isReloading && ammoLeftClip == 0 && ammoLeftBank > 0)
+        if (Input.GetKeyDown(KeyCode.R) && !isReloading && ammoLeftClip != gunOptions.maxAmmoInClip && ammoLeftBank > 0)
         {
-            StartCoroutine(Reload());
+            Reload();
         }
 
         //Aiming!
@@ -143,7 +153,31 @@ public class Tool : MonoBehaviour
     {
         
     }
-    public IEnumerator Shoot(RaycastHit shotHit)
+
+    private void fireRateTimer_Elapsed(object sender, ElapsedEventArgs e)
+    {
+        isShooting = false; 
+        fireRateTimer.Stop(); 
+    }
+
+    private void reloadTimer_Elapsed(object sender, ElapsedEventArgs e)
+    { 
+        reloadIcon.SetActive(false);
+        isReloading = false; 
+        if ((gunOptions.maxAmmoInClip - ammoLeftClip) > ammoLeftBank)
+        {
+            ammoLeftClip = ammoLeftClip + ammoLeftBank;
+            ammoLeftBank = 0; 
+        }
+        else if ((gunOptions.maxAmmoInClip - ammoLeftClip) < ammoLeftBank)
+        {
+            ammoLeftBank = ammoLeftBank - (gunOptions.maxAmmoInClip - ammoLeftClip);
+            ammoLeftClip = ammoLeftClip + (gunOptions.maxAmmoInClip - ammoLeftClip);
+         
+        } 
+        reloadTimer.Stop();
+    }
+    public void Shoot(RaycastHit shotHit)
     {
         isShooting = true;    
         if (shotHit.collider != null)
@@ -177,10 +211,8 @@ public class Tool : MonoBehaviour
         //reducing ammo amount
         ammoLeftClip--;
         canShoot = false; 
-
-        //time before you can shoot again    
-        yield return wait; 
-        isShooting = false;             
+        //time before you can shoot again   
+        fireRateTimer.Start();              
     }
 
     public void ShootInput()
@@ -212,25 +244,12 @@ public class Tool : MonoBehaviour
         isShooting = false; 
     }
 
-    public IEnumerator Reload()
+    public void Reload()
     {
-        isReloading = true;
+        isReloading = true; 
         reloadIcon.SetActive(true);
-        shootAudioSource.PlayOneShot(reloadSFX[Random.Range(0, reloadSFX.Length - 1)]);
-        yield return new WaitForSeconds(gunOptions.reloadTime * Time.deltaTime);
-        if ((gunOptions.maxAmmoInClip - ammoLeftClip) > ammoLeftBank)
-        {
-            ammoLeftClip = ammoLeftClip + ammoLeftBank;
-            ammoLeftBank = 0; 
-        }
-        else if ((gunOptions.maxAmmoInClip - ammoLeftClip) < ammoLeftBank)
-        {
-            ammoLeftBank = ammoLeftBank - (gunOptions.maxAmmoInClip - ammoLeftClip);
-            ammoLeftClip = ammoLeftClip + (gunOptions.maxAmmoInClip - ammoLeftClip);
-         
-        }
-        reloadIcon.SetActive(false);
-        isReloading = false;         
+        shootAudioSource.PlayOneShot(reloadSFX[Random.Range(0, reloadSFX.Length - 1)]); 
+        reloadTimer.Start();   
     }   
 
     public void GunEffects()
