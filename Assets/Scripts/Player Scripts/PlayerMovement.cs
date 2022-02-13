@@ -207,5 +207,6 @@ public class PlayerMovement : MonoBehaviour
     {
         //fov
         playerCamera.GetComponent<Camera>().fieldOfView = playerData.fieldOfView; 
+        playerData.currentPlayerHealth = playerData.MaxPlayerHealth; 
     }
 }

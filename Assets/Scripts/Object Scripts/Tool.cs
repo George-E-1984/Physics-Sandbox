@@ -48,7 +48,8 @@ public class Tool : MonoBehaviour
     public float y; 
     public bool isAiming; 
     public ObjectProperties objectProperties; 
-    public WaitForSeconds wait; 
+    public WaitForSeconds waitFireRate; 
+    public WaitForSeconds waitReloadTime; 
     public System.Timers.Timer fireRateTimer; 
     public System.Timers.Timer reloadTimer;
     public UnityEvent reloadEvent; 
@@ -81,13 +82,14 @@ public class Tool : MonoBehaviour
 
         grabSettings = gameObject.GetComponent<GrabSettings>(); 
 
-        wait = new WaitForSeconds(gunOptions.fireRate); 
+        waitFireRate = new WaitForSeconds(gunOptions.fireRate); 
+        waitReloadTime = new WaitForSeconds(gunOptions.reloadTime); 
 
         //setting timers
-        reloadTimer = new System.Timers.Timer(gunOptions.reloadTime * 1000);
-        reloadTimer.Elapsed += reloadTimer_Elapsed;
-        fireRateTimer = new System.Timers.Timer(gunOptions.fireRate * 1000); 
-        fireRateTimer.Elapsed += fireRateTimer_Elapsed;  
+        //reloadTimer = new System.Timers.Timer(gunOptions.reloadTime * 1000);
+        //reloadTimer.Elapsed += reloadTimer_Elapsed;
+        //fireRateTimer = new System.Timers.Timer(gunOptions.fireRate * 1000); 
+        //fireRateTimer.Elapsed += fireRateTimer_Elapsed;  
 
     }
 
@@ -101,7 +103,7 @@ public class Tool : MonoBehaviour
             float y = Random.Range(-gunOptions.spread, gunOptions.spread); 
             Vector3 direction = playerGrab.camPos.forward + new Vector3(x, y, 0); 
             Physics.Raycast(playerGrab.playerMovement.shootOrigin.transform.position, direction, out shotHit, gunOptions.bulletDistance);
-            Shoot(shotHit);  
+            StartCoroutine(Shoot(shotHit));  
         }
         //shooting auto
         else if (Input.GetMouseButton(0) && !isReloading && ammoLeftClip > 0 && !isShooting && shootType == ShootType.Auto)
@@ -119,7 +121,7 @@ public class Tool : MonoBehaviour
             }
             Vector3 direction = playerGrab.camPos.forward + new Vector3(x, y, 0); 
             Physics.Raycast(playerGrab.playerMovement.shootOrigin.transform.position, direction, out shotHit, gunOptions.bulletDistance);
-            Shoot(shotHit);
+            StartCoroutine(Shoot(shotHit));
         }     
         //shooting Force gun
         else if (Input.GetMouseButton(0) && !isReloading && ammoLeftClip > 0 && !isShooting && shootType == ShootType.Force)
@@ -129,7 +131,7 @@ public class Tool : MonoBehaviour
         //reloading 
         if (Input.GetKeyDown(KeyCode.R) && !isReloading && ammoLeftClip != gunOptions.maxAmmoInClip && ammoLeftBank > 0)
         {
-            Reload();
+            StartCoroutine(Reload());
         }
 
         //Aiming!
@@ -162,22 +164,9 @@ public class Tool : MonoBehaviour
 
     private void reloadTimer_Elapsed(object sender, ElapsedEventArgs e)
     { 
-        reloadIcon.SetActive(false);
-        isReloading = false; 
-        if ((gunOptions.maxAmmoInClip - ammoLeftClip) > ammoLeftBank)
-        {
-            ammoLeftClip = ammoLeftClip + ammoLeftBank;
-            ammoLeftBank = 0; 
-        }
-        else if ((gunOptions.maxAmmoInClip - ammoLeftClip) < ammoLeftBank)
-        {
-            ammoLeftBank = ammoLeftBank - (gunOptions.maxAmmoInClip - ammoLeftClip);
-            ammoLeftClip = ammoLeftClip + (gunOptions.maxAmmoInClip - ammoLeftClip);
-         
-        } 
         reloadTimer.Stop();
     }
-    public void Shoot(RaycastHit shotHit)
+    public IEnumerator Shoot(RaycastHit shotHit)
     {
         isShooting = true;    
         if (shotHit.collider != null)
@@ -194,6 +183,16 @@ public class Tool : MonoBehaviour
                     Debug.Log("No rigidbody specified!"); 
                 }
             }
+            if (shotHit.collider.gameObject.tag == "Limb")
+            {
+                ActiveRagdoll activeRagdoll = shotHit.collider.GetComponentInParent<ActiveRagdoll>();
+                activeRagdoll.currentRagdollHealth -= gunOptions.bulletDamage; 
+                if (activeRagdoll.currentRagdollHealth <= 0)
+                {
+                    activeRagdoll.RagdollDeath(); 
+                }
+            }
+
         }
         GunEffects(); 
         //recoil
@@ -212,7 +211,8 @@ public class Tool : MonoBehaviour
         ammoLeftClip--;
         canShoot = false; 
         //time before you can shoot again   
-        fireRateTimer.Start();              
+        yield return waitFireRate; 
+        isShooting = false; 
     }
 
     public void ShootInput()
@@ -240,16 +240,30 @@ public class Tool : MonoBehaviour
             yield return null;
         }
         forceShot.SetActive(false);  
-        yield return wait; 
+        yield return waitFireRate; 
         isShooting = false; 
     }
 
-    public void Reload()
+    public IEnumerator Reload()
     {
         isReloading = true; 
         reloadIcon.SetActive(true);
         shootAudioSource.PlayOneShot(reloadSFX[Random.Range(0, reloadSFX.Length - 1)]); 
-        reloadTimer.Start();   
+        yield return waitReloadTime; 
+        reloadIcon.SetActive(false);
+        isReloading = false; 
+        if ((gunOptions.maxAmmoInClip - ammoLeftClip) > ammoLeftBank)
+        {
+            ammoLeftClip = ammoLeftClip + ammoLeftBank;
+            ammoLeftBank = 0; 
+        }
+        else if ((gunOptions.maxAmmoInClip - ammoLeftClip) < ammoLeftBank)
+        {
+            ammoLeftBank = ammoLeftBank - (gunOptions.maxAmmoInClip - ammoLeftClip);
+            ammoLeftClip = ammoLeftClip + (gunOptions.maxAmmoInClip - ammoLeftClip);
+         
+        } 
+        //reloadTimer.Start();   
     }   
 
     public void GunEffects()
@@ -281,16 +295,16 @@ public class Tool : MonoBehaviour
                 Debug.Log("No Decal Effects on collider that was shot");
             }
 
-         //Impact effects 
-         if (objectProperties.colliderEffects.shootEffectPoolName.Length > 0)
-         {
-            GameObject impactEff = objectPooler.SpawnFromPool(objectProperties.colliderEffects.shootEffectPoolName, shotHit.point, Quaternion.LookRotation(shotHit.normal));
-            impactEff.GetComponent<ParticleSystem>().Play();
-         }
-         else 
-         {
-            Debug.Log("No Impact Effects on collider that was shot"); 
-         }
+           //Impact effects 
+           if (objectProperties.colliderEffects.shootEffectPoolName.Length > 0)
+           {
+               GameObject impactEff = objectPooler.SpawnFromPool(objectProperties.colliderEffects.shootEffectPoolName, shotHit.point, Quaternion.LookRotation(shotHit.normal));
+               impactEff.GetComponent<ParticleSystem>().Play();
+           }
+           else 
+           {
+               Debug.Log("No Impact Effects on collider that was shot"); 
+           }
          
         }
         //Bullet Shells 

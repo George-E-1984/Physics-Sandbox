@@ -13,6 +13,7 @@ public class SceneUTManager : MonoBehaviour
     private int Current;
     public TextMeshProUGUI ammoLeftTextmesh;
     public TextMeshProUGUI ammoBankLeftTextmesh;
+    public TextMeshProUGUI healthAmountTextMesh; 
     public int targetFrameRate = 300; 
     
     
@@ -46,16 +47,18 @@ public class SceneUTManager : MonoBehaviour
         fpsTextmesh.text = Current.ToString();
 
         //Ammo counter
-        if (toolbarManager.Tools[toolbarManager.currentlySelected] != null)
+        if (toolbarManager.items[toolbarManager.currentlySelected] != null && toolbarManager.items[toolbarManager.currentlySelected].gameObject.tag == "Tool")
         {
-            ammoLeftTextmesh.text = toolbarManager.Tools[toolbarManager.currentlySelected].gameObject.GetComponent<Tool>().ammoLeftClip.ToString();
-            ammoBankLeftTextmesh.text = toolbarManager.Tools[toolbarManager.currentlySelected].gameObject.GetComponent<Tool>().ammoLeftBank.ToString();
+            ammoLeftTextmesh.text = toolbarManager.items[toolbarManager.currentlySelected].gameObject.GetComponent<Tool>().ammoLeftClip.ToString();
+            ammoBankLeftTextmesh.text = toolbarManager.items[toolbarManager.currentlySelected].gameObject.GetComponent<Tool>().ammoLeftBank.ToString();
         }          
         else
         {
             ammoLeftTextmesh.text = 00f.ToString();
             ammoBankLeftTextmesh.text = 00f.ToString();
         }
+
+        healthAmountTextMesh.text = playerMovement.playerData.currentPlayerHealth.ToString(); 
 
         Application.targetFrameRate = targetFrameRate;
     }

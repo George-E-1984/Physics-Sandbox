@@ -13,3 +13,6 @@ MonoBehaviour:
   m_Name: Generic_Zombie
   m_EditorClassIdentifier: 
   falloverDistance: 0.75
+  attackDistance: 2
+  attackDamage: 5
+  maxRagdollHealth: 10

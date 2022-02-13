@@ -7,7 +7,6 @@ public class ItemData : ScriptableObject
 {
     public string gunName;
     [Header("Assignables")]
-    public Sprite icon;
     public GameObject gunPrefab; 
     public string bulletShellTag;
    
@@ -23,6 +22,7 @@ public class ItemData : ScriptableObject
     public float shootPointOffset = 1f; 
     public int aimFov = 35; 
     public float timeToAim = 1f; 
+    public int bulletDamage; 
     
     [Header("Audio Range")]
     public float maxPitch = 1; 

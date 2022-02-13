@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5398417359973403470}
   - component: {fileID: 2785153360546421224}
   - component: {fileID: 8439935957461987459}
+  - component: {fileID: 3946228823870405995}
   m_Layer: 10
   m_Name: Old_USSR_Lamp_01
   m_TagString: Untagged
@@ -33,6 +34,7 @@ Transform:
   - {fileID: 5095889641809548120}
   - {fileID: 6337191212892592650}
   - {fileID: 6414666420055489465}
+  - {fileID: 2998719452038299529}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -112,6 +114,21 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0.39339292, z: 0.06703976}
+--- !u!114 &3946228823870405995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1644476406946372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37fa12e74a22dda43ad5a5b529cc2971, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colliderEffects: {fileID: 11400000, guid: 0000c5182453d9b47b2cffbc4eb936ec, type: 2}
+  objectRigidbody: {fileID: 5398417359973403470}
+  centreOfMassOverride: {fileID: 0}
 --- !u!1 &54272563928702153
 GameObject:
   m_ObjectHideFlags: 0
@@ -366,6 +383,36 @@ CapsuleCollider:
   m_Height: 0.09860897
   m_Direction: 1
   m_Center: {x: -0.0017501479, y: 0.18693404, z: -0.09366379}
+--- !u!1 &2371710359261654791
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2998719452038299529}
+  m_Layer: 0
+  m_Name: CentreOfMass
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2998719452038299529
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2371710359261654791}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.641, z: 0.25}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4848899773351372}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4192941843241411483
 GameObject:
   m_ObjectHideFlags: 0

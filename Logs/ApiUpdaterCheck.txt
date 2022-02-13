@@ -708,3 +708,63 @@ C# parse time         : 526ms
 candidates check time : 44ms
 console write time    : 0ms
 
+[api-updater (non-obsolete-error-filter)] 06/02/2022 15:14:15 : Starting G:/ProgramData/Microsoft/Windows/Start Menu/Programs/Unity 2019.3.5f1 (64-bit)/2020.3.25f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
+[api-updater (non-obsolete-error-filter)] 
+----------------------------------
+jit/startup time      : 916.6992ms
+moved types parse time: 43ms
+candidates parse time : 0ms
+C# parse time         : 566ms
+candidates check time : 37ms
+console write time    : 0ms
+
+[api-updater (non-obsolete-error-filter)] 06/02/2022 15:32:59 : Starting G:/ProgramData/Microsoft/Windows/Start Menu/Programs/Unity 2019.3.5f1 (64-bit)/2020.3.25f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
+[api-updater (non-obsolete-error-filter)] 
+----------------------------------
+jit/startup time      : 64.1837ms
+moved types parse time: 39ms
+candidates parse time : 0ms
+C# parse time         : 158ms
+candidates check time : 37ms
+console write time    : 0ms
+
+[api-updater (non-obsolete-error-filter)] 06/02/2022 15:33:11 : Starting G:/ProgramData/Microsoft/Windows/Start Menu/Programs/Unity 2019.3.5f1 (64-bit)/2020.3.25f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
+[api-updater (non-obsolete-error-filter)] 
+----------------------------------
+jit/startup time      : 58.392ms
+moved types parse time: 39ms
+candidates parse time : 0ms
+C# parse time         : 159ms
+candidates check time : 35ms
+console write time    : 0ms
+
+[api-updater (non-obsolete-error-filter)] 06/02/2022 15:33:25 : Starting G:/ProgramData/Microsoft/Windows/Start Menu/Programs/Unity 2019.3.5f1 (64-bit)/2020.3.25f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
+[api-updater (non-obsolete-error-filter)] 
+----------------------------------
+jit/startup time      : 58.5177ms
+moved types parse time: 40ms
+candidates parse time : 0ms
+C# parse time         : 157ms
+candidates check time : 34ms
+console write time    : 0ms
+
+[api-updater (non-obsolete-error-filter)] 09/02/2022 22:22:44 : Starting G:/ProgramData/Microsoft/Windows/Start Menu/Programs/Unity 2019.3.5f1 (64-bit)/2020.3.25f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
+[api-updater (non-obsolete-error-filter)] 
+----------------------------------
+jit/startup time      : 685.8445ms
+moved types parse time: 43ms
+candidates parse time : 0ms
+C# parse time         : 500ms
+candidates check time : 43ms
+console write time    : 0ms
+
+[api-updater (non-obsolete-error-filter)] 12/02/2022 19:04:54 : Starting G:/ProgramData/Microsoft/Windows/Start Menu/Programs/Unity 2019.3.5f1 (64-bit)/2020.3.25f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
+[api-updater (non-obsolete-error-filter)] 
+----------------------------------
+jit/startup time      : 872.417ms
+moved types parse time: 43ms
+candidates parse time : 0ms
+C# parse time         : 523ms
+candidates check time : 38ms
+console write time    : 0ms
+

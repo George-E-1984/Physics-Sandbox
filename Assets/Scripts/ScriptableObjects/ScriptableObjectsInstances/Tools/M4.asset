@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: M4
   m_EditorClassIdentifier: 
   gunName: Destroyer
-  icon: {fileID: 21300000, guid: 8d9eee11749e82b48847428c991be856, type: 3}
   gunPrefab: {fileID: 32981806885554721, guid: 622a12ee58c288e4e903e62fa50e7cf8, type: 3}
   bulletShellTag: Bullet_Shells
   canAim: 1
@@ -27,6 +26,7 @@ MonoBehaviour:
   shootPointOffset: 1.8
   aimFov: 50
   timeToAim: 1
+  bulletDamage: 1
   maxPitch: 1.1
   minPitch: 0.9
   maxAmmoInClip: 50

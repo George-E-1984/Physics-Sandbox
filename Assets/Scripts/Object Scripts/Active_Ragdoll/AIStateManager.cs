@@ -20,14 +20,20 @@ public class AIStateManager : MonoBehaviour
     [SerializeField]private int isIdleHash;
     [SerializeField]private int isGettingUpHash;
     [SerializeField]private bool hasFallen; 
+    [SerializeField]private bool foundPlayer; 
+
+    [Header("Info")]
+    public bool isGrounded; 
 
     
 
     // Update is called once per frame
     void Update()
     {
-        HandleStates(); 
         hasFallen = activeRagdoll.HandleFalling();
+        foundPlayer = activeRagdoll.LookForPlayer(); 
+        isGrounded = activeRagdoll.GroundCheck(); 
+        HandleStates(); 
     }
 
     void Start() 
@@ -41,19 +47,19 @@ public class AIStateManager : MonoBehaviour
     public void HandleStates()
     {
         //setting states 
-        if (activeRagdoll.LookForPlayer() && !hasFallen)
+        if (foundPlayer && !hasFallen && isGrounded)
         {
             aiStates = AIStates.Agro; 
         }
-        else if (hasFallen && activeRagdoll.physicsRig.GetComponentInChildren<Rigidbody>().velocity.magnitude <= 2.5f && activeRagdoll.GroundCheck())
+        else if (hasFallen && activeRagdoll.physicsRig.GetComponent<Rigidbody>().velocity.magnitude <= 0.1 && isGrounded)
         {
             aiStates = AIStates.GettingUp; 
         }
-        else if (hasFallen || !activeRagdoll.GroundCheck())
+        else if (hasFallen || !isGrounded)
         {
             aiStates = AIStates.Fallen; 
         }
-        else if (hasFallen == false)
+        else if (hasFallen == false && isGrounded)
         {
             aiStates = AIStates.Idle;
         }
@@ -86,8 +92,7 @@ public class AIStateManager : MonoBehaviour
 
     public void IdleState()
     {
-        //activeRagdoll.animator.SetBool("isWalking", false);
-        activeRagdoll.isGettingUp = false; 
+        //activeRagdoll.animator.SetBool("isWalking", false); 
         activeRagdoll.navMeshAgent.isStopped = true;
         activeRagdoll.animator.SetBool(isWalkingHash, false); 
         activeRagdoll.animator.SetBool(isIdleHash, true);   
@@ -105,43 +110,52 @@ public class AIStateManager : MonoBehaviour
 
     public void FallenState()
     { 
-        activeRagdoll.isGettingUp = false; 
         activeRagdoll.animator.SetBool(isIdleHash, false); 
         activeRagdoll.animator.SetBool(isWalkingHash, false);  
         activeRagdoll.animator.SetBool(isGettingUpHash, false);
+        //hasFallen = true; 
+        //activeRagdoll.jointHandler.SetJointSettings(true);
+        //activeRagdoll.jointHandler.SetJointBones(); 
         activeRagdoll.animator.enabled = true;
-        activeRagdoll.animatedRig.transform.position = activeRagdoll.physicsRig.transform.position;
+        print("Fallen");
     }   
 
     public void AgroState()
     {
         //activeRagdoll.animator.SetBool("isWalking", true); 
-        //activeRagdoll.jointHandler.SetJointSettings(true);
-        activeRagdoll.isGettingUp = false; 
-        if (!activeRagdoll.isGettingUp)
+        //activeRagdoll.jointHandler.SetJointSettings(true); 
+        activeRagdoll.navMeshAgent.isStopped = false;
+        activeRagdoll.animator.SetBool(isIdleHash, false); 
+        activeRagdoll.animator.SetBool(isGettingUpHash, false);
+        activeRagdoll.animator.SetBool(isWalkingHash, true); 
+        activeRagdoll.navMeshAgent.SetDestination(activeRagdoll.target.position);
+        float distance = Vector3.Distance(activeRagdoll.target.position, activeRagdoll.animatedRig.transform.position); 
+        if (distance <= activeRagdoll.activeRagdollObject.attackDistance)
         {
-            activeRagdoll.navMeshAgent.isStopped = false;
+            activeRagdoll.animator.SetLayerWeight(1, 1); 
         }
         else 
         {
-            activeRagdoll.navMeshAgent.isStopped = true;
+            activeRagdoll.animator.SetLayerWeight(1, 0);
         }
-        activeRagdoll.navMeshAgent.SetDestination(activeRagdoll.target.position);
-        activeRagdoll.animator.SetBool(isIdleHash, false); 
-        activeRagdoll.animator.SetBool(isWalkingHash, true); 
-        activeRagdoll.animator.SetBool(isGettingUpHash, false);
-         
     }
 
     public void GettingUpState()
     {
-        print("Gettingup!");  
-        activeRagdoll.animator.enabled = true; 
-        activeRagdoll.isGettingUp = true; 
+        print("Gettingup!");    
+        //activeRagdoll.animatedRig.transform.localPosition = new Vector3(0, 0, 0); 
+        //activeRagdoll.theOverallRig.transform.position = activeRagdoll.physicsRig.transform.position; 
+        activeRagdoll.theOverallAnimatedRig.transform.position = activeRagdoll.physicsRig.transform.position;
+        activeRagdoll.isGettingUp = true;
+        activeRagdoll.animator.enabled = true;  
         activeRagdoll.jointHandler.SetJointSettings(false); 
         activeRagdoll.jointHandler.SetJointBones();
         activeRagdoll.animator.SetBool(isIdleHash, false); 
         activeRagdoll.animator.SetBool(isWalkingHash, false);
         activeRagdoll.animator.SetBool(isGettingUpHash, true);  
+        if (activeRagdoll.animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
+        {
+            activeRagdoll.isGettingUp = false; 
+        }
     }
 }

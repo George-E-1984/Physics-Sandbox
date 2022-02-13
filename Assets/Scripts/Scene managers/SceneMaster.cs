@@ -15,4 +15,5 @@ public class SceneMaster : MonoBehaviour
    #endregion
 
    public GameObject player; 
+   public Transform respawnPoint; 
 }

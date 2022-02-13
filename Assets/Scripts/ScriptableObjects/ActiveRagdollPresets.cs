@@ -6,5 +6,8 @@ using UnityEngine;
 public class ActiveRagdollPresets : ScriptableObject
 {
     public float falloverDistance;  
+    public float attackDistance; 
+    public int attackDamage;
+    public int maxRagdollHealth; 
 
 }

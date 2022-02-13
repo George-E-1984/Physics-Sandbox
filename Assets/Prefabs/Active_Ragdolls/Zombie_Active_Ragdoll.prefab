@@ -657,7 +657,7 @@ GameObject:
   - component: {fileID: 1846307256283636817}
   m_Layer: 10
   m_Name: mixamorig5:RightUpLeg
-  m_TagString: Untagged
+  m_TagString: Limb
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -719,7 +719,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: -1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.09373935, y: -0.0491061, z: -0.005413424}
+  m_ConnectedAnchor: {x: 0.0937393, y: -0.0491061, z: -0.0054128408}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: 1}
   m_TwistLimitSpring:
@@ -767,6 +767,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   colliderEffects: {fileID: 11400000, guid: defd375285f20c945b7a32498c193991, type: 2}
   objectRigidbody: {fileID: 4746526968082737425}
+  centreOfMassOverride: {fileID: 0}
+  icon: {fileID: 0}
+  isThisSlottable: 0
 --- !u!114 &1846307256283636817
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -782,6 +785,7 @@ MonoBehaviour:
   positionOffset: {x: 0, y: 0, z: 0.2}
   aimPositionOffset: {x: 0, y: 0, z: 0}
   rotationOffset: {x: 0, y: 0, z: 0, w: 0}
+  grabPoint: {fileID: 0}
   jointXMotion: 2
   jointYMotion: 2
   jointZMotion: 2
@@ -884,7 +888,7 @@ GameObject:
   - component: {fileID: 1622532505177456868}
   m_Layer: 10
   m_Name: mixamorig5:RightLeg
-  m_TagString: Untagged
+  m_TagString: Limb
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -946,7 +950,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: -1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.0000000027939677, y: 0.43294823, z: -0.0000000018626451}
+  m_ConnectedAnchor: {x: -0.00000069849193, y: 0.4329482, z: 0.00000027567148}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: 1}
   m_TwistLimitSpring:
@@ -995,6 +999,7 @@ MonoBehaviour:
   positionOffset: {x: 0, y: 0, z: 0.2}
   aimPositionOffset: {x: 0, y: 0, z: 0}
   rotationOffset: {x: 0, y: 0, z: 0, w: 0}
+  grabPoint: {fileID: 0}
   jointXMotion: 2
   jointYMotion: 2
   jointZMotion: 2
@@ -1033,6 +1038,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   colliderEffects: {fileID: 11400000, guid: defd375285f20c945b7a32498c193991, type: 2}
   objectRigidbody: {fileID: 4746526967913785971}
+  centreOfMassOverride: {fileID: 0}
+  icon: {fileID: 0}
+  isThisSlottable: 0
 --- !u!1 &1622532505324592461
 GameObject:
   m_ObjectHideFlags: 0
@@ -1589,7 +1597,7 @@ GameObject:
   - component: {fileID: 2787008343047430606}
   m_Layer: 10
   m_Name: mixamorig5:LeftUpLeg
-  m_TagString: Untagged
+  m_TagString: Limb
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1651,7 +1659,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: -1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.09373935, y: -0.049106024, z: -0.0052553043}
+  m_ConnectedAnchor: {x: -0.0937394, y: -0.049106024, z: -0.005254983}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: 1}
   m_TwistLimitSpring:
@@ -1699,6 +1707,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   colliderEffects: {fileID: 11400000, guid: defd375285f20c945b7a32498c193991, type: 2}
   objectRigidbody: {fileID: 4746526968175591393}
+  centreOfMassOverride: {fileID: 0}
+  icon: {fileID: 0}
+  isThisSlottable: 0
 --- !u!114 &2787008343047430606
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1714,6 +1725,7 @@ MonoBehaviour:
   positionOffset: {x: 0, y: 0, z: 0.2}
   aimPositionOffset: {x: 0, y: 0, z: 0}
   rotationOffset: {x: 0, y: 0, z: 0, w: 0}
+  grabPoint: {fileID: 0}
   jointXMotion: 2
   jointYMotion: 2
   jointZMotion: 2
@@ -1752,7 +1764,7 @@ GameObject:
   - component: {fileID: 2641624158696707821}
   m_Layer: 10
   m_Name: mixamorig5:Hips
-  m_TagString: Untagged
+  m_TagString: Limb
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1818,6 +1830,7 @@ MonoBehaviour:
   positionOffset: {x: 0, y: 0, z: 0.2}
   aimPositionOffset: {x: 0, y: 0, z: 0}
   rotationOffset: {x: 0, y: 0, z: 0, w: 0}
+  grabPoint: {fileID: 0}
   jointXMotion: 2
   jointYMotion: 2
   jointZMotion: 2
@@ -2209,9 +2222,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5704352540680033248}
+  - component: {fileID: 7253638391388877946}
+  - component: {fileID: 5955702840964737431}
   m_Layer: 0
   m_Name: mixamorig5:RightHand
-  m_TagString: Untagged
+  m_TagString: Limb
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2235,6 +2250,32 @@ Transform:
   m_Father: {fileID: 1460088215347235004}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &7253638391388877946
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2981880433313663657}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.102392055
+  m_Center: {x: 0.0000000035332914, y: 0.10428712, z: 0.024686836}
+--- !u!114 &5955702840964737431
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2981880433313663657}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b60bcacc93da4dc4eaa1c8d5b0e30495, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activeRagdoll: {fileID: 693537969}
 --- !u!1 &3013424555602858039
 GameObject:
   m_ObjectHideFlags: 0
@@ -2835,7 +2876,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.000000015832484, y: 0.26918957, z: 0.000000052154064}
+  m_ConnectedAnchor: {x: -0.000000037252903, y: 0.26918885, z: 0.000000014901161}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: -1}
   m_TwistLimitSpring:
@@ -2884,6 +2925,7 @@ MonoBehaviour:
   positionOffset: {x: 0, y: 0, z: 0.2}
   aimPositionOffset: {x: 0, y: 0, z: 0}
   rotationOffset: {x: 0, y: 0, z: 0, w: 0}
+  grabPoint: {fileID: 0}
   jointXMotion: 2
   jointYMotion: 2
   jointZMotion: 2
@@ -2922,6 +2964,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   colliderEffects: {fileID: 11400000, guid: defd375285f20c945b7a32498c193991, type: 2}
   objectRigidbody: {fileID: 4746526967818938085}
+  centreOfMassOverride: {fileID: 0}
+  icon: {fileID: 0}
+  isThisSlottable: 0
 --- !u!1 &3960022078068634477
 GameObject:
   m_ObjectHideFlags: 0
@@ -3084,7 +3129,7 @@ GameObject:
   - component: {fileID: 4030295362260013578}
   m_Layer: 10
   m_Name: mixamorig5:RightForeArm
-  m_TagString: Untagged
+  m_TagString: Limb
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3146,7 +3191,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: -1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.000000018626451, y: 0.2691906, z: 0.000000014901161}
+  m_ConnectedAnchor: {x: -0.00000067893416, y: 0.2691911, z: 0.00000013411045}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: -1}
   m_TwistLimitSpring:
@@ -3195,6 +3240,7 @@ MonoBehaviour:
   positionOffset: {x: 0, y: 0, z: 0.2}
   aimPositionOffset: {x: 0, y: 0, z: 0}
   rotationOffset: {x: 0, y: 0, z: 0, w: 0}
+  grabPoint: {fileID: 0}
   jointXMotion: 2
   jointYMotion: 2
   jointZMotion: 2
@@ -3233,6 +3279,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   colliderEffects: {fileID: 11400000, guid: defd375285f20c945b7a32498c193991, type: 2}
   objectRigidbody: {fileID: 4746526969327374340}
+  centreOfMassOverride: {fileID: 0}
+  icon: {fileID: 0}
+  isThisSlottable: 0
 --- !u!1 &4030295362415398815
 GameObject:
   m_ObjectHideFlags: 0
@@ -3395,7 +3444,7 @@ GameObject:
   - component: {fileID: 4032090441542753414}
   m_Layer: 10
   m_Name: mixamorig5:RightArm
-  m_TagString: Untagged
+  m_TagString: Limb
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3457,7 +3506,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: -1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.18808222, y: 0.08821561, z: -0.006328135}
+  m_ConnectedAnchor: {x: 0.18808232, y: 0.08821552, z: -0.006327546}
   serializedVersion: 2
   m_SwingAxis: {x: -1, y: 0, z: 0}
   m_TwistLimitSpring:
@@ -3506,6 +3555,7 @@ MonoBehaviour:
   positionOffset: {x: 0, y: 0, z: 0.2}
   aimPositionOffset: {x: 0, y: 0, z: 0}
   rotationOffset: {x: 0, y: 0, z: 0, w: 0}
+  grabPoint: {fileID: 0}
   jointXMotion: 2
   jointYMotion: 2
   jointZMotion: 2
@@ -3544,6 +3594,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   colliderEffects: {fileID: 11400000, guid: defd375285f20c945b7a32498c193991, type: 2}
   objectRigidbody: {fileID: 4746526968891697278}
+  centreOfMassOverride: {fileID: 0}
+  icon: {fileID: 0}
+  isThisSlottable: 0
 --- !u!1 &4032090441731162411
 GameObject:
   m_ObjectHideFlags: 0
@@ -3847,7 +3900,7 @@ GameObject:
   - component: {fileID: 991306211107786048}
   m_Layer: 0
   m_Name: mixamorig5:RightFoot
-  m_TagString: Untagged
+  m_TagString: Limb
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4026,6 +4079,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4206314058420791707}
+  - component: {fileID: 4854874743517154839}
   m_Layer: 0
   m_Name: mixamorig5:LeftHand
   m_TagString: Untagged
@@ -4052,6 +4106,19 @@ Transform:
   m_Father: {fileID: 4667416759975982817}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &4854874743517154839
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4286184394188026529}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.102392055
+  m_Center: {x: 0.0000000035332914, y: 0.10428712, z: 0.024686836}
 --- !u!1 &4301713786230189857
 GameObject:
   m_ObjectHideFlags: 0
@@ -4063,7 +4130,7 @@ GameObject:
   - component: {fileID: 8355021639104571488}
   m_Layer: 0
   m_Name: mixamorig5:LeftFoot
-  m_TagString: Untagged
+  m_TagString: Limb
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4302,7 +4369,7 @@ GameObject:
   - component: {fileID: 8436669083110455862}
   m_Layer: 0
   m_Name: mixamorig5:Neck
-  m_TagString: Untagged
+  m_TagString: Limb
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4744,7 +4811,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.0000059534, y: -0.000000007450581, z: 0.000000011175871}
+  m_ConnectedAnchor: {x: 0.0000057131115, y: -0.000000007450581, z: -0.000000011175871}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 2
@@ -4919,7 +4986,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.0000059554463, y: 0.000000022857469, z: 0.000000024127218}
+  m_ConnectedAnchor: {x: -0.000005700648, y: -0.000000030333567, z: 0.00000015906632}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 2
@@ -5139,7 +5206,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.0000000039682075, y: 0.000005990267, z: 0.000000008615283}
+  m_ConnectedAnchor: {x: -0.000000679653, y: 0.0000066459183, z: 0.0000001400487}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 2
@@ -5591,7 +5658,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.0000059529466, y: 0.000000041949058, z: 0.00000002132263}
+  m_ConnectedAnchor: {x: -0.0000060564503, y: 0.000000033650316, z: 0.0000003390586}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 2
@@ -5921,7 +5988,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.0000059462573, y: 0.00000018552672, z: -0.00000001847486}
+  m_ConnectedAnchor: {x: -0.000005276935, y: 0.00000016103438, z: 0.00000026242958}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 2
@@ -6660,7 +6727,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.0000059529066, y: 0.000000007450581, z: 0.0000000083242515}
+  m_ConnectedAnchor: {x: 0.000006013719, y: -0.00000009685755, z: 0.0000006565248}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 2
@@ -7281,7 +7348,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.000000007691412, y: -0.000005924196, z: -0.000000068535314}
+  m_ConnectedAnchor: {x: 0.00000047514112, y: -0.000005172773, z: 0.00000001737942}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 2
@@ -7435,9 +7502,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4746526969167833063}
-  - component: {fileID: 4746526969167833060}
   - component: {fileID: 6007018659499604209}
-  - component: {fileID: 3712678787971070812}
+  - component: {fileID: 693537969}
   m_Layer: 0
   m_Name: Zombie_Active_Ragdoll
   m_TagString: Untagged
@@ -7462,7 +7528,28 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4746526969167833060
+--- !u!114 &6007018659499604209
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4746526969167833062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89f7efcceeaa81b4e8e8315f6e0ae5f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activeRagdoll: {fileID: 693537969}
+  aiStates: 0
+  wanderRadius: 0
+  isWalkingHash: 0
+  isRunningHash: 0
+  isIdleHash: 0
+  isGettingUpHash: 0
+  hasFallen: 0
+  foundPlayer: 0
+--- !u!114 &693537969
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -7477,60 +7564,22 @@ MonoBehaviour:
   jointHandler: {fileID: 4746526969187258404}
   activeRagdollObject: {fileID: 11400000, guid: 32e160e734b4c39469164dc57e4a3714,
     type: 2}
+  aIStateManager: {fileID: 6007018659499604209}
+  theOverallRig: {fileID: 4746526969167833062}
+  theOverallAnimatedRig: {fileID: 5236028097847444832}
   physicsRig: {fileID: 2641624158696707820}
   animatedRig: {fileID: 4746526968090803854}
   feetPoint: {fileID: 3838743223208792894}
-  navMeshAgent: {fileID: 3712678787971070812}
+  navMeshAgent: {fileID: 659123035492092176}
   visionCone: {fileID: 0}
   playerData: {fileID: 11400000, guid: 8ec2dc6111e42584ab5a4034242a495d, type: 2}
   animator: {fileID: 3333034560943074571}
-  lookRadius: 10
+  lookRadius: 20
+  currentRagdollHealth: 0
   isGrounded: 0
   target: {fileID: 0}
   distance: 0
   isGettingUp: 0
---- !u!114 &6007018659499604209
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4746526969167833062}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 89f7efcceeaa81b4e8e8315f6e0ae5f8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  activeRagdoll: {fileID: 4746526969167833060}
-  aiStates: 0
-  wanderRadius: 0
-  isWalkingHash: 0
-  isRunningHash: 0
-  isIdleHash: 0
-  isGettingUpHash: 0
-  hasFallen: 0
---- !u!195 &3712678787971070812
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4746526969167833062}
-  m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 0.5
-  m_Speed: 3.5
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 2
-  m_BaseOffset: 0
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
 --- !u!1 &4746526969178310836
 GameObject:
   m_ObjectHideFlags: 0
@@ -7897,7 +7946,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -8.825083e-10, y: 0.0000059711883, z: 0.00000000323314}
+  m_ConnectedAnchor: {x: -0.0000005881593, y: 0.000006215572, z: 0.00000009172493}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 2
@@ -8134,7 +8183,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.0000059529825, y: -0.00000003975589, z: -0.000000022029196}
+  m_ConnectedAnchor: {x: -0.000006059107, y: -0.000000052000985, z: 0.00000056518246}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 2
@@ -8509,7 +8558,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.000000015197205, y: -0.000005930662, z: 0.00000005207962}
+  m_ConnectedAnchor: {x: -0.000000058752605, y: -0.0000052452087, z: 0.000000014573863}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 2
@@ -8883,7 +8932,7 @@ GameObject:
   - component: {fileID: 4987982982862061021}
   m_Layer: 10
   m_Name: mixamorig5:Spine2
-  m_TagString: Untagged
+  m_TagString: Limb
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8946,7 +8995,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.000027067586, y: 0.30926156, z: -0.047628924}
+  m_ConnectedAnchor: {x: 0.000026977794, y: 0.30926156, z: -0.047628272}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: 1}
   m_TwistLimitSpring:
@@ -8995,6 +9044,7 @@ MonoBehaviour:
   positionOffset: {x: 0, y: 0, z: 0.2}
   aimPositionOffset: {x: 0, y: 0, z: 0}
   rotationOffset: {x: 0, y: 0, z: 0, w: 0}
+  grabPoint: {fileID: 0}
   jointXMotion: 2
   jointYMotion: 2
   jointZMotion: 2
@@ -9033,6 +9083,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   colliderEffects: {fileID: 11400000, guid: defd375285f20c945b7a32498c193991, type: 2}
   objectRigidbody: {fileID: 4746526969469944699}
+  centreOfMassOverride: {fileID: 0}
+  icon: {fileID: 0}
+  isThisSlottable: 0
 --- !u!1 &4987982983025303668
 GameObject:
   m_ObjectHideFlags: 0
@@ -9296,6 +9349,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7042143441173250229}
+  - component: {fileID: 659123035492092176}
   m_Layer: 0
   m_Name: Animated_Rig
   m_TagString: Untagged
@@ -9318,6 +9372,28 @@ Transform:
   m_Father: {fileID: 4746526969167833063}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!195 &659123035492092176
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5236028097847444832}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &5484559380642087903
 GameObject:
   m_ObjectHideFlags: 0
@@ -9727,7 +9803,7 @@ GameObject:
   - component: {fileID: 5761281017688148220}
   m_Layer: 10
   m_Name: mixamorig5:LeftArm
-  m_TagString: Untagged
+  m_TagString: Limb
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9789,7 +9865,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: 1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.18808217, y: 0.0884377, z: -0.0077717146}
+  m_ConnectedAnchor: {x: -0.18808155, y: 0.08843761, z: -0.0077712378}
   serializedVersion: 2
   m_SwingAxis: {x: 1, y: 0, z: 0}
   m_TwistLimitSpring:
@@ -9838,6 +9914,7 @@ MonoBehaviour:
   positionOffset: {x: 0, y: 0, z: 0.2}
   aimPositionOffset: {x: 0, y: 0, z: 0}
   rotationOffset: {x: 0, y: 0, z: 0, w: 0}
+  grabPoint: {fileID: 0}
   jointXMotion: 2
   jointYMotion: 2
   jointZMotion: 2
@@ -9876,6 +9953,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   colliderEffects: {fileID: 11400000, guid: defd375285f20c945b7a32498c193991, type: 2}
   objectRigidbody: {fileID: 4746526969755466631}
+  centreOfMassOverride: {fileID: 0}
+  icon: {fileID: 0}
+  isThisSlottable: 0
 --- !u!1 &5794074275237450603
 GameObject:
   m_ObjectHideFlags: 0
@@ -10616,7 +10696,7 @@ GameObject:
   - component: {fileID: 6540266377223401324}
   m_Layer: 10
   m_Name: mixamorig5:Head
-  m_TagString: Untagged
+  m_TagString: Limb
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10677,7 +10757,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -3.209788e-12, y: 0.19237265, z: 0.041527867}
+  m_ConnectedAnchor: {x: -0.000000390402, y: 0.19237265, z: 0.041527845}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: 1}
   m_TwistLimitSpring:
@@ -10726,6 +10806,7 @@ MonoBehaviour:
   positionOffset: {x: 0, y: 0, z: 0.2}
   aimPositionOffset: {x: 0, y: 0, z: 0}
   rotationOffset: {x: 0, y: 0, z: 0, w: 0}
+  grabPoint: {fileID: 0}
   jointXMotion: 2
   jointYMotion: 2
   jointZMotion: 2
@@ -10764,6 +10845,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   colliderEffects: {fileID: 11400000, guid: defd375285f20c945b7a32498c193991, type: 2}
   objectRigidbody: {fileID: 4746526968680756430}
+  centreOfMassOverride: {fileID: 0}
+  icon: {fileID: 0}
+  isThisSlottable: 0
 --- !u!1 &6540266377395172037
 GameObject:
   m_ObjectHideFlags: 0
@@ -10926,7 +11010,7 @@ GameObject:
   - component: {fileID: 6566566496705681140}
   m_Layer: 10
   m_Name: mixamorig5:LeftLeg
-  m_TagString: Untagged
+  m_TagString: Limb
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10988,7 +11072,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: -1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.0000000018626451, y: 0.43286923, z: 9.313226e-10}
+  m_ConnectedAnchor: {x: 0.0000004079193, y: 0.43286917, z: 0.00000013783574}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: 1}
   m_TwistLimitSpring:
@@ -11037,6 +11121,7 @@ MonoBehaviour:
   positionOffset: {x: 0, y: 0, z: 0.2}
   aimPositionOffset: {x: 0, y: 0, z: 0}
   rotationOffset: {x: 0, y: 0, z: 0, w: 0}
+  grabPoint: {fileID: 0}
   jointXMotion: 2
   jointYMotion: 2
   jointZMotion: 2
@@ -11075,6 +11160,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   colliderEffects: {fileID: 11400000, guid: defd375285f20c945b7a32498c193991, type: 2}
   objectRigidbody: {fileID: 4746526969344741244}
+  centreOfMassOverride: {fileID: 0}
+  icon: {fileID: 0}
+  isThisSlottable: 0
 --- !u!1 &6566566496902482781
 GameObject:
   m_ObjectHideFlags: 0

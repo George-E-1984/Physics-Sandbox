@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6281318916246651616}
   - component: {fileID: 1795260030433412376}
   - component: {fileID: 7978956990626475938}
+  - component: {fileID: 388075912712657313}
   m_Layer: 10
   m_Name: Pistol
   m_TagString: Tool
@@ -157,6 +158,23 @@ MonoBehaviour:
   grabbedObjectColliders:
   - {fileID: 728141028651264032}
   - {fileID: 7232207919990783857}
+--- !u!114 &388075912712657313
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 32981806885554721}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37fa12e74a22dda43ad5a5b529cc2971, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colliderEffects: {fileID: 11400000, guid: 0000c5182453d9b47b2cffbc4eb936ec, type: 2}
+  objectRigidbody: {fileID: 6281318916246651616}
+  centreOfMassOverride: {fileID: 0}
+  icon: {fileID: 21300000, guid: 6c29a66f7bb1ec44199faf4b8c8cddb0, type: 3}
+  isThisSlottable: 1
 --- !u!1 &850275636917456285
 GameObject:
   m_ObjectHideFlags: 0

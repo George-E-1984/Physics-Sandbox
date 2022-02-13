@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55ef95c452010854eabb38a78b265cab, type: 3}
   m_Name: PlayerData_01
   m_EditorClassIdentifier: 
+  MaxPlayerHealth: 100
+  currentPlayerHealth: 90
   sensitivity: 30
   volume: 1
   fieldOfView: 70

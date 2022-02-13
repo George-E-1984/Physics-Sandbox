@@ -8,6 +8,7 @@ TagManager:
   - Grabbable Object
   - WallRunning
   - Tool
+  - Limb
   layers:
   - Default
   - TransparentFX

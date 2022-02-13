@@ -9,6 +9,9 @@ public class ActiveRagdoll : MonoBehaviour
     [Header("Assignables")]
     public JointHandler jointHandler; 
     public ActiveRagdollPresets activeRagdollObject; 
+    public AIStateManager aIStateManager; 
+    public GameObject theOverallRig; 
+    public GameObject theOverallAnimatedRig; 
     public GameObject physicsRig; 
     public GameObject animatedRig;
     public GameObject feetPoint; 
@@ -19,7 +22,7 @@ public class ActiveRagdoll : MonoBehaviour
 
     [Header("Variables")]
     public float lookRadius = 10f;
-    public bool isGrounded; 
+    public int currentRagdollHealth; 
 
     [Header("Info (Do not touch)")]
     public Transform target; 
@@ -30,6 +33,8 @@ public class ActiveRagdoll : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        target = SceneMaster.instance.player.transform; 
+        currentRagdollHealth = activeRagdollObject.maxRagdollHealth; 
     
     }
 
@@ -42,15 +47,14 @@ public class ActiveRagdoll : MonoBehaviour
     public bool HandleFalling()
     {
         if (Vector3.Distance(physicsRig.transform.position, animatedRig.transform.position) > activeRagdollObject.falloverDistance && !isGettingUp)
-        {
-            jointHandler.SetJointSettings(true);
+        { 
+            jointHandler.SetJointSettings(true); 
             jointHandler.SetJointBones();
-            print("fallen"); 
-            return true;  
+            print("Fuck you");
+            return true;   
         }
         else
         {
-            print("Notfallen"); 
             return false; 
         }
       
@@ -58,7 +62,7 @@ public class ActiveRagdoll : MonoBehaviour
 
     public bool LookForPlayer()
     {
-        distance = Vector3.Distance(target.position, transform.position); 
+        distance = Vector3.Distance(target.position, animatedRig.transform.position); 
         if (distance <= lookRadius)
         {
             return true; 
@@ -75,20 +79,30 @@ public class ActiveRagdoll : MonoBehaviour
         
         if (hit.collider != null)
         {
-            isGrounded = true;
+            aIStateManager.isGrounded = true;
             return true; 
         } 
         else 
         {
-            isGrounded = false; 
+            aIStateManager.isGrounded = false; 
             return false; 
         }
+    }
+
+    public void RagdollDeath()
+    {
+        aIStateManager.enabled = false; 
+        jointHandler.SetJointSettings(false); 
+        animatedRig.SetActive(false); 
+        this.enabled = false; 
     }
 
     private void OnDrawGizmosSelected() 
     {
         Gizmos.color = Color.red; 
         Gizmos.DrawWireSphere(transform.position, lookRadius); 
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(transform.position, activeRagdollObject.attackDistance);
     }
 
 }

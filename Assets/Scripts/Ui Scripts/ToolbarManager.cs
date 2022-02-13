@@ -13,7 +13,7 @@ public class ToolbarManager : MonoBehaviour
     // public GameObject toolbar;
     public RectTransform[] slots;
     public Image[] icons;
-    public GameObject[] Tools;
+    public GameObject[] items;
     public GameObject grabHolder; 
     public int initiallySelected;
     public bool canScroll = true;
@@ -26,7 +26,7 @@ public class ToolbarManager : MonoBehaviour
 
     void Start()
     {
-        currentlySelected = initiallySelected - 1;
+        currentlySelected = initiallySelected;
         SetSelectedSlot(currentlySelected);
         lastSelected = currentlySelected; 
     }
@@ -36,26 +36,33 @@ public class ToolbarManager : MonoBehaviour
         scrollWheelInt = (int)Input.mouseScrollDelta.y;
         currentlySelected += scrollWheelInt * System.Convert.ToUInt16(canScroll);
         currentlySelected = mod(currentlySelected, slots.Length);
+        
         if (currentlySelected != lastSelected)
         {
             SetSelectedSlot(currentlySelected);
             lastSelected = currentlySelected;
         }
+
         //dropping tool
-        if (Input.GetKeyDown(KeyCode.F) && Tools[currentlySelected] != null)
+        if (Input.GetKeyDown(KeyCode.F) && items[currentlySelected] != null)
         {
-            if (currentToolScript.isReloading)
+            if(items[currentlySelected].gameObject.tag == "Tool")
             {
-                currentToolScript.StopAllCoroutines();
-                currentToolScript.isReloading = false;
-                currentToolScript.reloadIcon.SetActive(false); 
+                if (currentToolScript.isReloading)
+                {
+                    currentToolScript.StopAllCoroutines();
+                    currentToolScript.isReloading = false; 
+                    currentToolScript.reloadIcon.SetActive(false); 
+                }
+                
+                currentToolScript.isShooting = false;
+                items[currentlySelected].gameObject.GetComponent<Tool>().enabled = false;
             }
-            currentToolScript.isShooting = false;
-            setToolActive(currentlySelected, false);
-            Tools[currentlySelected].gameObject.GetComponent<Tool>().enabled = false;
-            Tools[currentlySelected].gameObject.SetActive(true);
+            
+            setItemActive(currentlySelected, false);
+            items[currentlySelected].gameObject.SetActive(true);
             icons[currentlySelected].sprite = null; 
-            Tools[currentlySelected] = null;
+            items[currentlySelected] = null;
         }
     }
 
@@ -63,34 +70,41 @@ public class ToolbarManager : MonoBehaviour
     {
         Vector2 slotTransform = slots[slot].position;
         selected.position = slotTransform;
-        if (Tools[lastSelected] != null)
+        if (items[lastSelected] != null)
         {
-            if (currentToolScript.isReloading == true)
+            if (items[lastSelected].gameObject.tag == "Tool")
             {
-                currentToolScript.StopAllCoroutines();
-                currentToolScript.isReloading = false;
-                currentToolScript.reloadIcon.SetActive(false);
-            }
-            currentToolScript.isShooting = false;
-            currentToolScript = null; 
-            setToolActive(lastSelected, false);
+               if (currentToolScript.isReloading == true)
+               {
+                   currentToolScript.StopAllCoroutines();
+                   currentToolScript.isReloading = false; 
+                   currentToolScript.reloadIcon.SetActive(false); 
+                   currentToolScript.isShooting = false; 
+                   currentToolScript = null; 
+               }
+            } 
+            setItemActive(lastSelected, false);
         }
         
-       if (Tools[currentlySelected] != null)
+       if (items[currentlySelected] != null)
         {
-            setToolActive(currentlySelected, true);
+            setItemActive(currentlySelected, true);
         }
     }
 
-    public void AddTool(GameObject tool)
+    public void AddItem(GameObject item)
     {
-        var firstNull = Array.FindIndex(Tools, I => I == null);
+        var firstNull = Array.FindIndex(items, I => I == null);
         if (firstNull != -1)
         {
-            Tools[firstNull] = tool;
+            items[firstNull] = item;
             currentlySelected = firstNull;
-            currentToolScript = Tools[currentlySelected].GetComponent<Tool>();
-            icons[currentlySelected].sprite = currentToolScript.gunOptions.icon; 
+            icons[currentlySelected].sprite = items[currentlySelected].GetComponent<ObjectProperties>().icon;
+            if (item.tag == "Tool")
+            {
+               currentToolScript = items[currentlySelected].GetComponent<Tool>();
+               print("Nala"); 
+            } 
         }
         else
         {
@@ -98,22 +112,29 @@ public class ToolbarManager : MonoBehaviour
         }
     }
 
-    public void setToolActive(int tool, bool state)
+    public void setItemActive(int item, bool state)
     {
-        Tools[tool].gameObject.SetActive(state);
+        items[item].gameObject.SetActive(state);
         if (state)
         {
-            Tools[currentlySelected].transform.position = (grabHolder.transform.position - playerGrab.grabHolderConfig.anchor);
-            Tools[currentlySelected].transform.rotation = grabHolder.transform.rotation;
-            playerGrab.GrabObject(Tools[currentlySelected].gameObject);
-            playerGrab.isGrabbingTool = true;
-            currentToolScript = Tools[currentlySelected].GetComponent<Tool>();
-            currentToolScript.enabled = true; 
+            items[currentlySelected].transform.position = (grabHolder.transform.position - playerGrab.grabHolderConfig.anchor);
+            items[currentlySelected].transform.rotation = grabHolder.transform.rotation;
+            playerGrab.GrabObject(items[currentlySelected].gameObject);
+            if (items[currentlySelected].gameObject.tag == "Tool")
+            {
+               currentToolScript = items[currentlySelected].GetComponent<Tool>();
+               playerGrab.isGrabbingTool = true;
+               currentToolScript.enabled = true;
+            } 
+            
         }
         else if (state == false)
         {            
             playerGrab.ReleaseObject(false);
-            playerGrab.isGrabbingTool = false;
+            if (items[lastSelected].gameObject.tag == "Tool")
+            {
+                playerGrab.isGrabbingTool = false;
+            }
         }
     }
    

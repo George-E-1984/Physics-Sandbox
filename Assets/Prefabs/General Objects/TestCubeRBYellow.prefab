@@ -114,6 +114,7 @@ MonoBehaviour:
   positionOffset: {x: 0, y: 0, z: 0.2}
   aimPositionOffset: {x: 0, y: 0, z: 0}
   rotationOffset: {x: 0, y: 0, z: 0, w: 0}
+  grabPoint: {fileID: 0}
   jointXMotion: 2
   jointYMotion: 2
   jointZMotion: 2
@@ -168,6 +169,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   colliderEffects: {fileID: 11400000, guid: 0000c5182453d9b47b2cffbc4eb936ec, type: 2}
   objectRigidbody: {fileID: 4360550171703422657}
+  centreOfMassOverride: {fileID: 0}
+  icon: {fileID: 21300000, guid: c728d6b4a90f5a544b90ba64f30384c6, type: 3}
 --- !u!75 &4220916374197052280
 ConstantForce:
   m_ObjectHideFlags: 0

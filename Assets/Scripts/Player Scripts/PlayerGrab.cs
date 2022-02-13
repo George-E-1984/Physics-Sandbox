@@ -37,6 +37,7 @@ public class PlayerGrab : MonoBehaviour
     public AudioSource grabAudioSource;
     public RaycastHit hitGrab; 
     public GameObject grabbedObject; 
+    public ObjectProperties objectProperties; 
     // Start is called before the first frame update
     void Start()
     {
@@ -51,9 +52,9 @@ public class PlayerGrab : MonoBehaviour
         if (Input.GetMouseButtonDown(1))
         {
             //tool grab
-            if (hitGrab.collider != null && hitGrab.collider.gameObject.tag == "Tool" && !isGrabbing && hitGrab.collider.gameObject != toolbarManager.Tools[toolbarManager.currentlySelected])
+            if (hitGrab.collider != null && hitGrab.collider.gameObject.tag == "Tool" && !isGrabbing && hitGrab.collider.gameObject != toolbarManager.items[toolbarManager.currentlySelected])
             {
-                if (toolbarManager.Tools[toolbarManager.currentlySelected] != null && toolbarManager.currentToolScript.isReloading == true)
+                if (toolbarManager.items[toolbarManager.currentlySelected] != null && toolbarManager.currentToolScript.isReloading == true)
                 {
                     //toolbarManager.currentToolScript.reloadTimer.Stop(); 
                     toolbarManager.currentToolScript.isReloading = false;
@@ -61,17 +62,28 @@ public class PlayerGrab : MonoBehaviour
                 }
                 hitGrab.collider.gameObject.transform.rotation = playerMovement.playerCamera.rotation;
                 GrabObject(hitGrab.collider.gameObject);
+                if (objectProperties != null && objectProperties.isThisSlottable)
+                {
+                    toolbarManager.AddItem(grabbedObject);
+                }
                 hitGrab.collider.gameObject.GetComponent<Tool>().enabled = true;
                 print("Grabbed Tool");
                 isGrabbingTool = true;
                 grabbedTool = hitGrab.collider.gameObject;
-                toolbarManager.AddTool(grabbedTool);
                 playerMovement.shootOrigin.transform.localPosition = new Vector3(0f, 0f, toolbarManager.currentToolScript.gunOptions.shootPointOffset); 
             }
             //object grab
             else if(hitGrab.collider != null && !isGrabbing && !isGrabbingTool & hitGrab.collider != playerMovement.hit.collider)
             {
+                hitGrab.collider.gameObject.transform.rotation = playerMovement.playerCamera.rotation;
                 GrabObject(hitGrab.collider.gameObject);
+                if (grabbedObject.GetComponent<ObjectProperties>())
+                {
+                    if(grabbedObject.GetComponent<ObjectProperties>().isThisSlottable && hitGrab.collider.gameObject != toolbarManager.items[toolbarManager.currentlySelected])
+                    {
+                        toolbarManager.AddItem(grabbedObject);
+                    }
+                }
                 isGrabbing = true;
                 print("Grabbed Object");
             }           
@@ -79,12 +91,17 @@ public class PlayerGrab : MonoBehaviour
 
         else if (isGrabbing && Input.GetMouseButtonUp(1) && !isGrabbingTool)
         {
-            ReleaseObject(false);
+            if (objectProperties == null || !objectProperties.isThisSlottable)
+            {
+                ReleaseObject(false);
+            }
         }
-        else if (isGrabbing && Input.GetMouseButtonDown(0) && !isGrabbingTool)
+        else if (isGrabbing && Input.GetMouseButtonDown(0) && !isGrabbingTool && objectProperties == null && !objectProperties.isThisSlottable)
         {
-            //throwing 
-            ReleaseObject(true); 
+            if (objectProperties == null || !objectProperties.isThisSlottable)
+            {
+                ReleaseObject(true); 
+            }
         }
     }
 
@@ -96,7 +113,9 @@ public class PlayerGrab : MonoBehaviour
 
     public void GrabObject(GameObject objectToGrab)
     {
-        grabbedObject = objectToGrab; 
+        print("grabbed object"); 
+        grabbedObject = objectToGrab;
+        objectProperties = grabbedObject.GetComponent<ObjectProperties>();  
         //grab sound effect
         grabAudioSource = objectToGrab.AddComponent<AudioSource>(); 
         grabAudioSource.PlayOneShot(grabSound);  
