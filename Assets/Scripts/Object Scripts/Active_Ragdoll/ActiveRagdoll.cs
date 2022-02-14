@@ -74,7 +74,7 @@ public class ActiveRagdoll : MonoBehaviour
 
     public bool GroundCheck()
     {
-        Physics.Raycast(feetPoint.transform.position, Vector3.down, out hit, 0.1f);
+        Physics.Raycast(feetPoint.transform.position, Vector3.down, out hit, 0.5f);
         
         if (hit.collider != null)
         {
@@ -84,6 +84,7 @@ public class ActiveRagdoll : MonoBehaviour
         else 
         {
             aIStateManager.isGrounded = false; 
+            print("Not Grounded"); 
             return false; 
         }
     }
