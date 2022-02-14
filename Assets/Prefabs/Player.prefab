@@ -290,11 +290,11 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 256
-  playerSpeed: 50
+  playerSpeed: 25
   airMovementSpeed: 10
   maxSpeed: 5
   sprintMultiplier: 2
-  maxSprintSpeed: 10
+  maxSprintSpeed: 5
   isSprinting: 0
   allowedMovement: 1
   canJump: 0

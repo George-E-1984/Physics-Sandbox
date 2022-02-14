@@ -24,6 +24,7 @@ public class AIStateManager : MonoBehaviour
 
     [Header("Info")]
     public bool isGrounded; 
+    public bool isInFallenState; 
 
     
 
@@ -47,7 +48,7 @@ public class AIStateManager : MonoBehaviour
     public void HandleStates()
     {
         //setting states 
-        if (foundPlayer && !hasFallen && isGrounded)
+        if (foundPlayer && !isInFallenState && isGrounded && !activeRagdoll.isGettingUp && !hasFallen)
         {
             aiStates = AIStates.Agro; 
         }
@@ -59,7 +60,7 @@ public class AIStateManager : MonoBehaviour
         {
             aiStates = AIStates.Fallen; 
         }
-        else if (hasFallen == false && isGrounded)
+        else if (!isInFallenState && isGrounded && !activeRagdoll.isGettingUp && !hasFallen)
         {
             aiStates = AIStates.Idle;
         }
@@ -110,12 +111,14 @@ public class AIStateManager : MonoBehaviour
 
     public void FallenState()
     { 
+        hasFallen = true;
+        isInFallenState = true; 
+        activeRagdoll.theOverallAnimatedRig.transform.position = activeRagdoll.physicsRig.transform.position;
         activeRagdoll.animator.SetBool(isIdleHash, false); 
         activeRagdoll.animator.SetBool(isWalkingHash, false);  
-        activeRagdoll.animator.SetBool(isGettingUpHash, false);
-        //hasFallen = true; 
-        //activeRagdoll.jointHandler.SetJointSettings(true);
-        //activeRagdoll.jointHandler.SetJointBones(); 
+        activeRagdoll.animator.SetBool(isGettingUpHash, false); 
+        activeRagdoll.jointHandler.SetJointSettings(true);
+        activeRagdoll.jointHandler.SetJointBones(); 
         activeRagdoll.animator.enabled = true;
         print("Fallen");
     }   
@@ -145,7 +148,9 @@ public class AIStateManager : MonoBehaviour
         print("Gettingup!");    
         //activeRagdoll.animatedRig.transform.localPosition = new Vector3(0, 0, 0); 
         //activeRagdoll.theOverallRig.transform.position = activeRagdoll.physicsRig.transform.position; 
-        activeRagdoll.theOverallAnimatedRig.transform.position = activeRagdoll.physicsRig.transform.position;
+        //activeRagdoll.theOverallAnimatedRig.transform.position = activeRagdoll.physicsRig.transform.position;
+        hasFallen = false;
+        isInFallenState = false;
         activeRagdoll.isGettingUp = true;
         activeRagdoll.animator.enabled = true;  
         activeRagdoll.jointHandler.SetJointSettings(false); 

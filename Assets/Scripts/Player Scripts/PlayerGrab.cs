@@ -96,7 +96,7 @@ public class PlayerGrab : MonoBehaviour
                 ReleaseObject(false);
             }
         }
-        else if (isGrabbing && Input.GetMouseButtonDown(0) && !isGrabbingTool && objectProperties == null && !objectProperties.isThisSlottable)
+        else if (isGrabbing && Input.GetMouseButtonDown(0) && !isGrabbingTool)
         {
             if (objectProperties == null || !objectProperties.isThisSlottable)
             {

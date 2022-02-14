@@ -48,9 +48,8 @@ public class ActiveRagdoll : MonoBehaviour
     {
         if (Vector3.Distance(physicsRig.transform.position, animatedRig.transform.position) > activeRagdollObject.falloverDistance && !isGettingUp)
         { 
-            jointHandler.SetJointSettings(true); 
-            jointHandler.SetJointBones();
-            print("Fuck you");
+            //jointHandler.SetJointSettings(true); 
+            //jointHandler.SetJointBones();
             return true;   
         }
         else
