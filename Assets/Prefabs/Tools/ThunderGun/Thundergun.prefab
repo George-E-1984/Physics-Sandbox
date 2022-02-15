@@ -344,7 +344,7 @@ MonoBehaviour:
   colliderEffects: {fileID: 11400000, guid: 0000c5182453d9b47b2cffbc4eb936ec, type: 2}
   objectRigidbody: {fileID: 3543888889914873243}
   centreOfMassOverride: {fileID: 0}
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 82eb0428988d34449841c7bbb68507fd, type: 3}
   isThisSlottable: 1
 --- !u!1 &4264078691205129074
 GameObject:

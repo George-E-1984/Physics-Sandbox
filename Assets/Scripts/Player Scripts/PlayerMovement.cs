@@ -62,6 +62,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("Info (Do not touch these values)")]
     private float xRot;
     public RaycastHit hit; 
+    public bool canLook = true; 
 
     // Start is called before the first frame update
     void Start()
@@ -159,8 +160,8 @@ public class PlayerMovement : MonoBehaviour
         mouseX = Input.GetAxisRaw("Mouse X");
         mouseY = Input.GetAxisRaw("Mouse Y");
 
-        yRotation += mouseX * playerData.sensitivity * multiplier;
-        xRotation -= mouseY * playerData.sensitivity * multiplier;
+        yRotation += mouseX * playerData.sensitivity * multiplier * System.Convert.ToInt16(canLook);
+        xRotation -= mouseY * playerData.sensitivity * multiplier * System.Convert.ToInt16(canLook);
 
         xRotation = Mathf.Clamp(xRotation, -90f, 90f);
 

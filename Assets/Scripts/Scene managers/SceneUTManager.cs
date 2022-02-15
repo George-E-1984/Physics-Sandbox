@@ -34,14 +34,6 @@ public class SceneUTManager : MonoBehaviour
     void Update()
     {
         GravityToggle();
-        if (Input.GetKey(KeyCode.P))
-        {
-            PlayerMovement.allowedMovement = false;
-        }
-        else
-        {
-            PlayerMovement.allowedMovement = true;
-        }
         //Fps counter
         Current = (int)(1f / Time.unscaledDeltaTime);
         fpsTextmesh.text = Current.ToString();

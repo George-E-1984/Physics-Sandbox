@@ -8167,22 +8167,22 @@ MonoBehaviour:
   - {fileID: 8007424442396163194}
   - {fileID: 8007424442012421667}
   - {fileID: 8007424441022070223}
-  armJointSpring: 400
-  armJointDamper: 10
-  armMaxForce: 350
+  armJointSpring: 1400
+  armJointDamper: 100
+  armMaxForce: 3000
   legJoints:
   - {fileID: 8007424441047532100}
   - {fileID: 8007424441299087975}
   - {fileID: 8007424440872782799}
   - {fileID: 8007424442138222660}
-  legJointSpring: 400
-  legJointDamper: 10
-  legMaxForce: 350
+  legJointSpring: 1400
+  legJointDamper: 100
+  legMaxForce: 3000
   spineJoints:
   - {fileID: 8007424441977927367}
-  spineJointSpring: 400
-  spineJointDamper: 10
-  spineMaxForce: 350
+  spineJointSpring: 1400
+  spineJointDamper: 100
+  spineMaxForce: 3000
   neckAndHeadJoints:
   - {fileID: 8007424442221079327}
   neckAndHeadJointSpring: 400
@@ -8198,10 +8198,10 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 10
+  m_Speed: 7
   m_Acceleration: 8
   avoidancePriority: 50
-  m_AngularSpeed: 150
+  m_AngularSpeed: 130
   m_StoppingDistance: 1
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1

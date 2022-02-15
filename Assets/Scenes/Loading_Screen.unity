@@ -152,7 +152,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6269a766241e644c9ec85d3b584aa59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneToLoadName: Open_Scene
+  sceneToLoadName: 
+  sceneDealer: {fileID: 11400000, guid: 533e3987652df954a9eab8299ecfece9, type: 2}
 --- !u!4 &149400192
 Transform:
   m_ObjectHideFlags: 0
