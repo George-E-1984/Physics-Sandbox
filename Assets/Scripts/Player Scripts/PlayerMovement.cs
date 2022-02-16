@@ -204,7 +204,7 @@ public class PlayerMovement : MonoBehaviour
         else rb.drag = airDrag;
     }
 
-    private void AddSettings()
+    public void AddSettings()
     {
         //fov
         playerCamera.GetComponent<Camera>().fieldOfView = playerData.fieldOfView; 

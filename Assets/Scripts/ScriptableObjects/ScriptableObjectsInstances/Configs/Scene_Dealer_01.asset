@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: Scene_Dealer_01
   m_EditorClassIdentifier: 
   currentSceneName: 
-  sceneToTransitionToName: 
+  sceneToTransitionToName: Open_Scene
+  loadingScreenScene: Loading_Screen

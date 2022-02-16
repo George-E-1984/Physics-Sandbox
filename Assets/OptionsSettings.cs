@@ -8,6 +8,7 @@ public class OptionsSettings : MonoBehaviour
 {
         
     public PlayerData playerData; 
+    public PlayerMovement playerMovement; 
     public Slider sensitivitySlider; 
     public Slider volumeSlider; 
     public Slider fovSlider; 
@@ -25,6 +26,10 @@ public class OptionsSettings : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(playerMovement)
+        {
+            playerMovement.AddSettings();
+        } 
         //sensitivity
         playerData.sensitivity = sensitivitySlider.value; 
         sensitivityProgressText.text = System.Convert.ToString(sensitivitySlider.normalizedValue * 100) + "%";  

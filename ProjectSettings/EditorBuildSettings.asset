@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Loading_Screen.unity
     guid: db4c920263c97744fbb0930c846f46be
+  - enabled: 1
+    path: Assets/Scenes/Sandbox_Scene.unity
+    guid: eda2eabc63aeac343abbc46d137c8d84
   m_configObjects: {}

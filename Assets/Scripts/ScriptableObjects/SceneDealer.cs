@@ -7,5 +7,6 @@ public class SceneDealer : ScriptableObject
 {
     public string currentSceneName; 
     public string sceneToTransitionToName;
+    public string loadingScreenScene; 
 
 }

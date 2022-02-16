@@ -57,6 +57,7 @@ public class PauseMenu : MonoBehaviour
     public void HandleQuit()
     {
         sceneDealer.sceneToTransitionToName = "Menu"; 
+        Time.timeScale = 1; 
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("Loading_Screen"); 
     }
 }
