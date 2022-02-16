@@ -16,4 +16,5 @@ public class SceneMaster : MonoBehaviour
 
    public GameObject player; 
    public Transform respawnPoint; 
+   public GameObject forceShot;
 }

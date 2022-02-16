@@ -15,11 +15,11 @@ G:/Physics-Sandbox/LARS
 -logFile
 Logs/AssetImportWorker23.log
 -srvPort
-63198
+57453
 Successfully changed project path to: G:/Physics-Sandbox/LARS
 G:/Physics-Sandbox/LARS
 Using Asset Import Pipeline V2.
-Refreshing native plugins compatible for Editor in 71.24 ms, found 4 plugins.
+Refreshing native plugins compatible for Editor in 71.85 ms, found 4 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 2020.3.25f1 (9b9180224418)
 [Subsystems] Discovering subsystems at path G:/ProgramData/Microsoft/Windows/Start Menu/Programs/Unity 2019.3.5f1 (64-bit)/2020.3.25f1/Editor/Data/Resources/UnitySubsystems
@@ -37,36 +37,36 @@ Initialize mono
 Mono path[0] = 'G:/ProgramData/Microsoft/Windows/Start Menu/Programs/Unity 2019.3.5f1 (64-bit)/2020.3.25f1/Editor/Data/Managed'
 Mono path[1] = 'G:/ProgramData/Microsoft/Windows/Start Menu/Programs/Unity 2019.3.5f1 (64-bit)/2020.3.25f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit'
 Mono config path = 'G:/ProgramData/Microsoft/Windows/Start Menu/Programs/Unity 2019.3.5f1 (64-bit)/2020.3.25f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56136
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56672
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
 Register platform support module: G:/ProgramData/Microsoft/Windows/Start Menu/Programs/Unity 2019.3.5f1 (64-bit)/2020.3.25f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
-Registered in 0.001165 seconds.
+Registered in 0.001235 seconds.
 Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 66.00 ms, found 4 plugins.
+Refreshing native plugins compatible for Editor in 67.76 ms, found 4 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  0.508 seconds
+- Completed reload, in  0.530 seconds
 Domain Reload Profiling:
-	ReloadAssembly (508ms)
+	ReloadAssembly (530ms)
 		BeginReloadAssembly (55ms)
 			ExecutionOrderSort (0ms)
 			DisableScriptedObjects (0ms)
 			BackupInstance (0ms)
 			ReleaseScriptingObjects (0ms)
 			CreateAndSetChildDomain (1ms)
-		EndReloadAssembly (396ms)
+		EndReloadAssembly (415ms)
 			LoadAssemblies (55ms)
 			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (123ms)
+			SetupTypeCache (131ms)
 			ReleaseScriptCaches (0ms)
-			RebuildScriptCaches (25ms)
-			SetupLoadedEditorAssemblies (168ms)
+			RebuildScriptCaches (24ms)
+			SetupLoadedEditorAssemblies (171ms)
 				LogAssemblyErrors (0ms)
 				InitializePlatformSupportModulesInManaged (3ms)
 				SetLoadedEditorAssemblies (0ms)
-				RefreshPlugins (66ms)
-				BeforeProcessingInitializeOnLoad (11ms)
+				RefreshPlugins (68ms)
+				BeforeProcessingInitializeOnLoad (12ms)
 				ProcessInitializeOnLoadAttributes (66ms)
 				ProcessInitializeOnLoadMethodAttributes (21ms)
 				AfterProcessingInitializeOnLoad (0ms)
@@ -75,38 +75,38 @@ Domain Reload Profiling:
 			AwakeInstancesAfterBackupRestoration (0ms)
 Platform modules already initialized, skipping
 Registering precompiled user dll's ...
-Registered in 0.004157 seconds.
+Registered in 0.004596 seconds.
 Begin MonoManager ReloadAssembly
 Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 69.00 ms, found 4 plugins.
+Refreshing native plugins compatible for Editor in 72.85 ms, found 4 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  1.112 seconds
+- Completed reload, in  1.185 seconds
 Domain Reload Profiling:
-	ReloadAssembly (1113ms)
-		BeginReloadAssembly (128ms)
+	ReloadAssembly (1186ms)
+		BeginReloadAssembly (133ms)
 			ExecutionOrderSort (0ms)
 			DisableScriptedObjects (3ms)
 			BackupInstance (0ms)
 			ReleaseScriptingObjects (0ms)
 			CreateAndSetChildDomain (17ms)
-		EndReloadAssembly (934ms)
-			LoadAssemblies (90ms)
+		EndReloadAssembly (999ms)
+			LoadAssemblies (96ms)
 			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (280ms)
+			SetupTypeCache (315ms)
 			ReleaseScriptCaches (1ms)
-			RebuildScriptCaches (43ms)
-			SetupLoadedEditorAssemblies (437ms)
+			RebuildScriptCaches (48ms)
+			SetupLoadedEditorAssemblies (451ms)
 				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (2ms)
+				InitializePlatformSupportModulesInManaged (3ms)
 				SetLoadedEditorAssemblies (0ms)
-				RefreshPlugins (69ms)
-				BeforeProcessingInitializeOnLoad (73ms)
-				ProcessInitializeOnLoadAttributes (283ms)
-				ProcessInitializeOnLoadMethodAttributes (7ms)
-				AfterProcessingInitializeOnLoad (2ms)
+				RefreshPlugins (73ms)
+				BeforeProcessingInitializeOnLoad (76ms)
+				ProcessInitializeOnLoadAttributes (289ms)
+				ProcessInitializeOnLoadMethodAttributes (8ms)
+				AfterProcessingInitializeOnLoad (3ms)
 				EditorAssembliesLoaded (0ms)
 			ExecutionOrderSort2 (0ms)
-			AwakeInstancesAfterBackupRestoration (5ms)
+			AwakeInstancesAfterBackupRestoration (6ms)
 Platform modules already initialized, skipping
 AssetImportWorkerClient::OnTransportError - code=10060 error=A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.

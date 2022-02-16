@@ -19,7 +19,9 @@ public class OptionsSettings : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        sensitivitySlider.value = playerData.sensitivity; 
+        volumeSlider.value = playerData.volume; 
+        fovSlider.value = playerData.fieldOfView; 
 
     }
 

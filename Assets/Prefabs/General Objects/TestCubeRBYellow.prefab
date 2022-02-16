@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1791077459246849778
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8043993099206718110}
+  m_Layer: 10
+  m_Name: Grab_Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8043993099206718110
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1791077459246849778}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6604640762749060449}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7340742938224607325
 GameObject:
   m_ObjectHideFlags: 0
@@ -33,7 +63,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 8043993099206718110}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -114,7 +145,7 @@ MonoBehaviour:
   positionOffset: {x: 0, y: 0, z: 0.2}
   aimPositionOffset: {x: 0, y: 0, z: 0}
   rotationOffset: {x: 0, y: 0, z: 0, w: 0}
-  grabPoint: {fileID: 0}
+  grabPoint: {fileID: 1791077459246849778}
   jointXMotion: 2
   jointYMotion: 2
   jointZMotion: 2
@@ -171,6 +202,9 @@ MonoBehaviour:
   objectRigidbody: {fileID: 4360550171703422657}
   centreOfMassOverride: {fileID: 0}
   icon: {fileID: 21300000, guid: c728d6b4a90f5a544b90ba64f30384c6, type: 3}
+  isThisSlottable: 0
+  dynamicGrabPoints: 1
+  scriptsToEnableOnGrab: []
 --- !u!75 &4220916374197052280
 ConstantForce:
   m_ObjectHideFlags: 0

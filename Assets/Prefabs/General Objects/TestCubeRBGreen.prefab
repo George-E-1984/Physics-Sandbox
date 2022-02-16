@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2959468935372491528
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7836835886108421701}
+  m_Layer: 10
+  m_Name: Grab_Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7836835886108421701
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2959468935372491528}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6604640762749060449}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7340742938224607325
 GameObject:
   m_ObjectHideFlags: 0
@@ -34,7 +64,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 7836835886108421701}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -115,6 +146,7 @@ MonoBehaviour:
   positionOffset: {x: 0, y: 0, z: 0.2}
   aimPositionOffset: {x: 0, y: 0, z: 0}
   rotationOffset: {x: 0, y: 0, z: 0, w: 0}
+  grabPoint: {fileID: 2959468935372491528}
   jointXMotion: 2
   jointYMotion: 2
   jointZMotion: 2
@@ -170,6 +202,7 @@ MonoBehaviour:
   positionOffset: {x: -1, y: 0, z: 0}
   aimPositionOffset: {x: 0, y: 0, z: 0}
   rotationOffset: {x: 0, y: 0, z: 0.70710677, w: 0.70710677}
+  grabPoint: {fileID: 0}
   jointXMotion: 0
   jointYMotion: 0
   jointZMotion: 0
@@ -208,6 +241,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   colliderEffects: {fileID: 11400000, guid: 0000c5182453d9b47b2cffbc4eb936ec, type: 2}
   objectRigidbody: {fileID: 4360550171703422657}
+  centreOfMassOverride: {fileID: 0}
+  icon: {fileID: 0}
+  isThisSlottable: 0
+  dynamicGrabPoints: 1
+  scriptsToEnableOnGrab: []
 --- !u!75 &1578698221527687026
 ConstantForce:
   m_ObjectHideFlags: 0

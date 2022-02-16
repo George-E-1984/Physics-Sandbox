@@ -9,11 +9,11 @@ EditorBuildSettings:
     path: Assets/Scenes/Menu.unity
     guid: eaf90a19b12e18e4586b4e48161196c8
   - enabled: 1
-    path: Assets/Scenes/Open_Scene.unity
-    guid: 0716c6e732ff7254a8c6c79ab482eb98
-  - enabled: 1
     path: Assets/Scenes/Loading_Screen.unity
     guid: db4c920263c97744fbb0930c846f46be
+  - enabled: 1
+    path: Assets/Scenes/Open_Scene.unity
+    guid: 0716c6e732ff7254a8c6c79ab482eb98
   - enabled: 1
     path: Assets/Scenes/Sandbox_Scene.unity
     guid: eda2eabc63aeac343abbc46d137c8d84

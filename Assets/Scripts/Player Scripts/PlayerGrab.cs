@@ -139,10 +139,15 @@ public class PlayerGrab : MonoBehaviour
         //changing values of config to the grab settings ones
         //position offset
         grabHolderConfig.anchor = grabSettings.positionOffset;
-        if (grabSettings.grabPoint)
+        if (grabSettings.grabPoint && !objectProperties.dynamicGrabPoints)
         {
             grabHolderConfig.connectedAnchor = grabSettings.grabPoint.transform.localPosition;
         } 
+        else if (objectProperties.dynamicGrabPoints && !objectProperties.isThisSlottable && grabSettings.grabPoint)
+        {
+            grabSettings.grabPoint.transform.position = hitGrab.point;
+            grabHolderConfig.connectedAnchor = grabSettings.grabPoint.transform.localPosition; 
+        }
         //rotation offset
         grabHolderConfig.targetRotation = grabSettings.rotationOffset; 
         //sets the grabbed object as the connected body of the grab holder's joint

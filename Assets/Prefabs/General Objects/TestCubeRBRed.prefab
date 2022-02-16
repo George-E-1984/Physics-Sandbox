@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3455911400380554715}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.4811, y: 0.4755, z: -0.4763}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6604640762749060449}
@@ -146,6 +146,9 @@ MonoBehaviour:
   objectRigidbody: {fileID: 4360550171703422657}
   centreOfMassOverride: {fileID: 0}
   icon: {fileID: 0}
+  isThisSlottable: 0
+  dynamicGrabPoints: 1
+  scriptsToEnableOnGrab: []
 --- !u!114 &1959073078379782415
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -48,15 +48,12 @@ public class ToolbarManager : MonoBehaviour
         {
             if(items[currentlySelected].gameObject.tag == "Tool")
             {
-                if (currentToolScript.isReloading)
-                {
-                    currentToolScript.StopAllCoroutines();
-                    currentToolScript.isReloading = false; 
-                    currentToolScript.reloadIcon.SetActive(false); 
-                }
-                
+                currentToolScript.StopAllCoroutines();
+                currentToolScript.isReloading = false; 
+                currentToolScript.reloadIcon.SetActive(false);
                 currentToolScript.isShooting = false;
                 items[currentlySelected].gameObject.GetComponent<Tool>().enabled = false;
+                SceneMaster.instance.forceShot.SetActive(false);
             }
             
             setItemActive(currentlySelected, false);
@@ -74,14 +71,12 @@ public class ToolbarManager : MonoBehaviour
         {
             if (items[lastSelected].gameObject.tag == "Tool")
             {
-               if (currentToolScript.isReloading == true)
-               {
-                   currentToolScript.StopAllCoroutines();
-                   currentToolScript.isReloading = false; 
-                   currentToolScript.reloadIcon.SetActive(false); 
-                   currentToolScript.isShooting = false; 
-                   currentToolScript = null; 
-               }
+                currentToolScript.StopAllCoroutines();
+                currentToolScript.isReloading = false; 
+                currentToolScript.reloadIcon.SetActive(false); 
+                currentToolScript.isShooting = false; 
+                currentToolScript = null; 
+                SceneMaster.instance.forceShot.SetActive(false);
             } 
             setItemActive(lastSelected, false);
         }

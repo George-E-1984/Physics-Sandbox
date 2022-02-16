@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxPlayerHealth: 100
   currentPlayerHealth: 90
-  sensitivity: 30
+  sensitivity: 50
   volume: 1
-  fieldOfView: 70
+  fieldOfView: 100
   playerPrefab: {fileID: 0}
