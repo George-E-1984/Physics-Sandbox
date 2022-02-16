@@ -880,6 +880,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneDealer: {fileID: 11400000, guid: 533e3987652df954a9eab8299ecfece9, type: 2}
+  optionsSettings: {fileID: 1098611597195359067}
 --- !u!1 &1098611597457359385
 GameObject:
   m_ObjectHideFlags: 0
@@ -1959,10 +1960,40 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1098611597780838279}
     m_Modifications:
+    - target: {fileID: 1090085322518308613, guid: 76ad1df55b7c3c94491e533098c27e7f,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2660465258340755019, guid: 76ad1df55b7c3c94491e533098c27e7f,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2660465258340755019, guid: 76ad1df55b7c3c94491e533098c27e7f,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2660465258500996123, guid: 76ad1df55b7c3c94491e533098c27e7f,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2660465258500996123, guid: 76ad1df55b7c3c94491e533098c27e7f,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2660465258667498309, guid: 76ad1df55b7c3c94491e533098c27e7f,
         type: 3}
       propertyPath: m_Name
       value: OptionsMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 2660465258667498309, guid: 76ad1df55b7c3c94491e533098c27e7f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2660465258667498314, guid: 76ad1df55b7c3c94491e533098c27e7f,
         type: 3}
@@ -2074,8 +2105,55 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 1098611597210872044}
+    - target: {fileID: 2660465260163515789, guid: 76ad1df55b7c3c94491e533098c27e7f,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2660465260163515789, guid: 76ad1df55b7c3c94491e533098c27e7f,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2660465260163515789, guid: 76ad1df55b7c3c94491e533098c27e7f,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2660465260176104592, guid: 76ad1df55b7c3c94491e533098c27e7f,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2660465260176104592, guid: 76ad1df55b7c3c94491e533098c27e7f,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2660465260176104592, guid: 76ad1df55b7c3c94491e533098c27e7f,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9098371365286188931, guid: 76ad1df55b7c3c94491e533098c27e7f,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 76ad1df55b7c3c94491e533098c27e7f, type: 3}
+--- !u!114 &1098611597195359067 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2660465258667498315, guid: 76ad1df55b7c3c94491e533098c27e7f,
+    type: 3}
+  m_PrefabInstance: {fileID: 3158380564907616272}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1098611597195359061}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3be106704c374ca42b12c060a802ce0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &1098611597195359066 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2660465258667498314, guid: 76ad1df55b7c3c94491e533098c27e7f,

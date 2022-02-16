@@ -176,7 +176,8 @@ AudioSource:
   m_GameObject: {fileID: 5985679471960670003}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: f152e3849bb2c0b41b45ce9f52110b5d,
+    type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -481,6 +482,9 @@ MonoBehaviour:
   objectRigidbody: {fileID: 8545030960948312713}
   centreOfMassOverride: {fileID: 0}
   icon: {fileID: 21300000, guid: 8d9eee11749e82b48847428c991be856, type: 3}
+  isThisSlottable: 0
+  dynamicGrabPoints: 0
+  scriptsToEnableOnGrab: []
 --- !u!1001 &5524139637819061291
 PrefabInstance:
   m_ObjectHideFlags: 0

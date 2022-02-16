@@ -9,7 +9,8 @@ public class PauseMenu : MonoBehaviour
     [Header("Assignables")]
     public GameObject pauseMenuObj; 
     public GameObject playerUi; 
-    public PlayerMovement playerMovement; 
+    public PlayerMovement playerMovement;
+    public OptionsSettings optionsSettings;  
     public SceneDealer sceneDealer; 
 
     [Header("Info")]
@@ -58,6 +59,7 @@ public class PauseMenu : MonoBehaviour
     {
         sceneDealer.sceneToTransitionToName = "Menu"; 
         Time.timeScale = 1; 
+        optionsSettings.SavePrefs(); 
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("Loading_Screen"); 
     }
 }

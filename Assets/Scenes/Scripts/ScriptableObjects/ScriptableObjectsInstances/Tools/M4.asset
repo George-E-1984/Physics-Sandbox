@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f817b8a58834e0a4e804adb6a5aa087c, type: 3}
+  m_Name: M4
+  m_EditorClassIdentifier: 
+  gunName: Destroyer
+  gunPrefab: {fileID: 32981806885554721, guid: 622a12ee58c288e4e903e62fa50e7cf8, type: 3}
+  bulletShellTag: Bullet_Shells
+  canAim: 1
+  bulletDistance: 100
+  bulletAppliedForce: 10
+  shellForce: 5
+  spread: 0.1
+  aimSpread: 0.01
+  fireRate: 0.1
+  recoilAmount: 100
+  shootPointOffset: 1.8
+  aimFov: 50
+  timeToAim: 1
+  bulletDamage: 1
+  maxPitch: 1.1
+  minPitch: 0.9
+  maxAmmoInClip: 50
+  maxAmmoInBank: 500
+  reloadTime: 3.5
+  burstAmount: 0
+  timeBetweenBursts: 0
