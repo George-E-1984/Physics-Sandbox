@@ -127,6 +127,15 @@ public class PlayerGrab : MonoBehaviour
         {
             Physics.IgnoreCollision(grabSettings.grabbedObjectColliders[i], playerCollider, true);           
         }
+        if (grabbedObject.GetComponent<ObjectProperties>() != null)
+        {
+            ObjectProperties objectProperties = grabbedObject.GetComponent<ObjectProperties>(); 
+            for(int i = 0; i < objectProperties.scriptsToEnableOnGrab.Length; i++)
+            {
+                objectProperties.scriptsToEnableOnGrab[i].enabled = true; 
+            }
+
+        }
         //changing values of config to the grab settings ones
         //position offset
         grabHolderConfig.anchor = grabSettings.positionOffset;
@@ -162,6 +171,15 @@ public class PlayerGrab : MonoBehaviour
         for (int i = 0; i < grabSettings.grabbedObjectColliders.Length; i++)
         {
             Physics.IgnoreCollision(grabSettings.grabbedObjectColliders[i], playerCollider, false);
+        }
+        if (grabbedObject.GetComponent<ObjectProperties>() != null)
+        {
+            ObjectProperties objectProperties = grabbedObject.GetComponent<ObjectProperties>(); 
+            for(int i = 0; i < objectProperties.scriptsToEnableOnGrab.Length; i++)
+            {
+                objectProperties.scriptsToEnableOnGrab[i].enabled = false; 
+            }
+
         }
         grabHolderConfig.connectedBody = null;
         grabbedObjectRb.AddForce((System.Convert.ToUInt16(isThrowing)) * camPos.transform.forward * throwForce, ForceMode.Impulse);

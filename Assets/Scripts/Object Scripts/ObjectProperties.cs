@@ -10,6 +10,7 @@ public class ObjectProperties : MonoBehaviour
     public GameObject centreOfMassOverride; 
     public Sprite icon;
     public bool isThisSlottable; 
+    public MonoBehaviour[] scriptsToEnableOnGrab; 
 
     private void Start() 
     {
