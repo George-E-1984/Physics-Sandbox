@@ -21,6 +21,7 @@ public class AIStateManager : MonoBehaviour
     [SerializeField]private int isGettingUpHash;
     [SerializeField]private bool hasFallen; 
     [SerializeField]private bool foundPlayer; 
+    
 
     [Header("Info")]
     public bool isGrounded; 
@@ -34,7 +35,7 @@ public class AIStateManager : MonoBehaviour
         hasFallen = activeRagdoll.HandleFalling();
         foundPlayer = activeRagdoll.LookForPlayer(); 
         isGrounded = activeRagdoll.GroundCheck(); 
-        HandleStates(); 
+        HandleStates();  
     }
 
     void Start() 
@@ -52,7 +53,7 @@ public class AIStateManager : MonoBehaviour
         {
             aiStates = AIStates.Agro; 
         }
-        else if (hasFallen && activeRagdoll.physicsRig.GetComponent<Rigidbody>().velocity.magnitude <= 0.1 && isGrounded)
+        else if (hasFallen && activeRagdoll.ragdollRigidbody.velocity.magnitude <= 1 && isGrounded)
         {
             aiStates = AIStates.GettingUp; 
         }

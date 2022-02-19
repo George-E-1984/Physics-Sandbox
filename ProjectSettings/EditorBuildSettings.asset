@@ -15,6 +15,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Open_Scene.unity
     guid: 0716c6e732ff7254a8c6c79ab482eb98
   - enabled: 1
-    path: Assets/Scenes/Sandbox_Scene.unity
+    path: Assets/Scenes/Arena_Scene.unity
     guid: eda2eabc63aeac343abbc46d137c8d84
   m_configObjects: {}

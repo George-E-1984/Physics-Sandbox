@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine; 
 using UnityEngine.UI; 
 using TMPro; 
+using UnityEngine.Events; 
 
 public class OptionsSettings : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class OptionsSettings : MonoBehaviour
     public TextMeshProUGUI sensitivityProgressText;
     public TextMeshProUGUI volumeProgressText;
     public TextMeshProUGUI fovProgressText;
+    public UnityEvent onEscapePressed; 
 
     [Header("Info")]
     const string sensitivityKey = "Sensitivity"; 
@@ -44,6 +46,11 @@ public class OptionsSettings : MonoBehaviour
         //fov
         playerData.fieldOfView = fovSlider.value; 
         fovProgressText.text = System.Convert.ToString(fovSlider.value); 
+        //ESC HANDLING 
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            onEscapePressed.Invoke(); 
+        }
         
     }
 

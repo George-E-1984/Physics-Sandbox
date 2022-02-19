@@ -29,10 +29,12 @@ public class ActiveRagdoll : MonoBehaviour
     public float distance;  
     public bool isGettingUp; 
     public RaycastHit hit; 
+    public Rigidbody ragdollRigidbody; 
     
     // Start is called before the first frame update
     void Start()
     {
+        ragdollRigidbody = physicsRig.GetComponent<Rigidbody>(); 
         target = SceneMaster.instance.player.transform; 
         currentRagdollHealth = activeRagdollObject.maxRagdollHealth; 
     
@@ -50,6 +52,7 @@ public class ActiveRagdoll : MonoBehaviour
         { 
             //jointHandler.SetJointSettings(true); 
             //jointHandler.SetJointBones();
+            //print("Distancebiggg"); 
             return true;   
         }
         else

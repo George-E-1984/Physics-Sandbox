@@ -10,6 +10,11 @@ public class SceneMaster : MonoBehaviour
    void Awake() 
    {
        instance = this; 
+       forceShot.GetComponent<ForceShot>().toolbarManager = player.GetComponentInChildren<ToolbarManager>(); 
+   }
+   void Update() 
+   {
+       
    }
 
    #endregion
