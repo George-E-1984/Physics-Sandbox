@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 [CreateAssetMenu(menuName = "PlayerData")]
 public class PlayerData : ScriptableObject
@@ -13,6 +14,10 @@ public class PlayerData : ScriptableObject
     public float volume; 
     public float fieldOfView; 
     public GameObject playerPrefab;   
+    [Header("Assign")]
+    public AudioMixer audioMixer; 
+
+    //Methods
 }
 
 

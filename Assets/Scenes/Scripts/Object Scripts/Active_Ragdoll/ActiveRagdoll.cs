@@ -30,6 +30,8 @@ public class ActiveRagdoll : MonoBehaviour
     public bool isGettingUp; 
     public RaycastHit hit; 
     public Rigidbody ragdollRigidbody; 
+    public bool isAlive; 
+    public UnityEvent waveModeEvent; 
     
     // Start is called before the first frame update
     void Start()
@@ -37,7 +39,7 @@ public class ActiveRagdoll : MonoBehaviour
         ragdollRigidbody = physicsRig.GetComponent<Rigidbody>(); 
         target = SceneMaster.instance.player.transform; 
         currentRagdollHealth = activeRagdollObject.maxRagdollHealth; 
-    
+        isAlive = true; 
     }
 
     // Update is called once per frame
@@ -97,7 +99,17 @@ public class ActiveRagdoll : MonoBehaviour
         aIStateManager.enabled = false; 
         jointHandler.SetJointSettings(false); 
         animatedRig.SetActive(false); 
+        isAlive = false; 
+        waveModeEvent.Invoke(); 
         this.enabled = false; 
+    }
+
+    public void RagdollRevive()
+    {
+        aIStateManager.enabled = true; 
+        jointHandler.SetJointSettings(true); 
+        animatedRig.SetActive(true); 
+        isAlive = true; 
     }
 
     private void OnDrawGizmosSelected() 

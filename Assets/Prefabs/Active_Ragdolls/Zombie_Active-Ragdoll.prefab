@@ -603,6 +603,8 @@ MonoBehaviour:
   centreOfMassOverride: {fileID: 0}
   icon: {fileID: 0}
   isThisSlottable: 0
+  dynamicGrabPoints: 0
+  scriptsToEnableOnGrab: []
 --- !u!1 &1683644684114714422
 GameObject:
   m_ObjectHideFlags: 0
@@ -805,6 +807,8 @@ MonoBehaviour:
   centreOfMassOverride: {fileID: 0}
   icon: {fileID: 0}
   isThisSlottable: 0
+  dynamicGrabPoints: 0
+  scriptsToEnableOnGrab: []
 --- !u!1 &2068779690934286444
 GameObject:
   m_ObjectHideFlags: 0
@@ -1192,6 +1196,8 @@ MonoBehaviour:
   centreOfMassOverride: {fileID: 0}
   icon: {fileID: 0}
   isThisSlottable: 0
+  dynamicGrabPoints: 0
+  scriptsToEnableOnGrab: []
 --- !u!1 &2667678061843540192
 GameObject:
   m_ObjectHideFlags: 0
@@ -1663,6 +1669,8 @@ MonoBehaviour:
   centreOfMassOverride: {fileID: 0}
   icon: {fileID: 0}
   isThisSlottable: 0
+  dynamicGrabPoints: 0
+  scriptsToEnableOnGrab: []
 --- !u!1 &3856450767631444003
 GameObject:
   m_ObjectHideFlags: 0
@@ -2305,6 +2313,8 @@ MonoBehaviour:
   centreOfMassOverride: {fileID: 0}
   icon: {fileID: 0}
   isThisSlottable: 0
+  dynamicGrabPoints: 0
+  scriptsToEnableOnGrab: []
 --- !u!1 &4871310153005295482
 GameObject:
   m_ObjectHideFlags: 0
@@ -2598,6 +2608,8 @@ MonoBehaviour:
   centreOfMassOverride: {fileID: 0}
   icon: {fileID: 0}
   isThisSlottable: 0
+  dynamicGrabPoints: 0
+  scriptsToEnableOnGrab: []
 --- !u!1 &5227699038431521873
 GameObject:
   m_ObjectHideFlags: 0
@@ -3330,6 +3342,8 @@ MonoBehaviour:
   centreOfMassOverride: {fileID: 0}
   icon: {fileID: 0}
   isThisSlottable: 0
+  dynamicGrabPoints: 0
+  scriptsToEnableOnGrab: []
 --- !u!1 &6595244817792389912
 GameObject:
   m_ObjectHideFlags: 0
@@ -3560,6 +3574,8 @@ MonoBehaviour:
   centreOfMassOverride: {fileID: 0}
   icon: {fileID: 0}
   isThisSlottable: 0
+  dynamicGrabPoints: 0
+  scriptsToEnableOnGrab: []
 --- !u!1 &6669547947093970729
 GameObject:
   m_ObjectHideFlags: 0
@@ -3744,6 +3760,8 @@ MonoBehaviour:
   centreOfMassOverride: {fileID: 0}
   icon: {fileID: 0}
   isThisSlottable: 0
+  dynamicGrabPoints: 0
+  scriptsToEnableOnGrab: []
 --- !u!1 &7197174190829397848
 GameObject:
   m_ObjectHideFlags: 0
@@ -4131,6 +4149,8 @@ MonoBehaviour:
   centreOfMassOverride: {fileID: 0}
   icon: {fileID: 0}
   isThisSlottable: 0
+  dynamicGrabPoints: 0
+  scriptsToEnableOnGrab: []
 --- !u!1 &8007424440576630178
 GameObject:
   m_ObjectHideFlags: 0
@@ -5789,7 +5809,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8007424441339108361
 Transform:
   m_ObjectHideFlags: 0
@@ -5859,6 +5879,11 @@ MonoBehaviour:
   target: {fileID: 0}
   distance: 0
   isGettingUp: 0
+  ragdollRigidbody: {fileID: 0}
+  isAlive: 0
+  waveModeEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &8007424441452815132
 GameObject:
   m_ObjectHideFlags: 0
@@ -8658,6 +8683,8 @@ MonoBehaviour:
   centreOfMassOverride: {fileID: 0}
   icon: {fileID: 0}
   isThisSlottable: 0
+  dynamicGrabPoints: 0
+  scriptsToEnableOnGrab: []
 --- !u!1 &8253927982947690746
 GameObject:
   m_ObjectHideFlags: 0

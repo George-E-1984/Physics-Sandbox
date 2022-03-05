@@ -37,6 +37,10 @@ public class OptionsSettings : MonoBehaviour
         {
             playerManager.AddSettings();
         } 
+        else
+        {
+            playerData.audioMixer.SetFloat("VolParam", Mathf.Log10(playerData.volume) * 20);
+        }
         //sensitivity
         playerData.sensitivity = sensitivitySlider.value; 
         sensitivityProgressText.text = System.Convert.ToString(sensitivitySlider.normalizedValue * 100) + "%";  
