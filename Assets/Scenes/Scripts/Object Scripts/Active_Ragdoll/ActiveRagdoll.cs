@@ -106,7 +106,7 @@ public class ActiveRagdoll : MonoBehaviour
     public void RagdollRevive()
     {
         currentRagdollHealth = activeRagdollObject.maxRagdollHealth; 
-        theOverallAnimatedRig.transform.position = physicsRig.transform.position;
+        theOverallAnimatedRig.transform.localPosition = physicsRig.transform.localPosition;
         this.enabled = true;
         aIStateManager.enabled = true;   
         isAlive = true; 

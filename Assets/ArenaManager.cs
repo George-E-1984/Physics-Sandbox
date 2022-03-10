@@ -30,7 +30,7 @@ public class ArenaManager : MonoBehaviour
     [SerializeField] private bool isAllEnemiesSpawned = false; 
     private bool isSpawnerTimerFinished = true; 
     [SerializeField] private int iterations; 
-    [SerializeField] GameObject debugDudes; 
+    [SerializeField] GameObject activeRagdoll; 
     void Start()
     {
          
@@ -124,17 +124,17 @@ public class ArenaManager : MonoBehaviour
 
     IEnumerator DudeSpawner()
     {
-        debugDudes = enemiesInstantiated[iterations].gameObject;
+        activeRagdoll = enemiesInstantiated[iterations].gameObject;
         iterations++; 
         print(iterations); 
-        ActiveRagdoll dudeScrippy = debugDudes.GetComponent<ActiveRagdoll>();
-        debugDudes.transform.position = spawnPoints[Random.Range(0, spawnPoints.Length - 1)].position;
-        dudeScrippy.theOverallAnimatedRig.transform.localPosition = new Vector3(0, 0, 0);   
-        //if(!dudeScrippy.isAlive)
-        //{
-            //dudeScrippy.RagdollRevive(); 
-        //} 
-        debugDudes.SetActive(true);
+        ActiveRagdoll activeRagdollScript = activeRagdoll.GetComponent<ActiveRagdoll>();
+        activeRagdoll.transform.position = spawnPoints[Random.Range(0, spawnPoints.Length - 1)].position;
+        //dudeScrippy.theOverallAnimatedRig.transform.localPosition = new Vector3(0, 0, 0);   
+        if(!activeRagdollScript.isAlive)
+        {
+            activeRagdollScript.RagdollRevive(); 
+        } 
+        activeRagdoll.SetActive(true);
         //debugDudes.GetComponentInChildren<SkinnedMeshRenderer>().enabled = true;
         print("WTF");
         if (iterations >= totalWaveEnemies)
