@@ -14,7 +14,10 @@ public class SceneMaster : MonoBehaviour
    }
    void Update() 
    {
-       
+       if (Input.GetKeyDown(KeyCode.P))
+       {
+           activeRagdoll.RagdollRevive(); 
+       }
    }
 
    #endregion
@@ -22,4 +25,5 @@ public class SceneMaster : MonoBehaviour
    public GameObject player; 
    public Transform respawnPoint; 
    public GameObject forceShot;
+   public ActiveRagdoll activeRagdoll; 
 }

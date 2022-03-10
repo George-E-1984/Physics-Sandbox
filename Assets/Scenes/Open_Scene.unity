@@ -7353,6 +7353,11 @@ MonoBehaviour:
   target: {fileID: 0}
   distance: 0
   isGettingUp: 0
+  ragdollRigidbody: {fileID: 0}
+  isAlive: 0
+  waveModeEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &238014357
 PrefabInstance:
   m_ObjectHideFlags: 0

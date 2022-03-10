@@ -1870,6 +1870,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7142172055016344497}
   - component: {fileID: 8054476422779101472}
+  - component: {fileID: 5732838566461906450}
   m_Layer: 0
   m_Name: Zombie_Geo
   m_TagString: Untagged
@@ -2020,6 +2021,25 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.00053450465, y: -0.06398171, z: 0.024336375}
     m_Extent: {x: 0.9598551, y: 0.90179163, z: 0.17387664}
   m_DirtyAABB: 0
+--- !u!95 &5732838566461906450
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4582714393763296404}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5f6e4a6265d09fd499137e1ab7f2da02, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &4699987501822070172
 GameObject:
   m_ObjectHideFlags: 0
@@ -3791,7 +3811,6 @@ Transform:
   m_Children:
   - {fileID: 7131667676151823623}
   - {fileID: 7142172055016344497}
-  - {fileID: 8007424442081267772}
   m_Father: {fileID: 8007424441339108361}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5809,7 +5828,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8007424441339108361
 Transform:
   m_ObjectHideFlags: 0
@@ -5846,7 +5865,7 @@ MonoBehaviour:
   isIdleHash: 0
   isGettingUpHash: 0
   hasFallen: 0
-  foundPlayer: 0
+  foundPlayer: 1
   isGrounded: 0
   isInFallenState: 0
 --- !u!114 &8007424441339108360
@@ -5880,7 +5899,7 @@ MonoBehaviour:
   distance: 0
   isGettingUp: 0
   ragdollRigidbody: {fileID: 0}
-  isAlive: 0
+  isAlive: 1
   waveModeEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -7005,11 +7024,11 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8007424442081267773}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 7542033386329521634}
+  m_Father: {fileID: 8007424442413106514}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8007424442120934522
@@ -8153,6 +8172,7 @@ Transform:
   m_Children:
   - {fileID: 8007424442316434792}
   - {fileID: 8007424440858617522}
+  - {fileID: 8007424442081267772}
   m_Father: {fileID: 8007424441339108361}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

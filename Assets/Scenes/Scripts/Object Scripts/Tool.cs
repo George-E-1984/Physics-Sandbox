@@ -193,7 +193,7 @@ public class Tool : MonoBehaviour
             {
                 ActiveRagdoll activeRagdoll = shotHit.collider.GetComponentInParent<ActiveRagdoll>();
                 activeRagdoll.currentRagdollHealth -= gunOptions.bulletDamage; 
-                if (activeRagdoll.currentRagdollHealth <= 0)
+                if (activeRagdoll.currentRagdollHealth <= 0 && activeRagdoll.isAlive)
                 {
                     activeRagdoll.RagdollDeath(); 
                 }
