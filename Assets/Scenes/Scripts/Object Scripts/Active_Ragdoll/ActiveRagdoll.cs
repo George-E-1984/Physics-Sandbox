@@ -12,8 +12,9 @@ public class ActiveRagdoll : MonoBehaviour
     public AIStateManager aIStateManager; 
     public GameObject theOverallRig; 
     public GameObject theOverallAnimatedRig; 
-    public GameObject physicsRig; 
-    public GameObject animatedRig;
+    public GameObject theOverallPhysicsRig; 
+    public GameObject rootPhysicsObj; 
+    public GameObject rootAnimatedObj;
     public GameObject feetPoint; 
     public NavMeshAgent navMeshAgent; 
     public Collider visionCone; 
@@ -36,7 +37,7 @@ public class ActiveRagdoll : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        ragdollRigidbody = physicsRig.GetComponent<Rigidbody>(); 
+        ragdollRigidbody = rootPhysicsObj.GetComponent<Rigidbody>(); 
         target = SceneMaster.instance.player.transform; 
         currentRagdollHealth = activeRagdollObject.maxRagdollHealth; 
     }
@@ -49,7 +50,7 @@ public class ActiveRagdoll : MonoBehaviour
 
     public bool HandleFalling()
     {
-        if (Vector3.Distance(physicsRig.transform.position, animatedRig.transform.position) > activeRagdollObject.falloverDistance && !isGettingUp)
+        if (Vector3.Distance(rootPhysicsObj.transform.position, rootAnimatedObj.transform.position) > activeRagdollObject.falloverDistance && !isGettingUp)
         { 
             //jointHandler.SetJointSettings(true); 
             //jointHandler.SetJointBones();
@@ -65,7 +66,7 @@ public class ActiveRagdoll : MonoBehaviour
 
     public bool LookForPlayer()
     {
-        distance = Vector3.Distance(target.position, animatedRig.transform.position); 
+        distance = Vector3.Distance(target.position, rootAnimatedObj.transform.position); 
         if (distance <= lookRadius)
         {
             return true; 
@@ -95,23 +96,24 @@ public class ActiveRagdoll : MonoBehaviour
 
     public void RagdollDeath()
     {
-        aIStateManager.enabled = false; 
+        aIStateManager.enabled = false;  
         isAlive = false; 
         jointHandler.SetJointSettings(true);  
         jointHandler.SetJointBones();
         waveModeEvent.Invoke(); 
         this.enabled = false; 
+        print("Ded");
     }
 
     public void RagdollRevive()
     {
         currentRagdollHealth = activeRagdollObject.maxRagdollHealth; 
-        theOverallAnimatedRig.transform.localPosition = physicsRig.transform.localPosition;
         this.enabled = true;
         aIStateManager.enabled = true;   
         isAlive = true; 
         jointHandler.SetJointSettings(false);
         jointHandler.SetJointBones();
+        print("revive"); 
     }
 
     private void OnDrawGizmosSelected() 

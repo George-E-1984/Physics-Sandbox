@@ -499,7 +499,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!144 &1504445133691944345
 CharacterJoint:
   m_ObjectHideFlags: 0
@@ -543,7 +543,7 @@ CharacterJoint:
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
   m_EnableCollision: 0
-  m_EnablePreprocessing: 0
+  m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
 --- !u!114 &1504445133691944349
@@ -703,7 +703,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!144 &1933856494687646338
 CharacterJoint:
   m_ObjectHideFlags: 0
@@ -747,7 +747,7 @@ CharacterJoint:
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
   m_EnableCollision: 0
-  m_EnablePreprocessing: 0
+  m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
 --- !u!114 &1933856494687646342
@@ -1092,7 +1092,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!144 &2657735084191852903
 CharacterJoint:
   m_ObjectHideFlags: 0
@@ -1136,7 +1136,7 @@ CharacterJoint:
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
   m_EnableCollision: 0
-  m_EnablePreprocessing: 0
+  m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
 --- !u!114 &2657735084191852907
@@ -1565,7 +1565,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!144 &3719251407757235756
 CharacterJoint:
   m_ObjectHideFlags: 0
@@ -1609,7 +1609,7 @@ CharacterJoint:
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
   m_EnableCollision: 0
-  m_EnablePreprocessing: 0
+  m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
 --- !u!114 &3719251407757235760
@@ -2229,7 +2229,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!144 &4850703380608632951
 CharacterJoint:
   m_ObjectHideFlags: 0
@@ -2273,7 +2273,7 @@ CharacterJoint:
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
   m_EnableCollision: 0
-  m_EnablePreprocessing: 0
+  m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
 --- !u!114 &4850703380608632955
@@ -2524,7 +2524,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!144 &5218260399128641240
 CharacterJoint:
   m_ObjectHideFlags: 0
@@ -2568,7 +2568,7 @@ CharacterJoint:
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
   m_EnableCollision: 0
-  m_EnablePreprocessing: 0
+  m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
 --- !u!114 &5218260399128641244
@@ -3258,7 +3258,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!144 &6533408498588127365
 CharacterJoint:
   m_ObjectHideFlags: 0
@@ -3302,7 +3302,7 @@ CharacterJoint:
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
   m_EnableCollision: 0
-  m_EnablePreprocessing: 0
+  m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
 --- !u!114 &6533408498588127369
@@ -3490,7 +3490,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!144 &6651995238356168973
 CharacterJoint:
   m_ObjectHideFlags: 0
@@ -3534,7 +3534,7 @@ CharacterJoint:
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
   m_EnableCollision: 0
-  m_EnablePreprocessing: 0
+  m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
 --- !u!114 &6651995238356168977
@@ -3722,7 +3722,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!114 &7089359790071363100
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4064,7 +4064,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!144 &7708814868246535366
 CharacterJoint:
   m_ObjectHideFlags: 0
@@ -4108,7 +4108,7 @@ CharacterJoint:
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
   m_EnableCollision: 0
-  m_EnablePreprocessing: 0
+  m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
 --- !u!114 &7708814868246535370
@@ -5886,8 +5886,9 @@ MonoBehaviour:
   aIStateManager: {fileID: 8007424441339108363}
   theOverallRig: {fileID: 8007424441339108358}
   theOverallAnimatedRig: {fileID: 8007424442413106515}
-  physicsRig: {fileID: 7089359790071363096}
-  animatedRig: {fileID: 8007424442316434793}
+  theOverallPhysicsRig: {fileID: 7197174190829397848}
+  rootPhysicsObj: {fileID: 7089359790071363096}
+  rootAnimatedObj: {fileID: 8007424442316434793}
   feetPoint: {fileID: 8007424442081267773}
   navMeshAgent: {fileID: 8007424442413106519}
   visionCone: {fileID: 0}
@@ -8599,7 +8600,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!144 &8168004587895938619
 CharacterJoint:
   m_ObjectHideFlags: 0
@@ -8643,7 +8644,7 @@ CharacterJoint:
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
   m_EnableCollision: 0
-  m_EnablePreprocessing: 0
+  m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
 --- !u!114 &8168004587895938623

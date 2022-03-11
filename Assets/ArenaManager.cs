@@ -128,12 +128,18 @@ public class ArenaManager : MonoBehaviour
         iterations++; 
         print(iterations); 
         ActiveRagdoll activeRagdollScript = activeRagdoll.GetComponent<ActiveRagdoll>();
+        //dudeScrippy.theOverallAnimatedRig.transform.localPosition = new Vector3(0, 0, 0);    
+        activeRagdollScript.theOverallAnimatedRig.transform.localPosition = new Vector3(0, 0, 0); 
+        activeRagdollScript.theOverallPhysicsRig.transform.localPosition = new Vector3(0, 0, 0); 
+        activeRagdollScript.rootAnimatedObj.transform.localPosition = new Vector3(0, 0, 0); 
+        activeRagdollScript.rootAnimatedObj.transform.rotation = new Quaternion(0, 0, 0, 0); 
+        activeRagdollScript.rootPhysicsObj.transform.rotation = new Quaternion(0, 0, 0, 0); 
+        activeRagdollScript.rootPhysicsObj.transform.localPosition = new Vector3(0, 0, 0); 
         activeRagdoll.transform.position = spawnPoints[Random.Range(0, spawnPoints.Length - 1)].position;
-        //dudeScrippy.theOverallAnimatedRig.transform.localPosition = new Vector3(0, 0, 0);   
         if(!activeRagdollScript.isAlive)
         {
             activeRagdollScript.RagdollRevive(); 
-        } 
+        }
         activeRagdoll.SetActive(true);
         //debugDudes.GetComponentInChildren<SkinnedMeshRenderer>().enabled = true;
         print("WTF");

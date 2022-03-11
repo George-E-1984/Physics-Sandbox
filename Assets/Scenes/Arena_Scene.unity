@@ -632,7 +632,7 @@ PrefabInstance:
     - target: {fileID: 2173389769490651296, guid: e11e9dafe487002419d48985909fa249,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2173389769490651296, guid: e11e9dafe487002419d48985909fa249,
         type: 3}
@@ -1113,7 +1113,7 @@ Transform:
   m_Children:
   - {fileID: 1308040107}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &413033201
 GameObject:
@@ -1158,7 +1158,7 @@ Transform:
   - {fileID: 478612354}
   - {fileID: 1448238426}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &439355348
 PrefabInstance:
@@ -1418,6 +1418,80 @@ Transform:
   m_Father: {fileID: 413033202}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &557439782
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 8007424441339108358, guid: 3c08eacd6756c6749ba043876963f26d,
+        type: 3}
+      propertyPath: m_Name
+      value: Zombie_Active-Ragdoll
+      objectReference: {fileID: 0}
+    - target: {fileID: 8007424441339108358, guid: 3c08eacd6756c6749ba043876963f26d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8007424441339108361, guid: 3c08eacd6756c6749ba043876963f26d,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8007424441339108361, guid: 3c08eacd6756c6749ba043876963f26d,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.4366504
+      objectReference: {fileID: 0}
+    - target: {fileID: 8007424441339108361, guid: 3c08eacd6756c6749ba043876963f26d,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8007424441339108361, guid: 3c08eacd6756c6749ba043876963f26d,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 4.758571
+      objectReference: {fileID: 0}
+    - target: {fileID: 8007424441339108361, guid: 3c08eacd6756c6749ba043876963f26d,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8007424441339108361, guid: 3c08eacd6756c6749ba043876963f26d,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8007424441339108361, guid: 3c08eacd6756c6749ba043876963f26d,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8007424441339108361, guid: 3c08eacd6756c6749ba043876963f26d,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8007424441339108361, guid: 3c08eacd6756c6749ba043876963f26d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8007424441339108361, guid: 3c08eacd6756c6749ba043876963f26d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8007424441339108361, guid: 3c08eacd6756c6749ba043876963f26d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 3c08eacd6756c6749ba043876963f26d, type: 3}
 --- !u!1 &575991109
 GameObject:
   m_ObjectHideFlags: 0
@@ -1511,7 +1585,7 @@ Transform:
   m_Children:
   - {fileID: 6095525029443861337}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &598200381
 GameObject:
@@ -1776,7 +1850,7 @@ Transform:
   - {fileID: 1461741312}
   - {fileID: 2128322821}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &742120177
 GameObject:
@@ -3208,7 +3282,7 @@ PrefabInstance:
     - target: {fileID: 4270531198799934407, guid: 800199ee74358c14491aa1e9123dcb99,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4270531198799934407, guid: 800199ee74358c14491aa1e9123dcb99,
         type: 3}
@@ -3922,7 +3996,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25ca298ecf78a1a43beb74be667fb26e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeBetweenRounds: 2
+  timeBetweenRounds: 5
   totalWaveEnemies: 5
   currentWaveEnemies: 0
   spawnTimeRangeMin: 1
@@ -3930,7 +4004,7 @@ MonoBehaviour:
   currentWaveNumber: 0
   roundCounter: {fileID: 0}
   enemiesToInstantiate:
-  - {fileID: 8007424441339108358, guid: 3c08eacd6756c6749ba043876963f26d, type: 3}
+  - {fileID: 3176942183915874274, guid: 06761a2250875304f9f16b3f807e9ebb, type: 3}
   enemiesInstantiated: []
   ragdollParentObject: {fileID: 1769013586}
   deathParticleEffectPrefab: {fileID: 8722989830919915085, guid: 166fd579bf9a59e4cb7cb11901efb56d,
@@ -3947,7 +4021,7 @@ MonoBehaviour:
   - {fileID: 625709462}
   isAllEnemiesSpawned: 0
   iterations: 0
-  debugDudes: {fileID: 0}
+  activeRagdoll: {fileID: 0}
 --- !u!4 &1658488143
 Transform:
   m_ObjectHideFlags: 0
@@ -4543,7 +4617,7 @@ Transform:
   - {fileID: 1878129180}
   - {fileID: 670797887}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1918213829 stripped
 Transform:
@@ -4779,7 +4853,7 @@ Transform:
   - {fileID: 2113536440}
   - {fileID: 2776907}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &2103632181 stripped
 Transform:
@@ -5164,7 +5238,7 @@ PrefabInstance:
     - target: {fileID: 2731714563984038955, guid: e7d529b7e4bf3c64f874bc5f622ac548,
         type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2731714563984038955, guid: e7d529b7e4bf3c64f874bc5f622ac548,
         type: 3}

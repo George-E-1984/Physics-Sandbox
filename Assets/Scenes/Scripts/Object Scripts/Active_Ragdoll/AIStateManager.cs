@@ -114,7 +114,7 @@ public class AIStateManager : MonoBehaviour
     { 
         hasFallen = true;
         isInFallenState = true; 
-        activeRagdoll.theOverallAnimatedRig.transform.position = activeRagdoll.physicsRig.transform.position;
+        activeRagdoll.theOverallAnimatedRig.transform.position = activeRagdoll.rootPhysicsObj.transform.position;
         activeRagdoll.animator.SetBool(isIdleHash, false); 
         activeRagdoll.animator.SetBool(isWalkingHash, false);  
         activeRagdoll.animator.SetBool(isGettingUpHash, false); 
@@ -133,7 +133,7 @@ public class AIStateManager : MonoBehaviour
         activeRagdoll.animator.SetBool(isGettingUpHash, false);
         activeRagdoll.animator.SetBool(isWalkingHash, true); 
         activeRagdoll.navMeshAgent.SetDestination(activeRagdoll.target.position);
-        float distance = Vector3.Distance(activeRagdoll.target.position, activeRagdoll.animatedRig.transform.position); 
+        float distance = Vector3.Distance(activeRagdoll.target.position, activeRagdoll.rootAnimatedObj.transform.position); 
         if (distance <= activeRagdoll.activeRagdollObject.attackDistance)
         {
             activeRagdoll.animator.SetLayerWeight(1, 1); 
