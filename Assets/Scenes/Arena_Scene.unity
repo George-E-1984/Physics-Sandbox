@@ -1585,7 +1585,7 @@ Transform:
   m_Children:
   - {fileID: 6095525029443861337}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &598200381
 GameObject:
@@ -1850,7 +1850,7 @@ Transform:
   - {fileID: 1461741312}
   - {fileID: 2128322821}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &742120177
 GameObject:
@@ -3997,7 +3997,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeBetweenRounds: 5
-  totalWaveEnemies: 5
+  totalInstaniatedEnemies: 100
+  maxEnemiesAtOnce: 20
+  maxEnemiesPerRound: 20
+  enemyAmountIncreaseInterval: 5
   currentWaveEnemies: 0
   spawnTimeRangeMin: 1
   spawnTimeRangeMax: 1
@@ -4020,7 +4023,8 @@ MonoBehaviour:
   - {fileID: 202794006}
   - {fileID: 625709462}
   isAllEnemiesSpawned: 0
-  iterations: 0
+  totalRagdollSpawnerIterations: 0
+  currentRagdollSpawnerIterations: 0
   activeRagdoll: {fileID: 0}
 --- !u!4 &1658488143
 Transform:
@@ -4030,7 +4034,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1658488141}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.02, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1708487703}
@@ -5238,7 +5242,7 @@ PrefabInstance:
     - target: {fileID: 2731714563984038955, guid: e7d529b7e4bf3c64f874bc5f622ac548,
         type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 2731714563984038955, guid: e7d529b7e4bf3c64f874bc5f622ac548,
         type: 3}

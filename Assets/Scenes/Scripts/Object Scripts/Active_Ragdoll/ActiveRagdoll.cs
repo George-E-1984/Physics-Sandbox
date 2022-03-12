@@ -15,6 +15,8 @@ public class ActiveRagdoll : MonoBehaviour
     public GameObject theOverallPhysicsRig; 
     public GameObject rootPhysicsObj; 
     public GameObject rootAnimatedObj;
+    public SkinnedMeshRenderer ragdollMeshRend;
+    public Animator ragdollMeshAnimator; 
     public GameObject feetPoint; 
     public NavMeshAgent navMeshAgent; 
     public Collider visionCone; 
@@ -33,12 +35,11 @@ public class ActiveRagdoll : MonoBehaviour
     public Rigidbody ragdollRigidbody; 
     public bool isAlive = true; 
     public UnityEvent waveModeEvent; 
-    
     // Start is called before the first frame update
     void Start()
     {
         ragdollRigidbody = rootPhysicsObj.GetComponent<Rigidbody>(); 
-        target = SceneMaster.instance.player.transform; 
+        target = SceneMaster.instance.player.transform;  
         currentRagdollHealth = activeRagdollObject.maxRagdollHealth; 
     }
 
@@ -98,6 +99,7 @@ public class ActiveRagdoll : MonoBehaviour
     {
         aIStateManager.enabled = false;  
         isAlive = false; 
+        ragdollMeshAnimator.enabled = false; 
         jointHandler.SetJointSettings(true);  
         jointHandler.SetJointBones();
         waveModeEvent.Invoke(); 

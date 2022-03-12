@@ -10,7 +10,10 @@ public class ArenaManager : MonoBehaviour
 {
     [Header("Varibles")]
     public float timeBetweenRounds; 
-    public int totalWaveEnemies;   
+    public int totalInstaniatedEnemies;
+    public int maxEnemiesAtOnce; 
+    public int maxEnemiesPerRound; 
+    public int enemyAmountIncreaseInterval;    
     public int currentWaveEnemies; 
     [Header("Spawn Time Range")]
     public float spawnTimeRangeMin; public float spawnTimeRangeMax;
@@ -29,8 +32,10 @@ public class ArenaManager : MonoBehaviour
     private static System.Timers.Timer spawnerIntervals;
     [SerializeField] private bool isAllEnemiesSpawned = false; 
     private bool isSpawnerTimerFinished = true; 
-    [SerializeField] private int iterations; 
-    [SerializeField] GameObject activeRagdoll; 
+    [SerializeField] private int totalRagdollSpawnerIterations;
+    [SerializeField] private int currentRagdollSpawnerIterations;
+
+    [SerializeField] GameObject activeRagdoll;  
     void Start()
     {
          
@@ -42,20 +47,19 @@ public class ArenaManager : MonoBehaviour
         currentWaveNumber = 1;
         roundCounter.text = "1";
         print("Nala");   
-        enemiesInstantiated = new GameObject[totalWaveEnemies];
-        for (int i = 0; i < totalWaveEnemies; i++)
+        enemiesInstantiated = new GameObject[totalInstaniatedEnemies];
+        for (int i = 0; i < totalInstaniatedEnemies; i++)
         {
             GameObject dude = Instantiate(enemiesToInstantiate[Random.Range(1, enemiesToInstantiate.Length) - 1], ragdollParentObject.transform);
-            dude.GetComponent<ActiveRagdoll>().waveModeEvent.AddListener(HandleEnemy);
+            dude.SetActive(false); 
+            ActiveRagdoll activeRagdollScript = dude.GetComponent<ActiveRagdoll>(); 
+            activeRagdollScript.ragdollMeshRend.enabled = false;
+            activeRagdollScript.waveModeEvent.AddListener(HandleEnemy);
             enemiesInstantiated[i] = dude; 
-            dude.SetActive(false);
+            //activeRagdollScript.RagdollDeath(); 
             //dude.GetComponentInChildren<SkinnedMeshRenderer>().enabled = false;  
             print("awww simba"); 
-        }
-        roundIntervalTimer = new Timer(timeBetweenRounds); 
-        roundIntervalTimer.Elapsed += OnBetweenRoundTimerFinish;  
-        spawnerIntervals = new Timer(spawnTimeRangeMax);
-        spawnerIntervals.Elapsed += OnEnemyInterval;   
+        }   
         WaveStart();
     }
 
@@ -68,7 +72,7 @@ public class ArenaManager : MonoBehaviour
     void HandleEnemy()
     { 
         currentWaveEnemies--; 
-        if (currentWaveEnemies <= 0)
+        if (totalRagdollSpawnerIterations >= maxEnemiesPerRound && currentWaveEnemies <= 0)
         {
             StartCoroutine(WaveTransition()); 
         }
@@ -79,12 +83,27 @@ public class ArenaManager : MonoBehaviour
         isTransitioningWave = true; 
         currentWaveNumber++; 
         yield return new WaitForSeconds(timeBetweenRounds); 
-        roundCounter.text = currentWaveNumber.ToString();   
+        roundCounter.text = currentWaveNumber.ToString(); 
+        if (currentWaveNumber <= 100)
+        {
+            int foreachIteration = 0; 
+            foreach (GameObject ragdoll in enemiesToInstantiate)
+            {
+                ActiveRagdoll activeRagdollScript = enemiesToInstantiate[foreachIteration].GetComponent<ActiveRagdoll>(); 
+                activeRagdollScript.activeRagdollObject.maxRagdollHealth += 2;  
+                activeRagdollScript.activeRagdollObject.attackDamage += 1; 
+                if (maxEnemiesPerRound < 100)
+                {
+                    maxEnemiesPerRound += enemyAmountIncreaseInterval;
+                }    
+                foreachIteration++; 
+            }
+        }  
         for (int i = 0; i < enemiesInstantiated.Length; i++)
         {
             GameObject dude = enemiesInstantiated[i];
-            dude.SetActive(false);
-            //dude.GetComponentInChildren<SkinnedMeshRenderer>().enabled = false; 
+            //dude.SetActive(false);
+            dude.GetComponentInChildren<SkinnedMeshRenderer>().enabled = false; 
             ParticleSystem deathParts = Instantiate(deathParticleEffectPrefab, dude.transform.position, dude.transform.rotation).GetComponent<ParticleSystem>(); 
             deathParts.Play(); 
         }
@@ -104,9 +123,10 @@ public class ArenaManager : MonoBehaviour
 
     void WaveStart()
     {
-       iterations = 0; 
+       totalRagdollSpawnerIterations = 0; 
+       currentRagdollSpawnerIterations = 0; 
        isAllEnemiesSpawned = false; 
-       currentWaveEnemies = totalWaveEnemies; 
+       //currentWaveEnemies = maxEnemiesAtOnce; 
        StartCoroutine(DudeSpawner());   
        //if (isSpawnerTimerFinished)
        //{
@@ -124,26 +144,42 @@ public class ArenaManager : MonoBehaviour
 
     IEnumerator DudeSpawner()
     {
-        activeRagdoll = enemiesInstantiated[iterations].gameObject;
-        iterations++; 
-        print(iterations); 
-        ActiveRagdoll activeRagdollScript = activeRagdoll.GetComponent<ActiveRagdoll>();
-        //dudeScrippy.theOverallAnimatedRig.transform.localPosition = new Vector3(0, 0, 0);    
-        activeRagdollScript.theOverallAnimatedRig.transform.localPosition = new Vector3(0, 0, 0); 
-        activeRagdollScript.theOverallPhysicsRig.transform.localPosition = new Vector3(0, 0, 0); 
-        activeRagdollScript.rootAnimatedObj.transform.localPosition = new Vector3(0, 0, 0); 
-        activeRagdollScript.rootAnimatedObj.transform.rotation = new Quaternion(0, 0, 0, 0); 
-        activeRagdollScript.rootPhysicsObj.transform.rotation = new Quaternion(0, 0, 0, 0); 
-        activeRagdollScript.rootPhysicsObj.transform.localPosition = new Vector3(0, 0, 0); 
-        activeRagdoll.transform.position = spawnPoints[Random.Range(0, spawnPoints.Length - 1)].position;
-        if(!activeRagdollScript.isAlive)
+        if (currentRagdollSpawnerIterations < maxEnemiesAtOnce)
         {
-            activeRagdollScript.RagdollRevive(); 
+            activeRagdoll = enemiesInstantiated[totalRagdollSpawnerIterations].gameObject;
+            currentRagdollSpawnerIterations++; 
+            totalRagdollSpawnerIterations++; 
+            currentWaveEnemies++; 
+            print(currentRagdollSpawnerIterations); 
+            ActiveRagdoll activeRagdollScript = activeRagdoll.GetComponent<ActiveRagdoll>();
+            //dudeScrippy.theOverallAnimatedRig.transform.localPosition = new Vector3(0, 0, 0);    
+            activeRagdollScript.theOverallAnimatedRig.transform.localPosition = new Vector3(0, 0, 0); 
+            activeRagdollScript.theOverallPhysicsRig.transform.localPosition = new Vector3(0, 0, 0); 
+            activeRagdollScript.rootAnimatedObj.transform.localPosition = new Vector3(0, 0, 0); 
+            activeRagdollScript.rootAnimatedObj.transform.rotation = new Quaternion(0, 0, 0, 0); 
+            activeRagdollScript.rootPhysicsObj.transform.rotation = new Quaternion(0, 0, 0, 0); 
+            activeRagdollScript.rootPhysicsObj.transform.localPosition = new Vector3(0, 0, 0); 
+            if (!activeRagdollScript.isAlive)
+            {
+                activeRagdollScript.RagdollRevive(); 
+            }
+            else 
+            {
+                activeRagdoll.SetActive(true); 
+            }
+            //activeRagdoll.SetActive(true);
+            activeRagdoll.transform.position = spawnPoints[Random.Range(0, spawnPoints.Length - 1)].position;
+            activeRagdollScript.ragdollMeshRend.enabled = true;  
+            activeRagdollScript.ragdollMeshAnimator.enabled = true;
+            //debugDudes.GetComponentInChildren<SkinnedMeshRenderer>().enabled = true;
+            print("WTF");
         }
-        activeRagdoll.SetActive(true);
-        //debugDudes.GetComponentInChildren<SkinnedMeshRenderer>().enabled = true;
-        print("WTF");
-        if (iterations >= totalWaveEnemies)
+        else if (currentWaveEnemies == 0)
+        {
+            currentWaveEnemies = 0; 
+            currentRagdollSpawnerIterations = 0; 
+        }
+        if (totalRagdollSpawnerIterations >= maxEnemiesPerRound)
         {
             isAllEnemiesSpawned = true; 
         } 
@@ -154,17 +190,5 @@ public class ArenaManager : MonoBehaviour
             //spawnerIntervals.Interval = Random.Range(spawnTimeRangeMin * 1000, spawnTimeRangeMax * 1000);
             //spawnerIntervals.Start();
         }
-    }
-    private void OnBetweenRoundTimerFinish(System.Object source, ElapsedEventArgs e)
-    {
-        isTransitioningWave = false; 
-        WaveStart(); 
-    }
-
-    private void OnEnemyInterval(System.Object source, ElapsedEventArgs e)
-    {
-        isSpawnerTimerFinished = true; 
-        DudeSpawner(); 
-        print("Timer finished"); 
     }
 }

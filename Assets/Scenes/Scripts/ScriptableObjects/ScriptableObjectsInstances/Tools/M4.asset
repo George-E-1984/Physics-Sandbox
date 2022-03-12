@@ -26,7 +26,7 @@ MonoBehaviour:
   shootPointOffset: 1.8
   aimFov: 50
   timeToAim: 1
-  bulletDamage: 10
+  bulletDamage: 3
   maxPitch: 1.1
   minPitch: 0.9
   maxAmmoInClip: 50

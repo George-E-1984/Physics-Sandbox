@@ -5889,6 +5889,7 @@ MonoBehaviour:
   theOverallPhysicsRig: {fileID: 7197174190829397848}
   rootPhysicsObj: {fileID: 7089359790071363096}
   rootAnimatedObj: {fileID: 8007424442316434793}
+  ragdollMeshRend: {fileID: 8007424440858617525}
   feetPoint: {fileID: 8007424442081267773}
   navMeshAgent: {fileID: 8007424442413106519}
   visionCone: {fileID: 0}
