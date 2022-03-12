@@ -34,7 +34,7 @@ public class ActiveRagdoll : MonoBehaviour
     public RaycastHit hit; 
     public Rigidbody ragdollRigidbody; 
     public bool isAlive = true; 
-    public UnityEvent waveModeEvent; 
+    public UnityEvent onDieEvent; 
     // Start is called before the first frame update
     void Start()
     {
@@ -102,7 +102,7 @@ public class ActiveRagdoll : MonoBehaviour
         ragdollMeshAnimator.enabled = false; 
         jointHandler.SetJointSettings(true);  
         jointHandler.SetJointBones();
-        waveModeEvent.Invoke(); 
+        onDieEvent.Invoke(); 
         this.enabled = false; 
         print("Ded");
     }

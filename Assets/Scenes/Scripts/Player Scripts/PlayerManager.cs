@@ -4,17 +4,20 @@ using UnityEngine;
 using UnityEngine.SceneManagement; 
 using UnityEngine.UI; 
 using UnityEngine.Audio; 
+using UnityEngine.Events; 
 
 public class PlayerManager : MonoBehaviour
 {
-    
+    [Header("Assign")]
     public PlayerData playerData; 
     public GameObject playerRoot; 
     public Camera playerCam;
     public Image fadeImage; 
     public AudioMixer audioMixer; 
     public float fadeTime; 
+    [Header("Info")]
     private Color color; 
+    public UnityEvent deathEvent; 
     void Start()
     {
         color = fadeImage.color; 
@@ -29,6 +32,7 @@ public class PlayerManager : MonoBehaviour
     public void PlayerDeath()
     {
         playerRoot.transform.position = SceneMaster.instance.respawnPoint.position; 
+        deathEvent.Invoke(); 
         playerData.currentPlayerHealth = playerData.MaxPlayerHealth; 
 
     }

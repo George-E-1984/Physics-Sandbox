@@ -38,15 +38,7 @@ public class ArenaManager : MonoBehaviour
     [SerializeField] GameObject activeRagdoll;  
     void Start()
     {
-         
-    }
-
-    void OnEnable() 
-    {
-        roundCounter = SceneMaster.instance.player.GetComponentInChildren<UiData>().roundCounterText;
-        currentWaveNumber = 1;
-        roundCounter.text = "1";
-        print("Nala");   
+        SceneMaster.instance.player.GetComponent<PlayerManager>().deathEvent.AddListener(ModeEnd);  
         enemiesInstantiated = new GameObject[totalInstaniatedEnemies];
         for (int i = 0; i < totalInstaniatedEnemies; i++)
         {
@@ -54,13 +46,19 @@ public class ArenaManager : MonoBehaviour
             dude.SetActive(false); 
             ActiveRagdoll activeRagdollScript = dude.GetComponent<ActiveRagdoll>(); 
             activeRagdollScript.ragdollMeshRend.enabled = false;
-            activeRagdollScript.waveModeEvent.AddListener(HandleEnemy);
+            activeRagdollScript.onDieEvent.AddListener(HandleEnemy);
             enemiesInstantiated[i] = dude; 
             //activeRagdollScript.RagdollDeath(); 
             //dude.GetComponentInChildren<SkinnedMeshRenderer>().enabled = false;  
             print("awww simba"); 
-        }   
-        WaveStart();
+        }      
+    }
+    
+    void OnEnable() 
+    {
+        roundCounter = SceneMaster.instance.player.GetComponentInChildren<UiData>().roundCounterText;
+        currentWaveNumber = 1;
+        roundCounter.text = "1";
     }
 
     
@@ -118,7 +116,7 @@ public class ArenaManager : MonoBehaviour
 
     void ModeEnd()
     {
-
+        print("Mode finished"); 
     }
 
     void WaveStart()

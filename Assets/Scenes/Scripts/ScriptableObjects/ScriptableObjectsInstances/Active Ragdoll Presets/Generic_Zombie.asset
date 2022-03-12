@@ -15,4 +15,4 @@ MonoBehaviour:
   falloverDistance: 0.75
   attackDistance: 2
   attackDamage: 15
-  maxRagdollHealth: 27
+  maxRagdollHealth: 5
