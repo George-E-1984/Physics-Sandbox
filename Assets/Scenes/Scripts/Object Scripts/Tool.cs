@@ -4,6 +4,7 @@ using UnityEngine;
 using System.Timers;
 using UnityEngine.UI; 
 using UnityEngine.Events; 
+using UnityEngine.InputSystem; 
 
 public class Tool : MonoBehaviour
 {
@@ -54,6 +55,7 @@ public class Tool : MonoBehaviour
     public System.Timers.Timer reloadTimer;
     public UnityEvent reloadEvent; 
     public enum ShootType { Auto, SemiAuto, Burst, Force };
+    private PlayerInputActions playerInputActions; 
 
     //Script Refs
     private PlayerGrab playerGrab;
@@ -102,65 +104,97 @@ public class Tool : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //shooting semi-auto
-        if (Input.GetMouseButtonDown(0) && !isReloading && ammoLeftClip > 0 && !isShooting && shootType == ShootType.SemiAuto)
-        {
-            float x = Random.Range(-gunOptions.spread, gunOptions.spread);
-            float y = Random.Range(-gunOptions.spread, gunOptions.spread); 
-            Vector3 direction = playerGrab.camPos.forward + new Vector3(x, y, 0); 
-            Physics.Raycast(playerGrab.playerMovement.shootOrigin.transform.position, direction, out shotHit, gunOptions.bulletDistance);
-            StartCoroutine(Shoot(shotHit));  
-        }
-        //shooting auto
-        else if (Input.GetMouseButton(0) && !isReloading && ammoLeftClip > 0 && !isShooting && shootType == ShootType.Auto)
-        {
-            if (isAiming)
-            {
-                x = Random.Range(-gunOptions.aimSpread, gunOptions.aimSpread);
-                y = Random.Range(-gunOptions.aimSpread, gunOptions.aimSpread);
+        // //shooting semi-auto
+        // if (Input.GetMouseButtonDown(0) && !isReloading && ammoLeftClip > 0 && !isShooting && shootType == ShootType.SemiAuto)
+        // {
+        //     float x = Random.Range(-gunOptions.spread, gunOptions.spread);
+        //     float y = Random.Range(-gunOptions.spread, gunOptions.spread); 
+        //     Vector3 direction = playerGrab.camPos.forward + new Vector3(x, y, 0); 
+        //     Physics.Raycast(playerGrab.playerMovement.shootOrigin.transform.position, direction, out shotHit, gunOptions.bulletDistance);
+        //     StartCoroutine(Shoot(shotHit));  
+        // }
+        // //shooting auto
+        // else if (Input.GetMouseButton(0) && !isReloading && ammoLeftClip > 0 && !isShooting && shootType == ShootType.Auto)
+        // {
+        //     if (isAiming)
+        //     {
+        //         x = Random.Range(-gunOptions.aimSpread, gunOptions.aimSpread);
+        //         y = Random.Range(-gunOptions.aimSpread, gunOptions.aimSpread);
 
-            }
-            else 
-            {
-                x = Random.Range(-gunOptions.spread, gunOptions.spread);
-                y = Random.Range(-gunOptions.spread, gunOptions.spread);
-            }
-            Vector3 direction = playerGrab.camPos.forward + new Vector3(x, y, 0); 
-            Physics.Raycast(playerGrab.playerMovement.shootOrigin.transform.position, direction, out shotHit, gunOptions.bulletDistance);
-            StartCoroutine(Shoot(shotHit));
-        }     
-        //shooting Force gun
-        else if (Input.GetMouseButton(0) && !isReloading && ammoLeftClip > 0 && !isShooting && shootType == ShootType.Force)
-        {
-            StartCoroutine(ForceGun());
-        }     
-        //reloading 
-        if (Input.GetKeyDown(KeyCode.R) && !isReloading && ammoLeftClip != gunOptions.maxAmmoInClip && ammoLeftBank > 0)
-        {
-            StartCoroutine(Reload());
-        }
+        //     }
+        //     else 
+        //     {
+        //         x = Random.Range(-gunOptions.spread, gunOptions.spread);
+        //         y = Random.Range(-gunOptions.spread, gunOptions.spread);
+        //     }
+        //     Vector3 direction = playerGrab.camPos.forward + new Vector3(x, y, 0); 
+        //     Physics.Raycast(playerGrab.playerMovement.shootOrigin.transform.position, direction, out shotHit, gunOptions.bulletDistance);
+        //     StartCoroutine(Shoot(shotHit));
+        // }     
+        // //shooting Force gun
+        // else if (Input.GetMouseButton(0) && !isReloading && ammoLeftClip > 0 && !isShooting && shootType == ShootType.Force)
+        // {
+        //     StartCoroutine(ForceGun());
+        // }     
+        // //reloading 
+        // if (Input.GetKeyDown(KeyCode.R) && !isReloading && ammoLeftClip != gunOptions.maxAmmoInClip && ammoLeftBank > 0)
+        // {
+        //     StartCoroutine(Reload());
+        // }
 
-        //Aiming!
-        if (gunOptions.canAim && playerGrab.isGrabbingTool && Input.GetMouseButtonDown(1) && playerGrab.cam.fieldOfView == playerGrab.playerMovement.playerData.fieldOfView)
-        {
-            isAiming = true; 
-            playerGrab.cam.fieldOfView = Mathf.Lerp(playerGrab.cam.fieldOfView, gunOptions.aimFov, gunOptions.timeToAim);
-            playerGrab.grabHolderConfig.anchor = grabSettings.aimPositionOffset; 
-            playerGrab.grabHolderConfig.targetRotation = new Quaternion(0,0,0,0); 
-        }
-        else if (Input.GetMouseButtonUp(1))
-        {
-            isAiming = false; 
-            playerGrab.cam.fieldOfView = playerGrab.playerMovement.playerData.fieldOfView; 
-            playerGrab.grabHolderConfig.anchor = playerGrab.grabSettings.positionOffset; 
-            playerGrab.grabHolderConfig.targetRotation = playerGrab.grabSettings.rotationOffset; 
-        }
+        // //Aiming!
+        // if (gunOptions.canAim && playerGrab.isGrabbingTool && Input.GetMouseButtonDown(1) && playerGrab.cam.fieldOfView == playerGrab.playerMovement.playerData.fieldOfView)
+        // {
+        //     isAiming = true; 
+        //     playerGrab.cam.fieldOfView = Mathf.Lerp(playerGrab.cam.fieldOfView, gunOptions.aimFov, gunOptions.timeToAim);
+        //     playerGrab.grabHolderConfig.anchor = grabSettings.aimPositionOffset; 
+        //     playerGrab.grabHolderConfig.targetRotation = new Quaternion(0,0,0,0); 
+        // }
+        // else if (Input.GetMouseButtonUp(1))
+        // {
+        //     isAiming = false; 
+        //     playerGrab.cam.fieldOfView = playerGrab.playerMovement.playerData.fieldOfView; 
+        //     playerGrab.grabHolderConfig.anchor = playerGrab.grabSettings.positionOffset; 
+        //     playerGrab.grabHolderConfig.targetRotation = playerGrab.grabSettings.rotationOffset; 
+        // }
     }
-
     private void FixedUpdate()
     {
         
     }
+    public void HandleInput(bool setEnable)
+    {
+        if (setEnable)
+        {
+            playerInputActions = new PlayerInputActions();
+            playerInputActions.Tool.Enable();
+            //shooting
+            if (shootType == ShootType.SemiAuto)
+            {
+                playerInputActions.Tool.Shoot.performed += StartShot;
+            } 
+            else if (shootType == ShootType.Auto)
+            {
+                playerInputActions.Tool.Shoot.started += StartShot;
+                playerInputActions.Tool.Shoot.performed += StartShot; 
+            }
+            else if (shootType == ShootType.Force)
+            {
+                playerInputActions.Tool.Shoot.started += StartForceShot;
+            }
+            //reloading
+            playerInputActions.Tool.Reload.performed += StartReload; 
+            //aiming
+            playerInputActions.Tool.Aim.performed += AimDownSights; 
+            playerInputActions.Tool.Aim.canceled += StopAimStart; 
+        }
+        else 
+        {
+            playerInputActions.Tool.Disable();
+        }
+            
+    }
+
 
     private void fireRateTimer_Elapsed(object sender, ElapsedEventArgs e)
     {
@@ -172,9 +206,65 @@ public class Tool : MonoBehaviour
     { 
         reloadTimer.Stop();
     }
-    public IEnumerator Shoot(RaycastHit shotHit)
+    public void StartShot(InputAction.CallbackContext context)
+    {
+        print(context);
+        if (!isShooting && !isReloading)
+        {
+            StartCoroutine(Shoot()); 
+        }
+    }
+    public void StartForceShot(InputAction.CallbackContext context)
+    {
+        if (!isShooting && !isReloading)
+        {
+            StartCoroutine(ForceGun()); 
+        }
+    }
+    public void StartReload(InputAction.CallbackContext context)
+    {
+        if (!isShooting && !isReloading)
+        {
+            StartCoroutine(Reload()); 
+        }
+    }
+    public void StopAimStart(InputAction.CallbackContext context)
+    {
+        StopAim(); 
+    }
+    public void AimDownSights(InputAction.CallbackContext context)
+    {
+        if (gunOptions.canAim && playerGrab.cam.fieldOfView == playerGrab.playerMovement.playerData.fieldOfView)
+        {
+           isAiming = true; 
+           playerGrab.cam.fieldOfView = Mathf.Lerp(playerGrab.cam.fieldOfView, gunOptions.aimFov, gunOptions.timeToAim);
+           playerGrab.grabHolderConfig.anchor = grabSettings.aimPositionOffset; 
+           playerGrab.grabHolderConfig.targetRotation = new Quaternion(0,0,0,0); 
+        }
+    }
+    public void StopAim()
+    {
+        isAiming = false; 
+        playerGrab.cam.fieldOfView = playerGrab.playerMovement.playerData.fieldOfView; 
+        playerGrab.grabHolderConfig.anchor = playerGrab.grabSettings.positionOffset; 
+        playerGrab.grabHolderConfig.targetRotation = playerGrab.grabSettings.rotationOffset;
+    }
+    public IEnumerator Shoot()
     {
         isShooting = true;    
+        if (isAiming)
+        {
+            x = Random.Range(-gunOptions.aimSpread, gunOptions.aimSpread);
+            y = Random.Range(-gunOptions.aimSpread, gunOptions.aimSpread);
+
+        }
+        else 
+        {
+            x = Random.Range(-gunOptions.spread, gunOptions.spread);
+            y = Random.Range(-gunOptions.spread, gunOptions.spread);
+        }
+        Vector3 direction = playerGrab.camPos.forward + new Vector3(x, y, 0);
+        Physics.Raycast(playerGrab.playerMovement.shootOrigin.transform.position, direction, out shotHit, gunOptions.bulletDistance);
         if (shotHit.collider != null)
         {
             if (shotHit.collider.GetComponent<ObjectProperties>() != null)
@@ -219,13 +309,12 @@ public class Tool : MonoBehaviour
         //time before you can shoot again   
         yield return waitFireRate; 
         isShooting = false; 
+        if (playerInputActions.Tool.Shoot.ReadValue<float>() == 1f && shootType == ShootType.Auto)
+        {
+            StartCoroutine(Shoot()); 
+        }
     }
 
-    public void ShootInput()
-    {
-       
-     
-    }
 
     public IEnumerator ForceGun()
     {

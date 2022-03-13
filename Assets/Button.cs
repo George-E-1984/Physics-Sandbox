@@ -24,17 +24,52 @@ public class Button : MonoBehaviour
     [Header("Info")]
     public SoftJointLimit configLimit; 
     private bool isButtonDown = false;   
+    private PlayerGrab playerGrabScript; 
+    private PlayerManager playerManagerScript;
+    private bool isPushingButton; 
+    private RaycastHit hit; 
     void Start()
     {
-        for (int i = 0; i < baseColliders.Length; i++)
+        int baseCol = 0; 
+        int plungerCol = 0; 
+        foreach (Collider baseCollider in baseColliders)
         {
-            if (i <= plungerColliders.Length)
+            foreach (Collider plungerCollider in plungerColliders)
             {
-                Physics.IgnoreCollision(baseColliders[i], plungerColliders[i], true); 
+               Physics.IgnoreCollision(baseColliders[baseCol], plungerColliders[plungerCol]);
+               plungerCol++; 
             }
+            baseCol++; 
         }
+        playerGrabScript = SceneMaster.instance.player.GetComponent<PlayerGrab>(); 
+        playerManagerScript = SceneMaster.instance.player.GetComponent<PlayerManager>(); 
     }
-    void Update()
+    async void Update()
+    {
+        // if (Input.GetMouseButtonDown(1))
+        // {
+        //     Physics.Raycast(playerManagerScript.playerCam.transform.position, playerManagerScript.playerCam.transform.forward, out hit, 10f);
+        //     {
+        //         if (hit.collider)
+        //         {
+        //             if (hit.collider.tag == "Button")
+        //             {
+        //                 print("Pushing button"); 
+        //                 buttonJoint.targetPosition = new Vector3(0, buttonJoint.linearLimit.limit, 0);
+        //                 isPushingButton = true; 
+        //             }
+        //         }
+        //     }
+        // }
+        // else if (Input.GetMouseButtonUp(1) && isPushingButton)
+        // {
+        //     buttonJoint.targetPosition = new Vector3(0, 0, 0);
+        //     isPushingButton = false; 
+        // }
+        HandleButtonState(); 
+    }
+
+    void HandleButtonState()
     {
         if (buttonPlunger.transform.localPosition.y <= downThreshold && !isButtonDown)
         {
@@ -53,5 +88,22 @@ public class Button : MonoBehaviour
             onButtonUp.Invoke();
             print("Button up");
         }
+        
+        void ButtonPush()
+        {
+            Physics.Raycast(playerManagerScript.playerCam.transform.position, playerManagerScript.playerCam.transform.forward, out hit, 10f);
+            {
+                if (hit.collider)
+                {
+                    if (hit.collider.tag == "Button")
+                    {
+                        print("Pushing button"); 
+                        buttonJoint.targetPosition = new Vector3(0, buttonJoint.linearLimit.limit, 0);
+                        isPushingButton = true; 
+                    }
+                }
+            }
+        }
+
     }
 }

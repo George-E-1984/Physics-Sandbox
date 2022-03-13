@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System; 
+using UnityEngine.InputSystem; 
 
 
 public class PlayerGrab : MonoBehaviour
@@ -32,6 +33,7 @@ public class PlayerGrab : MonoBehaviour
     [Header("Assign Scripts")]
     public ToolbarManager toolbarManager;
     public PlayerMovement playerMovement;
+    public PlayerManager playerManager; 
     public AudioClip grabSound; 
     [Header("Info")]
     public AudioSource grabAudioSource;
@@ -47,62 +49,7 @@ public class PlayerGrab : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //player direction
         hitGrab = checkForObject();
-        if (Input.GetMouseButtonDown(1))
-        {
-            //tool grab
-            if (hitGrab.collider != null && hitGrab.collider.gameObject.tag == "Tool" && !isGrabbing && hitGrab.collider.gameObject != toolbarManager.items[toolbarManager.currentlySelected])
-            {
-                if (toolbarManager.items[toolbarManager.currentlySelected] != null && toolbarManager.currentToolScript.isReloading == true)
-                {
-                    //toolbarManager.currentToolScript.reloadTimer.Stop(); 
-                    toolbarManager.currentToolScript.isReloading = false;
-                    toolbarManager.currentToolScript.reloadIcon.SetActive(false);
-                }
-                hitGrab.collider.gameObject.transform.rotation = playerMovement.playerCamera.rotation;
-                GrabObject(hitGrab.collider.gameObject);
-                if (objectProperties != null && objectProperties.isThisSlottable)
-                {
-                    toolbarManager.AddItem(grabbedObject);
-                }
-                hitGrab.collider.gameObject.GetComponent<Tool>().enabled = true;
-                print("Grabbed Tool");
-                isGrabbingTool = true;
-                grabbedTool = hitGrab.collider.gameObject;
-                playerMovement.shootOrigin.transform.localPosition = new Vector3(0f, 0f, toolbarManager.currentToolScript.gunOptions.shootPointOffset); 
-            }
-            //object grab
-            else if(hitGrab.collider != null && !isGrabbing && !isGrabbingTool & hitGrab.collider != playerMovement.hit.collider)
-            {
-                hitGrab.collider.gameObject.transform.rotation = playerMovement.playerCamera.rotation;
-                GrabObject(hitGrab.collider.gameObject);
-                if (grabbedObject.GetComponent<ObjectProperties>())
-                {
-                    if(grabbedObject.GetComponent<ObjectProperties>().isThisSlottable && hitGrab.collider.gameObject != toolbarManager.items[toolbarManager.currentlySelected])
-                    {
-                        toolbarManager.AddItem(grabbedObject);
-                    }
-                }
-                isGrabbing = true;
-                print("Grabbed Object");
-            }           
-        }
-
-        else if (isGrabbing && Input.GetMouseButtonUp(1) && !isGrabbingTool)
-        {
-            if (objectProperties == null || !objectProperties.isThisSlottable)
-            {
-                ReleaseObject(false);
-            }
-        }
-        else if (isGrabbing && Input.GetMouseButtonDown(0) && !isGrabbingTool)
-        {
-            if (objectProperties == null || !objectProperties.isThisSlottable)
-            {
-                ReleaseObject(true); 
-            }
-        }
     }
 
     private RaycastHit checkForObject()
@@ -120,8 +67,15 @@ public class PlayerGrab : MonoBehaviour
         grabAudioSource = objectToGrab.AddComponent<AudioSource>(); 
         grabAudioSource.PlayOneShot(grabSound);  
         //important variables setting!     
-        grabbedObjectRb = objectToGrab.transform.gameObject.GetComponent<Rigidbody>();
         grabSettings = objectToGrab.transform.gameObject.GetComponent<GrabSettings>();
+        if (grabSettings.grabRigidbody)
+        {
+            grabbedObjectRb = grabSettings.grabRigidbody; 
+        }
+        else
+        {
+            grabbedObjectRb = objectToGrab.transform.gameObject.GetComponent<Rigidbody>();
+        }
         //object doesn't collide with player
         for(int i = 0; i < grabSettings.grabbedObjectColliders.Length; i++ )
         {
@@ -167,30 +121,91 @@ public class PlayerGrab : MonoBehaviour
         grabHolderConfig.angularYZDrive = grabSettings.yzAngDrive; 
     }
 
-    public void ReleaseObject(bool isThrowing = false)
+    public void CheckForGrab(InputAction.CallbackContext context)
     {
-        if(grabAudioSource != null)
+        //tool grab
+        if (hitGrab.collider != null && hitGrab.collider.gameObject.tag == "Tool" && hitGrab.collider.gameObject != toolbarManager.items[toolbarManager.currentlySelected])
         {
-            Destroy(grabAudioSource);
-        } 
-        for (int i = 0; i < grabSettings.grabbedObjectColliders.Length; i++)
-        {
-            Physics.IgnoreCollision(grabSettings.grabbedObjectColliders[i], playerCollider, false);
-        }
-        if (grabbedObject.GetComponent<ObjectProperties>() != null)
-        {
-            ObjectProperties objectProperties = grabbedObject.GetComponent<ObjectProperties>(); 
-            for(int i = 0; i < objectProperties.scriptsToEnableOnGrab.Length; i++)
+            if (toolbarManager.items[toolbarManager.currentlySelected] != null && toolbarManager.currentToolScript && toolbarManager.currentToolScript.isReloading == true)
             {
-                objectProperties.scriptsToEnableOnGrab[i].enabled = false; 
+                //toolbarManager.currentToolScript.reloadTimer.Stop(); 
+                toolbarManager.currentToolScript.isReloading = false;
+                toolbarManager.currentToolScript.reloadIcon.SetActive(false);
             }
+            hitGrab.collider.gameObject.transform.rotation = playerMovement.playerCamera.rotation;
+            GrabObject(hitGrab.collider.gameObject);
+            if (objectProperties != null && objectProperties.isThisSlottable)
+            {
+                toolbarManager.AddItem(grabbedObject);
+            }
+            hitGrab.collider.gameObject.GetComponent<Tool>().enabled = true;
+            print("Grabbed Tool");
+            isGrabbingTool = true;
+            grabbedTool = hitGrab.collider.gameObject;
+            playerMovement.shootOrigin.transform.localPosition = new Vector3(0f, 0f, toolbarManager.currentToolScript.gunOptions.shootPointOffset); 
 
         }
-        grabHolderConfig.connectedBody = null;
-        grabbedObjectRb.AddForce((System.Convert.ToUInt16(isThrowing)) * camPos.transform.forward * throwForce, ForceMode.Impulse);
-        grabbedObjectRb = null;
-        isGrabbing = false; 
-        grabbedObject = null; 
+        //object grab
+        else if (hitGrab.collider != null && !isGrabbing && !isGrabbingTool & hitGrab.collider != playerMovement.hit.collider)
+        {
+            hitGrab.collider.gameObject.transform.rotation = playerMovement.playerCamera.rotation;
+            isGrabbing = true;
+            GrabObject(hitGrab.collider.gameObject);
+            if (grabbedObject.GetComponent<ObjectProperties>())
+            {
+                if(grabbedObject.GetComponent<ObjectProperties>().isThisSlottable && hitGrab.collider.gameObject != toolbarManager.items[toolbarManager.currentlySelected])
+                {
+                    toolbarManager.AddItem(grabbedObject);
+                }
+            }
+            print("Grabbed Object");
+        }   
+        // else if (isGrabbing && !isGrabbingTool && grabSettings.canBeThrown)
+        // {
+        //     if (objectProperties == null || !objectProperties.isThisSlottable)
+        //     {
+        //         ReleaseObject(true); 
+        //     }
+        // }
+        // else if (isGrabbing && playerManager.playerInputActions.Player.Grabbing.ReadValue<float>() == -1 && !isGrabbingTool)
+        // {
+        //     if (objectProperties == null || !objectProperties.isThisSlottable)
+        //     {
+        //         ReleaseObject(false);
+        //     }
+        // }
+    }
+    public void StartReleaseObject(InputAction.CallbackContext context)
+    {
+        ReleaseObject();
+    }
+    public void ReleaseObject()
+    {
+        if (isGrabbing && !grabbedObject.GetComponent<ObjectProperties>().isThisSlottable || isGrabbingTool && playerManager.playerInputActions.Player.TaskbarRelease.ReadValue<float>() == 1)
+        {
+            if(grabAudioSource != null)
+            {
+                Destroy(grabAudioSource);
+            } 
+            for (int i = 0; i < grabSettings.grabbedObjectColliders.Length; i++)
+            {
+                Physics.IgnoreCollision(grabSettings.grabbedObjectColliders[i], playerCollider, false);
+            }
+            if (grabbedObject.GetComponent<ObjectProperties>() != null)
+            {
+                ObjectProperties objectProperties = grabbedObject.GetComponent<ObjectProperties>(); 
+                for(int i = 0; i < objectProperties.scriptsToEnableOnGrab.Length; i++)
+                {
+                    objectProperties.scriptsToEnableOnGrab[i].enabled = false; 
+                }
+            }
+            grabHolderConfig.connectedBody = null;
+            //grabbedObjectRb.AddForce((System.Convert.ToUInt16(isThrowing)) * camPos.transform.forward * throwForce, ForceMode.Impulse);
+            grabbedObjectRb = null;
+            isGrabbing = false; 
+            grabbedObject = null; 
+
+        }
     }
 }
 

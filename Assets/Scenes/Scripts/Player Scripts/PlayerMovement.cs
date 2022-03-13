@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEngine; 
-
+using UnityEngine;  
+using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
     private Rigidbody rb;
@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
     public PlayerData playerData; 
     public CapsuleCollider playerCol;
     public PlayerGrab playerGrab;
+    public PlayerManager playerManager; 
     public UiData uiData;
     public AudioSource playerAudioSource;
     public GameObject shootOrigin;
@@ -78,7 +79,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {             
-        MyInput();
+        //MyInput();
         ControlDrag();
 
         if (isGrounded && Input.GetKey(KeyCode.LeftControl))
@@ -131,26 +132,29 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         MovePlayer();
-        PlayerJump();
+        //PlayerJump();
     }
 
-    private void MovePlayer()
+    public void MovePlayer()
     {
+        Vector2 inputVector = playerManager.playerInputActions.Player.Movement.ReadValue<Vector2>(); 
+        moveDirection = transform.forward * inputVector.y + transform.right * inputVector.x; 
         if (isGrounded)
         {
             if (isSprinting)
             {
-                rb.AddForce(moveDirection.normalized * playerSpeed * sprintMultiplier, ForceMode.Acceleration);
+                rb.AddForce(moveDirection * playerSpeed * sprintMultiplier, ForceMode.Acceleration);
             }
             else
             {
-                rb.AddForce(moveDirection.normalized * playerSpeed, ForceMode.Acceleration);
+                rb.AddForce(moveDirection * playerSpeed, ForceMode.Acceleration);
             }
         }
         else
         {
-            rb.AddForce(moveDirection.normalized * airMovementSpeed, ForceMode.Acceleration);
+            rb.AddForce(moveDirection * airMovementSpeed, ForceMode.Acceleration);
         }
+    
     }
 
     private void PlayerMoveCamera()
@@ -167,22 +171,13 @@ public class PlayerMovement : MonoBehaviour
         transform.rotation = Quaternion.Euler(0, yRotation, 0);
     }
 
-    private void PlayerJump()
+    public void PlayerJump(InputAction.CallbackContext context)
     {
-        if (canJump) 
+        Debug.Log(context); 
+        if (context.performed && isGrounded)
         {
-            canJump = false; 
-            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse); 
-
-            //WTF is this george?
-            if (hit.collider)
-            {
-                if (hit.collider.GetComponent<Rigidbody>() == true)
-                {
-                    hit.collider.GetComponent<Rigidbody>().AddForce(Vector3.down * (jumpForce / 2), ForceMode.Impulse);
-                }
-                             
-            }
+            Debug.Log("Jump! " + context.phase);
+            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
         }
     }
     

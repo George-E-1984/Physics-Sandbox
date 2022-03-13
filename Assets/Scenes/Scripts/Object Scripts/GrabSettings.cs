@@ -8,6 +8,8 @@ public class GrabSettings : MonoBehaviour
     public Vector3 aimPositionOffset; 
     public Quaternion rotationOffset;
     public GameObject grabPoint; 
+    public Rigidbody grabRigidbody; 
+    public bool canBeThrown = false;
 
     public ConfigurableJointMotion jointXMotion; 
     

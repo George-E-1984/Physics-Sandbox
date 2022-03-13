@@ -436,10 +436,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 908fe64521e19e84db078cc934a7e55e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  positionOffset: {x: 0.7, y: -0.075, z: -0.8}
+  positionOffset: {x: 0.7, y: -0.075, z: -1.03}
   aimPositionOffset: {x: 0, y: -0.075, z: -0.8}
   rotationOffset: {x: 0, y: 0, z: 0, w: 1}
   grabPoint: {fileID: 0}
+  grabRigidbody: {fileID: 8545030960948312713}
+  canBeThrown: 0
   jointXMotion: 0
   jointYMotion: 2
   jointZMotion: 2

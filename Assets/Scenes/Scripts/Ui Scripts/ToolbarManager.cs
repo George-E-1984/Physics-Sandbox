@@ -3,22 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System; 
+using UnityEngine.InputSystem; 
 
 public class ToolbarManager : MonoBehaviour
 {
     [Header("Needed Script References")]
     public PlayerMovement playerMovement;
     public PlayerGrab playerGrab;
+    public PlayerManager playerManager; 
     public RectTransform selected;
     // public GameObject toolbar;
     public RectTransform[] slots;
     public Image[] icons;
     public GameObject[] items;
     public GameObject grabHolder; 
-    public int initiallySelected;
+    public int initiallySelected = 0;
     public bool canScroll = true;
     public int currentlySelected = 0;
-    private int lastSelected; 
+    public int lastSelected; 
     private int scrollWheelInt = 0;
 
     [Header("Info")]
@@ -33,29 +35,22 @@ public class ToolbarManager : MonoBehaviour
 
     void Update()
     {
-        scrollWheelInt = (int)Input.mouseScrollDelta.y;
-        currentlySelected += scrollWheelInt * System.Convert.ToUInt16(canScroll);
-        currentlySelected = mod(currentlySelected, slots.Length);
-        
-        if (currentlySelected != lastSelected)
-        {
-            SetSelectedSlot(currentlySelected);
-            lastSelected = currentlySelected;
-        }
+        //scrollWheelInt = (int)Input.mouseScrollDelta.y;
 
         //dropping tool
         if (Input.GetKeyDown(KeyCode.F) && items[currentlySelected] != null)
         {
-            if(items[currentlySelected].gameObject.tag == "Tool")
+            if (items[currentlySelected].gameObject.tag == "Tool")
             {
                 currentToolScript.StopAllCoroutines();
                 currentToolScript.isReloading = false; 
                 currentToolScript.reloadIcon.SetActive(false);
                 currentToolScript.isShooting = false;
-                items[currentlySelected].gameObject.GetComponent<Tool>().enabled = false;
+                currentToolScript.HandleInput(false); 
+                currentToolScript.StopAim();
+                currentToolScript.enabled = false; 
                 SceneMaster.instance.forceShot.SetActive(false);
             }
-            
             setItemActive(currentlySelected, false);
             items[currentlySelected].gameObject.SetActive(true);
             icons[currentlySelected].sprite = null; 
@@ -63,12 +58,27 @@ public class ToolbarManager : MonoBehaviour
         }
     }
 
+    public void OnScroll(InputAction.CallbackContext context)
+    {
+        Debug.Log(context);
+        currentlySelected += ((int)playerManager.playerInputActions.Player.TaskbarScroll.ReadValue<Vector2>().y);
+        currentlySelected = mod(currentlySelected, slots.Length);
+        print(currentlySelected);
+        if (currentlySelected != lastSelected)
+        {
+            print("scrolled lel");
+            SetSelectedSlot(currentlySelected);
+            lastSelected = currentlySelected;
+        }
+    }
     void SetSelectedSlot(int slot)
     {
         Vector2 slotTransform = slots[slot].position;
         selected.position = slotTransform;
         if (items[lastSelected] != null)
         {
+            print("poop");
+            setItemActive(lastSelected, false);
             if (items[lastSelected].gameObject.tag == "Tool")
             {
                 currentToolScript.StopAllCoroutines();
@@ -78,13 +88,12 @@ public class ToolbarManager : MonoBehaviour
                 currentToolScript = null; 
                 SceneMaster.instance.forceShot.SetActive(false);
             } 
-            setItemActive(lastSelected, false);
         }
         
        if (items[currentlySelected] != null)
-        {
-            setItemActive(currentlySelected, true);
-        }
+       {
+           setItemActive(currentlySelected, true);
+       }
     }
 
     public void AddItem(GameObject item)
@@ -93,13 +102,16 @@ public class ToolbarManager : MonoBehaviour
         if (firstNull != -1)
         {
             items[firstNull] = item;
-            currentlySelected = firstNull;
+            currentlySelected = firstNull; 
             icons[currentlySelected].sprite = items[currentlySelected].GetComponent<ObjectProperties>().icon;
             if (item.tag == "Tool")
             {
                currentToolScript = items[currentlySelected].GetComponent<Tool>();
+               currentToolScript.HandleInput(true); 
                print("Nala"); 
             } 
+            SetSelectedSlot(currentlySelected); 
+            lastSelected = currentlySelected; 
         }
         else
         {
@@ -118,6 +130,7 @@ public class ToolbarManager : MonoBehaviour
             if (items[currentlySelected].gameObject.tag == "Tool")
             {
                currentToolScript = items[currentlySelected].GetComponent<Tool>();
+               currentToolScript.HandleInput(true);
                playerGrab.isGrabbingTool = true;
                currentToolScript.enabled = true;
             } 
@@ -125,16 +138,25 @@ public class ToolbarManager : MonoBehaviour
         }
         else if (state == false)
         {            
-            playerGrab.ReleaseObject(false);
+            playerGrab.ReleaseObject();
             if (items[lastSelected].gameObject.tag == "Tool")
             {
+                currentToolScript = items[lastSelected].gameObject.GetComponent<Tool>(); 
+                if (currentToolScript.isAiming)
+                {
+                    currentToolScript.StopAim(); 
+                }
+                currentToolScript.HandleInput(false); 
                 playerGrab.isGrabbingTool = false;
             }
         }
     }
    
 
-    int mod(int k, int n) { return ((k %= n) < 0) ? k + n : k; }
+    int mod(int k, int n) 
+    { 
+        return ((k %= n) < 0) ? k + n : k; 
+    }
 
     
 }
