@@ -194,36 +194,32 @@ public class Tool : MonoBehaviour
         }
             
     }
-
-
-    private void fireRateTimer_Elapsed(object sender, ElapsedEventArgs e)
-    {
-        isShooting = false; 
-        fireRateTimer.Stop(); 
-    }
-
-    private void reloadTimer_Elapsed(object sender, ElapsedEventArgs e)
-    { 
-        reloadTimer.Stop();
-    }
     public void StartShot(InputAction.CallbackContext context)
     {
         print(context);
-        if (!isShooting && !isReloading)
+        if (!isShooting && !isReloading && ammoLeftClip > 0)
         {
             StartCoroutine(Shoot()); 
+        }
+        else if (ammoLeftClip == 0)
+        {
+            StartCoroutine(Reload()); 
         }
     }
     public void StartForceShot(InputAction.CallbackContext context)
     {
-        if (!isShooting && !isReloading)
+        if (!isShooting && !isReloading && ammoLeftClip > 0)
         {
             StartCoroutine(ForceGun()); 
+        }
+        else if (ammoLeftClip == 0)
+        {
+            StartCoroutine(Reload()); 
         }
     }
     public void StartReload(InputAction.CallbackContext context)
     {
-        if (!isShooting && !isReloading)
+        if (!isShooting && !isReloading && ammoLeftClip != gunOptions.maxAmmoInClip)
         {
             StartCoroutine(Reload()); 
         }
@@ -309,9 +305,13 @@ public class Tool : MonoBehaviour
         //time before you can shoot again   
         yield return waitFireRate; 
         isShooting = false; 
-        if (playerInputActions.Tool.Shoot.ReadValue<float>() == 1f && shootType == ShootType.Auto)
+        if (playerInputActions.Tool.Shoot.ReadValue<float>() == 1f && shootType == ShootType.Auto && ammoLeftClip > 0)
         {
             StartCoroutine(Shoot()); 
+        }
+        else if (ammoLeftClip == 0)
+        {
+            StartCoroutine(Reload()); 
         }
     }
 

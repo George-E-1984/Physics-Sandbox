@@ -71,6 +71,15 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Camera Movement"",
+                    ""type"": ""Value"",
+                    ""id"": ""b08d4c2c-cd58-45fd-a9b6-b7430bbaeaab"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -227,6 +236,17 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""action"": ""Taskbar Release"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6f2cddc0-0f9b-4579-8a56-1440f5d0de75"",
+                    ""path"": ""<Mouse>/delta"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Camera Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -308,6 +328,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         m_Player_Grabbing = m_Player.FindAction("Grabbing", throwIfNotFound: true);
         m_Player_TaskbarScroll = m_Player.FindAction("Taskbar Scroll", throwIfNotFound: true);
         m_Player_TaskbarRelease = m_Player.FindAction("Taskbar Release", throwIfNotFound: true);
+        m_Player_CameraMovement = m_Player.FindAction("Camera Movement", throwIfNotFound: true);
         // Tool
         m_Tool = asset.FindActionMap("Tool", throwIfNotFound: true);
         m_Tool_Shoot = m_Tool.FindAction("Shoot", throwIfNotFound: true);
@@ -377,6 +398,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Grabbing;
     private readonly InputAction m_Player_TaskbarScroll;
     private readonly InputAction m_Player_TaskbarRelease;
+    private readonly InputAction m_Player_CameraMovement;
     public struct PlayerActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -386,6 +408,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         public InputAction @Grabbing => m_Wrapper.m_Player_Grabbing;
         public InputAction @TaskbarScroll => m_Wrapper.m_Player_TaskbarScroll;
         public InputAction @TaskbarRelease => m_Wrapper.m_Player_TaskbarRelease;
+        public InputAction @CameraMovement => m_Wrapper.m_Player_CameraMovement;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -410,6 +433,9 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 @TaskbarRelease.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTaskbarRelease;
                 @TaskbarRelease.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTaskbarRelease;
                 @TaskbarRelease.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTaskbarRelease;
+                @CameraMovement.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCameraMovement;
+                @CameraMovement.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCameraMovement;
+                @CameraMovement.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCameraMovement;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -429,6 +455,9 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 @TaskbarRelease.started += instance.OnTaskbarRelease;
                 @TaskbarRelease.performed += instance.OnTaskbarRelease;
                 @TaskbarRelease.canceled += instance.OnTaskbarRelease;
+                @CameraMovement.started += instance.OnCameraMovement;
+                @CameraMovement.performed += instance.OnCameraMovement;
+                @CameraMovement.canceled += instance.OnCameraMovement;
             }
         }
     }
@@ -489,6 +518,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         void OnGrabbing(InputAction.CallbackContext context);
         void OnTaskbarScroll(InputAction.CallbackContext context);
         void OnTaskbarRelease(InputAction.CallbackContext context);
+        void OnCameraMovement(InputAction.CallbackContext context);
     }
     public interface IToolActions
     {

@@ -52,7 +52,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("Cam movement")]
     float mouseX;
     float mouseY;
-    float multiplier = 0.1f;
+    float multiplier = 0.01f;
     float xRotation;
     float yRotation;
     [Range(0, 100)]
@@ -159,8 +159,11 @@ public class PlayerMovement : MonoBehaviour
 
     private void PlayerMoveCamera()
     {
-        mouseX = Input.GetAxisRaw("Mouse X");
-        mouseY = Input.GetAxisRaw("Mouse Y");
+        //mouseX = Input.GetAxisRaw("Mouse X");
+        //mouseY = Input.GetAxisRaw("Mouse Y");
+        mouseX = playerManager.playerInputActions.Player.CameraMovement.ReadValue<Vector2>().x; 
+        mouseY = playerManager.playerInputActions.Player.CameraMovement.ReadValue<Vector2>().y;
+        print(mouseY); 
 
         yRotation += mouseX * playerData.sensitivity * multiplier * System.Convert.ToInt16(canLook);
         xRotation -= mouseY * playerData.sensitivity * multiplier * System.Convert.ToInt16(canLook);
@@ -168,7 +171,8 @@ public class PlayerMovement : MonoBehaviour
         xRotation = Mathf.Clamp(xRotation, -90f, 90f);
 
         playerCamera.transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
-        transform.rotation = Quaternion.Euler(0, yRotation, 0);
+        rb.MoveRotation(Quaternion.Euler(0, yRotation, 0)); 
+        //transform.rotation = Quaternion.Euler(0, yRotation, 0);
     }
 
     public void PlayerJump(InputAction.CallbackContext context)
