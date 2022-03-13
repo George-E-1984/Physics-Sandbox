@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   falloverDistance: 0.75
   attackDistance: 2
-  attackDamage: 15
+  attackDamage: 3
   maxRagdollHealth: 5

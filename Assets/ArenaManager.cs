@@ -8,13 +8,20 @@ using System.Timers;
 
 public class ArenaManager : MonoBehaviour
 {
+    #region Singleton
+    public static ArenaManager instance;
+    void Awake() 
+    {
+        instance = this; 
+    }
+    #endregion
     [Header("Varibles")]
     public float timeBetweenRounds; 
     public int totalInstaniatedEnemies;
     public int maxEnemiesAtOnce; 
     public int maxEnemiesPerRound; 
     public int enemyAmountIncreaseInterval;    
-    public int currentWaveEnemies; 
+    public int currentWaveEnemies;  
     [Header("Spawn Time Range")]
     public float spawnTimeRangeMin; public float spawnTimeRangeMax;
     [Header("Waves")]
@@ -28,6 +35,8 @@ public class ArenaManager : MonoBehaviour
     public Transform[] spawnPoints;
     [Header("Info")]
     bool isTransitioningWave = false; 
+    private int additionOfHealth;
+    private int additionOfDamage; 
     private static System.Timers.Timer roundIntervalTimer;
     private static System.Timers.Timer spawnerIntervals;
     [SerializeField] private bool isAllEnemiesSpawned = false; 
@@ -89,8 +98,10 @@ public class ArenaManager : MonoBehaviour
             foreach (GameObject ragdoll in enemiesToInstantiate)
             {
                 ActiveRagdoll activeRagdollScript = enemiesToInstantiate[foreachIteration].GetComponent<ActiveRagdoll>(); 
-                activeRagdollScript.activeRagdollObject.maxRagdollHealth += 2;  
+                activeRagdollScript.activeRagdollObject.maxRagdollHealth += 2; 
+                additionOfHealth += 2;  
                 activeRagdollScript.activeRagdollObject.attackDamage += 1; 
+                additionOfDamage += 1; 
                 if (maxEnemiesPerRound < 100)
                 {
                     maxEnemiesPerRound += enemyAmountIncreaseInterval;
@@ -118,6 +129,13 @@ public class ArenaManager : MonoBehaviour
     public void ModeEnd()
     {
         print("Mode finished"); 
+        //takes away the extra damage and health added to the enemy SOs during the mode
+        for (int i = 0; i < enemiesToInstantiate.Length; i++)
+        {
+            ActiveRagdoll activeRagdoll = enemiesToInstantiate[i].GetComponent<ActiveRagdoll>(); 
+            activeRagdoll.activeRagdollObject.maxRagdollHealth -= additionOfHealth;
+            activeRagdoll.activeRagdollObject.attackDamage -= additionOfDamage; 
+        }
     }
 
     public void WaveStart()

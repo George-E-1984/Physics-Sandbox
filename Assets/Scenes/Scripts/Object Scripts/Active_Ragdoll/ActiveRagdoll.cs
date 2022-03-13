@@ -26,6 +26,11 @@ public class ActiveRagdoll : MonoBehaviour
     [Header("Variables")]
     public float lookRadius = 10f;
     public int currentRagdollHealth; 
+    [Header("Audio")]
+    public AudioSource audioSource; 
+    public AudioClip[] ambientSounds;
+    public AudioClip[] attackSounds;
+    public AudioClip[] deathSounds;
 
     [Header("Info (Do not touch)")]
     public Transform target; 
@@ -34,13 +39,17 @@ public class ActiveRagdoll : MonoBehaviour
     public RaycastHit hit; 
     public Rigidbody ragdollRigidbody; 
     public bool isAlive = true; 
+    public ArenaManager arenaManager; 
+    public int healthAddition; 
     public UnityEvent onDieEvent; 
     // Start is called before the first frame update
     void Start()
     {
+        arenaManager = ArenaManager.instance; 
         ragdollRigidbody = rootPhysicsObj.GetComponent<Rigidbody>(); 
         target = SceneMaster.instance.player.transform;  
         currentRagdollHealth = activeRagdollObject.maxRagdollHealth; 
+        StartCoroutine(SoundEffects()); 
     }
 
     // Update is called once per frame
@@ -103,6 +112,7 @@ public class ActiveRagdoll : MonoBehaviour
         jointHandler.SetJointSettings(true);  
         jointHandler.SetJointBones();
         onDieEvent.Invoke(); 
+        StopAllCoroutines(); 
         this.enabled = false; 
         print("Ded");
     }
@@ -115,7 +125,17 @@ public class ActiveRagdoll : MonoBehaviour
         isAlive = true; 
         jointHandler.SetJointSettings(false);
         jointHandler.SetJointBones();
+        StartCoroutine(SoundEffects()); 
         print("revive"); 
+    }
+
+    public IEnumerator SoundEffects()
+    {
+        audioSource.pitch = Random.Range(0.8f, 1.2f); 
+        AudioClip audioClip = ambientSounds[Random.Range(0, ambientSounds.Length)];
+        audioSource.PlayOneShot(audioClip); 
+        yield return new WaitForSeconds(audioClip.length + Random.Range(5, 10));
+        StartCoroutine(SoundEffects()); 
     }
 
     private void OnDrawGizmosSelected() 

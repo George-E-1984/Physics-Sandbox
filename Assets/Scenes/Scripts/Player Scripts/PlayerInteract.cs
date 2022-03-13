@@ -250,8 +250,11 @@ public class PlayerInteract : MonoBehaviour
     // }
     public void ButtonDepress(InputAction.CallbackContext context)
     { 
-        buttonScript.buttonJoint.targetPosition = new Vector3(0, 0 ,0); 
-        isPressingButton = false; 
+        if (isPressingButton)
+        {
+            buttonScript.buttonJoint.targetPosition = new Vector3(0, 0 ,0); 
+            isPressingButton = false; 
+        }
     }
 }
 
