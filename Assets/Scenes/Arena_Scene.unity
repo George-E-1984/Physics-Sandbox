@@ -4409,11 +4409,6 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 220017682}
-    - target: {fileID: 4270531198799934404, guid: 800199ee74358c14491aa1e9123dcb99,
-        type: 3}
-      propertyPath: activeRagdoll
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 4270531198799934406, guid: 800199ee74358c14491aa1e9123dcb99,
         type: 3}
       propertyPath: m_Name
@@ -5339,7 +5334,7 @@ MonoBehaviour:
   timeBetweenRounds: 5
   totalInstaniatedEnemies: 100
   maxEnemiesAtOnce: 20
-  maxEnemiesPerRound: 20
+  maxEnemiesPerRound: 10
   enemyAmountIncreaseInterval: 5
   currentWaveEnemies: 0
   spawnTimeRangeMin: 1
@@ -7201,7 +7196,17 @@ PrefabInstance:
     - target: {fileID: 2969419922685704471, guid: 5a5d5a722d67f944b9a4d068dfc02b17,
         type: 3}
       propertyPath: m_ConnectedAnchor.x
-      value: -2.25
+      value: 23.967001
+      objectReference: {fileID: 0}
+    - target: {fileID: 2969419922685704471, guid: 5a5d5a722d67f944b9a4d068dfc02b17,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.y
+      value: 1.6059387
+      objectReference: {fileID: 0}
+    - target: {fileID: 2969419922685704471, guid: 5a5d5a722d67f944b9a4d068dfc02b17,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.z
+      value: -0.25000003
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5a5d5a722d67f944b9a4d068dfc02b17, type: 3}

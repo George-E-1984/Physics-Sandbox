@@ -181,8 +181,6 @@ public class PlayerMovement : MonoBehaviour
         //mouseY = Input.GetAxisRaw("Mouse Y");
         mouseX = playerManager.playerInputActions.Player.CameraMovement.ReadValue<Vector2>().x; 
         mouseY = playerManager.playerInputActions.Player.CameraMovement.ReadValue<Vector2>().y;
-        print(mouseY); 
-
         yRotation += mouseX * playerData.sensitivity * multiplier * System.Convert.ToInt16(canLook);
         xRotation -= mouseY * playerData.sensitivity * multiplier * System.Convert.ToInt16(canLook);
 
@@ -195,10 +193,8 @@ public class PlayerMovement : MonoBehaviour
 
     public void PlayerJump(InputAction.CallbackContext context)
     {
-        Debug.Log(context); 
         if (context.performed && isGrounded)
         {
-            Debug.Log("Jump! " + context.phase);
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
         }
     }

@@ -61,13 +61,10 @@ public class ToolbarManager : MonoBehaviour
 
     public void OnScroll(InputAction.CallbackContext context)
     {
-        Debug.Log(context);
         currentlySelected += ((int)playerManager.playerInputActions.Player.TaskbarScroll.ReadValue<Vector2>().y);
         currentlySelected = mod(currentlySelected, slots.Length);
-        print(currentlySelected);
         if (currentlySelected != lastSelected)
         {
-            print("scrolled lel");
             SetSelectedSlot(currentlySelected);
             lastSelected = currentlySelected;
         }

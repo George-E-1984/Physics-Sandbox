@@ -33,6 +33,7 @@ public class Button : MonoBehaviour
     private PlayerManager playerManagerScript;
     private bool isPushingButton; 
     private RaycastHit hit; 
+    private int timesCalled = 0;
     void Start()
     {
         int baseCol = 0; 
@@ -55,8 +56,7 @@ public class Button : MonoBehaviour
     }
 
     public void HandleButtonState()
-    {
-        int timesCalled = 0; 
+    { 
         if (buttonPlunger.transform.localPosition.y <= downThreshold && !isButtonDown)
         {
             buttonAudioSource.pitch = Random.Range(0.9f, 1.1f);
@@ -66,6 +66,7 @@ public class Button : MonoBehaviour
             if (timesCalled < 1)
             {
                 onButtonPressedOnce.Invoke(); 
+                print("Button one press loam"); 
             }
             timesCalled++; 
             isButtonDown = true; 
