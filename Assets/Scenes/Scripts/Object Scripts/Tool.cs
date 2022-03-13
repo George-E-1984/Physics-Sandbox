@@ -201,7 +201,7 @@ public class Tool : MonoBehaviour
         {
             StartCoroutine(Shoot()); 
         }
-        else if (ammoLeftClip == 0)
+        else if (ammoLeftClip == 0 && ammoLeftBank > 0 && !isReloading)
         {
             StartCoroutine(Reload()); 
         }
@@ -212,14 +212,14 @@ public class Tool : MonoBehaviour
         {
             StartCoroutine(ForceGun()); 
         }
-        else if (ammoLeftClip == 0)
+        else if (ammoLeftClip == 0 && ammoLeftBank > 0 && !isReloading) 
         {
             StartCoroutine(Reload()); 
         }
     }
     public void StartReload(InputAction.CallbackContext context)
     {
-        if (!isShooting && !isReloading && ammoLeftClip != gunOptions.maxAmmoInClip)
+        if (!isShooting && !isReloading && ammoLeftClip != gunOptions.maxAmmoInClip && ammoLeftBank > 0)
         {
             StartCoroutine(Reload()); 
         }
@@ -309,7 +309,7 @@ public class Tool : MonoBehaviour
         {
             StartCoroutine(Shoot()); 
         }
-        else if (ammoLeftClip == 0)
+        else if (ammoLeftClip == 0 && ammoLeftBank > 0 && !isReloading)
         {
             StartCoroutine(Reload()); 
         }
@@ -347,7 +347,7 @@ public class Tool : MonoBehaviour
         yield return waitReloadTime; 
         reloadIcon.SetActive(false);
         isReloading = false; 
-        if ((gunOptions.maxAmmoInClip - ammoLeftClip) > ammoLeftBank)
+        if ((gunOptions.maxAmmoInClip - ammoLeftClip) >= ammoLeftBank)
         {
             ammoLeftClip = ammoLeftClip + ammoLeftBank;
             ammoLeftBank = 0; 

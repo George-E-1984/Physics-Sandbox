@@ -55,6 +55,7 @@ public class ToolbarManager : MonoBehaviour
             items[currentlySelected].gameObject.SetActive(true);
             icons[currentlySelected].sprite = null; 
             items[currentlySelected] = null;
+            playerGrab.isGrabbing = false; 
         }
     }
 
@@ -134,6 +135,10 @@ public class ToolbarManager : MonoBehaviour
                playerGrab.isGrabbingTool = true;
                currentToolScript.enabled = true;
             } 
+            else 
+            {
+                playerGrab.isGrabbing = true; 
+            }
             
         }
         else if (state == false)
@@ -148,6 +153,10 @@ public class ToolbarManager : MonoBehaviour
                 }
                 currentToolScript.HandleInput(false); 
                 playerGrab.isGrabbingTool = false;
+            }
+            else
+            {
+                playerGrab.isGrabbing = false; 
             }
         }
     }
