@@ -46,9 +46,27 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
+                    ""name"": ""Sprint"",
+                    ""type"": ""Button"",
+                    ""id"": ""a81a5bc6-79f0-4f65-a116-30681633010b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""Grabbing"",
                     ""type"": ""Button"",
                     ""id"": ""cd49adc8-653b-4d3b-98e5-b9e7ab7c24ac"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Button Press"",
+                    ""type"": ""Button"",
+                    ""id"": ""c3ab59b6-8c5f-4481-b71a-6ee60f633f86"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -247,6 +265,28 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""action"": ""Camera Movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d33bb970-5fff-45e3-a68a-a977b3c1dbbc"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Button Press"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""739113c5-f0fc-486d-bbce-088f12abb77c"",
+                    ""path"": ""<Keyboard>/shift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Sprint"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -325,7 +365,9 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         m_Player_Movement = m_Player.FindAction("Movement", throwIfNotFound: true);
+        m_Player_Sprint = m_Player.FindAction("Sprint", throwIfNotFound: true);
         m_Player_Grabbing = m_Player.FindAction("Grabbing", throwIfNotFound: true);
+        m_Player_ButtonPress = m_Player.FindAction("Button Press", throwIfNotFound: true);
         m_Player_TaskbarScroll = m_Player.FindAction("Taskbar Scroll", throwIfNotFound: true);
         m_Player_TaskbarRelease = m_Player.FindAction("Taskbar Release", throwIfNotFound: true);
         m_Player_CameraMovement = m_Player.FindAction("Camera Movement", throwIfNotFound: true);
@@ -395,7 +437,9 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
     private IPlayerActions m_PlayerActionsCallbackInterface;
     private readonly InputAction m_Player_Jump;
     private readonly InputAction m_Player_Movement;
+    private readonly InputAction m_Player_Sprint;
     private readonly InputAction m_Player_Grabbing;
+    private readonly InputAction m_Player_ButtonPress;
     private readonly InputAction m_Player_TaskbarScroll;
     private readonly InputAction m_Player_TaskbarRelease;
     private readonly InputAction m_Player_CameraMovement;
@@ -405,7 +449,9 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         public PlayerActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
         public InputAction @Movement => m_Wrapper.m_Player_Movement;
+        public InputAction @Sprint => m_Wrapper.m_Player_Sprint;
         public InputAction @Grabbing => m_Wrapper.m_Player_Grabbing;
+        public InputAction @ButtonPress => m_Wrapper.m_Player_ButtonPress;
         public InputAction @TaskbarScroll => m_Wrapper.m_Player_TaskbarScroll;
         public InputAction @TaskbarRelease => m_Wrapper.m_Player_TaskbarRelease;
         public InputAction @CameraMovement => m_Wrapper.m_Player_CameraMovement;
@@ -424,9 +470,15 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 @Movement.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMovement;
                 @Movement.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMovement;
                 @Movement.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMovement;
+                @Sprint.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSprint;
+                @Sprint.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSprint;
+                @Sprint.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSprint;
                 @Grabbing.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnGrabbing;
                 @Grabbing.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnGrabbing;
                 @Grabbing.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnGrabbing;
+                @ButtonPress.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnButtonPress;
+                @ButtonPress.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnButtonPress;
+                @ButtonPress.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnButtonPress;
                 @TaskbarScroll.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTaskbarScroll;
                 @TaskbarScroll.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTaskbarScroll;
                 @TaskbarScroll.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTaskbarScroll;
@@ -446,9 +498,15 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 @Movement.started += instance.OnMovement;
                 @Movement.performed += instance.OnMovement;
                 @Movement.canceled += instance.OnMovement;
+                @Sprint.started += instance.OnSprint;
+                @Sprint.performed += instance.OnSprint;
+                @Sprint.canceled += instance.OnSprint;
                 @Grabbing.started += instance.OnGrabbing;
                 @Grabbing.performed += instance.OnGrabbing;
                 @Grabbing.canceled += instance.OnGrabbing;
+                @ButtonPress.started += instance.OnButtonPress;
+                @ButtonPress.performed += instance.OnButtonPress;
+                @ButtonPress.canceled += instance.OnButtonPress;
                 @TaskbarScroll.started += instance.OnTaskbarScroll;
                 @TaskbarScroll.performed += instance.OnTaskbarScroll;
                 @TaskbarScroll.canceled += instance.OnTaskbarScroll;
@@ -515,7 +573,9 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
     {
         void OnJump(InputAction.CallbackContext context);
         void OnMovement(InputAction.CallbackContext context);
+        void OnSprint(InputAction.CallbackContext context);
         void OnGrabbing(InputAction.CallbackContext context);
+        void OnButtonPress(InputAction.CallbackContext context);
         void OnTaskbarScroll(InputAction.CallbackContext context);
         void OnTaskbarRelease(InputAction.CallbackContext context);
         void OnCameraMovement(InputAction.CallbackContext context);

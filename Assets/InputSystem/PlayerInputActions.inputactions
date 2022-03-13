@@ -24,9 +24,27 @@
                     "initialStateCheck": true
                 },
                 {
+                    "name": "Sprint",
+                    "type": "Button",
+                    "id": "a81a5bc6-79f0-4f65-a116-30681633010b",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Grabbing",
                     "type": "Button",
                     "id": "cd49adc8-653b-4d3b-98e5-b9e7ab7c24ac",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Button Press",
+                    "type": "Button",
+                    "id": "c3ab59b6-8c5f-4481-b71a-6ee60f633f86",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -223,6 +241,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "Camera Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d33bb970-5fff-45e3-a68a-a977b3c1dbbc",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Button Press",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "739113c5-f0fc-486d-bbce-088f12abb77c",
+                    "path": "<Keyboard>/shift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Sprint",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -9,7 +9,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("Assignables")] 
     public PlayerData playerData; 
     public CapsuleCollider playerCol;
-    public PlayerGrab playerGrab;
+    public PlayerInteract playerGrab;
     public PlayerManager playerManager; 
     public UiData uiData;
     public AudioSource playerAudioSource;
@@ -17,7 +17,6 @@ public class PlayerMovement : MonoBehaviour
     public Transform playerCamera;
     public GameObject groundCheckLocation;
     public LayerMask groundMask;
-
 
     [Header("Movement")]
     Vector3 moveDirection;
@@ -64,6 +63,7 @@ public class PlayerMovement : MonoBehaviour
     private float xRot;
     public RaycastHit hit; 
     public bool canLook = true; 
+    public bool isPlayingSound = false; 
 
     // Start is called before the first frame update
     void Start()
@@ -79,6 +79,10 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {             
+        if (rb.velocity.magnitude > 2f && isGrounded && !isPlayingSound)
+        {
+            StartCoroutine(PlayerSound()); 
+        } 
         //MyInput();
         ControlDrag();
 
@@ -87,19 +91,8 @@ public class PlayerMovement : MonoBehaviour
             Crouch();
         }
         else UnCrouch();
-
-        if (Input.GetKey(KeyCode.LeftShift))
-        {
-            isSprinting = true;
-        }
-        else
-        {
-            isSprinting = false;
-        }
-
-        //Ground Check
+    
         Physics.Raycast(transform.position, Vector3.down, out hit, 1.1f);
-        
         if (hit.collider && hit.collider != playerGrab.grabbedObject)
         {
             isGrounded = true; 
@@ -110,7 +103,30 @@ public class PlayerMovement : MonoBehaviour
         } 
         
     }
-
+    public IEnumerator PlayerSound()
+    {
+        isPlayingSound = true;
+        playerAudioSource.pitch = Random.Range(0.9f, 1.1f);
+        playerAudioSource.volume = Random.Range(0.9f, 1.1f); 
+        playerManager.playerAudioSource.PlayOneShot(playerManager.moveSounds[Random.Range(0, playerManager.moveSounds.Length)]);
+        if (isSprinting)
+        {
+            yield return new WaitForSeconds(0.25f); 
+        }
+        else 
+        {
+            yield return new WaitForSeconds(0.5f);
+        }
+        isPlayingSound = false; 
+    }
+    public void SetSprintTrue(InputAction.CallbackContext context)
+    {
+        isSprinting = true; 
+    }
+    public void SetSprintFalse(InputAction.CallbackContext context)
+    {
+        isSprinting = false; 
+    }
     public void MyInput()
     {
         horizontalMovement = Input.GetAxisRaw("Horizontal");
@@ -154,6 +170,8 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.AddForce(moveDirection * airMovementSpeed, ForceMode.Acceleration);
         }
+
+        
     
     }
 

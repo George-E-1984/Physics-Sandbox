@@ -14,7 +14,7 @@ public class Pistol : MonoBehaviour
     public GameObject shellEjectPoint;
     public GameObject reloadIcon;
     public Animator slideAnimator;
-    private PlayerGrab playerGrabScript;
+    private PlayerInteract playerGrabScript;
 
     [Header("Audio")]
     public AudioSource gunAudioSource;
@@ -40,7 +40,7 @@ public class Pistol : MonoBehaviour
     {
         gameObject.GetComponent<Tool>().enabled = false;
 
-        playerGrabScript = GameObject.Find("Player").GetComponent<PlayerGrab>();
+        playerGrabScript = GameObject.Find("Player").GetComponent<PlayerInteract>();
 
         maxAmmoStorageLeft = maxAmmoStorageSize;
         bulletsLeft = magazineSize;

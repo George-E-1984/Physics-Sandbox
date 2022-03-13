@@ -12,13 +12,19 @@ public class PlayerManager : MonoBehaviour
     [Header("Assign")]
     public PlayerData playerData; 
     public PlayerMovement playerMovement; 
-    public PlayerGrab playerGrab; 
+    public PlayerInteract playerGrab; 
     public ToolbarManager toolbarManager; 
     public GameObject playerRoot; 
     public Camera playerCam;
     public Image fadeImage; 
-    public AudioMixer audioMixer; 
     public float fadeTime; 
+    [Header("Audio Stuff")]
+    public AudioMixer audioMixer; 
+    public AudioSource playerAudioSource;
+    public AudioClip[] moveSounds;
+    public AudioClip[] jumpSounds;
+    public AudioClip[] grabSounds; 
+
     [Header("Info")]
     private Color color; 
     public UnityEvent deathEvent; 
@@ -67,6 +73,12 @@ public class PlayerManager : MonoBehaviour
         playerInputActions.Player.Grabbing.canceled += playerGrab.StartReleaseObject; 
         //Taskbar Input 
         playerInputActions.Player.TaskbarScroll.performed += toolbarManager.OnScroll;  
+        //Button Interact Input
+        playerInputActions.Player.ButtonPress.performed += playerGrab.ButtonPress; 
+        playerInputActions.Player.ButtonPress.canceled += playerGrab.ButtonDepress; 
+        //Sprint 
+        playerInputActions.Player.Sprint.performed += playerMovement.SetSprintTrue;
+        playerInputActions.Player.Sprint.canceled += playerMovement.SetSprintFalse;
     }
     public float Remap(float value, float oldLow, float oldHigh, float newLow, float newHigh)
     {
@@ -74,4 +86,5 @@ public class PlayerManager : MonoBehaviour
         float newValue = Mathf.Lerp(newLow, newHigh, normal);
         return newValue;
     }
+
 }

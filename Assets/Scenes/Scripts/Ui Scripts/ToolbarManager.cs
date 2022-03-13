@@ -9,7 +9,7 @@ public class ToolbarManager : MonoBehaviour
 {
     [Header("Needed Script References")]
     public PlayerMovement playerMovement;
-    public PlayerGrab playerGrab;
+    public PlayerInteract playerGrab;
     public PlayerManager playerManager; 
     public RectTransform selected;
     // public GameObject toolbar;

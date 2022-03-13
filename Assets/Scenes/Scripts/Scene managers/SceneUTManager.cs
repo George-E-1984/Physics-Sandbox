@@ -19,7 +19,7 @@ public class SceneUTManager : MonoBehaviour
     
 
     [Header("Script References")]
-    public PlayerGrab playerGrab;
+    public PlayerInteract playerGrab;
     public PlayerMovement playerMovement;
     public ToolbarManager toolbarManager;
 

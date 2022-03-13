@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events; 
+using UnityEngine.InputSystem; 
 
 public class Button : MonoBehaviour
 {
@@ -15,16 +16,20 @@ public class Button : MonoBehaviour
     [Header("Variables")]
     public float downThreshold; 
     public float upThreshold; 
+    [Header("Sound Effects")]
+    public AudioSource buttonAudioSource;
+    public AudioClip[] onClickSound;
 
     [Header("Unity Events")]
     public UnityEvent onButtonPressed; 
+    public UnityEvent onButtonPressedOnce; 
     public UnityEvent onButtonUp; 
     public UnityEvent onButtonHold; 
 
     [Header("Info")]
     public SoftJointLimit configLimit; 
     private bool isButtonDown = false;   
-    private PlayerGrab playerGrabScript; 
+    private PlayerInteract playerGrabScript; 
     private PlayerManager playerManagerScript;
     private bool isPushingButton; 
     private RaycastHit hit; 
@@ -41,40 +46,28 @@ public class Button : MonoBehaviour
             }
             baseCol++; 
         }
-        playerGrabScript = SceneMaster.instance.player.GetComponent<PlayerGrab>(); 
+        playerGrabScript = SceneMaster.instance.player.GetComponent<PlayerInteract>(); 
         playerManagerScript = SceneMaster.instance.player.GetComponent<PlayerManager>(); 
     }
-    async void Update()
+    void Update()
     {
-        // if (Input.GetMouseButtonDown(1))
-        // {
-        //     Physics.Raycast(playerManagerScript.playerCam.transform.position, playerManagerScript.playerCam.transform.forward, out hit, 10f);
-        //     {
-        //         if (hit.collider)
-        //         {
-        //             if (hit.collider.tag == "Button")
-        //             {
-        //                 print("Pushing button"); 
-        //                 buttonJoint.targetPosition = new Vector3(0, buttonJoint.linearLimit.limit, 0);
-        //                 isPushingButton = true; 
-        //             }
-        //         }
-        //     }
-        // }
-        // else if (Input.GetMouseButtonUp(1) && isPushingButton)
-        // {
-        //     buttonJoint.targetPosition = new Vector3(0, 0, 0);
-        //     isPushingButton = false; 
-        // }
         HandleButtonState(); 
     }
 
-    void HandleButtonState()
+    public void HandleButtonState()
     {
+        int timesCalled = 0; 
         if (buttonPlunger.transform.localPosition.y <= downThreshold && !isButtonDown)
         {
+            buttonAudioSource.pitch = Random.Range(0.9f, 1.1f);
+            buttonAudioSource.PlayOneShot(onClickSound[Random.Range(0, onClickSound.Length)]); 
             onButtonPressed.Invoke();  
             print("Button Pressed"); 
+            if (timesCalled < 1)
+            {
+                onButtonPressedOnce.Invoke(); 
+            }
+            timesCalled++; 
             isButtonDown = true; 
         }
         else if (buttonPlunger.transform.localPosition.y <= downThreshold && isButtonDown)
@@ -88,22 +81,5 @@ public class Button : MonoBehaviour
             onButtonUp.Invoke();
             print("Button up");
         }
-        
-        void ButtonPush()
-        {
-            Physics.Raycast(playerManagerScript.playerCam.transform.position, playerManagerScript.playerCam.transform.forward, out hit, 10f);
-            {
-                if (hit.collider)
-                {
-                    if (hit.collider.tag == "Button")
-                    {
-                        print("Pushing button"); 
-                        buttonJoint.targetPosition = new Vector3(0, buttonJoint.linearLimit.limit, 0);
-                        isPushingButton = true; 
-                    }
-                }
-            }
-        }
-
     }
 }

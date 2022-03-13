@@ -51,14 +51,15 @@ public class ArenaManager : MonoBehaviour
             //activeRagdollScript.RagdollDeath(); 
             //dude.GetComponentInChildren<SkinnedMeshRenderer>().enabled = false;  
             print("awww simba"); 
-        }      
+        }  
+        roundCounter = SceneMaster.instance.player.GetComponentInChildren<UiData>().roundCounterText;
+        roundCounter.enabled = true; 
+        currentWaveNumber = 1;    
     }
     
     void OnEnable() 
     {
-        roundCounter = SceneMaster.instance.player.GetComponentInChildren<UiData>().roundCounterText;
-        currentWaveNumber = 1;
-        roundCounter.text = "1";
+        
     }
 
     
@@ -114,17 +115,18 @@ public class ArenaManager : MonoBehaviour
        
     }
 
-    void ModeEnd()
+    public void ModeEnd()
     {
         print("Mode finished"); 
     }
 
-    void WaveStart()
+    public void WaveStart()
     {
        totalRagdollSpawnerIterations = 0; 
        currentRagdollSpawnerIterations = 0; 
        isAllEnemiesSpawned = false; 
-       //currentWaveEnemies = maxEnemiesAtOnce; 
+       //currentWaveEnemies = maxEnemiesAtOnce;
+       roundCounter.text = currentWaveNumber.ToString();  
        StartCoroutine(DudeSpawner());   
        //if (isSpawnerTimerFinished)
        //{

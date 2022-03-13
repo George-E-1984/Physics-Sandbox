@@ -6,7 +6,7 @@ public class Crosshair : MonoBehaviour
 
 {
     private Animator animator; 
-    public PlayerGrab playerGrab;
+    public PlayerInteract playerGrab;
 
 
     // Start is called before the first frame update

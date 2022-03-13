@@ -58,13 +58,13 @@ public class Tool : MonoBehaviour
     private PlayerInputActions playerInputActions; 
 
     //Script Refs
-    private PlayerGrab playerGrab;
+    private PlayerInteract playerGrab;
     
     // Start is called before the first frame update
     void Start()
     {
         //finds the playergrab script
-        playerGrab = SceneMaster.instance.player.GetComponent<PlayerGrab>(); 
+        playerGrab = SceneMaster.instance.player.GetComponent<PlayerInteract>(); 
 
         //finds the tool rigidbody
         toolRB = gameObject.GetComponent<Rigidbody>();
