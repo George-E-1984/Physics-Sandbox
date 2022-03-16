@@ -286,6 +286,15 @@ MonoBehaviour:
   jumpSounds: []
   grabSounds:
   - {fileID: 0}
+  deathSounds:
+  - {fileID: 8300000, guid: 65c013912f221a747adf98486437d991, type: 3}
+  - {fileID: 8300000, guid: 4df6f2c599d6dfb4894bab8530dea749, type: 3}
+  - {fileID: 8300000, guid: b8a2f2094be9f5f4cb62a5b396a147d9, type: 3}
+  - {fileID: 8300000, guid: 1cf00c735e67e634c85d50b1eec0aa02, type: 3}
+  - {fileID: 8300000, guid: 81387777172fd734896e9d04a529a82b, type: 3}
+  - {fileID: 8300000, guid: a0e9c508922a5304f92ffc370dd67984, type: 3}
+  - {fileID: 8300000, guid: dd525b01b9280f74d9ef306f627f200b, type: 3}
+  - {fileID: 8300000, guid: ab6d1308a3a5ac44281552aae68323a1, type: 3}
   deathEvent:
     m_PersistentCalls:
       m_Calls: []

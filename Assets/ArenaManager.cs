@@ -37,6 +37,8 @@ public class ArenaManager : MonoBehaviour
     bool isTransitioningWave = false; 
     private int additionOfHealth;
     private int additionOfDamage; 
+    private int additionOfMaxEnemiesPerRound; 
+    private  bool waveModeStarted = false; 
     private static System.Timers.Timer roundIntervalTimer;
     private static System.Timers.Timer spawnerIntervals;
     [SerializeField] private bool isAllEnemiesSpawned = false; 
@@ -80,7 +82,7 @@ public class ArenaManager : MonoBehaviour
     void HandleEnemy()
     { 
         currentWaveEnemies--; 
-        if (totalRagdollSpawnerIterations >= maxEnemiesPerRound && currentWaveEnemies <= 0)
+        if (totalRagdollSpawnerIterations >= maxEnemiesPerRound && currentWaveEnemies <= 0 && waveModeStarted)
         {
             StartCoroutine(WaveTransition()); 
         }
@@ -105,6 +107,7 @@ public class ArenaManager : MonoBehaviour
                 if (maxEnemiesPerRound < 100)
                 {
                     maxEnemiesPerRound += enemyAmountIncreaseInterval;
+                    additionOfMaxEnemiesPerRound += enemyAmountIncreaseInterval; 
                 }    
                 foreachIteration++; 
             }
@@ -129,6 +132,7 @@ public class ArenaManager : MonoBehaviour
     public void ModeEnd()
     {
         print("Mode finished"); 
+        waveModeStarted = false; 
         //takes away the extra damage and health added to the enemy SOs during the mode
         for (int i = 0; i < enemiesToInstantiate.Length; i++)
         {
@@ -136,28 +140,32 @@ public class ArenaManager : MonoBehaviour
             activeRagdoll.activeRagdollObject.maxRagdollHealth -= additionOfHealth;
             activeRagdoll.activeRagdollObject.attackDamage -= additionOfDamage; 
         }
+        for (int i = 0; i < enemiesInstantiated.Length; i++)
+        {
+            ActiveRagdoll activeRagdoll = enemiesInstantiated[i].GetComponent<ActiveRagdoll>();
+            activeRagdoll.RagdollDeath(); 
+            enemiesInstantiated[i].GetComponentInChildren<SkinnedMeshRenderer>().enabled = false; 
+            ParticleSystem deathParts = Instantiate(deathParticleEffectPrefab, enemiesInstantiated[i].transform.position, enemiesInstantiated[i].transform.rotation).GetComponent<ParticleSystem>();
+        }
+        maxEnemiesPerRound -= additionOfMaxEnemiesPerRound; 
+        currentWaveNumber = 1; 
+        currentWaveEnemies = 0; 
+        roundCounter.enabled = false; 
     }
 
     public void WaveStart()
     {
+       waveModeStarted = true; 
        totalRagdollSpawnerIterations = 0; 
        currentRagdollSpawnerIterations = 0; 
        isAllEnemiesSpawned = false; 
        //currentWaveEnemies = maxEnemiesAtOnce;
+       if (!roundCounter.IsActive())
+       {
+           roundCounter.enabled = true;
+       }
        roundCounter.text = currentWaveNumber.ToString();  
        StartCoroutine(DudeSpawner());   
-       //if (isSpawnerTimerFinished)
-       //{
-            //DudeSpawner(iterations);  
-            //if (iterations >= totalWaveEnemies)
-            //{
-                //isAllEnemiesSpawned = true; 
-            //}
-            //iterations++; 
-            //spawnerIntervals.Interval = Random.Range(spawnTimeRangeMin * 1000, spawnTimeRangeMax * 1000);
-            //spawnerIntervals.Start(); 
-            //isSpawnerTimerFinished = false; 
-       //}
     }
 
     IEnumerator DudeSpawner()
@@ -184,6 +192,7 @@ public class ArenaManager : MonoBehaviour
             else 
             {
                 activeRagdoll.SetActive(true); 
+                //activeRagdollScript.StartCoroutine(activeRagdollScript.SoundEffects()); 
             }
             //activeRagdoll.SetActive(true);
             activeRagdoll.transform.position = spawnPoints[Random.Range(0, spawnPoints.Length - 1)].position;

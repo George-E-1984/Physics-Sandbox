@@ -24,6 +24,7 @@ public class PlayerManager : MonoBehaviour
     public AudioClip[] moveSounds;
     public AudioClip[] jumpSounds;
     public AudioClip[] grabSounds; 
+    public AudioClip[] deathSounds; 
 
     [Header("Info")]
     private Color color; 
@@ -50,6 +51,7 @@ public class PlayerManager : MonoBehaviour
         playerRoot.transform.position = SceneMaster.instance.respawnPoint.position; 
         deathEvent.Invoke(); 
         playerData.currentPlayerHealth = playerData.MaxPlayerHealth; 
+        playerAudioSource.PlayOneShot(deathSounds[Random.Range(0, deathSounds.Length)]); 
 
     }
     public void AddSettings()

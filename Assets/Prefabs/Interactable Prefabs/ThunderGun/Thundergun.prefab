@@ -147,7 +147,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 72e7e9baac57f1e469a692fbee068022, type: 2}
+  - {fileID: 2100000, guid: 7d21323e8ab6fa444a10005df23e7cdd, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -241,6 +241,8 @@ MonoBehaviour:
   aimPositionOffset: {x: 0, y: 0, z: 0}
   rotationOffset: {x: 0, y: 0, z: 0, w: 1}
   grabPoint: {fileID: 0}
+  grabRigidbody: {fileID: 0}
+  canBeThrown: 0
   jointXMotion: 2
   jointYMotion: 2
   jointZMotion: 2
@@ -680,7 +682,7 @@ Light:
   serializedVersion: 10
   m_Type: 0
   m_Shape: 0
-  m_Color: {r: 0, g: 0.5716541, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.05929699, b: 0, a: 1}
   m_Intensity: 2
   m_Range: 10.542618
   m_SpotAngle: 96.08253
