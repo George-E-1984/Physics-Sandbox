@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI; 
 using TMPro; 
 using UnityEngine.Events; 
+using UnityEngine.InputSystem; 
 
 public class OptionsSettings : MonoBehaviour
 {
@@ -22,12 +23,17 @@ public class OptionsSettings : MonoBehaviour
     const string sensitivityKey = "Sensitivity"; 
     const string fovKey = "Field of View"; 
     const string volumeKey = "Volume"; 
-    
+    PlayerInputActions playerInputActions; 
 
     // Start is called before the first frame update
     void Start()
     {
         LoadPrefs(); 
+    }
+    
+    void OnEnable() 
+    {
+        InitiateInputs(true); 
     }
 
     // Update is called once per frame
@@ -50,12 +56,6 @@ public class OptionsSettings : MonoBehaviour
         //fov
         playerData.fieldOfView = fovSlider.value; 
         fovProgressText.text = System.Convert.ToString(fovSlider.value); 
-        //ESC HANDLING 
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            onEscapePressed.Invoke(); 
-        }
-        
     }
 
     public void LoadPrefs()
@@ -69,11 +69,31 @@ public class OptionsSettings : MonoBehaviour
 
     }
 
+    public void InitiateInputs(bool setActive)
+    {
+        playerInputActions = new PlayerInputActions(); 
+        playerInputActions.PauseMenu.Backoutofmenu.performed += HandleEscape; 
+        if (setActive)
+        {
+            playerInputActions.PauseMenu.Enable();
+        }
+        else 
+        {
+            playerInputActions.PauseMenu.Disable();
+        }
+    }
+
     public void SavePrefs()
     {
         PlayerPrefs.SetFloat(sensitivityKey, playerData.sensitivity);
         PlayerPrefs.SetFloat(fovKey, playerData.fieldOfView); 
         PlayerPrefs.SetFloat(volumeKey, playerData.volume); 
+    }
+
+    public void HandleEscape(InputAction.CallbackContext context)
+    {
+        InitiateInputs(false); 
+        onEscapePressed.Invoke(); 
     }
 
 }

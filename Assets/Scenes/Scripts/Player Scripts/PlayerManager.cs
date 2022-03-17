@@ -9,11 +9,20 @@ using UnityEngine.InputSystem;
 
 public class PlayerManager : MonoBehaviour
 {
+    #region Singleton
+    public static PlayerManager instance;
+    void Awake() 
+    {
+        instance = this; 
+        HandleInput(true); 
+    }
+    #endregion
     [Header("Assign")]
     public PlayerData playerData; 
     public PlayerMovement playerMovement; 
     public PlayerInteract playerGrab; 
     public ToolbarManager toolbarManager; 
+    public PauseMenu pauseMenuScript; 
     public GameObject playerRoot; 
     public Camera playerCam;
     public Image fadeImage; 
@@ -35,10 +44,6 @@ public class PlayerManager : MonoBehaviour
     {
         color = fadeImage.color; 
         AddSettings(); 
-    }
-    void Awake() 
-    {
-        HandleInput(); 
     }
     void Update()
     {
@@ -64,10 +69,9 @@ public class PlayerManager : MonoBehaviour
         audioMixer.SetFloat("VolParam", Mathf.Log10(playerData.volume) * 20); 
     }
 
-    public void HandleInput()
+    public void HandleInput(bool setActive)
     {
         playerInputActions = new PlayerInputActions();
-        playerInputActions.Player.Enable(); 
         //jump input 
         playerInputActions.Player.Jump.performed += playerMovement.PlayerJump;  
         //grab input
@@ -81,6 +85,22 @@ public class PlayerManager : MonoBehaviour
         //Sprint 
         playerInputActions.Player.Sprint.performed += playerMovement.SetSprintTrue;
         playerInputActions.Player.Sprint.canceled += playerMovement.SetSprintFalse;
+        //menu 
+        playerInputActions.Player.OpenPauseMenu.performed += pauseMenuScript.StartPause; 
+        if (setActive)
+        {
+            playerInputActions.Player.Enable(); 
+            if (toolbarManager.items[toolbarManager.currentlySelected] != null && toolbarManager.items[toolbarManager.currentlySelected].gameObject.tag == "Tool")
+            {
+                playerInputActions.Tool.Enable(); 
+            }
+        }
+        else 
+        {
+            playerInputActions.Tool.Disable(); 
+            playerInputActions.Player.Disable(); 
+            print("Wtf nala"); 
+        }
     }
     public float Remap(float value, float oldLow, float oldHigh, float newLow, float newHigh)
     {

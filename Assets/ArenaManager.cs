@@ -53,7 +53,7 @@ public class ArenaManager : MonoBehaviour
         enemiesInstantiated = new GameObject[totalInstaniatedEnemies];
         for (int i = 0; i < totalInstaniatedEnemies; i++)
         {
-            GameObject dude = Instantiate(enemiesToInstantiate[Random.Range(1, enemiesToInstantiate.Length) - 1], ragdollParentObject.transform);
+            GameObject dude = Instantiate(enemiesToInstantiate[Random.Range(0, enemiesToInstantiate.Length)], ragdollParentObject.transform);
             dude.SetActive(false); 
             ActiveRagdoll activeRagdollScript = dude.GetComponent<ActiveRagdoll>(); 
             activeRagdollScript.ragdollMeshRend.enabled = false;
