@@ -1,11 +1,14 @@
 fileFormatVersion: 2
-guid: 631b6f9f52e4fda4ba52684569b8e019
+guid: 970306080375c694f8e0b845207a16d8
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable:
   - first:
       74: -203655887218126122
-    second: mixamo.com
+    second: Getting Up (3)
+  - first:
+      74: -8760592952872148706
+    second: Getting Up
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -35,7 +38,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: mixamo.com
+      name: Getting Up
       takeName: mixamo.com
       internalID: 0
       firstFrame: 0
@@ -52,9 +55,9 @@ ModelImporter:
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
       keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
+      keepOriginalPositionY: 0
       keepOriginalPositionXZ: 0
-      heightFromFeet: 0
+      heightFromFeet: 1
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
@@ -526,13 +529,13 @@ ModelImporter:
         length: 0
         modified: 0
     skeleton:
-    - name: Getting Up(Clone)
+    - name: warzombie_f_pedroso@Getting Up (3)(Clone)
       parentName: 
       position: {x: 0, y: 0, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Hips
-      parentName: Getting Up(Clone)
+      parentName: warzombie_f_pedroso@Getting Up (3)(Clone)
       position: {x: -0.0044796127, y: 0.95035744, z: 0.01936657}
       rotation: {x: 0.012946666, y: 0.027339289, z: 0.017573329, w: 0.9993879}
       scale: {x: 1, y: 1, z: 1}

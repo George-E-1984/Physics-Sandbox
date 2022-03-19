@@ -53,11 +53,11 @@ public class AIStateManager : MonoBehaviour
         {
             aiStates = AIStates.Agro; 
         }
-        else if (hasFallen && activeRagdoll.ragdollRigidbody.velocity.magnitude <= 1 && isGrounded)
+        else if (hasFallen && activeRagdoll.ragdollRigidbody.velocity.magnitude <= 2 && isGrounded)
         {
             aiStates = AIStates.GettingUp; 
         }
-        else if (hasFallen || !isGrounded)
+        else if (hasFallen && activeRagdoll.ragdollRigidbody.velocity.magnitude >= 2 || !isGrounded)
         {
             aiStates = AIStates.Fallen; 
         }

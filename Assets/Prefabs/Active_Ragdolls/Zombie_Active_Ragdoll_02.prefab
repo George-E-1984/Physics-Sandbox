@@ -302,9 +302,9 @@ MonoBehaviour:
   legMaxForce: 3000
   spineJoints:
   - {fileID: 5697105025520783165}
-  spineJointSpring: 1400
-  spineJointDamper: 100
-  spineMaxForce: 3000
+  spineJointSpring: 2000
+  spineJointDamper: 150
+  spineMaxForce: 4000
   neckAndHeadJoints:
   - {fileID: 1902751893897167408}
   neckAndHeadJointSpring: 400
@@ -460,7 +460,7 @@ CharacterJoint:
     spring: 0
     damper: 0
   m_Swing1Limit:
-    limit: 50
+    limit: 90
     bounciness: 0
     contactDistance: 0
   m_Swing2Limit:
@@ -1294,7 +1294,7 @@ Transform:
   m_Children:
   - {fileID: 8655664911479031281}
   m_Father: {fileID: 8680151265089367536}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &835461699337299912
 GameObject:
@@ -2783,7 +2783,7 @@ CharacterJoint:
     spring: 0
     damper: 0
   m_Swing1Limit:
-    limit: 50
+    limit: 90
     bounciness: 0
     contactDistance: 0
   m_Swing2Limit:
@@ -3413,7 +3413,7 @@ Transform:
   m_Children:
   - {fileID: 2470481716534112230}
   m_Father: {fileID: 8680151265089367536}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3150120982676439786
 GameObject:
@@ -3501,7 +3501,7 @@ MonoBehaviour:
   isIdleHash: 0
   isGettingUpHash: 0
   hasFallen: 0
-  foundPlayer: 1
+  foundPlayer: 0
   isGrounded: 0
   isInFallenState: 0
 --- !u!114 &466846526906787871
@@ -4494,7 +4494,7 @@ Transform:
   m_Children:
   - {fileID: 3638370336539719712}
   m_Father: {fileID: 8680151265089367536}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4283955882451103460
 GameObject:
@@ -7552,9 +7552,9 @@ Transform:
   m_LocalPosition: {x: 6.617702e-14, y: 0.13639599, z: -0.012922999}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 5597794957196934794}
   - {fileID: 146678875181582004}
   - {fileID: 4535984543717344626}
-  - {fileID: 5597794957196934794}
   m_Father: {fileID: 7286496313723278628}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
