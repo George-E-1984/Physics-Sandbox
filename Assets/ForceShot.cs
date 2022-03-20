@@ -6,13 +6,13 @@ public class ForceShot : MonoBehaviour
 {
     public float forceApplied;
     private Vector3 posDiff;
-    public BoxCollider boxCollider;
+    public Collider theCollider;
     private void OnTriggerEnter(Collider other)
     {
         
         if (other.attachedRigidbody != null)
         {
-            posDiff = other.transform.position - boxCollider.transform.position;
+            posDiff = other.transform.position - theCollider.transform.position;
             other.attachedRigidbody.AddForce(posDiff.normalized * forceApplied, ForceMode.Impulse);
         }
     }

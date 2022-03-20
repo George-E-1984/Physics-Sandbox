@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f817b8a58834e0a4e804adb6a5aa087c, type: 3}
+  m_Name: Panzerschreck
+  m_EditorClassIdentifier: 
+  gunName: Panzerschreck
+  gunPrefab: {fileID: 1911442100383070190, guid: 5c6506647e84b964bb4f9fc8e94b2f13,
+    type: 3}
+  bulletShellTag: 
+  canAim: 1
+  bulletDistance: 0
+  bulletAppliedForce: 0
+  shellForce: 0
+  spread: 0.15
+  aimSpread: 0
+  fireRate: 0
+  recoilAmount: 1000
+  shootPointOffset: 1
+  aimFov: 35
+  timeToAim: 1
+  bulletDamage: 0
+  maxPitch: 1.2
+  minPitch: 0.8
+  maxAmmoInClip: 1
+  maxAmmoInBank: 10
+  reloadTime: 5
+  burstAmount: 0
+  timeBetweenBursts: 0

@@ -127,7 +127,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forceApplied: 200
-  boxCollider: {fileID: 2009271499965713981}
+  theCollider: {fileID: 2009271499965713981}
 --- !u!65 &2009271499965713981
 BoxCollider:
   m_ObjectHideFlags: 0

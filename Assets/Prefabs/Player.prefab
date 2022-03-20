@@ -39,7 +39,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1014469938}
-  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 0}
 --- !u!23 &1014469940
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -207,7 +207,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3144991904217449486}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5600408659230277833}
@@ -277,6 +277,8 @@ MonoBehaviour:
   playerRoot: {fileID: 5465849238911762464}
   playerCam: {fileID: 523376713325927403}
   fadeImage: {fileID: 1260703841362786832}
+  playerCollider: {fileID: 250827904241832616}
+  playerMesh: {fileID: 5465849238911762464}
   fadeTime: 0.85
   audioMixer: {fileID: 24100000, guid: f152e3849bb2c0b41b45ce9f52110b5d, type: 2}
   playerAudioSource: {fileID: 5889422969014327910}
@@ -506,9 +508,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.45181957
-  m_Height: 1.9997059
+  m_Height: 2.5
   m_Direction: 1
-  m_Center: {x: 0, y: -0.00014704466, z: -0.054098397}
+  m_Center: {x: 0, y: 0.3387783, z: -0.054098397}
 --- !u!1 &6256088736233485417
 GameObject:
   m_ObjectHideFlags: 0
@@ -653,8 +655,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2159799414272564326}
-  - component: {fileID: 7945026579977337448}
-  - component: {fileID: 7017174709878475497}
+  - component: {fileID: 64746289904576801}
+  - component: {fileID: 5773781308850844441}
   m_Layer: 0
   m_Name: Mesh
   m_TagString: Untagged
@@ -676,7 +678,7 @@ Transform:
   m_Father: {fileID: 2173389769490651296}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &7945026579977337448
+--- !u!33 &64746289904576801
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -684,14 +686,14 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6539684167332240892}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &7017174709878475497
+--- !u!23 &5773781308850844441
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6539684167332240892}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -711,7 +713,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_ReceiveGI: 2
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -750,7 +752,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6877101757022854329}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2173389769490651296}

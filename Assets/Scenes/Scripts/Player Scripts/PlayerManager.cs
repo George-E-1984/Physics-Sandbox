@@ -26,6 +26,8 @@ public class PlayerManager : MonoBehaviour
     public GameObject playerRoot; 
     public Camera playerCam;
     public Image fadeImage; 
+    public CapsuleCollider playerCollider; 
+    public GameObject playerMesh; 
     public float fadeTime; 
     [Header("Audio Stuff")]
     public AudioMixer audioMixer; 
@@ -93,6 +95,7 @@ public class PlayerManager : MonoBehaviour
             if (toolbarManager.items[toolbarManager.currentlySelected] != null && toolbarManager.items[toolbarManager.currentlySelected].gameObject.tag == "Tool")
             {
                 playerInputActions.Tool.Enable(); 
+                print("Setting tool nput enabled");
             }
         }
         else 
@@ -107,6 +110,5 @@ public class PlayerManager : MonoBehaviour
         float normal = Mathf.InverseLerp(oldLow, oldHigh, value);
         float newValue = Mathf.Lerp(newLow, newHigh, normal);
         return newValue;
-    }
-
+    }   
 }

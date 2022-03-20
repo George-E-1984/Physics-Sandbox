@@ -32,8 +32,8 @@ public class PauseMenu : MonoBehaviour
     {
         if (!isMenuOpen)
         {
-            HandlePause(true);     
             PlayerManager.instance.HandleInput(false); 
+            HandlePause(true);     
         }
     }
 
