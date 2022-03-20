@@ -636,6 +636,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2324549578701072801}
   - component: {fileID: 3564820922745418814}
+  - component: {fileID: 4731305178869443722}
   m_Layer: 0
   m_Name: Pistol_Mesh
   m_TagString: Untagged
@@ -684,6 +685,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &4731305178869443722
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3101191418361852699}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98d0f8e0a785b9f4c99374c6c1db77ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  reloadAudioSource: {fileID: 7020163940711132019}
 --- !u!1 &3238020407649411458
 GameObject:
   m_ObjectHideFlags: 0

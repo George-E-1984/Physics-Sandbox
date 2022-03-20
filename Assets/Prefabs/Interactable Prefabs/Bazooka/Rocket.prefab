@@ -57,7 +57,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fe2af351b8ea60449bb43490f7483ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  forceApplied: 50
+  forceApplied: 200
   theCollider: {fileID: 196903560123416465}
 --- !u!1 &2198408006893334012
 GameObject:

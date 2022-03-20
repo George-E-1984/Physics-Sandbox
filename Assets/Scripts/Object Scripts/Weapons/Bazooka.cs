@@ -56,7 +56,6 @@ public class Bazooka : Weapons
     {
         isReloading = true; 
         reloadIcon.SetActive(true);
-        shootAudioSource.PlayOneShot(reloadSFX[Random.Range(0, reloadSFX.Length - 1)]); 
         if (reloadAnimator)
         {
             reloadAnimator.SetTrigger("Reload"); 

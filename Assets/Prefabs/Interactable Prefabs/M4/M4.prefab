@@ -639,6 +639,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8421426805773759166}
   - component: {fileID: 8421426805781437788}
+  - component: {fileID: 3734951205421627011}
   m_Layer: 0
   m_Name: M4A1
   m_TagString: Untagged
@@ -681,6 +682,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &3734951205421627011
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8421426805774184094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98d0f8e0a785b9f4c99374c6c1db77ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  reloadAudioSource: {fileID: 1577419385073947322}
 --- !u!1001 &5524139637819061291
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -786,15 +800,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cdf14baff693fbc439f8c859529a63a6, type: 3}
---- !u!198 &5524139637803723755 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 19800000, guid: cdf14baff693fbc439f8c859529a63a6,
-    type: 3}
-  m_PrefabInstance: {fileID: 5524139637819061291}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5524139637818928811 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: cdf14baff693fbc439f8c859529a63a6,
+    type: 3}
+  m_PrefabInstance: {fileID: 5524139637819061291}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &5524139637803723755 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 19800000, guid: cdf14baff693fbc439f8c859529a63a6,
     type: 3}
   m_PrefabInstance: {fileID: 5524139637819061291}
   m_PrefabAsset: {fileID: 0}

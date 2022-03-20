@@ -109,8 +109,7 @@ public class BulletGun : Weapons
     public override IEnumerator Reload()
     {
         isReloading = true; 
-        reloadIcon.SetActive(true);
-        shootAudioSource.PlayOneShot(reloadSFX[Random.Range(0, reloadSFX.Length - 1)]); 
+        reloadIcon.SetActive(true); 
         if (reloadAnimator)
         {
             reloadAnimator.SetTrigger("Reload"); 
