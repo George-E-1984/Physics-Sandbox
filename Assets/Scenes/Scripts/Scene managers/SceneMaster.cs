@@ -9,8 +9,7 @@ public class SceneMaster : MonoBehaviour
 
    void Awake() 
    {
-       instance = this; 
-       forceShot.GetComponent<ForceShot>().toolbarManager = player.GetComponentInChildren<ToolbarManager>(); 
+       instance = this;  
    }
    void Update() 
    {
@@ -20,6 +19,5 @@ public class SceneMaster : MonoBehaviour
    #endregion
 
    public GameObject player; 
-   public Transform respawnPoint; 
-   public GameObject forceShot; 
+   public Transform respawnPoint;  
 }

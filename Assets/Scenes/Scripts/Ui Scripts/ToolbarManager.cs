@@ -48,8 +48,7 @@ public class ToolbarManager : MonoBehaviour
                 currentToolScript.isShooting = false;
                 currentToolScript.SetInputs(false); 
                 currentToolScript.StopAim();
-                currentToolScript.enabled = false; 
-                SceneMaster.instance.forceShot.SetActive(false);
+                currentToolScript.enabled = false;  
             }
             setItemActive(currentlySelected, false);
             items[currentlySelected].gameObject.SetActive(true);
@@ -84,7 +83,6 @@ public class ToolbarManager : MonoBehaviour
                 currentToolScript.reloadIcon.SetActive(false); 
                 currentToolScript.isShooting = false; 
                 currentToolScript = null; 
-                SceneMaster.instance.forceShot.SetActive(false);
             } 
         }
         

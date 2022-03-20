@@ -88,10 +88,10 @@ public class Tool : MonoBehaviour
         waitReloadTime = new WaitForSeconds(gunOptions.reloadTime); 
 
         //Force Gun 
-        if (shootType == ShootType.Force)
-        {
-            forceShot = SceneMaster.instance.forceShot; 
-        }
+        // if (shootType == ShootType.Force)
+        // {
+        //     forceShot = SceneMaster.instance.forceShot; 
+        // }
 
         //setting timers
         //reloadTimer = new System.Timers.Timer(gunOptions.reloadTime * 1000);

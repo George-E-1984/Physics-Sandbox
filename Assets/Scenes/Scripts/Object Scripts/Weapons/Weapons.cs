@@ -10,24 +10,24 @@ public abstract class Weapons : MonoBehaviour
     [Header("Assignables")]
     public ItemData gunOptions;
     public GrabSettings grabSettings; 
-    public ParticleSystem muzzleFlash;
     public GameObject shootPoint; 
     public AudioSource shootAudioSource;
     public AudioClip[] shootSFX;
     public AudioClip[] reloadSFX;
      
     [Header("Info")]
-    public PlayerInputActions playerInputActions; 
-    public PlayerInteract playerGrab;  
-    public bool isReloading = false; 
-    public bool isShooting = false; 
-    public bool isAiming = false; 
+    [System.NonSerialized] public PlayerInputActions playerInputActions; 
+    [System.NonSerialized] public PlayerInteract playerGrab;  
+    [System.NonSerialized] public ObjectPooler objectPooler;
+    [System.NonSerialized] public bool isReloading = false; 
+    [System.NonSerialized] public bool isShooting = false; 
+    [System.NonSerialized] public bool isAiming = false; 
+    [System.NonSerialized] public int ammoLeftBank; 
+    [System.NonSerialized] public int ammoLeftClip; 
+    [System.NonSerialized] public WaitForSeconds waitFireRate; 
+    [System.NonSerialized] public WaitForSeconds waitReloadTime;
+    [System.NonSerialized] public GameObject reloadIcon;
     public enum ShootType {SemiAuto, Auto, Burst}; 
-    public int ammoLeftBank; 
-    public int ammoLeftClip; 
-    public WaitForSeconds waitFireRate; 
-    public WaitForSeconds waitReloadTime;
-    public GameObject reloadIcon;
     //abstract methods
     public abstract IEnumerator Shoot();
     public abstract IEnumerator Reload(); 

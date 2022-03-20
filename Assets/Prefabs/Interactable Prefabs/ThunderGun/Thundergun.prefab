@@ -179,8 +179,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3543888889751648015}
   - component: {fileID: 3543888889914873243}
+  - component: {fileID: 2576079138584123908}
   - component: {fileID: 3543888889914873242}
-  - component: {fileID: 3543888889914873241}
   - component: {fileID: 3543888889914873240}
   - component: {fileID: 5897173688228998555}
   m_Layer: 10
@@ -225,6 +225,32 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 1
+--- !u!114 &2576079138584123908
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3543888889914873247}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3bbf1468017854141a942d478293d20c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shootType: 0
+  gunOptions: {fileID: 11400000, guid: 771acb761da772e40a01027d68709283, type: 2}
+  grabSettings: {fileID: 3543888889914873242}
+  shootPoint: {fileID: 6808696500840567592}
+  shootAudioSource: {fileID: 5430492629691340283}
+  shootSFX:
+  - {fileID: 8300000, guid: d09f2d94e0035384f9d7e7a6466bedd1, type: 3}
+  - {fileID: 8300000, guid: 8eab400aaec2ecf4c97718f8989a1b63, type: 3}
+  reloadSFX:
+  - {fileID: 8300000, guid: 90fb98822356e4f4286cf6aaa7133289, type: 3}
+  forceTome: 2.5
+  forceSpeed: 35
+  forceShotPrefab: {fileID: 5626476824269636984, guid: bfe9273b7915c2a48bb289aaa399c4b6,
+    type: 3}
 --- !u!114 &3543888889914873242
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -272,52 +298,6 @@ MonoBehaviour:
   - {fileID: 7287285419758327409}
   - {fileID: 2130556020627370522}
   - {fileID: 1718278756310385268}
---- !u!114 &3543888889914873241
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3543888889914873247}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 14e4f45905cb7f64a82f2d2fcc3897ce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gunOptions: {fileID: 11400000, guid: 771acb761da772e40a01027d68709283, type: 2}
-  shootPoint: {fileID: 6808696500840567592}
-  slideAnimator: {fileID: 0}
-  shellReleasePoint: {fileID: 0}
-  muzzleFlash: {fileID: 19800000, guid: cdf14baff693fbc439f8c859529a63a6, type: 3}
-  shootType: 3
-  shootAudioSource: {fileID: 5430492629691340283}
-  shootSFX:
-  - {fileID: 8300000, guid: 8eab400aaec2ecf4c97718f8989a1b63, type: 3}
-  reloadSFX:
-  - {fileID: 8300000, guid: 90fb98822356e4f4286cf6aaa7133289, type: 3}
-  forceTome: 2.5
-  forceSpeed: 35
-  ammoLeftBank: 0
-  ammoLeftClip: 0
-  isReloading: 0
-  isShooting: 0
-  canShoot: 0
-  canReload: 0
-  reloadIcon: {fileID: 0}
-  test: 
-  shootOrigin: {fileID: 0}
-  forceShot: {fileID: 0}
-  firstRot: {x: 0, y: 0, z: 0}
-  grabSettings: {fileID: 0}
-  LastTimeShot: 0
-  decalLocTran: {x: 0, y: 0, z: 0}
-  x: 0
-  y: 0
-  isAiming: 0
-  objectProperties: {fileID: 0}
-  reloadEvent:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!65 &3543888889914873240
 BoxCollider:
   m_ObjectHideFlags: 0

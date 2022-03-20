@@ -5,17 +5,17 @@ using UnityEngine;
 public class BulletGun : Weapons
 {
     //[Header("Variables"); 
-    [Header("Assign")]
+    [Header("Assign - Bullet Gun")]
     public Animator slideAnimator; 
     public GameObject shellReleasePoint; 
+    public ParticleSystem muzzleFlash;
     [Header("Info")]
     public RaycastHit shotHit; 
-    private ObjectProperties objectProperties; 
-    ObjectPooler objectPooler; 
-    public Vector3 decalLocTran;
+    private ObjectProperties objectProperties;  
+    private Vector3 decalLocTran;
     private Rigidbody toolRB;
-    public float x; 
-    public float y;
+    private float x; 
+    private float y;
     void Start()
     {
         playerGrab = PlayerManager.instance.playerGrab; 
@@ -27,7 +27,6 @@ public class BulletGun : Weapons
         waitReloadTime = new WaitForSeconds(gunOptions.reloadTime);
         //Finds the player ui script
         reloadIcon = GameObject.Find("PlayerUI").GetComponent<UiData>().reloadIcon.gameObject;
-        playerGrab = PlayerManager.instance.playerGrab; 
     }
     void Update()
     {

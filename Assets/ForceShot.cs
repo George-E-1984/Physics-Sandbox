@@ -7,8 +7,6 @@ public class ForceShot : MonoBehaviour
     public float forceApplied;
     private Vector3 posDiff;
     public BoxCollider boxCollider;
-    public ToolbarManager toolbarManager; 
-  
     private void OnTriggerEnter(Collider other)
     {
         
@@ -17,14 +15,5 @@ public class ForceShot : MonoBehaviour
             posDiff = other.transform.position - boxCollider.transform.position;
             other.attachedRigidbody.AddForce(posDiff.normalized * forceApplied, ForceMode.Impulse);
         }
-    }
-
-    private void Update() 
-    {
-        if (toolbarManager.currentToolScript == null && gameObject != null)
-        {
-            gameObject.SetActive(false); 
-        }
-    
     }
 }
