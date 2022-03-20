@@ -374,6 +374,7 @@ MonoBehaviour:
   grabInd: {fileID: 0}
   thePlayer: {fileID: 5465849238911762464}
   grabbedTool: {fileID: 0}
+  grabHolder: {fileID: 8621692495752001335}
   toolbarManager: {fileID: 1286474281}
   playerMovement: {fileID: 5465849238911762471}
   playerManager: {fileID: 2285188882637481471}

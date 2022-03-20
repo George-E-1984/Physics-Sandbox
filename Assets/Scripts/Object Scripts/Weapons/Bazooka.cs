@@ -20,7 +20,14 @@ public class Bazooka : Weapons
         ammoLeftBank = gunOptions.maxAmmoInBank; 
         ammoLeftClip = gunOptions.maxAmmoInClip;
         waitFireRate = new WaitForSeconds(gunOptions.fireRate); 
-        waitReloadTime = new WaitForSeconds(gunOptions.reloadTime);
+        if (reloadAnimator)
+        {
+            waitReloadTime = new WaitForSeconds(reloadAnimation.length);
+        }
+        else
+        {
+            waitReloadTime = new WaitForSeconds(gunOptions.reloadTime);
+        }
         shootOrigin = playerGrab.playerMovement.shootOrigin.transform;
         toolRB = gameObject.GetComponent<Rigidbody>(); 
     }
@@ -50,6 +57,10 @@ public class Bazooka : Weapons
         isReloading = true; 
         reloadIcon.SetActive(true);
         shootAudioSource.PlayOneShot(reloadSFX[Random.Range(0, reloadSFX.Length - 1)]); 
+        if (reloadAnimator)
+        {
+            reloadAnimator.SetTrigger("Reload"); 
+        }
         yield return waitReloadTime; 
         reloadIcon.SetActive(false);
         isReloading = false; 

@@ -22,7 +22,14 @@ public class ReanimateCannon : Weapons
         ammoLeftBank = gunOptions.maxAmmoInBank; 
         ammoLeftClip = gunOptions.maxAmmoInClip;
         waitFireRate = new WaitForSeconds(gunOptions.fireRate); 
-        waitReloadTime = new WaitForSeconds(gunOptions.reloadTime);
+        if (reloadAnimator)
+        {
+            waitReloadTime = new WaitForSeconds(reloadAnimation.length);
+        }
+        else
+        {
+            waitReloadTime = new WaitForSeconds(gunOptions.reloadTime);
+        }
         //Finds the player ui script
         reloadIcon = GameObject.Find("PlayerUI").GetComponent<UiData>().reloadIcon.gameObject;
         //Finds the force shot
@@ -61,6 +68,10 @@ public class ReanimateCannon : Weapons
         isReloading = true; 
         reloadIcon.SetActive(true);
         shootAudioSource.PlayOneShot(reloadSFX[Random.Range(0, reloadSFX.Length - 1)]); 
+        if (reloadAnimator)
+        {
+            reloadAnimator.SetTrigger("Reload"); 
+        }
         yield return waitReloadTime; 
         reloadIcon.SetActive(false);
         isReloading = false; 

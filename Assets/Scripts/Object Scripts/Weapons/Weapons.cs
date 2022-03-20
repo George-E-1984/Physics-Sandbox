@@ -14,6 +14,9 @@ public abstract class Weapons : MonoBehaviour
     public AudioSource shootAudioSource;
     public AudioClip[] shootSFX;
     public AudioClip[] reloadSFX;
+    public Animator slideAnimator; 
+    public Animator reloadAnimator; 
+    public AnimationClip reloadAnimation;
      
     [Header("Info")]
     [System.NonSerialized] public PlayerInputActions playerInputActions; 

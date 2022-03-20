@@ -30,6 +30,7 @@ public class PlayerInteract : MonoBehaviour
     public Image grabInd;
     public GameObject thePlayer;
     public GameObject grabbedTool;
+    public GameObject grabHolder; 
     [Header("Assign Scripts")]
     public ToolbarManager toolbarManager;
     public PlayerMovement playerMovement;

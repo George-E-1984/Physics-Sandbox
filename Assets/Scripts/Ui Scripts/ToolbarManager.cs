@@ -42,19 +42,32 @@ public class ToolbarManager : MonoBehaviour
         {
             if (items[currentlySelected].gameObject.tag == "Tool")
             {
-                currentToolScript.StopAllCoroutines();
-                currentToolScript.isReloading = false; 
-                currentToolScript.reloadIcon.SetActive(false);
-                currentToolScript.isShooting = false;
-                currentToolScript.SetInputs(false); 
-                currentToolScript.StopAim();
-                currentToolScript.enabled = false;  
+                if (!currentToolScript.isReloading)
+                {
+                    currentToolScript.StopAllCoroutines();
+                    currentToolScript.isReloading = false; 
+                    currentToolScript.reloadIcon.SetActive(false);
+                    currentToolScript.isShooting = false;
+                    currentToolScript.SetInputs(false); 
+                    currentToolScript.StopAim();
+                    currentToolScript.enabled = false;  
+                    setItemActive(currentlySelected, false);
+                    items[currentlySelected].gameObject.SetActive(true);
+                    icons[currentlySelected].sprite = null; 
+                    items[currentlySelected] = null;
+                    playerGrab.isGrabbing = false;
+                }
             }
-            setItemActive(currentlySelected, false);
-            items[currentlySelected].gameObject.SetActive(true);
-            icons[currentlySelected].sprite = null; 
-            items[currentlySelected] = null;
-            playerGrab.isGrabbing = false; 
+            else 
+            {
+                setItemActive(currentlySelected, false);
+                items[currentlySelected].gameObject.SetActive(true);
+                icons[currentlySelected].sprite = null; 
+                items[currentlySelected] = null;
+                playerGrab.isGrabbing = false;
+
+            }
+             
         }
     }
 
@@ -75,7 +88,6 @@ public class ToolbarManager : MonoBehaviour
         if (items[lastSelected] != null)
         {
             print("poop");
-            setItemActive(lastSelected, false);
             if (items[lastSelected].gameObject.tag == "Tool")
             {
                 currentToolScript.StopAllCoroutines();
@@ -84,10 +96,15 @@ public class ToolbarManager : MonoBehaviour
                 currentToolScript.isShooting = false; 
                 currentToolScript = null; 
             } 
+            setItemActive(lastSelected, false);
         }
         
        if (items[currentlySelected] != null)
        {
+           if (items[currentlySelected].gameObject.tag == "Tool")
+           {
+               items[currentlySelected].gameObject.GetComponent<Weapons>().reloadAnimator.CrossFade("Reload", 0); 
+           }
            setItemActive(currentlySelected, true);
        }
     }

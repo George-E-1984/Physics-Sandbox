@@ -57,25 +57,17 @@ MonoBehaviour:
   shootType: 0
   gunOptions: {fileID: 11400000, guid: 2c95d257ae7b83b45b4994950e732a59, type: 2}
   grabSettings: {fileID: 7978956990626475938}
-  muzzleFlash: {fileID: 921746929230150352}
   shootPoint: {fileID: 4420079518093876584}
   shootAudioSource: {fileID: 7020163940711132019}
   shootSFX:
   - {fileID: 8300000, guid: 2d01e5a11cee3ae438b17933485e4b88, type: 3}
   reloadSFX:
   - {fileID: 8300000, guid: 90fb98822356e4f4286cf6aaa7133289, type: 3}
-  playerGrab: {fileID: 0}
-  isReloading: 0
-  isShooting: 0
-  isAiming: 0
-  ammoLeftBank: 0
-  ammoLeftClip: 0
-  reloadIcon: {fileID: 0}
-  slideAnimator: {fileID: 8613065970755493325}
+  slideAnimator: {fileID: 2258185718055475912}
+  reloadAnimator: {fileID: 3564820922745418814}
+  reloadAnimation: {fileID: 7400000, guid: 11cbb5256428bcc42ba4250b76c5d8f4, type: 2}
   shellReleasePoint: {fileID: 8099830432154748536}
-  decalLocTran: {x: 0, y: 0, z: 0}
-  x: 0
-  y: 0
+  muzzleFlash: {fileID: 921746929230150352}
 --- !u!114 &7978956990626475938
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -273,12 +265,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 852955668425789876}
-  m_LocalRotation: {x: 0.00000008146034, y: 0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalRotation: {x: 4.9603693e-10, y: -2.4277072e-15, z: -0.000000029802319, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 2324549578701072801}
-  m_RootOrder: 3
+  m_Father: {fileID: 4345226353903676781}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &5791504257265832163
 MeshFilter:
@@ -359,7 +351,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2324549578701072801}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &150573291593089418
 MeshFilter:
@@ -471,7 +463,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2324549578701072801}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &454219147740236989
 MeshFilter:
@@ -550,9 +542,10 @@ Transform:
   m_LocalRotation: {x: 0.00000008146034, y: 0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 3148006454070608543}
   m_Father: {fileID: 2324549578701072801}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &6774462717107794430
 MeshFilter:
@@ -642,8 +635,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2324549578701072801}
+  - component: {fileID: 3564820922745418814}
   m_Layer: 0
-  m_Name: uploads_files_986648_glock_17_gen5_low
+  m_Name: Pistol_Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -663,7 +657,6 @@ Transform:
   - {fileID: 6196776398196617529}
   - {fileID: 3762223240835304513}
   - {fileID: 192396085650573942}
-  - {fileID: 3148006454070608543}
   - {fileID: 4345226353903676781}
   - {fileID: 3789596401288225064}
   - {fileID: 5001368752268778489}
@@ -672,6 +665,25 @@ Transform:
   m_Father: {fileID: 1846503669878852913}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &3564820922745418814
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3101191418361852699}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e26570706150e974eb12c53b9e38799c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &3238020407649411458
 GameObject:
   m_ObjectHideFlags: 0
@@ -1147,7 +1159,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2324549578701072801}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &5735488771929259177
 MeshFilter:
@@ -1371,7 +1383,7 @@ GameObject:
   - component: {fileID: 7041541369029417920}
   - component: {fileID: 1409001828102194694}
   - component: {fileID: 8420124115151004110}
-  - component: {fileID: 8613065970755493325}
+  - component: {fileID: 2258185718055475912}
   m_Layer: 0
   m_Name: glock_slide_low
   m_TagString: Untagged
@@ -1395,7 +1407,7 @@ Transform:
   - {fileID: 3356606872325301644}
   - {fileID: 3638237661059440218}
   m_Father: {fileID: 2324549578701072801}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &1409001828102194694
 MeshFilter:
@@ -1446,7 +1458,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!95 &8613065970755493325
+--- !u!95 &2258185718055475912
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 0
