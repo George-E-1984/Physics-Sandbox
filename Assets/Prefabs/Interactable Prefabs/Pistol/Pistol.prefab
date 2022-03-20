@@ -9,11 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1846503669878852913}
-  - component: {fileID: 728141028651264032}
-  - component: {fileID: 6281318916246651616}
-  - component: {fileID: 1795260030433412376}
+  - component: {fileID: 1722043995}
   - component: {fileID: 7978956990626475938}
   - component: {fileID: 388075912712657313}
+  - component: {fileID: 6281318916246651616}
+  - component: {fileID: 728141028651264032}
   m_Layer: 10
   m_Name: Pistol
   m_TagString: Tool
@@ -42,36 +42,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &728141028651264032
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 32981806885554721}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.6, y: 0.6, z: 0.6}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &6281318916246651616
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 32981806885554721}
-  serializedVersion: 2
-  m_Mass: 5
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 1
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!114 &1795260030433412376
+--- !u!114 &1722043995
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -80,43 +51,31 @@ MonoBehaviour:
   m_GameObject: {fileID: 32981806885554721}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 14e4f45905cb7f64a82f2d2fcc3897ce, type: 3}
+  m_Script: {fileID: 11500000, guid: a141015cfcb383747a5f5557cdfa0950, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shootType: 0
   gunOptions: {fileID: 11400000, guid: 2c95d257ae7b83b45b4994950e732a59, type: 2}
-  shootPoint: {fileID: 4420079518093876584}
-  slideAnimator: {fileID: 8613065970755493325}
-  shellReleasePoint: {fileID: 8099830432154748536}
+  grabSettings: {fileID: 7978956990626475938}
   muzzleFlash: {fileID: 921746929230150352}
-  shootType: 1
+  shootPoint: {fileID: 4420079518093876584}
   shootAudioSource: {fileID: 7020163940711132019}
   shootSFX:
   - {fileID: 8300000, guid: 2d01e5a11cee3ae438b17933485e4b88, type: 3}
   reloadSFX:
   - {fileID: 8300000, guid: 90fb98822356e4f4286cf6aaa7133289, type: 3}
-  forceTome: 0
-  forceSpeed: 0
-  ammoLeftBank: 100
-  ammoLeftClip: 10
+  playerGrab: {fileID: 0}
   isReloading: 0
   isShooting: 0
-  canShoot: 0
-  canReload: 0
+  isAiming: 0
+  ammoLeftBank: 0
+  ammoLeftClip: 0
   reloadIcon: {fileID: 0}
-  test: 
-  shootOrigin: {fileID: 0}
-  forceShot: {fileID: 0}
-  firstRot: {x: 0, y: 0, z: 0}
-  grabSettings: {fileID: 0}
-  LastTimeShot: 0
+  slideAnimator: {fileID: 8613065970755493325}
+  shellReleasePoint: {fileID: 8099830432154748536}
   decalLocTran: {x: 0, y: 0, z: 0}
   x: 0
   y: 0
-  isAiming: 0
-  objectProperties: {fileID: 0}
-  reloadEvent:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!114 &7978956990626475938
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -133,6 +92,8 @@ MonoBehaviour:
   aimPositionOffset: {x: 0, y: -0.009, z: -0.8}
   rotationOffset: {x: 0, y: 0, z: 0, w: 1}
   grabPoint: {fileID: 2034911508713557392}
+  grabRigidbody: {fileID: 0}
+  canBeThrown: 0
   jointXMotion: 0
   jointYMotion: 2
   jointZMotion: 2
@@ -177,6 +138,35 @@ MonoBehaviour:
   isThisSlottable: 1
   dynamicGrabPoints: 0
   scriptsToEnableOnGrab: []
+--- !u!54 &6281318916246651616
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 32981806885554721}
+  serializedVersion: 2
+  m_Mass: 5
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 1
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &728141028651264032
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 32981806885554721}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.6, y: 0.6, z: 0.6}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &850275636917456285
 GameObject:
   m_ObjectHideFlags: 0

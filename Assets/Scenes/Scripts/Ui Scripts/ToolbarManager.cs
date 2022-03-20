@@ -24,7 +24,7 @@ public class ToolbarManager : MonoBehaviour
     private int scrollWheelInt = 0;
 
     [Header("Info")]
-    public Tool currentToolScript; 
+    public Weapons currentToolScript; 
 
     void Start()
     {
@@ -46,7 +46,7 @@ public class ToolbarManager : MonoBehaviour
                 currentToolScript.isReloading = false; 
                 currentToolScript.reloadIcon.SetActive(false);
                 currentToolScript.isShooting = false;
-                currentToolScript.HandleInput(false); 
+                currentToolScript.SetInputs(false); 
                 currentToolScript.StopAim();
                 currentToolScript.enabled = false; 
                 SceneMaster.instance.forceShot.SetActive(false);
@@ -104,8 +104,8 @@ public class ToolbarManager : MonoBehaviour
             icons[currentlySelected].sprite = items[currentlySelected].GetComponent<ObjectProperties>().icon;
             if (item.tag == "Tool")
             {
-               currentToolScript = items[currentlySelected].GetComponent<Tool>();
-               currentToolScript.HandleInput(true); 
+               currentToolScript = items[currentlySelected].GetComponent<Weapons>();
+               currentToolScript.SetInputs(true); 
                print("Nala"); 
             } 
             SetSelectedSlot(currentlySelected); 
@@ -127,8 +127,8 @@ public class ToolbarManager : MonoBehaviour
             playerGrab.GrabObject(items[currentlySelected].gameObject);
             if (items[currentlySelected].gameObject.tag == "Tool")
             {
-               currentToolScript = items[currentlySelected].GetComponent<Tool>();
-               currentToolScript.HandleInput(true);
+               currentToolScript = items[currentlySelected].GetComponent<Weapons>();
+               currentToolScript.SetInputs(true);
                playerGrab.isGrabbingTool = true;
                currentToolScript.enabled = true;
             } 
@@ -143,12 +143,12 @@ public class ToolbarManager : MonoBehaviour
             playerGrab.ReleaseObject();
             if (items[lastSelected].gameObject.tag == "Tool")
             {
-                currentToolScript = items[lastSelected].gameObject.GetComponent<Tool>(); 
+                currentToolScript = items[lastSelected].gameObject.GetComponent<Weapons>(); 
                 if (currentToolScript.isAiming)
                 {
                     currentToolScript.StopAim(); 
                 }
-                currentToolScript.HandleInput(false); 
+                currentToolScript.SetInputs(false); 
                 playerGrab.isGrabbingTool = false;
             }
             else

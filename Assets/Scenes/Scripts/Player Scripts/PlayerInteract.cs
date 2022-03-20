@@ -164,7 +164,7 @@ public class PlayerInteract : MonoBehaviour
             {
                 toolbarManager.AddItem(grabbedObject);
             }
-            hitGrab.collider.gameObject.GetComponent<Tool>().enabled = true;
+            hitGrab.collider.gameObject.GetComponent<Weapons>().enabled = true;
             print("Grabbed Tool");
             isGrabbingTool = true;
             grabbedTool = hitGrab.collider.gameObject;

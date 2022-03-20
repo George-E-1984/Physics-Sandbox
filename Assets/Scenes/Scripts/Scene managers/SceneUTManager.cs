@@ -41,8 +41,8 @@ public class SceneUTManager : MonoBehaviour
         //Ammo counter
         if (toolbarManager.items[toolbarManager.currentlySelected] != null && toolbarManager.items[toolbarManager.currentlySelected].gameObject.tag == "Tool")
         {
-            ammoLeftTextmesh.text = toolbarManager.items[toolbarManager.currentlySelected].gameObject.GetComponent<Tool>().ammoLeftClip.ToString();
-            ammoBankLeftTextmesh.text = toolbarManager.items[toolbarManager.currentlySelected].gameObject.GetComponent<Tool>().ammoLeftBank.ToString();
+            ammoLeftTextmesh.text = toolbarManager.items[toolbarManager.currentlySelected].gameObject.GetComponent<Weapons>().ammoLeftClip.ToString();
+            ammoBankLeftTextmesh.text = toolbarManager.items[toolbarManager.currentlySelected].gameObject.GetComponent<Weapons>().ammoLeftBank.ToString();
         }          
         else
         {
