@@ -37,8 +37,53 @@ public class ToolbarManager : MonoBehaviour
     {
         //scrollWheelInt = (int)Input.mouseScrollDelta.y;
 
-        //dropping tool
-        if (Input.GetKeyDown(KeyCode.F) && items[currentlySelected] != null)
+//         //dropping tool
+//         if (Input.GetKeyDown(KeyCode.F) && items[currentlySelected] != null)
+//         {
+//             if (items[currentlySelected].gameObject.tag == "Tool")
+//             {
+//                 if (!currentToolScript.isReloading)
+//                 {
+//                     currentToolScript.StopAllCoroutines();
+//                     currentToolScript.isReloading = false; 
+//                     currentToolScript.reloadIcon.SetActive(false);
+//                     currentToolScript.isShooting = false;
+//                     currentToolScript.SetInputs(false); 
+//                     currentToolScript.StopAim();
+//                     currentToolScript.enabled = false;  
+//                     setItemActive(currentlySelected, false);
+//                     items[currentlySelected].gameObject.SetActive(true);
+//                     icons[currentlySelected].sprite = null; 
+//                     items[currentlySelected] = null;
+//                     playerGrab.isGrabbing = false;
+//                 }
+//             }
+//             else 
+//             {
+//                 setItemActive(currentlySelected, false);
+//                 items[currentlySelected].gameObject.SetActive(true);
+//                 icons[currentlySelected].sprite = null; 
+//                 items[currentlySelected] = null;
+//                 playerGrab.isGrabbing = false;
+
+//             }
+             
+        }
+    }
+
+    public void OnScroll(InputAction.CallbackContext context)
+    {
+        currentlySelected += ((int)playerManager.playerInputActions.Player.TaskbarScroll.ReadValue<Vector2>().y);
+        currentlySelected = mod(currentlySelected, slots.Length);
+        if (currentlySelected != lastSelected)
+        {
+            SetSelectedSlot(currentlySelected);
+            lastSelected = currentlySelected;
+        }
+    }
+    public void DropItem(InputAction.CallbackContext context)
+    {
+        if (Items[currentlySelected] != null)
         {
             if (items[currentlySelected].gameObject.tag == "Tool")
             {
@@ -67,19 +112,8 @@ public class ToolbarManager : MonoBehaviour
                 playerGrab.isGrabbing = false;
 
             }
-             
         }
-    }
-
-    public void OnScroll(InputAction.CallbackContext context)
-    {
-        currentlySelected += ((int)playerManager.playerInputActions.Player.TaskbarScroll.ReadValue<Vector2>().y);
-        currentlySelected = mod(currentlySelected, slots.Length);
-        if (currentlySelected != lastSelected)
-        {
-            SetSelectedSlot(currentlySelected);
-            lastSelected = currentlySelected;
-        }
+        
     }
     void SetSelectedSlot(int slot)
     {
