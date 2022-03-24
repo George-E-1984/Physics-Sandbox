@@ -8,6 +8,15 @@ public class BulletGun : Weapons
     [Header("Assign - Bullet Gun")] 
     public GameObject shellReleasePoint; 
     public ParticleSystem muzzleFlash;
+    [Header("Variables to set")]
+    public float bulletDistance = 100; 
+    public float bulletAppliedForce = 10f; 
+    public float shellForce = 5f; 
+    public float spread = 0.1f; 
+    public float aimSpread = 0.01f;   
+    public int bulletDamage = 2; 
+    public string bulletShellTag; 
+ 
     [Header("Info")]
     public RaycastHit shotHit; 
     private ObjectProperties objectProperties;  
@@ -20,16 +29,16 @@ public class BulletGun : Weapons
         playerGrab = PlayerManager.instance.playerGrab; 
         objectPooler = ObjectPooler.Instance; 
         toolRB = gameObject.GetComponent<Rigidbody>();
-        ammoLeftBank = gunOptions.maxAmmoInBank; 
-        ammoLeftClip = gunOptions.maxAmmoInClip;
-        waitFireRate = new WaitForSeconds(gunOptions.fireRate); 
+        ammoLeftBank = maxAmmoInBank; 
+        ammoLeftClip = maxAmmoInClip;
+        waitFireRate = new WaitForSeconds(fireRate); 
         if (reloadAnimator)
         {
             waitReloadTime = new WaitForSeconds(reloadAnimation.length);
         }
         else
         {
-            waitReloadTime = new WaitForSeconds(gunOptions.reloadTime);
+            waitReloadTime = new WaitForSeconds(reloadTime);
         }
         //Finds the player ui script
         reloadIcon = GameObject.Find("PlayerUI").GetComponent<UiData>().reloadIcon.gameObject;
@@ -43,47 +52,41 @@ public class BulletGun : Weapons
         isShooting = true;    
         if (isAiming)
         {
-            x = Random.Range(-gunOptions.aimSpread, gunOptions.aimSpread);
-            y = Random.Range(-gunOptions.aimSpread, gunOptions.aimSpread);
+            x = Random.Range(-aimSpread, aimSpread);
+            y = Random.Range(-aimSpread, aimSpread);
 
         }
         else 
         {
-            x = Random.Range(-gunOptions.spread, gunOptions.spread);
-            y = Random.Range(-gunOptions.spread, gunOptions.spread);
+            x = Random.Range(-spread, spread);
+            y = Random.Range(-spread, spread);
         }
         Vector3 direction = playerGrab.camPos.forward + new Vector3(x, y, 0);
-        Physics.Raycast(playerGrab.playerMovement.shootOrigin.transform.position, direction, out shotHit, gunOptions.bulletDistance);
+        Physics.Raycast(playerGrab.playerMovement.shootOrigin.transform.position, direction, out shotHit, bulletDistance);
         if (shotHit.collider != null)
         {
-            if (shotHit.collider.GetComponent<ObjectProperties>() != null)
+            Rigidbody objRB = shotHit.collider.GetComponent<Rigidbody>(); 
+            if (objRB)
             {
-                objectProperties = shotHit.collider.GetComponent<ObjectProperties>(); 
-                if (objectProperties.objectRigidbody != null)
-                {
-                    objectProperties.objectRigidbody.AddForceAtPosition(gunOptions.bulletAppliedForce * shotHit.transform.forward, shotHit.point, ForceMode.Impulse); 
-                }
-                else
-                {
-                    Debug.Log("No rigidbody specified!"); 
-                }
+                objRB.AddForceAtPosition(bulletAppliedForce * shotHit.transform.forward, shotHit.point, ForceMode.Impulse); 
             }
             if (shotHit.collider.gameObject.tag == "Limb")
             {
                 ActiveRagdoll activeRagdoll = shotHit.collider.GetComponentInParent<ActiveRagdoll>();
-                activeRagdoll.currentRagdollHealth -= gunOptions.bulletDamage; 
+                activeRagdoll.currentRagdollHealth -= bulletDamage; 
                 if (activeRagdoll.currentRagdollHealth <= 0 && activeRagdoll.isAlive)
                 {
                     activeRagdoll.RagdollDeath(); 
                 }
             }
 
+            objectProperties = shotHit.collider.GetComponent<ObjectProperties>(); 
         }
         GunEffects(); 
         //recoil
-        toolRB.AddForceAtPosition(gunOptions.recoilAmount * (-playerGrab.camPos.forward), shootPoint.transform.position, ForceMode.Impulse);   
+        toolRB.AddForceAtPosition(recoilAmount * (-playerGrab.camPos.forward), shootPoint.transform.position, ForceMode.Impulse);   
         //shoot sound effect
-        shootAudioSource.pitch = Random.Range(gunOptions.minPitch, gunOptions.maxPitch);
+        shootAudioSource.pitch = Random.Range(minPitch, maxPitch);
         shootAudioSource.PlayOneShot(shootSFX[Random.Range(0, shootSFX.Length - 1)]);
         
         //slide animation
@@ -117,15 +120,15 @@ public class BulletGun : Weapons
         yield return waitReloadTime; 
         reloadIcon.SetActive(false);
         isReloading = false; 
-        if ((gunOptions.maxAmmoInClip - ammoLeftClip) >= ammoLeftBank)
+        if ((maxAmmoInClip - ammoLeftClip) >= ammoLeftBank)
         {
             ammoLeftClip = ammoLeftClip + ammoLeftBank;
             ammoLeftBank = 0; 
         }
-        else if ((gunOptions.maxAmmoInClip - ammoLeftClip) < ammoLeftBank)
+        else if ((maxAmmoInClip - ammoLeftClip) < ammoLeftBank)
         {
-            ammoLeftBank = ammoLeftBank - (gunOptions.maxAmmoInClip - ammoLeftClip);
-            ammoLeftClip = ammoLeftClip + (gunOptions.maxAmmoInClip - ammoLeftClip);
+            ammoLeftBank = ammoLeftBank - (maxAmmoInClip - ammoLeftClip);
+            ammoLeftClip = ammoLeftClip + (maxAmmoInClip - ammoLeftClip);
          
         } 
     }
@@ -171,6 +174,6 @@ public class BulletGun : Weapons
          
         }
         //Bullet Shells 
-        objectPooler.SpawnFromPool(gunOptions.bulletShellTag, shellReleasePoint.transform.position, playerGrab.camPos.rotation).GetComponent<Rigidbody>().AddForce(shootPoint.transform.right * gunOptions.shellForce, ForceMode.Impulse);
+        objectPooler.SpawnFromPool(bulletShellTag, shellReleasePoint.transform.position, playerGrab.camPos.rotation).GetComponent<Rigidbody>().AddForce(shootPoint.transform.right * shellForce, ForceMode.Impulse);
     }
 }

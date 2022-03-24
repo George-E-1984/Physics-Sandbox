@@ -19,16 +19,16 @@ public class ReanimateCannon : Weapons
         playerGrab = PlayerManager.instance.playerGrab; 
         objectPooler = ObjectPooler.Instance; 
         toolRB = gameObject.GetComponent<Rigidbody>();
-        ammoLeftBank = gunOptions.maxAmmoInBank; 
-        ammoLeftClip = gunOptions.maxAmmoInClip;
-        waitFireRate = new WaitForSeconds(gunOptions.fireRate); 
+        ammoLeftBank = maxAmmoInBank; 
+        ammoLeftClip = maxAmmoInClip;
+        waitFireRate = new WaitForSeconds(fireRate); 
         if (reloadAnimator)
         {
             waitReloadTime = new WaitForSeconds(reloadAnimation.length);
         }
         else
         {
-            waitReloadTime = new WaitForSeconds(gunOptions.reloadTime);
+            waitReloadTime = new WaitForSeconds(reloadTime);
         }
         //Finds the player ui script
         reloadIcon = GameObject.Find("PlayerUI").GetComponent<UiData>().reloadIcon.gameObject;
@@ -50,7 +50,7 @@ public class ReanimateCannon : Weapons
         forceShot.transform.position = shootOrigin.position;
         forceShot.transform.rotation = shootOrigin.rotation;
         //force to add to the weapon when you shoot; 
-        toolRB.AddForceAtPosition(gunOptions.recoilAmount * (-shootPoint.transform.forward), shootPoint.transform.position, ForceMode.Impulse);
+        toolRB.AddForceAtPosition(recoilAmount * (-shootPoint.transform.forward), shootPoint.transform.position, ForceMode.Impulse);
         //muzzleFlash.Play();
         shootAudioSource.PlayOneShot(shootSFX[Random.Range(0, shootSFX.Length - 1)]);
         ammoLeftClip--;
@@ -75,15 +75,15 @@ public class ReanimateCannon : Weapons
         yield return waitReloadTime; 
         reloadIcon.SetActive(false);
         isReloading = false; 
-        if ((gunOptions.maxAmmoInClip - ammoLeftClip) >= ammoLeftBank)
+        if ((maxAmmoInClip - ammoLeftClip) >= ammoLeftBank)
         {
             ammoLeftClip = ammoLeftClip + ammoLeftBank;
             ammoLeftBank = 0; 
         }
-        else if ((gunOptions.maxAmmoInClip - ammoLeftClip) < ammoLeftBank)
+        else if ((maxAmmoInClip - ammoLeftClip) < ammoLeftBank)
         {
-            ammoLeftBank = ammoLeftBank - (gunOptions.maxAmmoInClip - ammoLeftClip);
-            ammoLeftClip = ammoLeftClip + (gunOptions.maxAmmoInClip - ammoLeftClip);
+            ammoLeftBank = ammoLeftBank - (maxAmmoInClip - ammoLeftClip);
+            ammoLeftClip = ammoLeftClip + (maxAmmoInClip - ammoLeftClip);
          
         }
     }

@@ -10,6 +10,13 @@ public class GrabSettings : MonoBehaviour
     public GameObject grabPoint; 
     public Rigidbody grabRigidbody; 
     public bool canBeThrown = false;
+    [Header("Slottable Settings")]
+    public bool isThisSlottable = false; 
+    public Sprite itemIcon; 
+    public MonoBehaviour[] scriptsToEnable; 
+    public enum GrabOptions {dynamicGrabPoints, grabPoint, centreGrab}
+    public GrabOptions grabOptions; 
+    
 
     public ConfigurableJointMotion jointXMotion; 
     
@@ -93,5 +100,10 @@ public class GrabSettings : MonoBehaviour
         yzAngDrive.positionSpring = angYZSpring;
         yzAngDrive.positionDamper = angYZDamper;
         yzAngDrive.maximumForce = angYZForce; 
+
+        if (this.tag == "Tool")
+        {
+            isThisSlottable = true; 
+        }
     }
 }

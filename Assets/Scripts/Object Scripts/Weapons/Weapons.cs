@@ -7,8 +7,19 @@ public abstract class Weapons : MonoBehaviour
     //public stuff
     [Header("Variables")]
     public ShootType shootType; 
+    public int maxAmmoInBank = 100; 
+    public int maxAmmoInClip = 10;
+    public float fireRate = 0.2f; 
+    public float recoilAmount = 100f;
+    public bool canAim = true; 
+    public int aimFov = 50; 
+    public float timeToAim = 1;
+    public float shootPointOffset = 1.5f;
+    [Header("Audio Range")]
+    public float maxPitch = 1.1f; 
+    public float minPitch = 0.9f; 
+    public float reloadTime = 2f;
     [Header("Assignables")]
-    public ItemData gunOptions;
     public GrabSettings grabSettings; 
     public GameObject shootPoint; 
     public AudioSource shootAudioSource;
@@ -45,17 +56,17 @@ public abstract class Weapons : MonoBehaviour
     }
     public void StartReload(InputAction.CallbackContext context)
     {
-        if (!isReloading && !isShooting && ammoLeftClip != gunOptions.maxAmmoInClip && ammoLeftBank > 0)
+        if (!isReloading && !isShooting && ammoLeftClip != maxAmmoInClip && ammoLeftBank > 0)
         {
             StartCoroutine(Reload()); 
         }
     }
     public void AimDownSights(InputAction.CallbackContext context)
     {
-        if (gunOptions.canAim && playerGrab.cam.fieldOfView == playerGrab.playerMovement.playerData.fieldOfView)
+        if (canAim && playerGrab.cam.fieldOfView == playerGrab.playerMovement.playerData.fieldOfView)
         {
            isAiming = true; 
-           playerGrab.cam.fieldOfView = Mathf.Lerp(playerGrab.cam.fieldOfView, gunOptions.aimFov, gunOptions.timeToAim);
+           playerGrab.cam.fieldOfView = Mathf.Lerp(playerGrab.cam.fieldOfView, aimFov, timeToAim);
            playerGrab.grabHolderConfig.anchor = grabSettings.aimPositionOffset; 
            playerGrab.grabHolderConfig.targetRotation = new Quaternion(0,0,0,0); 
         }

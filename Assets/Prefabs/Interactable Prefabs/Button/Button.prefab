@@ -289,7 +289,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3223889557204573651}
-  m_Mesh: {fileID: 7116845592555322686, guid: e465d0064b342ab45a22953efeabccae, type: 3}
+  m_Mesh: {fileID: 7116845592555322686, guid: 807007bec3d6acf4bbefdbf9c6335cd5, type: 3}
 --- !u!23 &1347646157183035408
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -576,7 +576,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5906271589687528828}
-  m_Mesh: {fileID: 3909233067320746374, guid: e465d0064b342ab45a22953efeabccae, type: 3}
+  m_Mesh: {fileID: 3909233067320746374, guid: 807007bec3d6acf4bbefdbf9c6335cd5, type: 3}
 --- !u!23 &6712262086988418041
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -689,9 +689,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   colliderEffects: {fileID: 11400000, guid: 0000c5182453d9b47b2cffbc4eb936ec, type: 2}
-  objectRigidbody: {fileID: 418253787886961753}
-  centreOfMassOverride: {fileID: 0}
-  icon: {fileID: 21300000, guid: a0430db92f5516b4aa33332ceb4d2399, type: 3}
-  isThisSlottable: 0
-  dynamicGrabPoints: 0
-  scriptsToEnableOnGrab: []

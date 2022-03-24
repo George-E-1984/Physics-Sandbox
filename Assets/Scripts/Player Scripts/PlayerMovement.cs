@@ -155,6 +155,7 @@ public class PlayerMovement : MonoBehaviour
     {
         Vector2 inputVector = playerManager.playerInputActions.Player.Movement.ReadValue<Vector2>(); 
         moveDirection = transform.forward * inputVector.y + transform.right * inputVector.x; 
+        //moveDirection = hit.normal * inputVector.y + transform.right * inputVector.x;
         if (isGrounded)
         {
             if (isSprinting)

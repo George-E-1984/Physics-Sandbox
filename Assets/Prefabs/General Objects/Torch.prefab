@@ -480,6 +480,13 @@ MonoBehaviour:
   aimPositionOffset: {x: 0, y: -0.009, z: -0.8}
   rotationOffset: {x: 0, y: 0, z: 0, w: 1}
   grabPoint: {fileID: 7704849693866265647}
+  grabRigidbody: {fileID: 0}
+  canBeThrown: 0
+  isThisSlottable: 1
+  itemIcon: {fileID: 0}
+  scriptsToEnable:
+  - {fileID: 3880012312366961737}
+  grabOptions: 2
   jointXMotion: 0
   jointYMotion: 2
   jointZMotion: 2
@@ -531,13 +538,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   colliderEffects: {fileID: 11400000, guid: 0000c5182453d9b47b2cffbc4eb936ec, type: 2}
-  objectRigidbody: {fileID: 3209582450519582680}
-  centreOfMassOverride: {fileID: 0}
-  icon: {fileID: 21300000, guid: 1ba95e59113ee9748959a002a4f41720, type: 3}
-  isThisSlottable: 1
-  dynamicGrabPoints: 0
-  scriptsToEnableOnGrab:
-  - {fileID: 3880012312366961737}
 --- !u!114 &3880012312366961737
 MonoBehaviour:
   m_ObjectHideFlags: 0

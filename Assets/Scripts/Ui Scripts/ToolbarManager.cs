@@ -94,6 +94,7 @@ public class ToolbarManager : MonoBehaviour
                 currentToolScript.isReloading = false; 
                 currentToolScript.reloadIcon.SetActive(false); 
                 currentToolScript.isShooting = false; 
+                currentToolScript.SetInputs(false); 
                 currentToolScript = null; 
             } 
             setItemActive(lastSelected, false);
@@ -101,10 +102,10 @@ public class ToolbarManager : MonoBehaviour
         
        if (items[currentlySelected] != null)
        {
-           if (items[currentlySelected].gameObject.tag == "Tool")
-           {
-               items[currentlySelected].gameObject.GetComponent<Weapons>().reloadAnimator.CrossFade("Reload", 0); 
-           }
+        //    if (items[currentlySelected].gameObject.tag == "Tool")
+        //    {
+        //        items[currentlySelected].gameObject.GetComponent<Weapons>().reloadAnimator.CrossFade("Reload", 0); 
+        //    }
            setItemActive(currentlySelected, true);
        }
     }
@@ -116,7 +117,7 @@ public class ToolbarManager : MonoBehaviour
         {
             items[firstNull] = item;
             currentlySelected = firstNull; 
-            icons[currentlySelected].sprite = items[currentlySelected].GetComponent<ObjectProperties>().icon;
+            icons[currentlySelected].sprite = items[currentlySelected].GetComponent<GrabSettings>().itemIcon;
             if (item.tag == "Tool")
             {
                currentToolScript = items[currentlySelected].GetComponent<Weapons>();
@@ -139,7 +140,7 @@ public class ToolbarManager : MonoBehaviour
         {
             items[currentlySelected].transform.position = (grabHolder.transform.position - playerGrab.grabHolderConfig.anchor);
             items[currentlySelected].transform.rotation = grabHolder.transform.rotation;
-            playerGrab.GrabObject(items[currentlySelected].gameObject);
+            playerGrab.StartCoroutine(playerGrab.GrabObject(items[currentlySelected].gameObject));
             if (items[currentlySelected].gameObject.tag == "Tool")
             {
                currentToolScript = items[currentlySelected].GetComponent<Weapons>();

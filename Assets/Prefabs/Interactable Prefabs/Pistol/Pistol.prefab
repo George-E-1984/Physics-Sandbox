@@ -55,7 +55,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shootType: 0
-  gunOptions: {fileID: 11400000, guid: 2c95d257ae7b83b45b4994950e732a59, type: 2}
+  maxAmmoInBank: 100
+  maxAmmoInClip: 10
+  fireRate: 0.2
+  recoilAmount: 100
+  canAim: 1
+  aimFov: 50
+  timeToAim: 1
+  shootPointOffset: 1.5
+  maxPitch: 1.1
+  minPitch: 0.9
+  reloadTime: 2
   grabSettings: {fileID: 7978956990626475938}
   shootPoint: {fileID: 4420079518093876584}
   shootAudioSource: {fileID: 7020163940711132019}
@@ -68,6 +78,13 @@ MonoBehaviour:
   reloadAnimation: {fileID: 7400000, guid: 11cbb5256428bcc42ba4250b76c5d8f4, type: 2}
   shellReleasePoint: {fileID: 8099830432154748536}
   muzzleFlash: {fileID: 921746929230150352}
+  bulletDistance: 100
+  bulletAppliedForce: 10
+  shellForce: 5
+  spread: 0.1
+  aimSpread: 0.01
+  bulletDamage: 2
+  bulletShellTag: Bullet_Shells
 --- !u!114 &7978956990626475938
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -84,8 +101,12 @@ MonoBehaviour:
   aimPositionOffset: {x: 0, y: -0.009, z: -0.8}
   rotationOffset: {x: 0, y: 0, z: 0, w: 1}
   grabPoint: {fileID: 2034911508713557392}
-  grabRigidbody: {fileID: 0}
+  grabRigidbody: {fileID: 6281318916246651616}
   canBeThrown: 0
+  isThisSlottable: 1
+  itemIcon: {fileID: 21300000, guid: 6c29a66f7bb1ec44199faf4b8c8cddb0, type: 3}
+  scriptsToEnable: []
+  grabOptions: 1
   jointXMotion: 0
   jointYMotion: 2
   jointZMotion: 2
@@ -124,12 +145,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   colliderEffects: {fileID: 11400000, guid: 0000c5182453d9b47b2cffbc4eb936ec, type: 2}
-  objectRigidbody: {fileID: 6281318916246651616}
-  centreOfMassOverride: {fileID: 0}
-  icon: {fileID: 21300000, guid: 6c29a66f7bb1ec44199faf4b8c8cddb0, type: 3}
-  isThisSlottable: 1
-  dynamicGrabPoints: 0
-  scriptsToEnableOnGrab: []
 --- !u!54 &6281318916246651616
 Rigidbody:
   m_ObjectHideFlags: 0

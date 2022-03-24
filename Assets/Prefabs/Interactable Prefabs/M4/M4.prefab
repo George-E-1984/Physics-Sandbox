@@ -40,6 +40,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1262982704283800815}
   - component: {fileID: 8457083117978652035}
+  - component: {fileID: 2560510686616591925}
   m_Layer: 10
   m_Name: Cube
   m_TagString: Untagged
@@ -74,6 +75,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.07902302, y: 0.08918974, z: 1.4321802}
   m_Center: {x: 0.012884587, y: 0.113851056, z: 0.0036322773}
+--- !u!114 &2560510686616591925
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1896921645644329483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37fa12e74a22dda43ad5a5b529cc2971, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colliderEffects: {fileID: 11400000, guid: 0000c5182453d9b47b2cffbc4eb936ec, type: 2}
 --- !u!1 &3036274413196039928
 GameObject:
   m_ObjectHideFlags: 0
@@ -274,6 +288,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8063050525672784849}
   - component: {fileID: 3973421137136270182}
+  - component: {fileID: 223677940818711774}
   m_Layer: 10
   m_Name: Cube (1)
   m_TagString: Untagged
@@ -308,6 +323,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.07902302, y: 0.22343436, z: 0.37192863}
   m_Center: {x: 0.012884587, y: 0.046728745, z: 0.15078875}
+--- !u!114 &223677940818711774
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7105606463571358974}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37fa12e74a22dda43ad5a5b529cc2971, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colliderEffects: {fileID: 11400000, guid: 0000c5182453d9b47b2cffbc4eb936ec, type: 2}
 --- !u!1 &7254660707737742754
 GameObject:
   m_ObjectHideFlags: 0
@@ -319,7 +347,6 @@ GameObject:
   - component: {fileID: 1789639735137317027}
   - component: {fileID: 3717577027597218150}
   - component: {fileID: 3867467043325606108}
-  - component: {fileID: 4189559260392608346}
   - component: {fileID: 8545030960948312713}
   - component: {fileID: 4158037760638336309}
   m_Layer: 10
@@ -362,7 +389,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shootType: 1
-  gunOptions: {fileID: 11400000, guid: c1e20ca2ccad0534583e1d07b19e2de5, type: 2}
+  maxAmmoInBank: 200
+  maxAmmoInClip: 20
+  fireRate: 0.08
+  recoilAmount: 100
+  canAim: 1
+  aimFov: 50
+  timeToAim: 1
+  shootPointOffset: 1.5
+  maxPitch: 1.1
+  minPitch: 0.9
+  reloadTime: 2
   grabSettings: {fileID: 3867467043325606108}
   shootPoint: {fileID: 5170151734587975263}
   shootAudioSource: {fileID: 1577419385073947322}
@@ -375,6 +412,13 @@ MonoBehaviour:
   reloadAnimation: {fileID: 7400000, guid: 3cc79132a3f22bc4eb63c0d5a3faa793, type: 2}
   shellReleasePoint: {fileID: 1344265188152427029}
   muzzleFlash: {fileID: 5524139637803723755}
+  bulletDistance: 100
+  bulletAppliedForce: 10
+  shellForce: 5
+  spread: 0.1
+  aimSpread: 0.01
+  bulletDamage: 2
+  bulletShellTag: Bullet_Shells
 --- !u!114 &3867467043325606108
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -393,6 +437,10 @@ MonoBehaviour:
   grabPoint: {fileID: 0}
   grabRigidbody: {fileID: 8545030960948312713}
   canBeThrown: 0
+  isThisSlottable: 1
+  itemIcon: {fileID: 21300000, guid: 8d9eee11749e82b48847428c991be856, type: 3}
+  scriptsToEnable: []
+  grabOptions: 2
   jointXMotion: 0
   jointYMotion: 2
   jointZMotion: 2
@@ -419,25 +467,6 @@ MonoBehaviour:
   - {fileID: 4158037760638336309}
   - {fileID: 8457083117978652035}
   - {fileID: 3973421137136270182}
---- !u!114 &4189559260392608346
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7254660707737742754}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37fa12e74a22dda43ad5a5b529cc2971, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  colliderEffects: {fileID: 11400000, guid: 0000c5182453d9b47b2cffbc4eb936ec, type: 2}
-  objectRigidbody: {fileID: 8545030960948312713}
-  centreOfMassOverride: {fileID: 0}
-  icon: {fileID: 21300000, guid: 8d9eee11749e82b48847428c991be856, type: 3}
-  isThisSlottable: 0
-  dynamicGrabPoints: 0
-  scriptsToEnableOnGrab: []
 --- !u!54 &8545030960948312713
 Rigidbody:
   m_ObjectHideFlags: 0

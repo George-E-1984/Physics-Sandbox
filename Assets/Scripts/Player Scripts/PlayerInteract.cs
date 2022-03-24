@@ -81,16 +81,20 @@ public class PlayerInteract : MonoBehaviour
         return hitButton; 
     }
 
-    public void GrabObject(GameObject objectToGrab)
+    public IEnumerator GrabObject(GameObject objectToGrab)
     {
         print("grabbed object"); 
+        //disables colliders on the object 
+        grabSettings = objectToGrab.transform.gameObject.GetComponent<GrabSettings>();
+        for (int i = 0; i < grabSettings.grabbedObjectColliders.Length; i++)
+        {
+            grabSettings.grabbedObjectColliders[i].enabled = false; 
+        }
         grabbedObject = objectToGrab;
         objectProperties = grabbedObject.GetComponent<ObjectProperties>();  
         //grab sound effect
         grabAudioSource = objectToGrab.AddComponent<AudioSource>(); 
-        grabAudioSource.PlayOneShot(grabSound);  
-        //important variables setting!     
-        grabSettings = objectToGrab.transform.gameObject.GetComponent<GrabSettings>();
+        grabAudioSource.PlayOneShot(grabSound);      
         if (grabSettings.grabRigidbody)
         {
             grabbedObjectRb = grabSettings.grabRigidbody; 
@@ -104,23 +108,20 @@ public class PlayerInteract : MonoBehaviour
         {
             Physics.IgnoreCollision(grabSettings.grabbedObjectColliders[i], playerCollider, true);           
         }
-        if (grabbedObject.GetComponent<ObjectProperties>() != null)
+    
+        for(int i = 0; i < grabSettings.scriptsToEnable.Length; i++)
         {
-            ObjectProperties objectProperties = grabbedObject.GetComponent<ObjectProperties>(); 
-            for(int i = 0; i < objectProperties.scriptsToEnableOnGrab.Length; i++)
-            {
-                objectProperties.scriptsToEnableOnGrab[i].enabled = true; 
-            }
-
+            grabSettings.scriptsToEnable[i].enabled = true; 
         }
+        
         //changing values of config to the grab settings ones
         //position offset
         grabHolderConfig.anchor = grabSettings.positionOffset;
-        if (grabSettings.grabPoint && !objectProperties.dynamicGrabPoints)
+        if (grabSettings.grabOptions == GrabSettings.GrabOptions.grabPoint)
         {
             grabHolderConfig.connectedAnchor = grabSettings.grabPoint.transform.localPosition;
         } 
-        else if (objectProperties.dynamicGrabPoints && !objectProperties.isThisSlottable && grabSettings.grabPoint)
+        else if (grabSettings.grabOptions == GrabSettings.GrabOptions.dynamicGrabPoints)
         {
             grabSettings.grabPoint.transform.position = hitGrab.point;
             grabHolderConfig.connectedAnchor = grabSettings.grabPoint.transform.localPosition; 
@@ -146,6 +147,12 @@ public class PlayerInteract : MonoBehaviour
         grabHolderConfig.zDrive = grabSettings.zJointDrive;
         grabHolderConfig.angularXDrive = grabSettings.xAngDrive;
         grabHolderConfig.angularYZDrive = grabSettings.yzAngDrive; 
+        yield return new WaitForSeconds(1);
+        //Enables colliders on the object 
+        for (int i = 0; i < grabSettings.grabbedObjectColliders.Length; i++)
+        {
+            grabSettings.grabbedObjectColliders[i].enabled = true; 
+        }
     }
 
     public void CheckForGrab(InputAction.CallbackContext context)
@@ -160,8 +167,8 @@ public class PlayerInteract : MonoBehaviour
                 toolbarManager.currentToolScript.reloadIcon.SetActive(false);
             }
             hitGrab.collider.gameObject.transform.rotation = playerMovement.playerCamera.rotation;
-            GrabObject(hitGrab.collider.gameObject);
-            if (objectProperties != null && objectProperties.isThisSlottable)
+            StartCoroutine(GrabObject(hitGrab.collider.gameObject));
+            if (grabSettings.isThisSlottable)
             {
                 toolbarManager.AddItem(grabbedObject);
             }
@@ -169,7 +176,7 @@ public class PlayerInteract : MonoBehaviour
             print("Grabbed Tool");
             isGrabbingTool = true;
             grabbedTool = hitGrab.collider.gameObject;
-            playerMovement.shootOrigin.transform.localPosition = new Vector3(0f, 0f, toolbarManager.currentToolScript.gunOptions.shootPointOffset); 
+            playerMovement.shootOrigin.transform.localPosition = new Vector3(0f, 0f, toolbarManager.currentToolScript.shootPointOffset); 
 
         }
         //object grab
@@ -177,10 +184,10 @@ public class PlayerInteract : MonoBehaviour
         {
             hitGrab.collider.gameObject.transform.rotation = playerMovement.playerCamera.rotation;
             isGrabbing = true;
-            GrabObject(hitGrab.collider.gameObject);
+            StartCoroutine(GrabObject(hitGrab.collider.gameObject));
             if (grabbedObject.GetComponent<ObjectProperties>())
             {
-                if(grabbedObject.GetComponent<ObjectProperties>().isThisSlottable && hitGrab.collider.gameObject != toolbarManager.items[toolbarManager.currentlySelected])
+                if(grabSettings.isThisSlottable && hitGrab.collider.gameObject != toolbarManager.items[toolbarManager.currentlySelected])
                 {
                     toolbarManager.AddItem(grabbedObject);
                 }
@@ -208,24 +215,24 @@ public class PlayerInteract : MonoBehaviour
     }
     public void ReleaseObject()
     {
-        if (isGrabbing && !grabbedObject.GetComponent<ObjectProperties>().isThisSlottable || isGrabbingTool && playerManager.playerInputActions.Player.TaskbarRelease.ReadValue<float>() == 1)
+        if (isGrabbing && !grabSettings.isThisSlottable || isGrabbingTool && playerManager.playerInputActions.Player.TaskbarRelease.ReadValue<float>() == 1)
         {
             if(grabAudioSource != null)
             {
                 Destroy(grabAudioSource);
             } 
+            
             for (int i = 0; i < grabSettings.grabbedObjectColliders.Length; i++)
             {
                 Physics.IgnoreCollision(grabSettings.grabbedObjectColliders[i], playerCollider, false);
+                grabSettings.grabbedObjectColliders[i].enabled = true; 
             }
-            if (grabbedObject.GetComponent<ObjectProperties>() != null)
+     
+            for(int i = 0; i < grabSettings.scriptsToEnable.Length; i++)
             {
-                ObjectProperties objectProperties = grabbedObject.GetComponent<ObjectProperties>(); 
-                for(int i = 0; i < objectProperties.scriptsToEnableOnGrab.Length; i++)
-                {
-                    objectProperties.scriptsToEnableOnGrab[i].enabled = false; 
-                }
+                grabSettings.scriptsToEnable[i].enabled = false; 
             }
+            
             grabHolderConfig.connectedBody = null;
             //grabbedObjectRb.AddForce((System.Convert.ToUInt16(isThrowing)) * camPos.transform.forward * throwForce, ForceMode.Impulse);
             grabbedObjectRb = null;
