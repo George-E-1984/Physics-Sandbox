@@ -266,4 +266,47 @@ public class PlayerInteract : MonoBehaviour
     }
 }
 
+// public abstract class PlayerInteract : MonoBehaviour
+// {
+//     public Enum GrabType {ObjectGrab, WeaponGrab}; 
+//     public GrabType grabtype; 
+//     public abstract void Interact(); 
+// }
+
+// public class ObjectGrab : PlayerInteract
+// {
+//     public override Interact();
+//     {
+//        Print("Object Grab"); 
+//     }
+// }
+
+// public class WeaponGrab : PlayerInteract
+// {
+//     public override Interact(); 
+//     {
+//        Print("Weapon Grab"); 
+//     }
+// }
+
+// public class ButtonInteract : PlayerInteract
+// {
+//     public override Interact()
+//     {
+//        Print("Button Interaction")
+//     }
+// }
+
+// public class LeverInteract : PlayerInteract
+// {
+
+//     public override Interact()
+//     {
+//        Print("Lever Interaction"); 
+//     }
+
+// }
+
+
+
 
