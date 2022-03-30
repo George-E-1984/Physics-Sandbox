@@ -266,7 +266,7 @@ public class PlayerInteract : MonoBehaviour
     }
 }
 
-// public abstract class PlayerInteract : MonoBehaviour
+// public abstract class Interaction : MonoBehaviour
 // {
 //     public Enum GrabType {ObjectGrab, WeaponGrab}; 
 //     public GrabType grabtype; 
