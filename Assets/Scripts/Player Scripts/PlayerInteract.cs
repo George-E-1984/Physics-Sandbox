@@ -117,11 +117,11 @@ public class PlayerInteract : MonoBehaviour
         //changing values of config to the grab settings ones
         //position offset
         grabHolderConfig.anchor = grabSettings.positionOffset;
-        if (grabSettings.grabOptions == GrabSettings.GrabOptions.grabPoint)
+        if (grabSettings.grabOptions == GrabSettings.GrabOptions.grabPoint && grabSettings.grabPoint)
         {
             grabHolderConfig.connectedAnchor = grabSettings.grabPoint.transform.localPosition;
         } 
-        else if (grabSettings.grabOptions == GrabSettings.GrabOptions.dynamicGrabPoints)
+        else if (grabSettings.grabOptions == GrabSettings.GrabOptions.dynamicGrabPoints && grabSettings.grabPoint)
         {
             grabSettings.grabPoint.transform.position = hitGrab.point;
             grabHolderConfig.connectedAnchor = grabSettings.grabPoint.transform.localPosition; 
