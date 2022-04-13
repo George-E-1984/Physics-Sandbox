@@ -129,7 +129,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerMovement: {fileID: 5465849238911762471}
-  playerGrab: {fileID: 0}
+  playerInteraction: {fileID: 9215071227833652590}
   playerManager: {fileID: 2285188882637481471}
   selected: {fileID: 8621692495151807916}
   slots:
@@ -165,6 +165,7 @@ MonoBehaviour:
   currentlySelected: 0
   lastSelected: 0
   currentToolScript: {fileID: 0}
+  currentGrabScript: {fileID: 0}
 --- !u!114 &4621057358991730313
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -326,6 +327,8 @@ MonoBehaviour:
   foundInteractable: 0
   playerManager: {fileID: 0}
   interactable: {fileID: 0}
+  isGrabbing: 0
+  isGrabbingTool: 0
 --- !u!114 &5465849238911762471
 MonoBehaviour:
   m_ObjectHideFlags: 0

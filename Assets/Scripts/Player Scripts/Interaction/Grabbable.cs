@@ -33,7 +33,7 @@ public class Grabbable : Interactable
     {
         print("Interacted"); 
         //tool grab
-        if (playerManager.playerInteraction.interactHit.collider != null && playerManager.playerInteraction.interactHit.collider.gameObject.tag == "Tool" && playerManager.playerInteraction.interactHit.collider.gameObject != toolbarManager.items[toolbarManager.currentlySelected])
+        if (playerManager.playerInteraction.interactHit.collider.gameObject.tag == "Tool" && playerManager.playerInteraction.interactHit.collider.gameObject != toolbarManager.items[toolbarManager.currentlySelected])
         {
             if (toolbarManager.items[toolbarManager.currentlySelected] != null && toolbarManager.currentToolScript && toolbarManager.currentToolScript.isReloading == true)
             {
@@ -72,7 +72,10 @@ public class Grabbable : Interactable
     }
     public override void StopInteract()
     {
-       ReleaseObject(); 
+        if (playerInteraction.grabbedObject == this.gameObject)
+        {
+            ReleaseObject(); 
+        }
     }
     public IEnumerator GrabObject(GameObject objectToGrab)
     {
@@ -83,6 +86,7 @@ public class Grabbable : Interactable
             grabSettings.grabbedObjectColliders[i].enabled = false; 
         }
         grabbedObject = objectToGrab;
+        playerInteraction.grabbedObject = objectToGrab; 
         ObjectProperties objectProperties = grabbedObject.GetComponent<ObjectProperties>();  
         //grab sound effect
         grabAudioSource = objectToGrab.AddComponent<AudioSource>(); 

@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7836835886108421701}
+  - component: {fileID: 355853911185991691}
   m_Layer: 10
   m_Name: Grab_Point
   m_TagString: Untagged
@@ -26,10 +27,108 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6604640762749060449}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &355853911185991691
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2959468935372491528}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 24300002, guid: f152e3849bb2c0b41b45ce9f52110b5d,
+    type: 2}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 2
+  MaxDistance: 10
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &7340742938224607325
 GameObject:
   m_ObjectHideFlags: 0
@@ -42,11 +141,12 @@ GameObject:
   - component: {fileID: 9009810386144470555}
   - component: {fileID: 9212941493279683054}
   - component: {fileID: 7272304541026905099}
+  - component: {fileID: 2739132495280089600}
   - component: {fileID: 1959073078379782415}
   - component: {fileID: 4360550171703422657}
   - component: {fileID: 6495191087608432672}
   - component: {fileID: 7638139599651050179}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: TestCubeRBGreen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -63,6 +163,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7836835886108421701}
   m_Father: {fileID: 0}
@@ -87,6 +188,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -130,6 +232,29 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2739132495280089600
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7340742938224607325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51b49f62593632045aa3347d329409a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactableText: {fileID: 0}
+  grabSound: {fileID: 8300000, guid: e1acf0b65e7608d45ae47ddfa5c73bf4, type: 3}
+  grabAudioSource: {fileID: 355853911185991691}
+  grabbedObject: {fileID: 0}
+  grabbedTool: {fileID: 0}
+  grabbedObjectRb: {fileID: 0}
+  playerManager: {fileID: 0}
+  playerInteraction: {fileID: 0}
+  toolbarManager: {fileID: 0}
+  grabSettings: {fileID: 0}
+  grabHolderConfig: {fileID: 0}
 --- !u!114 &1959073078379782415
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -146,8 +271,12 @@ MonoBehaviour:
   aimPositionOffset: {x: 0, y: 0, z: 0}
   rotationOffset: {x: 0, y: 0, z: 0, w: 0}
   grabPoint: {fileID: 2959468935372491528}
-  grabRigidbody: {fileID: 0}
+  grabRigidbody: {fileID: 4360550171703422657}
   canBeThrown: 0
+  isThisSlottable: 0
+  itemIcon: {fileID: 0}
+  scriptsToEnable: []
+  grabOptions: 0
   jointXMotion: 2
   jointYMotion: 2
   jointZMotion: 2
@@ -206,6 +335,10 @@ MonoBehaviour:
   grabPoint: {fileID: 0}
   grabRigidbody: {fileID: 0}
   canBeThrown: 0
+  isThisSlottable: 0
+  itemIcon: {fileID: 0}
+  scriptsToEnable: []
+  grabOptions: 0
   jointXMotion: 0
   jointYMotion: 0
   jointZMotion: 0
@@ -243,9 +376,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   colliderEffects: {fileID: 11400000, guid: 0000c5182453d9b47b2cffbc4eb936ec, type: 2}
-  objectRigidbody: {fileID: 4360550171703422657}
-  centreOfMassOverride: {fileID: 0}
-  icon: {fileID: 0}
-  isThisSlottable: 0
-  dynamicGrabPoints: 1
-  scriptsToEnableOnGrab: []

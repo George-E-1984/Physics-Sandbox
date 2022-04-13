@@ -28,6 +28,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 901398803111435180}
   m_RootOrder: 0
@@ -86,6 +87,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.012, y: -0.954, z: 1.698}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 901398803111435180}
   m_RootOrder: 2
@@ -146,6 +148,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3543888889751648015}
   m_RootOrder: 2
@@ -169,6 +172,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -201,7 +205,7 @@ MeshRenderer:
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!95 &2422725065564941226
 Animator:
-  serializedVersion: 3
+  serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -214,6 +218,7 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
@@ -244,7 +249,8 @@ GameObject:
   - component: {fileID: 2576079138584123908}
   - component: {fileID: 3543888889914873242}
   - component: {fileID: 3543888889914873240}
-  m_Layer: 10
+  - component: {fileID: 5972886566275088778}
+  m_Layer: 11
   m_Name: Thundergun
   m_TagString: Tool
   m_Icon: {fileID: 0}
@@ -261,6 +267,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4995147814682967346}
   - {fileID: 7589217274170160723}
@@ -299,8 +306,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shootType: 0
-  gunOptions: {fileID: 11400000, guid: 771acb761da772e40a01027d68709283, type: 2}
+  maxAmmoInBank: 100
+  maxAmmoInClip: 10
+  fireRate: 0.2
+  recoilAmount: 100
+  canAim: 1
+  aimFov: 50
+  timeToAim: 1
+  shootPointOffset: 1.5
+  maxPitch: 1.1
+  minPitch: 0.9
+  reloadTime: 2
   grabSettings: {fileID: 3543888889914873242}
+  grabScript: {fileID: 5972886566275088778}
   shootPoint: {fileID: 6808696500840567592}
   shootAudioSource: {fileID: 5430492629691340283}
   shootSFX:
@@ -308,7 +326,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 8eab400aaec2ecf4c97718f8989a1b63, type: 3}
   reloadSFX:
   - {fileID: 8300000, guid: 90fb98822356e4f4286cf6aaa7133289, type: 3}
-  slideAnimator: {fileID: 0}
   reloadAnimator: {fileID: 2422725065564941226}
   reloadAnimation: {fileID: 7400000, guid: d8b25e2e7a4fdc3488870d373504b818, type: 2}
   forceTome: 2.5
@@ -379,6 +396,29 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.1757761, y: 1.1368873, z: 1.8493868}
   m_Center: {x: 0.15504879, y: -0.1043458, z: 0.58413523}
+--- !u!114 &5972886566275088778
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3543888889914873247}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51b49f62593632045aa3347d329409a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactableText: {fileID: 0}
+  grabSound: {fileID: 8300000, guid: e1acf0b65e7608d45ae47ddfa5c73bf4, type: 3}
+  grabAudioSource: {fileID: 5430492629691340283}
+  grabbedObject: {fileID: 0}
+  grabbedTool: {fileID: 0}
+  grabbedObjectRb: {fileID: 0}
+  playerManager: {fileID: 0}
+  playerInteraction: {fileID: 0}
+  toolbarManager: {fileID: 0}
+  grabSettings: {fileID: 0}
+  grabHolderConfig: {fileID: 0}
 --- !u!1 &4264078691205129074
 GameObject:
   m_ObjectHideFlags: 0
@@ -407,6 +447,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 0.992, y: 0.043, z: 1.698}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 901398803111435180}
   m_RootOrder: 3
@@ -465,6 +506,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.012, y: 0, z: 1.698}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 901398803111435180}
   m_RootOrder: 1
@@ -521,6 +563,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 1.921}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3543888889751648015}
   m_RootOrder: 0
@@ -552,6 +595,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3543888889751648015}
   m_RootOrder: 1
@@ -681,6 +725,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 0.046, y: 0.043, z: 1.698}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 901398803111435180}
   m_RootOrder: 4
@@ -721,6 +766,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1244032038246088826}
   - component: {fileID: 6285992235012459295}
+  - component: {fileID: 9079954717687501825}
   m_Layer: 0
   m_Name: Spot Light
   m_TagString: Untagged
@@ -738,6 +784,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.033, y: 0.077, z: 1.372}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3543888889751648015}
   m_RootOrder: 4
@@ -804,6 +851,26 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &9079954717687501825
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8098295217320768040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 1
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
 --- !u!1 &9119719726327418459
 GameObject:
   m_ObjectHideFlags: 0
@@ -830,6 +897,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4303414493357037134}
   - {fileID: 8629272412927008795}

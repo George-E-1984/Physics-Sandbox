@@ -37,8 +37,6 @@ public class ToolbarManager : MonoBehaviour
 
     void Update()
     {
-        //scrollWheelInt = (int)Input.mouseScrollDelta.y;
-
         //dropping tool
         if (Input.GetKeyDown(KeyCode.F) && items[currentlySelected] != null)
         {
@@ -89,7 +87,6 @@ public class ToolbarManager : MonoBehaviour
         selected.position = slotTransform;
         if (items[lastSelected] != null)
         {
-            print("poop");
             if (items[lastSelected].gameObject.tag == "Tool")
             {
                 currentToolScript.StopAllCoroutines();
@@ -98,7 +95,7 @@ public class ToolbarManager : MonoBehaviour
                 currentToolScript.isShooting = false; 
                 currentToolScript.SetInputs(false); 
                 currentToolScript = null; 
-            } 
+            }  
             setItemActive(lastSelected, false);
         }
         
@@ -141,6 +138,7 @@ public class ToolbarManager : MonoBehaviour
         items[item].gameObject.SetActive(state);
         if (state)
         {
+            currentGrabScript = items[currentlySelected].GetComponent<Grabbable>(); 
             items[currentlySelected].transform.position = (grabHolder.transform.position - currentGrabScript.grabHolderConfig.anchor);
             items[currentlySelected].transform.rotation = grabHolder.transform.rotation;
             currentGrabScript.StartCoroutine(currentGrabScript.GrabObject(items[currentlySelected].gameObject));
@@ -160,6 +158,7 @@ public class ToolbarManager : MonoBehaviour
         else if (state == false)
         {            
             currentGrabScript.ReleaseObject();
+            currentGrabScript = null;
             if (items[lastSelected].gameObject.tag == "Tool")
             {
                 currentToolScript = items[lastSelected].gameObject.GetComponent<Weapons>(); 

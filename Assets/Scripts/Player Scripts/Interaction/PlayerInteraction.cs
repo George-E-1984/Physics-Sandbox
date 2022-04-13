@@ -16,7 +16,8 @@ public class PlayerInteraction : MonoBehaviour
     public Interactable interactable; 
     //Grab stuff
     [HideInInspector] public bool isGrabbing; 
-    [HideInInspector] public bool isGrabbingTool;
+    [HideInInspector] public bool isGrabbingTool; 
+    [HideInInspector] public GameObject grabbedObject; 
     void Start()
     {
         //assigning scripts
