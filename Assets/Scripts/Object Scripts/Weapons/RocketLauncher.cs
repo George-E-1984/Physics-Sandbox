@@ -12,10 +12,11 @@ public class RocketLauncher : Weapons
     GameObject rocket; 
     Transform shootOrigin;
     Rigidbody toolRB; 
+    PlayerInteraction playerInteraction; 
     void Start()
     { 
         reloadIcon = GameObject.Find("PlayerUI").GetComponent<UiData>().reloadIcon.gameObject;
-        playerGrab = PlayerManager.instance.playerGrab; 
+        playerInteraction = PlayerManager.instance.playerInteraction; 
         objectPooler = ObjectPooler.Instance; 
         ammoLeftBank = maxAmmoInBank; 
         ammoLeftClip = maxAmmoInClip;
@@ -28,7 +29,7 @@ public class RocketLauncher : Weapons
         {
             waitReloadTime = new WaitForSeconds(reloadTime);
         }
-        shootOrigin = playerGrab.playerMovement.shootOrigin.transform;
+        shootOrigin = PlayerManager.instance.playerMovement.shootOrigin.transform;
         toolRB = gameObject.GetComponent<Rigidbody>(); 
     }
     void Update()

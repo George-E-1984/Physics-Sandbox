@@ -55,7 +55,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Grabbing"",
+                    ""name"": ""Interaction"",
                     ""type"": ""Button"",
                     ""id"": ""cd49adc8-653b-4d3b-98e5-b9e7ab7c24ac"",
                     ""expectedControlType"": ""Button"",
@@ -238,7 +238,18 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Grabbing"",
+                    ""action"": ""Interaction"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d595454b-cfff-4d6e-8805-f208a080794c"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interaction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -414,7 +425,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         m_Player_Movement = m_Player.FindAction("Movement", throwIfNotFound: true);
         m_Player_Sprint = m_Player.FindAction("Sprint", throwIfNotFound: true);
-        m_Player_Grabbing = m_Player.FindAction("Grabbing", throwIfNotFound: true);
+        m_Player_Interaction = m_Player.FindAction("Interaction", throwIfNotFound: true);
         m_Player_ButtonPress = m_Player.FindAction("Button Press", throwIfNotFound: true);
         m_Player_TaskbarScroll = m_Player.FindAction("Taskbar Scroll", throwIfNotFound: true);
         m_Player_TaskbarRelease = m_Player.FindAction("Taskbar Release", throwIfNotFound: true);
@@ -490,7 +501,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Jump;
     private readonly InputAction m_Player_Movement;
     private readonly InputAction m_Player_Sprint;
-    private readonly InputAction m_Player_Grabbing;
+    private readonly InputAction m_Player_Interaction;
     private readonly InputAction m_Player_ButtonPress;
     private readonly InputAction m_Player_TaskbarScroll;
     private readonly InputAction m_Player_TaskbarRelease;
@@ -503,7 +514,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
         public InputAction @Movement => m_Wrapper.m_Player_Movement;
         public InputAction @Sprint => m_Wrapper.m_Player_Sprint;
-        public InputAction @Grabbing => m_Wrapper.m_Player_Grabbing;
+        public InputAction @Interaction => m_Wrapper.m_Player_Interaction;
         public InputAction @ButtonPress => m_Wrapper.m_Player_ButtonPress;
         public InputAction @TaskbarScroll => m_Wrapper.m_Player_TaskbarScroll;
         public InputAction @TaskbarRelease => m_Wrapper.m_Player_TaskbarRelease;
@@ -527,9 +538,9 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 @Sprint.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSprint;
                 @Sprint.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSprint;
                 @Sprint.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSprint;
-                @Grabbing.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnGrabbing;
-                @Grabbing.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnGrabbing;
-                @Grabbing.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnGrabbing;
+                @Interaction.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteraction;
+                @Interaction.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteraction;
+                @Interaction.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteraction;
                 @ButtonPress.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnButtonPress;
                 @ButtonPress.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnButtonPress;
                 @ButtonPress.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnButtonPress;
@@ -558,9 +569,9 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 @Sprint.started += instance.OnSprint;
                 @Sprint.performed += instance.OnSprint;
                 @Sprint.canceled += instance.OnSprint;
-                @Grabbing.started += instance.OnGrabbing;
-                @Grabbing.performed += instance.OnGrabbing;
-                @Grabbing.canceled += instance.OnGrabbing;
+                @Interaction.started += instance.OnInteraction;
+                @Interaction.performed += instance.OnInteraction;
+                @Interaction.canceled += instance.OnInteraction;
                 @ButtonPress.started += instance.OnButtonPress;
                 @ButtonPress.performed += instance.OnButtonPress;
                 @ButtonPress.canceled += instance.OnButtonPress;
@@ -667,7 +678,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         void OnJump(InputAction.CallbackContext context);
         void OnMovement(InputAction.CallbackContext context);
         void OnSprint(InputAction.CallbackContext context);
-        void OnGrabbing(InputAction.CallbackContext context);
+        void OnInteraction(InputAction.CallbackContext context);
         void OnButtonPress(InputAction.CallbackContext context);
         void OnTaskbarScroll(InputAction.CallbackContext context);
         void OnTaskbarRelease(InputAction.CallbackContext context);

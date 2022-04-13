@@ -16,7 +16,6 @@ public class ReanimateCannon : Weapons
     private Transform shootOrigin;
     void Start() 
     {
-        playerGrab = PlayerManager.instance.playerGrab; 
         objectPooler = ObjectPooler.Instance; 
         toolRB = gameObject.GetComponent<Rigidbody>();
         ammoLeftBank = maxAmmoInBank; 
@@ -35,7 +34,7 @@ public class ReanimateCannon : Weapons
         //Finds the force shot
         forceShot = Instantiate(forceShotPrefab, new Vector3(0, 0, 0), new Quaternion(0, 0, 0, 0)); 
         forceShot.SetActive(false); 
-        shootOrigin = playerGrab.playerMovement.shootOrigin.transform;
+        shootOrigin = PlayerManager.instance.playerMovement.shootOrigin.transform;
     }
     void Update() 
     {
@@ -46,7 +45,7 @@ public class ReanimateCannon : Weapons
     {
         forceShot.SetActive(true); 
         isShooting = true; 
-        firstRot = playerGrab.camPos.forward;
+        firstRot = PlayerManager.instance.playerCam.transform.forward;
         forceShot.transform.position = shootOrigin.position;
         forceShot.transform.rotation = shootOrigin.rotation;
         //force to add to the weapon when you shoot; 

@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 215716027315627675}
-  - component: {fileID: 2619731247912515931}
   m_Layer: 0
   m_Name: Button
   m_TagString: Untagged
@@ -27,6 +26,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 149341917421585269}
   - {fileID: 3208463234965511555}
@@ -35,45 +35,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2619731247912515931
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 699659079847640097}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e2da15772fd146c439010585c8357f9f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  buttonBase: {fileID: 5906271589687528828}
-  baseColliders:
-  - {fileID: 1730131614758216071}
-  buttonPlunger: {fileID: 3223889557204573651}
-  plungerColliders:
-  - {fileID: 3209220039557568944}
-  - {fileID: 7630700297712703}
-  buttonJoint: {fileID: 2969419922685704471}
-  downThreshold: 0.19
-  upThreshold: 0.25
-  buttonAudioSource: {fileID: 1319242509278810116}
-  onClickSound:
-  - {fileID: 8300000, guid: 0a579a1bdb7b15d4fbcaafb2bc9fb069, type: 3}
-  - {fileID: 8300000, guid: 83c7c2924e0468b449f25de2aaae8d3b, type: 3}
-  - {fileID: 8300000, guid: 6f095f6ca7e1a354e98d5fdfe4784ab3, type: 3}
-  onButtonPressed:
-    m_PersistentCalls:
-      m_Calls: []
-  onButtonPressedOnce:
-    m_PersistentCalls:
-      m_Calls: []
-  onButtonUp:
-    m_PersistentCalls:
-      m_Calls: []
-  onButtonHold:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &791977839346545324
 GameObject:
   m_ObjectHideFlags: 0
@@ -101,6 +62,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3208463234965511555}
   m_RootOrder: 0
@@ -146,6 +108,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 215716027315627675}
   m_RootOrder: 3
@@ -276,9 +239,10 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0.286, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1905513038720418523}
-  - {fileID: 2772303687368398757}
+  - {fileID: 8867185983351734392}
   m_Father: {fileID: 215716027315627675}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -301,6 +265,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -453,6 +418,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3937354285278851757}
   - component: {fileID: 6304648231036476716}
+  - component: {fileID: 3652920698769095246}
   m_Layer: 0
   m_Name: Point Light
   m_TagString: Untagged
@@ -470,6 +436,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.099, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 215716027315627675}
   m_RootOrder: 2
@@ -536,6 +503,26 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &3652920698769095246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4448517046292465541}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 1
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
 --- !u!1 &5906271589687528828
 GameObject:
   m_ObjectHideFlags: 0
@@ -548,6 +535,7 @@ GameObject:
   - component: {fileID: 4660302303410668341}
   - component: {fileID: 6712262086988418041}
   - component: {fileID: 1730131614758216071}
+  - component: {fileID: 6983137709084352298}
   m_Layer: 0
   m_Name: Base
   m_TagString: Untagged
@@ -565,6 +553,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0.10000002, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 215716027315627675}
   m_RootOrder: 0
@@ -588,6 +577,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -631,7 +621,20 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.48, y: 0.20536554, z: 0.48}
   m_Center: {x: 0, y: 0.002682753, z: 0}
---- !u!1 &8679267615049498278
+--- !u!114 &6983137709084352298
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5906271589687528828}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37fa12e74a22dda43ad5a5b529cc2971, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colliderEffects: {fileID: 11400000, guid: 0000c5182453d9b47b2cffbc4eb936ec, type: 2}
+--- !u!1 &8034612628042724995
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -639,53 +642,81 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2772303687368398757}
-  - component: {fileID: 7630700297712703}
-  - component: {fileID: 5525504773030182261}
-  m_Layer: 0
+  - component: {fileID: 8867185983351734392}
+  - component: {fileID: 938566491879453901}
+  - component: {fileID: 7285532260268861222}
+  m_Layer: 11
   m_Name: Cube
-  m_TagString: Button
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2772303687368398757
+--- !u!4 &8867185983351734392
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8679267615049498278}
+  m_GameObject: {fileID: 8034612628042724995}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3208463234965511555}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &7630700297712703
+--- !u!65 &938566491879453901
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8679267615049498278}
+  m_GameObject: {fileID: 8034612628042724995}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.37711078, y: 0.07146233, z: 0.34905967}
-  m_Center: {x: -0.001829654, y: 0.13705155, z: 0.004264608}
---- !u!114 &5525504773030182261
+  m_Size: {x: 0.34707767, y: 0.07217908, z: 0.37875253}
+  m_Center: {x: -0.0049560666, y: 0.1367419, z: -0.0004917085}
+--- !u!114 &7285532260268861222
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8679267615049498278}
+  m_GameObject: {fileID: 8034612628042724995}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37fa12e74a22dda43ad5a5b529cc2971, type: 3}
+  m_Script: {fileID: 11500000, guid: e2da15772fd146c439010585c8357f9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colliderEffects: {fileID: 11400000, guid: 0000c5182453d9b47b2cffbc4eb936ec, type: 2}
+  interactableText: {fileID: 0}
+  buttonBase: {fileID: 5906271589687528828}
+  baseColliders:
+  - {fileID: 1730131614758216071}
+  buttonPlunger: {fileID: 3223889557204573651}
+  plungerColliders:
+  - {fileID: 3209220039557568944}
+  - {fileID: 938566491879453901}
+  buttonJoint: {fileID: 2969419922685704471}
+  downThreshold: 0.19
+  upThreshold: 0.25
+  buttonAudioSource: {fileID: 1319242509278810116}
+  onClickSound:
+  - {fileID: 8300000, guid: 0a579a1bdb7b15d4fbcaafb2bc9fb069, type: 3}
+  - {fileID: 8300000, guid: 83c7c2924e0468b449f25de2aaae8d3b, type: 3}
+  - {fileID: 8300000, guid: 6f095f6ca7e1a354e98d5fdfe4784ab3, type: 3}
+  onButtonPressed:
+    m_PersistentCalls:
+      m_Calls: []
+  onButtonPressedOnce:
+    m_PersistentCalls:
+      m_Calls: []
+  onButtonUp:
+    m_PersistentCalls:
+      m_Calls: []
+  onButtonHold:
+    m_PersistentCalls:
+      m_Calls: []

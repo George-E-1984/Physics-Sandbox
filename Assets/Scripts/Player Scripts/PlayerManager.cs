@@ -20,7 +20,7 @@ public class PlayerManager : MonoBehaviour
     [Header("Assign")]
     public PlayerData playerData; 
     public PlayerMovement playerMovement; 
-    public PlayerInteract playerGrab; 
+    public PlayerInteraction playerInteraction; 
     public ToolbarManager toolbarManager; 
     public PauseMenu pauseMenuScript; 
     public GameObject playerRoot; 
@@ -28,6 +28,7 @@ public class PlayerManager : MonoBehaviour
     public Image fadeImage; 
     public CapsuleCollider playerCollider; 
     public GameObject playerMesh; 
+    public ConfigurableJoint grabHolderConfig; 
     public float fadeTime; 
     [Header("Audio Stuff")]
     public AudioMixer audioMixer; 
@@ -41,7 +42,7 @@ public class PlayerManager : MonoBehaviour
     private Color color; 
     public UnityEvent deathEvent; 
     private RaycastHit hit; 
-    public PlayerInputActions playerInputActions;
+    public PlayerInputActions playerInputActions; 
     void Start()
     {
         color = fadeImage.color; 
@@ -76,14 +77,14 @@ public class PlayerManager : MonoBehaviour
         playerInputActions = new PlayerInputActions();
         //jump input 
         playerInputActions.Player.Jump.performed += playerMovement.PlayerJump;  
-        //grab input
-        playerInputActions.Player.Grabbing.performed += playerGrab.CheckForGrab;
-        playerInputActions.Player.Grabbing.canceled += playerGrab.StartReleaseObject; 
+        //Interact input
+        playerInputActions.Player.Interaction.performed += playerInteraction.StartInteract;
+        playerInputActions.Player.Interaction.canceled += playerInteraction.StopInteract; 
         //Taskbar Input 
         playerInputActions.Player.TaskbarScroll.performed += toolbarManager.OnScroll;  
         //Button Interact Input
-        playerInputActions.Player.ButtonPress.performed += playerGrab.ButtonPress; 
-        playerInputActions.Player.ButtonPress.canceled += playerGrab.ButtonDepress; 
+        //playerInputActions.Player.ButtonPress.performed += playerGrab.ButtonPress; 
+        //playerInputActions.Player.ButtonPress.canceled += playerGrab.ButtonDepress; 
         //Sprint 
         playerInputActions.Player.Sprint.performed += playerMovement.SetSprintTrue;
         playerInputActions.Player.Sprint.canceled += playerMovement.SetSprintFalse;

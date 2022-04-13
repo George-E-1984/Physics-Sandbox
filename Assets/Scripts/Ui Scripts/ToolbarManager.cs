@@ -9,7 +9,7 @@ public class ToolbarManager : MonoBehaviour
 {
     [Header("Needed Script References")]
     public PlayerMovement playerMovement;
-    public PlayerInteract playerGrab;
+    public PlayerInteraction playerInteraction; 
     public PlayerManager playerManager; 
     public RectTransform selected;
     // public GameObject toolbar;
@@ -25,9 +25,11 @@ public class ToolbarManager : MonoBehaviour
 
     [Header("Info")]
     public Weapons currentToolScript; 
+    public Grabbable currentGrabScript; 
 
     void Start()
     {
+        playerInteraction = playerManager.playerInteraction; 
         currentlySelected = initiallySelected;
         SetSelectedSlot(currentlySelected);
         lastSelected = currentlySelected; 
@@ -55,7 +57,7 @@ public class ToolbarManager : MonoBehaviour
                     items[currentlySelected].gameObject.SetActive(true);
                     icons[currentlySelected].sprite = null; 
                     items[currentlySelected] = null;
-                    playerGrab.isGrabbing = false;
+                    playerInteraction.isGrabbing = false;
                 }
             }
             else 
@@ -64,7 +66,7 @@ public class ToolbarManager : MonoBehaviour
                 items[currentlySelected].gameObject.SetActive(true);
                 icons[currentlySelected].sprite = null; 
                 items[currentlySelected] = null;
-                playerGrab.isGrabbing = false;
+                playerInteraction.isGrabbing = false;
 
             }
              
@@ -124,6 +126,7 @@ public class ToolbarManager : MonoBehaviour
                currentToolScript.SetInputs(true); 
                print("Nala"); 
             } 
+            currentGrabScript = items[currentlySelected].GetComponent<Grabbable>();
             SetSelectedSlot(currentlySelected); 
             lastSelected = currentlySelected; 
         }
@@ -138,25 +141,25 @@ public class ToolbarManager : MonoBehaviour
         items[item].gameObject.SetActive(state);
         if (state)
         {
-            items[currentlySelected].transform.position = (grabHolder.transform.position - playerGrab.grabHolderConfig.anchor);
+            items[currentlySelected].transform.position = (grabHolder.transform.position - currentGrabScript.grabHolderConfig.anchor);
             items[currentlySelected].transform.rotation = grabHolder.transform.rotation;
-            playerGrab.StartCoroutine(playerGrab.GrabObject(items[currentlySelected].gameObject));
+            currentGrabScript.StartCoroutine(currentGrabScript.GrabObject(items[currentlySelected].gameObject));
             if (items[currentlySelected].gameObject.tag == "Tool")
             {
                currentToolScript = items[currentlySelected].GetComponent<Weapons>();
                currentToolScript.SetInputs(true);
-               playerGrab.isGrabbingTool = true;
+               playerInteraction.isGrabbingTool = true;
                currentToolScript.enabled = true;
             } 
             else 
             {
-                playerGrab.isGrabbing = true; 
+                playerInteraction.isGrabbing = true; 
             }
             
         }
         else if (state == false)
         {            
-            playerGrab.ReleaseObject();
+            currentGrabScript.ReleaseObject();
             if (items[lastSelected].gameObject.tag == "Tool")
             {
                 currentToolScript = items[lastSelected].gameObject.GetComponent<Weapons>(); 
@@ -165,11 +168,11 @@ public class ToolbarManager : MonoBehaviour
                     currentToolScript.StopAim(); 
                 }
                 currentToolScript.SetInputs(false); 
-                playerGrab.isGrabbingTool = false;
+                playerInteraction.isGrabbingTool = false;
             }
             else
             {
-                playerGrab.isGrabbing = false; 
+                playerInteraction.isGrabbing = false; 
             }
         }
     }

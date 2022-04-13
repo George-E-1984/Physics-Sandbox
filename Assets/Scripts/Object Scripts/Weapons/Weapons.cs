@@ -21,6 +21,7 @@ public abstract class Weapons : MonoBehaviour
     public float reloadTime = 2f;
     [Header("Assignables")]
     public GrabSettings grabSettings; 
+    public Grabbable grabScript; 
     public GameObject shootPoint; 
     public AudioSource shootAudioSource;
     public AudioClip[] shootSFX;
@@ -29,8 +30,7 @@ public abstract class Weapons : MonoBehaviour
     public AnimationClip reloadAnimation;
      
     [Header("Info")]
-    [System.NonSerialized] public PlayerInputActions playerInputActions; 
-    [System.NonSerialized] public PlayerInteract playerGrab;  
+    [System.NonSerialized] public PlayerInputActions playerInputActions;   
     [System.NonSerialized] public ObjectPooler objectPooler;
     [System.NonSerialized] public bool isReloading = false; 
     [System.NonSerialized] public bool isShooting = false; 
@@ -62,20 +62,21 @@ public abstract class Weapons : MonoBehaviour
     }
     public void AimDownSights(InputAction.CallbackContext context)
     {
-        if (canAim && playerGrab.cam.fieldOfView == playerGrab.playerMovement.playerData.fieldOfView)
+        if (canAim && PlayerManager.instance.playerCam.fieldOfView == PlayerManager.instance.playerData.fieldOfView)
         {
            isAiming = true; 
-           playerGrab.cam.fieldOfView = Mathf.Lerp(playerGrab.cam.fieldOfView, aimFov, timeToAim);
-           playerGrab.grabHolderConfig.anchor = grabSettings.aimPositionOffset; 
-           playerGrab.grabHolderConfig.targetRotation = new Quaternion(0,0,0,0); 
+           PlayerManager.instance.playerCam.fieldOfView = Mathf.Lerp(PlayerManager.instance.playerCam.fieldOfView, aimFov, timeToAim);
+           PlayerManager.instance.grabHolderConfig.anchor = grabSettings.aimPositionOffset; 
+           PlayerManager.instance.grabHolderConfig.targetRotation = new Quaternion(0,0,0,0); 
         }
     }
     public void StopAim()
     {
+        GrabSettings grabSettings = this.GetComponentInChildren<GrabSettings>(); 
         isAiming = false; 
-        playerGrab.cam.fieldOfView = playerGrab.playerMovement.playerData.fieldOfView; 
-        playerGrab.grabHolderConfig.anchor = playerGrab.grabSettings.positionOffset; 
-        playerGrab.grabHolderConfig.targetRotation = playerGrab.grabSettings.rotationOffset;
+        PlayerManager.instance.playerCam.fieldOfView = PlayerManager.instance.playerMovement.playerData.fieldOfView; 
+        PlayerManager.instance.grabHolderConfig.anchor = grabSettings.positionOffset; 
+        PlayerManager.instance.grabHolderConfig.targetRotation = grabSettings.rotationOffset;
     }
     public void StopAimStart(InputAction.CallbackContext context)
     {

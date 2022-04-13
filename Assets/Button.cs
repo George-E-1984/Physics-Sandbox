@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Events; 
 using UnityEngine.InputSystem; 
 
-public class Button : MonoBehaviour
+public class Button : Interactable
 {
     [Header("Assign")]
     public GameObject buttonBase; 
@@ -54,7 +54,27 @@ public class Button : MonoBehaviour
     {
         HandleButtonState(); 
     }
-
+    public override void Interact()
+    {
+        ButtonPress(); 
+    }
+    public override void StopInteract()
+    {
+        ButtonDepress(); 
+    }
+    public void ButtonPress()
+    { 
+        buttonJoint.targetPosition = new Vector3(0, downThreshold, 0);
+        isPushingButton = true;   
+    }
+    public void ButtonDepress()
+    { 
+        if (isPushingButton)
+        {
+            buttonJoint.targetPosition = new Vector3(0, 0 ,0); 
+            isPushingButton = false; 
+        }
+    }
     public void HandleButtonState()
     { 
         if (buttonPlunger.transform.localPosition.y <= downThreshold && !isButtonDown)

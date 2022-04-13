@@ -194,20 +194,6 @@ public class PlayerInteract : MonoBehaviour
             }
             print("Grabbed Object");
         }   
-        // else if (isGrabbing && !isGrabbingTool && grabSettings.canBeThrown)
-        // {
-        //     if (objectProperties == null || !objectProperties.isThisSlottable)
-        //     {
-        //         ReleaseObject(true); 
-        //     }
-        // }
-        // else if (isGrabbing && playerManager.playerInputActions.Player.Grabbing.ReadValue<float>() == -1 && !isGrabbingTool)
-        // {
-        //     if (objectProperties == null || !objectProperties.isThisSlottable)
-        //     {
-        //         ReleaseObject(false);
-        //     }
-        // }
     }
     public void StartReleaseObject(InputAction.CallbackContext context)
     {

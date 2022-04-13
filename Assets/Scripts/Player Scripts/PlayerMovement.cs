@@ -93,7 +93,7 @@ public class PlayerMovement : MonoBehaviour
         else UnCrouch();
     
         Physics.Raycast(transform.position, Vector3.down, out hit, 1.1f);
-        if (hit.collider && hit.collider != playerGrab.grabbedObject)
+        if (hit.collider)
         {
             isGrounded = true; 
         }

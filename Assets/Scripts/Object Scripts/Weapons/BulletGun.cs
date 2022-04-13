@@ -26,7 +26,6 @@ public class BulletGun : Weapons
     private float y;
     void Start()
     {
-        playerGrab = PlayerManager.instance.playerGrab; 
         objectPooler = ObjectPooler.Instance; 
         toolRB = gameObject.GetComponent<Rigidbody>();
         ammoLeftBank = maxAmmoInBank; 
@@ -61,8 +60,8 @@ public class BulletGun : Weapons
             x = Random.Range(-spread, spread);
             y = Random.Range(-spread, spread);
         }
-        Vector3 direction = playerGrab.camPos.forward + new Vector3(x, y, 0);
-        Physics.Raycast(playerGrab.playerMovement.shootOrigin.transform.position, direction, out shotHit, bulletDistance);
+        Vector3 direction = PlayerManager.instance.playerCam.transform.forward + new Vector3(x, y, 0);
+        Physics.Raycast(PlayerManager.instance.playerMovement.shootOrigin.transform.position, direction, out shotHit, bulletDistance);
         if (shotHit.collider != null)
         {
             Rigidbody objRB = shotHit.collider.GetComponent<Rigidbody>(); 
@@ -84,7 +83,7 @@ public class BulletGun : Weapons
         }
         GunEffects(); 
         //recoil
-        toolRB.AddForceAtPosition(recoilAmount * (-playerGrab.camPos.forward), shootPoint.transform.position, ForceMode.Impulse);   
+        toolRB.AddForceAtPosition(recoilAmount * (-PlayerManager.instance.playerCam.transform.forward), shootPoint.transform.position, ForceMode.Impulse);   
         //shoot sound effect
         shootAudioSource.pitch = Random.Range(minPitch, maxPitch);
         shootAudioSource.PlayOneShot(shootSFX[Random.Range(0, shootSFX.Length - 1)]);
@@ -174,6 +173,6 @@ public class BulletGun : Weapons
          
         }
         //Bullet Shells 
-        objectPooler.SpawnFromPool(bulletShellTag, shellReleasePoint.transform.position, playerGrab.camPos.rotation).GetComponent<Rigidbody>().AddForce(shootPoint.transform.right * shellForce, ForceMode.Impulse);
+        objectPooler.SpawnFromPool(bulletShellTag, shellReleasePoint.transform.position, PlayerManager.instance.playerCam.transform.rotation).GetComponent<Rigidbody>().AddForce(shootPoint.transform.right * shellForce, ForceMode.Impulse);
     }
 }
