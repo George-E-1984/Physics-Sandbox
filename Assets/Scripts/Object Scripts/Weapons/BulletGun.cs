@@ -90,9 +90,9 @@ public class BulletGun : Weapons
         shootAudioSource.PlayOneShot(shootSFX[Random.Range(0, shootSFX.Length - 1)]);
         
         //slide animation
-        if (slideAnimator != null)
+        if (reloadAnimator != null)
         {
-            slideAnimator.SetTrigger("SlideBack");
+            reloadAnimator.SetTrigger("SlideBack");
         }
 
         //reducing ammo amount

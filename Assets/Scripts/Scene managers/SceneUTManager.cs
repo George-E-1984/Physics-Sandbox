@@ -27,6 +27,7 @@ public class SceneUTManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        StartCoroutine(UpdateFPS()); 
          
     }
 
@@ -34,9 +35,6 @@ public class SceneUTManager : MonoBehaviour
     void Update()
     {
         GravityToggle();
-        //Fps counter
-        Current = (int)(1f / Time.unscaledDeltaTime);
-        fpsTextmesh.text = Current.ToString();
 
         //Ammo counter
         if (toolbarManager.items[toolbarManager.currentlySelected] != null && toolbarManager.items[toolbarManager.currentlySelected].gameObject.tag == "Tool")
@@ -53,12 +51,13 @@ public class SceneUTManager : MonoBehaviour
         healthAmountTextMesh.text = playerMovement.playerData.currentPlayerHealth.ToString(); 
 
         Application.targetFrameRate = targetFrameRate;
+        Current = (int)(1f / Time.unscaledDeltaTime);
     }
    
 
     private void FixedUpdate()
     {
-        fpsTextmesh.text = Current.ToString();
+
     }
     private void GravityToggle()
     {
@@ -68,5 +67,11 @@ public class SceneUTManager : MonoBehaviour
             Physics.gravity = GravityNala ? new Vector3(0f, 1f, 0f) : new Vector3(0f, -9.81f, 0f);
             print(Physics.gravity);
         }
+    }
+    private IEnumerator UpdateFPS()
+    {
+        yield return new WaitForSeconds(0.1f); 
+        fpsTextmesh.text = Current.ToString();
+        StartCoroutine(UpdateFPS()); 
     }
 }

@@ -73,7 +73,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 2d01e5a11cee3ae438b17933485e4b88, type: 3}
   reloadSFX:
   - {fileID: 8300000, guid: 90fb98822356e4f4286cf6aaa7133289, type: 3}
-  slideAnimator: {fileID: 2258185718055475912}
+  slideAnimator: {fileID: 0}
   reloadAnimator: {fileID: 3564820922745418814}
   reloadAnimation: {fileID: 7400000, guid: 11cbb5256428bcc42ba4250b76c5d8f4, type: 2}
   shellReleasePoint: {fileID: 8099830432154748536}
@@ -1412,7 +1412,6 @@ GameObject:
   - component: {fileID: 7041541369029417920}
   - component: {fileID: 1409001828102194694}
   - component: {fileID: 8420124115151004110}
-  - component: {fileID: 2258185718055475912}
   m_Layer: 0
   m_Name: glock_slide_low
   m_TagString: Untagged
@@ -1487,25 +1486,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!95 &2258185718055475912
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6639472027330659731}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: eaaa51e24fd1edc489ea8ad3a5d30562, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &7031942671647121840
 GameObject:
   m_ObjectHideFlags: 0
