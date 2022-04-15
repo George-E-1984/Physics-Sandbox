@@ -9,7 +9,6 @@ public class PlayerMovement : MonoBehaviour
     [Header("Assignables")] 
     public PlayerData playerData; 
     public CapsuleCollider playerCol;
-    public PlayerInteract playerGrab;
     public PlayerManager playerManager; 
     public UiData uiData;
     public AudioSource playerAudioSource;
@@ -64,6 +63,7 @@ public class PlayerMovement : MonoBehaviour
     public RaycastHit hit; 
     public bool canLook = true; 
     public bool isPlayingSound = false; 
+    public bool jumpInputReleased; 
 
     // Start is called before the first frame update
     void Start()
@@ -83,25 +83,31 @@ public class PlayerMovement : MonoBehaviour
         {
             StartCoroutine(PlayerSound()); 
         } 
-        //MyInput();
+        //Raycast that checks for ground
+        isGrounded = Physics.Raycast(groundCheckLocation.transform.position, Vector3.down, out hit, 1.1f);  
         ControlDrag();
-
-        if (isGrounded && Input.GetKey(KeyCode.LeftControl))
-        {
-            Crouch();
-        }
-        else UnCrouch();
-    
-        Physics.Raycast(transform.position, Vector3.down, out hit, 1.1f);
-        if (hit.collider)
-        {
-            isGrounded = true; 
-        }
-        else 
-        {
-            isGrounded = false; 
-        } 
-        
+        // Physics.Raycast(transform.position, Vector3.down, out hit, 1.1f);
+        // if (hit.collider)
+        // {
+        //     isGrounded = true; 
+        // }
+        // else 
+        // {
+        //     isGrounded = false; 
+        // }  
+        // if (jumpInputReleased && rb.velocity.y > 0)
+        // {
+        //     print("Yeah"); 
+        //     jumpInputReleased = false; 
+        //     print("Setting Vel"); 
+        //     rb.velocity = new Vector3(rb.velocity.x, 3, rb.velocity.z);
+        //     //rb.AddForce(Vector3.down * jumpForce / 2, ForceMode.Impulse); 
+        // }
+        // else if (jumpInputReleased)
+        // {
+        //     print("Yeah2");
+        //     jumpInputReleased = false; 
+        // }
     }
     public IEnumerator PlayerSound()
     {
@@ -126,18 +132,6 @@ public class PlayerMovement : MonoBehaviour
     public void SetSprintFalse(InputAction.CallbackContext context)
     {
         isSprinting = false; 
-    }
-    public void MyInput()
-    {
-        horizontalMovement = Input.GetAxisRaw("Horizontal");
-        verticalMovement = Input.GetAxisRaw("Vertical");
-
-        moveDirection = transform.forward * verticalMovement + transform.right * horizontalMovement;
-
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
-        {
-            canJump = true;
-        }
     }
 
     private void LateUpdate()
@@ -167,7 +161,7 @@ public class PlayerMovement : MonoBehaviour
                 rb.AddForce(moveDirection * playerSpeed, ForceMode.Acceleration);
             }
         }
-        else
+        else 
         {
             rb.AddForce(moveDirection * airMovementSpeed, ForceMode.Acceleration);
         }
@@ -192,12 +186,17 @@ public class PlayerMovement : MonoBehaviour
         //transform.rotation = Quaternion.Euler(0, yRotation, 0);
     }
 
-    public void PlayerJump(InputAction.CallbackContext context)
+    public void PlayerJumpPressed(InputAction.CallbackContext context)
     {
-        if (context.performed && isGrounded)
+        if (isGrounded)
         {
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            //rb.velocity = new Vector3(rb.velocity.x, jumpForce, rb.velocity.z); 
         }
+    }
+    public void PlayerJumpUnpressed(InputAction.CallbackContext context)
+    {
+        jumpInputReleased = true; 
     }
     
     private void Crouch()

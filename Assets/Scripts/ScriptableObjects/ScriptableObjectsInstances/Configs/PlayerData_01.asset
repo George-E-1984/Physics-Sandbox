@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: PlayerData_01
   m_EditorClassIdentifier: 
   MaxPlayerHealth: 100
-  currentPlayerHealth: 90
+  currentPlayerHealth: 100
   sensitivity: 50
-  volume: 0.20174634
+  volume: 1
   fieldOfView: 100
   playerPrefab: {fileID: 0}
   audioMixer: {fileID: 24100000, guid: f152e3849bb2c0b41b45ce9f52110b5d, type: 2}
