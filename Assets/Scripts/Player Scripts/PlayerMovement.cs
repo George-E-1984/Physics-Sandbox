@@ -4,12 +4,10 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
-    private Rigidbody rb;
 
     [Header("Assignables")] 
     public PlayerData playerData; 
     public CapsuleCollider playerCol;
-    public PlayerInteract playerGrab;
     public PlayerManager playerManager; 
     public UiData uiData;
     public AudioSource playerAudioSource;
@@ -17,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
     public Transform playerCamera;
     public GameObject groundCheckLocation;
     public LayerMask groundMask;
+    public Rigidbody rb;
 
     [Header("Movement")]
     Vector3 moveDirection;
@@ -70,8 +69,10 @@ public class PlayerMovement : MonoBehaviour
     {
         Debug.DrawRay(transform.position, Vector3.down, Color.green);
         Debug.DrawRay(transform.position, Vector3.left, Color.red);
-
-        rb = GetComponent<Rigidbody>();
+        if (!rb)
+        {
+            rb = GetComponent<Rigidbody>();
+        }
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;    
     }
@@ -92,15 +93,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else UnCrouch();
     
-        Physics.Raycast(transform.position, Vector3.down, out hit, 1.1f);
-        if (hit.collider)
-        {
-            isGrounded = true; 
-        }
-        else 
-        {
-            isGrounded = false; 
-        } 
+        isGrounded = Physics.Raycast(transform.position, Vector3.down, out hit, playerCol.height / 2 + 0.1f); 
         
     }
     public IEnumerator PlayerSound()
@@ -199,6 +192,13 @@ public class PlayerMovement : MonoBehaviour
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
         }
     }
+    public void PlayerJumpUnpressed(InputAction.CallbackContext context)
+    {
+        if (rb.velocity.y > 0f)
+        {
+            rb.velocity = new Vector3(rb.velocity.x, 2, rb.velocity.z); 
+        }
+    }
     
     private void Crouch()
     {
@@ -214,6 +214,10 @@ public class PlayerMovement : MonoBehaviour
     {
         if (isGrounded) rb.drag = groundDrag;
         else rb.drag = airDrag;
+    }
+    private void OnDrawGizmos() 
+    {
+        Debug.DrawRay(transform.position, Vector3.down, Color.cyan);
     }
 
 }

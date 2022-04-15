@@ -83,3 +83,12 @@ The following packages were updated:
   com.unity.probuilder from version 4.5.2 to 5.0.3
   com.unity.render-pipelines.universal from version 10.8.1 to 12.1.6
   com.unity.timeline from version 1.4.8 to 1.6.4
+
+=== Fri Apr 15 17:49:30 2022
+
+Packages were changed.
+Update Mode: updateDependencies
+
+The following packages were updated:
+  com.unity.collab-proxy from version 1.15.13 to 1.15.15
+  com.unity.ide.rider from version 3.0.12 to 3.0.13

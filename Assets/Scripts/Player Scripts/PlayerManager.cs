@@ -77,6 +77,7 @@ public class PlayerManager : MonoBehaviour
         playerInputActions = new PlayerInputActions();
         //jump input 
         playerInputActions.Player.Jump.performed += playerMovement.PlayerJump;  
+        playerInputActions.Player.Jump.canceled += playerMovement.PlayerJumpUnpressed; 
         //Interact input
         playerInputActions.Player.Interaction.performed += playerInteraction.StartInteract;
         playerInputActions.Player.Interaction.canceled += playerInteraction.StopInteract; 
