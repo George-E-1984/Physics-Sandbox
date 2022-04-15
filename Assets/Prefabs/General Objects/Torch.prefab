@@ -27,7 +27,6 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6468402142491024670}
   m_RootOrder: 0
@@ -72,7 +71,6 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7884651184372182436}
   m_Father: {fileID: 3955568921016456380}
@@ -88,7 +86,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4923580498182937919}
   - component: {fileID: 2918272718722163209}
-  - component: {fileID: 1624556934992051783}
   m_Layer: 0
   m_Name: Spot Light
   m_TagString: Untagged
@@ -106,7 +103,6 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0.2275}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2465293601032305553}
   m_RootOrder: 2
@@ -173,26 +169,6 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
---- !u!114 &1624556934992051783
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3700931686424303916}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Version: 1
-  m_UsePipelineSettings: 1
-  m_AdditionalLightsShadowResolutionTier: 2
-  m_LightLayerMask: 1
-  m_CustomShadowLayers: 0
-  m_ShadowLayerMask: 1
-  m_LightCookieSize: {x: 1, y: 1}
-  m_LightCookieOffset: {x: 0, y: 0}
 --- !u!1 &4444718947890269702
 GameObject:
   m_ObjectHideFlags: 0
@@ -221,7 +197,6 @@ Transform:
   m_LocalRotation: {x: -0.70705426, y: -0, z: -0, w: 0.70715934}
   m_LocalPosition: {x: 0, y: -0.0089378245, z: -0.010886908}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
-  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6468402142491024670}
   m_Father: {fileID: 2465293601032305553}
@@ -246,7 +221,6 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -303,7 +277,6 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -0.25}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2465293601032305553}
   m_RootOrder: 1
@@ -335,7 +308,6 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2465293601032305553}
   m_RootOrder: 3
@@ -448,11 +420,10 @@ GameObject:
   - component: {fileID: 2465293601032305553}
   - component: {fileID: 3209582450519582680}
   - component: {fileID: 810756582475996102}
-  - component: {fileID: 6771297755737122551}
   - component: {fileID: 641970369022654596}
   - component: {fileID: 5296440658808674671}
   - component: {fileID: 3880012312366961737}
-  m_Layer: 11
+  m_Layer: 10
   m_Name: Torch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -469,7 +440,6 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3955568921016456380}
   - {fileID: 1317345670551152497}
@@ -510,7 +480,7 @@ MonoBehaviour:
   aimPositionOffset: {x: 0, y: -0.009, z: -0.8}
   rotationOffset: {x: 0, y: 0, z: 0, w: 1}
   grabPoint: {fileID: 7704849693866265647}
-  grabRigidbody: {fileID: 3209582450519582680}
+  grabRigidbody: {fileID: 0}
   canBeThrown: 0
   isThisSlottable: 1
   itemIcon: {fileID: 0}
@@ -542,29 +512,6 @@ MonoBehaviour:
   grabbedObjectColliders:
   - {fileID: 7061308591979985521}
   - {fileID: 641970369022654596}
---- !u!114 &6771297755737122551
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9094891120254916004}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51b49f62593632045aa3347d329409a5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interactableText: {fileID: 0}
-  grabSound: {fileID: 8300000, guid: e1acf0b65e7608d45ae47ddfa5c73bf4, type: 3}
-  grabAudioSource: {fileID: 8188526028590715507}
-  grabbedObject: {fileID: 0}
-  grabbedTool: {fileID: 0}
-  grabbedObjectRb: {fileID: 0}
-  playerManager: {fileID: 0}
-  playerInteraction: {fileID: 0}
-  toolbarManager: {fileID: 0}
-  grabSettings: {fileID: 0}
-  grabHolderConfig: {fileID: 0}
 --- !u!65 &641970369022654596
 BoxCollider:
   m_ObjectHideFlags: 0

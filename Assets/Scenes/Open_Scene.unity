@@ -7069,11 +7069,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 6053261292180719415, guid: e11e9dafe487002419d48985909fa249,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -35.900635
-      objectReference: {fileID: 0}
     - target: {fileID: 8621692495133287594, guid: e11e9dafe487002419d48985909fa249,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -7193,11 +7188,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8621692496840985510, guid: e11e9dafe487002419d48985909fa249,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.899
       objectReference: {fileID: 0}
     - target: {fileID: 8621692496893421630, guid: e11e9dafe487002419d48985909fa249,
         type: 3}
@@ -30870,7 +30860,7 @@ PrefabInstance:
     - target: {fileID: 1282715390803144020, guid: 5c6506647e84b964bb4f9fc8e94b2f13,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.18
+      value: 0.087
       objectReference: {fileID: 0}
     - target: {fileID: 1282715390803144020, guid: 5c6506647e84b964bb4f9fc8e94b2f13,
         type: 3}

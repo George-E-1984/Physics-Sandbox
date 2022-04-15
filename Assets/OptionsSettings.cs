@@ -25,7 +25,8 @@ public class OptionsSettings : MonoBehaviour
     const string volumeKey = "Volume"; 
     PlayerInputActions playerInputActions; 
 
-    void Awake() 
+    // Start is called before the first frame update
+    void Start()
     {
         LoadPrefs(); 
     }
