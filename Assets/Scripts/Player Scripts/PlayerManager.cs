@@ -24,6 +24,7 @@ public class PlayerManager : MonoBehaviour
     public ToolbarManager toolbarManager; 
     public PauseMenu pauseMenuScript; 
     public GameObject playerRoot; 
+    public GameObject grabHolderGameobject; 
     public Camera playerCam;
     public Image fadeImage; 
     public CapsuleCollider playerCollider; 

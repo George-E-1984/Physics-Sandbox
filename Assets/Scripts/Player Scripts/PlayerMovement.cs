@@ -196,7 +196,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (rb.velocity.y > 0f)
         {
-            rb.velocity = new Vector3(rb.velocity.x, 2, rb.velocity.z); 
+            rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y / 2, rb.velocity.z); 
         }
     }
     

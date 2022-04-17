@@ -281,6 +281,7 @@ MonoBehaviour:
   toolbarManager: {fileID: 1286474281}
   pauseMenuScript: {fileID: 1251966500}
   playerRoot: {fileID: 5465849238911762464}
+  grabHolderGameobject: {fileID: 8621692495752001335}
   playerCam: {fileID: 523376713325927403}
   fadeImage: {fileID: 1260703841362786832}
   playerCollider: {fileID: 250827904241832616}
@@ -329,6 +330,7 @@ MonoBehaviour:
   interactable: {fileID: 0}
   isGrabbing: 0
   isGrabbingTool: 0
+  grabbedObject: {fileID: 0}
 --- !u!114 &5465849238911762471
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -343,7 +345,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerData: {fileID: 11400000, guid: 8ec2dc6111e42584ab5a4034242a495d, type: 2}
   playerCol: {fileID: 250827904241832616}
-  playerGrab: {fileID: 0}
   playerManager: {fileID: 2285188882637481471}
   uiData: {fileID: 2935987259409029207}
   playerAudioSource: {fileID: 3106039649706165819}
@@ -353,6 +354,7 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 256
+  rb: {fileID: 0}
   playerSpeed: 25
   airMovementSpeed: 10
   maxSpeed: 5
