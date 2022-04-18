@@ -29,7 +29,6 @@ public class Button : Interactable
     [Header("Info")]
     public SoftJointLimit configLimit; 
     private bool isButtonDown = false;   
-    private PlayerInteract playerGrabScript; 
     private PlayerManager playerManagerScript;
     private bool isPushingButton; 
     private RaycastHit hit; 
@@ -46,8 +45,7 @@ public class Button : Interactable
                plungerCol++; 
             }
             baseCol++; 
-        }
-        playerGrabScript = SceneMaster.instance.player.GetComponent<PlayerInteract>(); 
+        } 
         playerManagerScript = SceneMaster.instance.player.GetComponent<PlayerManager>(); 
     }
     void Update()

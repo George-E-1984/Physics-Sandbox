@@ -107,6 +107,15 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Object Interaction"",
+                    ""type"": ""Button"",
+                    ""id"": ""7a41722e-81fb-4c07-af86-5b0530dbe0bb"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -318,6 +327,28 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""action"": ""Open Pause Menu"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3bbe19f3-4be3-44c1-a127-c42421ebf184"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Object Interaction"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""16ea5aa7-4e44-4b26-8e62-012a3b8adc53"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Object Interaction"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -431,6 +462,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         m_Player_TaskbarRelease = m_Player.FindAction("Taskbar Release", throwIfNotFound: true);
         m_Player_CameraMovement = m_Player.FindAction("Camera Movement", throwIfNotFound: true);
         m_Player_OpenPauseMenu = m_Player.FindAction("Open Pause Menu", throwIfNotFound: true);
+        m_Player_ObjectInteraction = m_Player.FindAction("Object Interaction", throwIfNotFound: true);
         // Tool
         m_Tool = asset.FindActionMap("Tool", throwIfNotFound: true);
         m_Tool_Shoot = m_Tool.FindAction("Shoot", throwIfNotFound: true);
@@ -507,6 +539,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_TaskbarRelease;
     private readonly InputAction m_Player_CameraMovement;
     private readonly InputAction m_Player_OpenPauseMenu;
+    private readonly InputAction m_Player_ObjectInteraction;
     public struct PlayerActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -520,6 +553,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         public InputAction @TaskbarRelease => m_Wrapper.m_Player_TaskbarRelease;
         public InputAction @CameraMovement => m_Wrapper.m_Player_CameraMovement;
         public InputAction @OpenPauseMenu => m_Wrapper.m_Player_OpenPauseMenu;
+        public InputAction @ObjectInteraction => m_Wrapper.m_Player_ObjectInteraction;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -556,6 +590,9 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 @OpenPauseMenu.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnOpenPauseMenu;
                 @OpenPauseMenu.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnOpenPauseMenu;
                 @OpenPauseMenu.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnOpenPauseMenu;
+                @ObjectInteraction.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnObjectInteraction;
+                @ObjectInteraction.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnObjectInteraction;
+                @ObjectInteraction.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnObjectInteraction;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -587,6 +624,9 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 @OpenPauseMenu.started += instance.OnOpenPauseMenu;
                 @OpenPauseMenu.performed += instance.OnOpenPauseMenu;
                 @OpenPauseMenu.canceled += instance.OnOpenPauseMenu;
+                @ObjectInteraction.started += instance.OnObjectInteraction;
+                @ObjectInteraction.performed += instance.OnObjectInteraction;
+                @ObjectInteraction.canceled += instance.OnObjectInteraction;
             }
         }
     }
@@ -684,6 +724,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         void OnTaskbarRelease(InputAction.CallbackContext context);
         void OnCameraMovement(InputAction.CallbackContext context);
         void OnOpenPauseMenu(InputAction.CallbackContext context);
+        void OnObjectInteraction(InputAction.CallbackContext context);
     }
     public interface IToolActions
     {

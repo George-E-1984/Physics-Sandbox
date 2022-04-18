@@ -31,6 +31,7 @@ public class PlayerInteraction : MonoBehaviour
 
     public void StartInteract(InputAction.CallbackContext context)
     {
+        //Checks if there is an interactable object found
         if (foundInteractable)
         {
             //finds the interactable script
@@ -52,6 +53,7 @@ public class PlayerInteraction : MonoBehaviour
     }
     public void StopInteract(InputAction.CallbackContext context)
     {
+        //Checks if there is an interactable object found
         if (interactable)
         {
             interactable.StopInteract(); 

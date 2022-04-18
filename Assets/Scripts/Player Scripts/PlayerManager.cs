@@ -82,6 +82,9 @@ public class PlayerManager : MonoBehaviour
         //Interact input
         playerInputActions.Player.Interaction.performed += playerInteraction.StartInteract;
         playerInputActions.Player.Interaction.canceled += playerInteraction.StopInteract; 
+        playerInputActions.Player.ObjectInteraction.performed += playerInteraction.StartInteract; 
+        playerInputActions.Player.ObjectInteraction.canceled += playerInteraction.StopInteract; 
+
         //Taskbar Input 
         playerInputActions.Player.TaskbarScroll.performed += toolbarManager.OnScroll;  
         //Button Interact Input

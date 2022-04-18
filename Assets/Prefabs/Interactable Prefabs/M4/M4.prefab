@@ -398,7 +398,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shootType: 1
   maxAmmoInBank: 200
-  maxAmmoInClip: 20
+  maxAmmoInClip: 50
   fireRate: 0.08
   recoilAmount: 100
   canAim: 1
